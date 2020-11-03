@@ -11,6 +11,7 @@ import cards.TreasureDeck;
 import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
 import player.Player;
+import player.PlayerList;
 
 public class PlayerActions {
 
@@ -50,7 +51,7 @@ public class PlayerActions {
 					continue;
 				}
 
-				if ((userInput >= 0) && (userInput <= 5)) {
+				if ((userInput >= 0) && (userInput <= 10)) {
 					validInput = true;
 				}
 			}
@@ -60,13 +61,25 @@ public class PlayerActions {
 				turnOver = true;
 				break;
 			case 1:
-				//drawCard();
+				move();
 				break;
 			case 2:
-				//FloodDiscardPile.getInstance().printAll();
+				shoreUp();
 				break;
 			case 3:
-				//discard();
+				captureTreasure();
+                break;
+            case 4:
+			    giveTreasureCard();
+                break;
+            case 5:
+			    useSpecialCards();
+                break;
+            case 6:
+			    displayHands();
+                break;
+            case 7:
+			    lookDiscarded();
 				break;
 			default:
 				printout("why am i hereCASE ERROR IN PlayerTurn.doTurn()");
@@ -76,14 +89,52 @@ public class PlayerActions {
 		printout("Your turn has ended.\n");
 	}
 
-	private void giveOptions() {
-		printout("\nWhat do you want to do? You have " + " actions remaining");
-		printout("[3]	Discard a card!");
-		printout("[2]	Print hand!");
-		printout("[1]    Take a Card!");
-		printout("[0]    end  turn");
-	}
+	private void lookDiscarded() {
+        System.out.println("ff");
+    }
 
+    private void displayHands() {
+        System.out.println("in here!");
+        PlayerList.getInstance().showAllHands();
+    }
+
+    private void useSpecialCards() {
+        System.out.println("ff");
+
+    }
+
+    private void giveTreasureCard() {
+        System.out.println("ff");
+
+    }
+
+    private void shoreUp() {
+        System.out.println("ff");
+
+    }
+
+    private void move() {
+        System.out.println("ff");
+
+    }
+
+    private void captureTreasure(){
+        System.out.println("ff");
+    }
+    
+    private void giveOptions() {
+		printout("\nWhat do you want to do? You have " + " actions remaining");
+		printout("[8]	NOTHING!");
+		printout("[7]	NOTHING!");
+		printout("[6]	Look at Everyone's Hands!");
+		printout("[5]	N/A!");
+		printout("[4]	N/A!");
+		printout("[3]	N/A!!");
+		printout("[2]	N/A!!");
+		printout("[1]   N/A!!");
+		printout("[0]   N/A!");
+    }
+    
 	private void printout(String toPrint) {
 		System.out.println(toPrint);
 	}

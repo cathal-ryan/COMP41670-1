@@ -28,6 +28,14 @@ public class PlayerList {
     	return playerList.get(i-1);
     }
     
+    public void showAllHands(){
+        for(int i=1;i<=playerList.size();i++){
+            Player player = getPlayer(i);
+            System.out.println("\n"+player.getName()+"'s hand: ");	
+            player.getHand().printHand();
+        }
+        System.out.println("");
+    }
 
     public int getPlayerIndex(Player player){
     	return playerList.indexOf(player)+1;
@@ -37,7 +45,6 @@ public class PlayerList {
     	playerList.set(i-1, updatedPlayer);
     }
     
-
     public void addPlayer(Player newPlayer) {
     	playerList.add(newPlayer);
     }

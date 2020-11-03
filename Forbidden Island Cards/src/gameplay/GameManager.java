@@ -46,7 +46,7 @@ public class GameManager {
                 currentTreasure.doTreasureDraw();                            // Let it handle the turn    
                 losers = currentTreasure.seeIfLost();
                 if(losers){
-                    System.out.println("Sorry! You lose!");
+                    System.out.println("Sorry! You lose! The Flood Meter went too High :(");
                     gameOver=true;
                     break;
                 }

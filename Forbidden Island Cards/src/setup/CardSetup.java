@@ -37,21 +37,24 @@ public class CardSetup {
         int numPlayers = setupPlayers.getNumPlayers();
         while (i<=numPlayers) {  
 				Player playa1 =  setupPlayers.getPlayer(i);
+				boolean cardsDealt=false;
         		for(int j=0;j<2;j++) {
-        			Card c1 = TreasureDeck.getInstance().dealCard();    	
-        			if(c1 instanceof WaterRiseCard) {
-        				setupTreasureDeck.addCard(c1);
-        				setupTreasureDeck.shuffle();
-        			}
-        			else {
-        				setupPlayers.getPlayer(i).drawTreasureCard(c1);
-        			}
+					cardsDealt=false;
+					while(!cardsDealt){
+						Card c1 = TreasureDeck.getInstance().dealCard();    	
+						if(c1 instanceof WaterRiseCard) {
+							setupTreasureDeck.addCard(c1);
+							setupTreasureDeck.shuffle();
+						}
+						else {
+							setupPlayers.getPlayer(i).drawTreasureCard(c1);
+							cardsDealt=true;
+						}
+					}
 				}
-				System.out.println("\n"+playa1.getName()+"'s hand: ");	
-				playa1.getHand().printHand();	
                 i++;
 			}
-		System.out.println("");
+		PlayerList.getInstance().showAllHands();
 		// Take out 6 flood cards
         for(int k=0;k<6;k++) {
 			try{Thread.sleep(100);}

@@ -36,18 +36,27 @@ package gameplay;
                 Card c1 = TreasureDeck.getInstance().dealCard();
                 if(c1 instanceof WaterRiseCard) {
                     WaterMeter.cardDrawn();
-                    if(WaterMeter.getWaterlevel()>5){
+                    int waterLevel = WaterMeter.getWaterlevel();
+                    if(waterLevel>5){
                         lost=true;
                     }
-                    TreasureDiscardPile.getInstance().discardCard(c1);
+                    else{
+                        System.out.println("Oh no! The Water Rises!! Flood Level currently at: "+ waterLevel);
+                        TreasureDiscardPile.getInstance().discardCard(c1);
+                    }
                 }
                 else {
                     player.getHand().addCard(c1);
+                    System.out.println("Great! You've drawn "+ c1.getName());
                 }
                 i++;
             }
-            while (player.handSize() > 5) {
-                discard();
+            if(!lost){
+                while (player.handSize() > 5) {
+                    discard();
+                }
+                System.out.println("Cool, so "+ player.getName()+ " now has the following hand: ");
+                player.getHand().printHand();
             }
         }
 

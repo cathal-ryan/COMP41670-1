@@ -24,7 +24,6 @@ public class WaterMeter {
 		watermeter=watermeter+k;
 	}
 	public static void cardDrawn() {
-		System.out.println("Oh no! The Water Rises!!");
 		setWatermeter(1);
 		FloodDiscardPile.getInstance().putbackall();
 	}
