@@ -12,7 +12,6 @@ public class GameManager {
     
     // Other variables
     private boolean    gameOver=false;
-    private boolean    winners=false;
     private PlayerList players;
     
     public static GameManager getInstance(){
@@ -24,16 +23,41 @@ public class GameManager {
     
     private GameManager() {
         this.gameOver     = false;
-        this.winners      = false;
         this.players      = PlayerList.getInstance();
     }
     
     public void doGameplay(Scanner inputScanner) {
-        PlayerTurn currentTurn;
-        while (!gameOver && !winners) { // Main loop for doing PlayerTurns
+        PlayerActions currentPActions;
+        TreasureDraw currentTreasure;
+        FloodDraw currentFlood;
+        boolean winners;
+        boolean losers;
+        while (!gameOver) { // Main loop for doing PlayerTurns
             for (Player i: players.getAllPlayers()) {
-                currentTurn = new PlayerTurn(i,inputScanner);    // Make a new PlayerTurn
-                currentTurn.doTurn();                            // Let it handle the turn
+                currentPActions = new PlayerActions(i,inputScanner);    // Make a new PlayerTurn
+                currentPActions.doActions();                            // Let it handle the turn
+                winners  = currentPActions.seeIfWon();
+                if(winners){
+                    System.out.println("Congrats! You win!");
+                    gameOver=true;
+                    break;
+                }
+                currentTreasure = new TreasureDraw(i,inputScanner);    // Make a new PlayerTurn
+                currentTreasure.doTreasureDraw();                            // Let it handle the turn    
+                losers = currentTreasure.seeIfLost();
+                if(losers){
+                    System.out.println("Sorry! You lose!");
+                    gameOver=true;
+                    break;
+                }
+                currentFlood = new FloodDraw(i,inputScanner);    // Make a new PlayerTurn
+                currentFlood.doFloodDraw();                            // Let it handle the turn    
+                losers = currentTreasure.seeIfLost();
+                if(losers){
+                    System.out.println("Sorry! You lose!");
+                    gameOver=true;
+                    break;
+                }
             }
         }
     }

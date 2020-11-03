@@ -22,9 +22,6 @@ public class WaterMeter {
 
 	public static void setWatermeter(int k) {
 		watermeter=watermeter+k;
-		if(watermeter>9){
-			GameManager.getInstance().
-		}
 	}
 	public static void cardDrawn() {
 		System.out.println("Oh no! The Water Rises!!");
