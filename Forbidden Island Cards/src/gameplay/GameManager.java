@@ -12,6 +12,7 @@ public class GameManager {
     
     // Other variables
     private boolean    gameOver=false;
+    private boolean    winners=false;
     private PlayerList players;
     
     public static GameManager getInstance(){
@@ -23,19 +24,17 @@ public class GameManager {
     
     private GameManager() {
         this.gameOver     = false;
+        this.winners      = false;
         this.players      = PlayerList.getInstance();
     }
     
     public void doGameplay(Scanner inputScanner) {
         PlayerTurn currentTurn;
-        while (!gameOver) { // Main loop for doing PlayerTurns
+        while (!gameOver && !winners) { // Main loop for doing PlayerTurns
             for (Player i: players.getAllPlayers()) {
-                if (i.canHaveTurn()) {
-                    currentTurn = new PlayerTurn(i,inputScanner);    // Make a new PlayerTurn
-                    currentTurn.doTurn();                            // Let it handle the turn
-                }
+                currentTurn = new PlayerTurn(i,inputScanner);    // Make a new PlayerTurn
+                currentTurn.doTurn();                            // Let it handle the turn
             }
         }
-        
     }
 }

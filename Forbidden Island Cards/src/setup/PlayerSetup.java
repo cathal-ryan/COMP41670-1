@@ -93,7 +93,8 @@ public class PlayerSetup {
 	    	case 5: 	playerList.addPlayer(new Messenger(i+1, name));	break;
 	    	default: printout("why am i hereCASE ERROR IN PlayerTurn.doTurn()");
 		}
-		printout("Your Adventure is: "+ playerList.getPlayer(i+1).getPlayerType()+" ");
+		Player player = playerList.getPlayer(i+1);
+		printout(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
 	}
 
 	private void printout(String toPrint) {

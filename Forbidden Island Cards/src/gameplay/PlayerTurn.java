@@ -100,11 +100,7 @@ public class PlayerTurn {
 	}
 
 	public void printHand() {
-		List <Card> handOfCards = player.showHand();
-		for (int i = 0; i < handOfCards.size(); i++) {
-			Card ceh = handOfCards.get(i);
-			System.out.println(ceh.getName());
-		}
+		player.getHand().printHand();
 	}
 
 	public void drawCard() {

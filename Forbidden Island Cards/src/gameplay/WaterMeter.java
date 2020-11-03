@@ -11,7 +11,7 @@ public class WaterMeter {
 	public static WaterMeter getInstance(){
         if(theWaterMeter == null){
         	theWaterMeter = new WaterMeter();
-        	watermeter=3;
+			watermeter=0;
         }
         return theWaterMeter;
     }
@@ -22,8 +22,12 @@ public class WaterMeter {
 
 	public static void setWatermeter(int k) {
 		watermeter=watermeter+k;
+		if(watermeter>9){
+			GameManager.getInstance().
+		}
 	}
 	public static void cardDrawn() {
+		System.out.println("Oh no! The Water Rises!!");
 		setWatermeter(1);
 		FloodDiscardPile.getInstance().putbackall();
 	}

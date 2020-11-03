@@ -16,12 +16,10 @@ abstract public class Player {
 	//===========================================================
 	private String        playerName;
 	private Hand          playerHand;
-	private boolean       canDoTurn;
 
 	public Player(int playerNum, String playerName) {
 		this.playerName     = playerName;
 		this.playerHand     = new Hand();
-		this.canDoTurn		=true;
 	}
 	
 	public String getName() {
@@ -38,10 +36,6 @@ abstract public class Player {
 	
 	public int handSize() {
 		return this.playerHand.getCards().size();
-	}
-
-	public boolean canHaveTurn(){
-		return canDoTurn;
 	}
 
 	public void drawTreasureCard(Card card1) {

@@ -8,6 +8,7 @@ public class Setup {
     // Setup Controllers
     private PlayerSetup      playerHandler;
     private CardSetup        cardHandler;
+    private WaterMeterSetup  waterHandler;
     
     public static Setup getInstance(){
         if(theSetup == null){
@@ -17,14 +18,16 @@ public class Setup {
     }
 
     private Setup() {
-    	// Create instances of Player set up and card set up
+        // Create instances of Player set up and card set up
+        this.waterHandler   = new WaterMeterSetup();
         this.playerHandler  = new PlayerSetup();
         this.cardHandler    = new CardSetup();
     }
     
 
     public void doAllSetup(Scanner user) {
-    	welcomeScreen();
+        welcomeScreen();
+        waterHandler.createWaterLevel(user);
         playerHandler.createAllPlayers(user); //does here fine
         cardHandler.dealCards(); // does here ok i think
         
