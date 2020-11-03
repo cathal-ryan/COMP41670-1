@@ -15,15 +15,7 @@ abstract public class Deck {
 		return cardsInDeck.isEmpty();
 	}
 	
-	public Card dealCard() {
-		if(cardsInDeck.size()<1) {
-			DiscardPile.getInstance().putbackall();
-			return cardsInDeck.pop();
-		}
-		else {
-			return cardsInDeck.pop();
-		}
-	}
+	abstract public Card dealCard();
 	
 	public void addCard(Card card) {
 		this.cardsInDeck.push(card);

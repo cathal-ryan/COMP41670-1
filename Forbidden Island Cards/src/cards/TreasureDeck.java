@@ -52,10 +52,19 @@ public class TreasureDeck extends Deck{
 		    cardsInDeck.push(new SandbagsCard(TreasureCardEnums.SANDBAGS));
 		    cardsInDeck.push(new SandbagsCard(TreasureCardEnums.SANDBAGS));
 
-		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
-		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
-		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
+		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
+		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
+		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
 		    
 		    shuffle();
+		}
+		public Card dealCard() {
+			if(cardsInDeck.size()<1) {
+				TreasureDiscardPile.getInstance().putbackall();
+				return cardsInDeck.pop();
+			}
+			else {
+				return cardsInDeck.pop();
+			}
 		}
 }

@@ -21,7 +21,7 @@ public class Hand {
 	}
 	
 	public void removeCard(int i){
-		DiscardPile.getInstance().discardCard(handOfCards.get(i));
+		TreasureDiscardPile.getInstance().discardCard(handOfCards.get(i));
 		handOfCards.remove(i);
 	}
 

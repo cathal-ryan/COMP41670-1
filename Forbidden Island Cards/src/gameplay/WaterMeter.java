@@ -1,15 +1,31 @@
 package gameplay;
 
+import cards.FloodDiscardPile;
+import cards.TreasureDeck;
+
 public class WaterMeter {
 	private static int watermeter;
+	private static int[] waterlevels = {2,2,3,3,3,4,4,5,5,9999};
+	private static WaterMeter theWaterMeter;
 
-	public int getWatermeter() {
-		return watermeter;
+	public static WaterMeter getInstance(){
+        if(theWaterMeter == null){
+        	theWaterMeter = new WaterMeter();
+        	watermeter=3;
+        }
+        return theWaterMeter;
+    }
+	
+	public static int getWaterlevel() {
+		return waterlevels[watermeter];
 	}
 
-	public static void setWatermeter() {
-		System.out.println("Oh no! The Water Rises!");
-		watermeter ++;
+	public static void setWatermeter(int k) {
+		watermeter=watermeter+k;
+	}
+	public static void cardDrawn() {
+		setWatermeter(1);
+		FloodDiscardPile.getInstance().putbackall();
 	}
 	
 }

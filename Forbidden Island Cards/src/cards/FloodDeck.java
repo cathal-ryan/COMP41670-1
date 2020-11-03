@@ -46,4 +46,13 @@ public class FloodDeck extends Deck{
 		    cardsInDeck.push(new FloodCard(TilesEnums.WATCHTOWER));
 		    shuffle();
 		}
+		public Card dealCard() {
+			if(cardsInDeck.size()<1) {
+				FloodDiscardPile.getInstance().putbackall();
+				return cardsInDeck.pop();
+			}
+			else {
+				return cardsInDeck.pop();
+			}
+		}
 }

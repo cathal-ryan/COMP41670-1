@@ -45,24 +45,7 @@ abstract public class Player {
 	}
 
 	public void drawTreasureCard(Card card1) {
-		if(card1 instanceof WaterRiseCard) {
-			WaterMeter.setWatermeter();
-			DiscardPile.getInstance().discardCard(card1);
-		}
 		this.playerHand.addCard(card1);
-	}
-	
-	public void drawStartingHand() {
-		for(int j=0;j<2;j++) {
-			Card c1 = TreasureDeck.getInstance().dealCard();    	
-			if(c1 instanceof WaterRiseCard) {
-				TreasureDeck.getInstance().addCard(c1);
-				TreasureDeck.getInstance().shuffle();
-			}
-			else {
-				drawTreasureCard(c1);
-			}
-		}	
 	}
 	
 	abstract public String getPlayerType();

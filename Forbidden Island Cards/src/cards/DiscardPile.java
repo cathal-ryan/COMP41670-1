@@ -7,28 +7,11 @@ import java.util.Stack;
 import enums.TilesEnums;
 
 
-public class DiscardPile {
+abstract public class DiscardPile {
 	protected  Stack<Card>  Discarded;
-	protected static DiscardPile theDiscardPile;
 	
-	public static DiscardPile getInstance(){
-        if(theDiscardPile == null){
-        	theDiscardPile = new DiscardPile();
-        }
-        return theDiscardPile;
-    }
-	
-	protected void putbackall() {
-		Collections.shuffle(Discarded);
-		while(Discarded.size()>0) {
-			FloodDeck.getInstance().addCard(Discarded.pop());
-		}
-	}
-	
-	public DiscardPile() {
-		this.Discarded = new Stack<Card>();
-	}
-	
+	abstract public void putbackall();
+
 	public void discardCard(Card card) {
 		Discarded.push(card);
 	}
