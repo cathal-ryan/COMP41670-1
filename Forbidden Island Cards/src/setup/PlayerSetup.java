@@ -33,7 +33,7 @@ public class PlayerSetup {
 			while (!validNumPlayers) {
 				numOfPlayers = getNumberOfPlayers(user);
 			}
-			List<Integer> thelist = new ArrayList<Integer>();
+			List<Integer> thelist = new ArrayList<>();
 
 	        thelist.add(0);
 	        thelist.add(1);

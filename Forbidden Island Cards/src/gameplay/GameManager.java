@@ -52,7 +52,7 @@ public class GameManager {
                 }
                 currentFlood = new FloodDraw(i,inputScanner);    // Make a new PlayerTurn
                 currentFlood.doFloodDraw();                            // Let it handle the turn    
-                losers = currentTreasure.seeIfLost();
+                losers = currentFlood.seeIfLost();
                 if(losers){
                     System.out.println("Sorry! You lose!");
                     gameOver=true;
