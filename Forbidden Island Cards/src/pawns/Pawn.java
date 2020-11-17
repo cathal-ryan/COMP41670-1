@@ -6,5 +6,16 @@ abstract public class Pawn {
 
     protected Pawn() {
 	}
-	abstract public String getPlayerType();
+    abstract public String getPlayerType();
+    
+    public void shoreUp() {
+        System.out.println("ff");
+
+    }
+
+    public void move() {
+        System.out.println("ff");
+
+    }
+
 }

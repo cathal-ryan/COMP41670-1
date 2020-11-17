@@ -61,13 +61,13 @@ public class PlayerActions {
 				turnOver = true;
 				break;
 			case 1:
-				move();
+				player.getPawn().move();
 				break;
 			case 2:
-				shoreUp();
+				player.getPawn().shoreUp();
 				break;
 			case 3:
-				captureTreasure();
+				TreasureHandler.getInstance().captureTreasure(player);
                 break;
             case 4:
 			    giveTreasureCard();
@@ -106,20 +106,6 @@ public class PlayerActions {
     private void giveTreasureCard() {
         System.out.println("ff");
 
-    }
-
-    private void shoreUp() {
-        System.out.println("ff");
-
-    }
-
-    private void move() {
-        System.out.println("ff");
-
-    }
-
-    private void captureTreasure(){
-        System.out.println("ff");
     }
     
     private void giveOptions() {

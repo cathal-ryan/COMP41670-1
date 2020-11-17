@@ -1,5 +1,6 @@
 package player;
 
+import java.util.Collections;
 import java.util.List;
 import gameplay.WaterMeter;
 import pawns.*;
@@ -8,6 +9,7 @@ import cards.DiscardPile;
 import cards.Hand;
 import cards.TreasureDeck;
 import cards.WaterRiseCard;
+import enums.TreasureCardEnums;
 
 public class Player {
 	// ===========================================================
@@ -64,8 +66,12 @@ public class Player {
 		this.playerHand.addCard(card1);
 	}
 	
+	public Pawn getPawn(){
+		return playerPawn;
+	}
+
 	public String getPlayerType(){
 		return playerPawn.getPlayerType();
 	};
-	
+
 }

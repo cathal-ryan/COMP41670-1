@@ -63,18 +63,19 @@ package gameplay;
         public void discard() {
             int userIn = 0;
             boolean validIn = false;
-            System.out.println("Which of the following cards would you like to discard?");
+            System.out.println("Your hand is too big...\n");
             for (int i = 0; i < player.showHand().size(); i++) {
                 System.out.println("[" + i + "]: " + player.showHand().get(i).getName());
             }
             while (!validIn) {
+                System.out.println("Which of the cards would you like to discard?");
                 String userString = inputScanner.nextLine();
                 try {
                     userIn = Integer.parseInt(userString);
                 } catch (NumberFormatException e) {
                     continue;
                 }
-                if ((userIn >= 0) && (userIn <= player.showHand().size())) {
+                if ((userIn >= 0) && (userIn <= player.showHand().size()-1)) {
                     validIn = true;
                 }
             }

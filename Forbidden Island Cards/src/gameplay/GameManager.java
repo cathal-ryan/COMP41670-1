@@ -29,6 +29,7 @@ public class GameManager {
     public void doGameplay(Scanner inputScanner) {
         PlayerActions currentPActions;
         TreasureDraw currentTreasure;
+        TreasureHandler treasures;
         FloodDraw currentFlood;
         boolean winners;
         boolean losers;
