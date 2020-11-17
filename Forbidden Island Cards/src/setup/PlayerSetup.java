@@ -5,12 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-import player.Diver;
-import player.Engineer;
-import player.Explorer;
-import player.Messenger;
-import player.Navigator;
-import player.Pilot;
 import player.Player;
 import player.PlayerList;
 
@@ -83,16 +77,7 @@ public class PlayerSetup {
 		printout("\nPlayer "+(i+1)+"...");
 		printout("Enter your name:");
 		String name = user.nextLine();
-
-		switch (k) {
-	    	case 0:  	playerList.addPlayer(new Diver(i+1, name)); 	break;
-	    	case 1:  	playerList.addPlayer(new Engineer(i+1, name));   	break;           		
-	    	case 2: 	playerList.addPlayer(new Explorer(i+1, name));	break;
-	    	case 3: 	playerList.addPlayer(new Navigator(i+1, name));	break;	
-	    	case 4: 	playerList.addPlayer(new Pilot(i+1, name));	break;
-	    	case 5: 	playerList.addPlayer(new Messenger(i+1, name));	break;
-	    	default: printout("why am i hereCASE ERROR IN PlayerTurn.doTurn()");
-		}
+		playerList.addPlayer(new Player(i,name,k));
 		Player player = playerList.getPlayer(i+1);
 		printout(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
 	}

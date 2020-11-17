@@ -1,25 +1,47 @@
 package player;
+
 import java.util.List;
 import gameplay.WaterMeter;
-
+import pawns.*;
 import cards.Card;
 import cards.DiscardPile;
 import cards.Hand;
 import cards.TreasureDeck;
 import cards.WaterRiseCard;
 
-
-abstract public class Player {
-
-	//===========================================================
+public class Player {
+	// ===========================================================
 	// Variable Setup
-	//===========================================================
-	private String        playerName;
-	private Hand          playerHand;
+	// ===========================================================
+	private String playerName;
+	private Hand playerHand;
+	private Pawn playerPawn;
 
-	public Player(int playerNum, String playerName) {
-		this.playerName     = playerName;
-		this.playerHand     = new Hand();
+	public Player(int playerNum, String playerName, int adventurerNum) {
+		this.playerName = playerName;
+		this.playerHand = new Hand();
+		switch (adventurerNum) {
+			case 0:
+				playerPawn = new Diver();
+				break;
+			case 1:
+				playerPawn = new Engineer();
+				break;
+			case 2:
+				playerPawn = new Explorer();
+				break;
+			case 3:
+				playerPawn = new Navigator();
+				break;
+			case 4:
+				playerPawn = new Pilot();
+				break;
+			case 5:
+				playerPawn = new Messenger();
+				break;
+			default:
+				System.out.println("I shouldn't be here!");
+		}
 	}
 	
 	public String getName() {
@@ -42,6 +64,8 @@ abstract public class Player {
 		this.playerHand.addCard(card1);
 	}
 	
-	abstract public String getPlayerType();
+	public String getPlayerType(){
+		return playerPawn.getPlayerType();
+	};
 	
 }
