@@ -9,7 +9,9 @@ import pawns.*;
 import cards.Card;
 import cards.DiscardPile;
 import cards.Hand;
+import cards.TreasureCard;
 import cards.TreasureDeck;
+import cards.TreasureDeckCard;
 import cards.WaterRiseCard;
 import enums.TreasureCardEnums;
 
@@ -52,7 +54,7 @@ public class Player {
 		return playerName;
 	}
 
-	public List<Card> showHand() {
+	public List<TreasureDeckCard> showHand() {
 		return playerHand.getCards();
 	}
 	
@@ -64,7 +66,7 @@ public class Player {
 		return this.playerHand.getCards().size();
 	}
 
-	public void drawTreasureCard(Card card1) {
+	public void drawTreasureCard(TreasureDeckCard card1) {
 		this.playerHand.addCard(card1);
 	}
 	
@@ -76,20 +78,37 @@ public class Player {
 		return playerPawn.getPlayerType();
 	}
 
-	public void giveTreasureCard(Player plnum, int canum){
-		Card c1 = playerHand.getCards().get(canum);
+	public boolean giveTreasureCard(Player plnum, int canum, Scanner inputScanner){
+		TreasureDeckCard c1 = playerHand.getCards().get(canum);
+		if(!(c1 instanceof TreasureCard)){
+			return false;
+		}
 		plnum.getHand().addCard(c1);
-		playerHand.removeCard(canum);
+		if(plnum.handSize()>5){
+			plnum.discardTreasureCard(inputScanner);
+		}
+		getHand().getCards().remove(canum);
+		return true;
 	}
 
-	public int chooseFromHand(Scanner inputScanner, String action){
+	public void discardTreasureCard(Scanner inputScanner){
+		int userIn = 0;
+		boolean validIn = false;
+		System.out.println("Hey, "+playerName+". Your hand is too big...\n");
+		userIn = chooseFromHand(inputScanner, "discard?",false);
+		getHand().removeCard(userIn);
+	}
+
+	public int chooseFromHand(Scanner inputScanner, String action, boolean ineligible){
 		int userIn = 0;
 		for (int i = 0; i < showHand().size(); i++) {
-			System.out.println("[" + i + "]: " + showHand().get(i).getName());
+			if (!(ineligible && !(showHand().get(i) instanceof TreasureCard))){
+				System.out.println("[" + i + "]: " + showHand().get(i).getName());
+			}
 		}
 		boolean validIn = false;
 		while (!validIn) {
-			System.out.println("Which of the cards would you like to " + action + "?");
+			System.out.println("Which of the cards would you like to " + action);
 			String userString = inputScanner.nextLine();
 			try {
 				userIn = Integer.parseInt(userString);

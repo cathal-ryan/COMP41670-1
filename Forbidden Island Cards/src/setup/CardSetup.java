@@ -1,8 +1,10 @@
 package setup;
+
 import cards.Card;
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
 import cards.TreasureDeck;
+import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
 import player.Player;
@@ -41,7 +43,7 @@ public class CardSetup {
         		for(int j=0;j<2;j++) {
 					cardsDealt=false;
 					while(!cardsDealt){
-						Card c1 = TreasureDeck.getInstance().dealCard();    	
+						TreasureDeckCard c1 = (TreasureDeckCard) setupTreasureDeck.dealCard();
 						if(c1 instanceof WaterRiseCard) {
 							setupTreasureDeck.addCard(c1);
 							setupTreasureDeck.shuffle();
@@ -64,7 +66,7 @@ public class CardSetup {
 			Card c1 = setupFloodDeck.dealCard();
 			System.out.println(c1.getName() +" has been flooded!");
 			// could have a board.flood(c1.getName) here
-        	setupFloodDiscard.discardCard(c1);
+        	setupFloodDiscard.addToPile(c1);
         }
         }
 }

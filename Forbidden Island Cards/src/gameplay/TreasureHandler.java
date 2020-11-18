@@ -28,17 +28,18 @@ public class TreasureHandler {
         water    = false;
     }
 
-    public static void captureTreasure(Player player){
+    public static boolean captureTreasure(Player player){
 		// Check if the pawn's location corresponds to any of the treasure tiles.
 		// it should return the name of the treasure tile. Enum tile = tile.getTileName()
 		TreasureCardEnums tile = TreasureCardEnums.CRYSTAL_OF_FIRE;
-		int occurences = Collections.frequency(player.getHand().getCardNamesAsStrings(), tile.toString());
-		if(occurences>=1){
+		if(player.getHand().checkContains(tile)){
             player.getHand().discardforTreasure(tile);
             setTreasureCapture(tile);
+            return true;
 		}
 		else{
-			System.out.println("You need at least 4 of the same card to claim a treasure!");
+            System.out.println("You need at least 4 of the same card to claim a treasure!");
+            return false;
 		}
     }
     

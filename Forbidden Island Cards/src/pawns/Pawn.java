@@ -9,12 +9,17 @@ abstract public class Pawn {
     abstract public String getPlayerType();
     
     public void shoreUp() {
-        System.out.println("ff");
+        System.out.println("Some day I'll get around to shoring up");
 
     }
 
     public void move() {
-        System.out.println("ff");
+        System.out.println("Some day I'll get around to moving..");
+
+    }
+
+    public void helicopterMove() {
+        System.out.println("Some day I'll get around to moving..");
 
     }
 

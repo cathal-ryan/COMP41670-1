@@ -1,8 +1,10 @@
 package cards;
 
-public class HelicopterLift extends TreasureDeckCard{
+import enums.TreasureCardEnums;
 
-	HelicopterLift(Enum name) {
+public class HelicopterLift extends TreasureDeckCard {
+
+	HelicopterLift(TreasureCardEnums name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}

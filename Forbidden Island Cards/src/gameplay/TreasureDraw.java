@@ -1,10 +1,11 @@
 package gameplay;
 
-    import java.util.Scanner;
-    
-    import cards.Card;
-    import cards.TreasureDeck;
-    import cards.TreasureDiscardPile;
+import java.util.Scanner;
+
+import cards.Card;
+import cards.TreasureDeck;
+import cards.TreasureDeckCard;
+import cards.TreasureDiscardPile;
     import cards.WaterRiseCard;
     import player.Player;
     
@@ -23,17 +24,22 @@ package gameplay;
         private Player player;
         private Scanner inputScanner;
         private boolean lost;
+        private TreasureDiscardPile thePile;
+        private TreasureDeck theTreasureDeck;
+
     
         public TreasureDraw(Player thisPlayer, Scanner inputScanner) {
             this.player = thisPlayer;
             this.inputScanner = inputScanner;
             this.lost = false;
+            this.thePile = TreasureDiscardPile.getInstance();
+            this.theTreasureDeck= TreasureDeck.getInstance();
         }
     
         public void doTreasureDraw() {
             int i =0;
             while(!lost && (i<2)){
-                Card c1 = TreasureDeck.getInstance().dealCard();
+                TreasureDeckCard c1 = (TreasureDeckCard) theTreasureDeck.dealCard();
                 if(c1 instanceof WaterRiseCard) {
                     WaterMeter.cardDrawn();
                     int waterLevel = WaterMeter.getWaterlevel();
@@ -42,7 +48,7 @@ package gameplay;
                     }
                     else{
                         System.out.println("Oh no! The Water Rises!! Flood Level currently at: "+ waterLevel);
-                        TreasureDiscardPile.getInstance().discardCard(c1);
+                        thePile.addToPile(c1);
                     }
                 }
                 else {
@@ -53,21 +59,12 @@ package gameplay;
             }
             if(!lost){
                 while (player.handSize() > 5) {
-                    discard();
+                    player.discardTreasureCard(inputScanner);
                 }
                 System.out.println("Cool, so "+ player.getName()+ " now has the following hand: ");
                 player.getHand().printHand();
             }
         }
-
-        public void discard() {
-            int userIn = 0;
-            boolean validIn = false;
-            System.out.println("Your hand is too big...\n");
-            userIn = player.chooseFromHand(inputScanner, "discard");
-            player.getHand().removeCard(userIn);
-        }
-
 		public boolean seeIfLost() {
 			return lost;
 		}

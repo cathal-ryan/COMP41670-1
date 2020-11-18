@@ -1,8 +1,10 @@
 package cards;
 
-public class TreasureDeckCard extends Card{
+import enums.TreasureCardEnums;
 
-	TreasureDeckCard(Enum name) {
+public class TreasureDeckCard extends Card {
+
+	TreasureDeckCard(TreasureCardEnums name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}

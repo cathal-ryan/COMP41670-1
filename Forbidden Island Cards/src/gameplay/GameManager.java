@@ -29,12 +29,12 @@ public class GameManager {
     public void doGameplay(Scanner inputScanner) {
         PlayerActions currentPActions;
         TreasureDraw currentTreasure;
-        TreasureHandler treasures;
         FloodDraw currentFlood;
         boolean winners;
         boolean losers;
         while (!gameOver) { // Main loop for doing PlayerTurns
             for (Player i: players.getAllPlayers()) {
+                
                 currentPActions = new PlayerActions(i,inputScanner);    // Make a new PlayerTurn
                 currentPActions.doActions();                            // Let it handle the turn
                 winners  = currentPActions.seeIfWon();
@@ -43,6 +43,7 @@ public class GameManager {
                     gameOver=true;
                     break;
                 }
+                
                 currentTreasure = new TreasureDraw(i,inputScanner);    // Make a new PlayerTurn
                 currentTreasure.doTreasureDraw();                            // Let it handle the turn    
                 losers = currentTreasure.seeIfLost();
@@ -51,6 +52,7 @@ public class GameManager {
                     gameOver=true;
                     break;
                 }
+                
                 currentFlood = new FloodDraw(i,inputScanner);    // Make a new PlayerTurn
                 currentFlood.doFloodDraw();                            // Let it handle the turn    
                 losers = currentFlood.seeIfLost();

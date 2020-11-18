@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import enums.TreasureCardEnums;
+
 public class PlayerList {
     private static PlayerList  thePlayerList;
     private List<Player>       playerList;
-    
 
     public static PlayerList getInstance(){
         if(thePlayerList == null){
@@ -15,7 +16,6 @@ public class PlayerList {
         }
         return thePlayerList;
     }
-    
 
     private PlayerList() { 
     	this.playerList = new ArrayList<Player>();
@@ -50,16 +50,45 @@ public class PlayerList {
     	playerList.add(newPlayer);
     }
     
-
     public List<Player> getAllPlayers(){
     	return playerList;
     }
 
-	public Player choosePlayer(Scanner inputScanner){
+	public Player choosePlayer(Scanner inputScanner, Player currentPlayer){
 		int userIn = 0;
         for(int i=1;i<=playerList.size();i++){
             Player player = getPlayer(i);
-            System.out.println("["+i+"] "+player.getName());	
+            if(currentPlayer != getPlayer(i)){
+                System.out.println("["+i+"] "+player.getName());	
+            }
+        }
+		boolean validIn = false;
+		while (!validIn) {
+			String userString = inputScanner.nextLine();
+			try {
+				userIn = Integer.parseInt(userString);
+			} catch (NumberFormatException e) {
+				continue;
+			}
+			if ((userIn >= 0) && (userIn <= playerList.size()) && (userIn != playerList.indexOf(currentPlayer)+1) ) {
+				validIn = true;
+			}
+		}
+		return getPlayer(userIn);
+    }
+
+    public void enquirePlayers(Scanner inputScanner, boolean asked){
+        List<Integer> eligible = new ArrayList<>();
+        int i=0;
+        for (Player p1 : playerList){
+            if(p1.getHand().checkContains(TreasureCardEnums.HELICOPTER_LIFT) || p1.getHand().checkContains(TreasureCardEnums.SANDBAGS)){
+                eligible.add(i);
+            }
+            i++;
+        }
+        for(int j=1;i<=eligible.size();j++){
+            Player player = getPlayer(eligible.get(j));
+            System.out.println("["+i+"] "+player.getName());
         }
         System.out.println("");
 		boolean validIn = false;
@@ -70,10 +99,11 @@ public class PlayerList {
 			} catch (NumberFormatException e) {
 				continue;
 			}
-			if ((userIn >= 0) && (userIn <= playerList.size())) {
+			if ((userIn >= 0) && (userIn <= playerList.size()) && (userIn != playerList.indexOf(currentPlayer)) ) {
 				validIn = true;
 			}
 		}
 		return getPlayer(userIn);
+
     }
 }

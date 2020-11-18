@@ -12,7 +12,7 @@ abstract public class DiscardPile {
 	
 	abstract public void putbackall();
 
-	public void discardCard(Card card) {
+	public void addToPile(Card card) {
 		Discarded.push(card);
 	}
 	public void shuffle() {
@@ -35,7 +35,7 @@ abstract public class DiscardPile {
 	 
 		// Print the stack element starting 
 		// from the bottom 
-		System.out.print(x.getName() + " "); 
+		System.out.print(x.getName() + ", "); 
 	 
 		// Push the same element onto the stack 
 		// to preserve the order 

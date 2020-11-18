@@ -46,7 +46,7 @@ package gameplay;
             for(int i =0;i<=WaterMeter.getWaterlevel();i++) {
                 if(!lost){
                     Card card1 = theFloodDeck.dealCard();
-                    theDiscardPile.discardCard(card1);
+                    theDiscardPile.addToPile(card1);
                     // Take a flood card and add it to discard pile
                     floodTile(card1.getName()); // Flood the tile with this name.
                 }

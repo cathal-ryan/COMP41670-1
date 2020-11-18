@@ -1,8 +1,10 @@
 package cards;
 
-public class FloodCard extends Card{
+import enums.TilesEnums;
 
-	FloodCard(Enum name) {
+public class FloodCard extends Card {
+
+	FloodCard(TilesEnums name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
