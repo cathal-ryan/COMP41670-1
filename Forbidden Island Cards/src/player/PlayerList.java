@@ -2,6 +2,7 @@ package player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class PlayerList {
     private static PlayerList  thePlayerList;
@@ -54,4 +55,25 @@ public class PlayerList {
     	return playerList;
     }
 
+	public Player choosePlayer(Scanner inputScanner){
+		int userIn = 0;
+        for(int i=1;i<=playerList.size();i++){
+            Player player = getPlayer(i);
+            System.out.println("["+i+"] "+player.getName());	
+        }
+        System.out.println("");
+		boolean validIn = false;
+		while (!validIn) {
+			String userString = inputScanner.nextLine();
+			try {
+				userIn = Integer.parseInt(userString);
+			} catch (NumberFormatException e) {
+				continue;
+			}
+			if ((userIn >= 0) && (userIn <= playerList.size())) {
+				validIn = true;
+			}
+		}
+		return getPlayer(userIn);
+    }
 }

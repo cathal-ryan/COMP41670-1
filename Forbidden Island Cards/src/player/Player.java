@@ -2,6 +2,8 @@ package player;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
+
 import gameplay.WaterMeter;
 import pawns.*;
 import cards.Card;
@@ -72,6 +74,32 @@ public class Player {
 
 	public String getPlayerType(){
 		return playerPawn.getPlayerType();
-	};
+	}
 
+	public void giveTreasureCard(Player plnum, int canum){
+		Card c1 = playerHand.getCards().get(canum);
+		plnum.getHand().addCard(c1);
+		playerHand.removeCard(canum);
+	}
+
+	public int chooseFromHand(Scanner inputScanner, String action){
+		int userIn = 0;
+		for (int i = 0; i < showHand().size(); i++) {
+			System.out.println("[" + i + "]: " + showHand().get(i).getName());
+		}
+		boolean validIn = false;
+		while (!validIn) {
+			System.out.println("Which of the cards would you like to " + action + "?");
+			String userString = inputScanner.nextLine();
+			try {
+				userIn = Integer.parseInt(userString);
+			} catch (NumberFormatException e) {
+				continue;
+			}
+			if ((userIn >= 0) && (userIn <= showHand().size()-1)) {
+				validIn = true;
+			}
+		}
+		return userIn;
+	}
 }

@@ -18,4 +18,27 @@ abstract public class DiscardPile {
 	public void shuffle() {
 		Collections.shuffle(Discarded);
 	}
-}
+
+	public void printPile() 
+	{ 
+		// If stack is empty then return 
+		if (Discarded.isEmpty()) 
+			return; 
+		 
+		Card x = Discarded.peek(); 
+	 
+		// Pop the top element of the stack 
+		Discarded.pop(); 
+	 
+		// Recursively call the function PrintStack 
+		printPile(); 
+	 
+		// Print the stack element starting 
+		// from the bottom 
+		System.out.print(x.getName() + " "); 
+	 
+		// Push the same element onto the stack 
+		// to preserve the order 
+		Discarded.push(x); 
+	} 
+	}

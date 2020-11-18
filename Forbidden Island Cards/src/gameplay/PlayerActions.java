@@ -67,10 +67,10 @@ public class PlayerActions {
 				player.getPawn().shoreUp();
 				break;
 			case 3:
-				TreasureHandler.getInstance().captureTreasure(player);
+				captureATreasure();
                 break;
             case 4:
-			    giveTreasureCard();
+			    giveCard();
                 break;
             case 5:
 			    useSpecialCards();
@@ -90,35 +90,41 @@ public class PlayerActions {
 	}
 
 	private void lookDiscarded() {
-        System.out.println("ff");
+		System.out.println("The Treasure Discard Pile: ");
+        TreasureDiscardPile.getInstance().printPile();
     }
 
     private void displayHands() {
-        System.out.println("in here!");
         PlayerList.getInstance().showAllHands();
     }
 
     private void useSpecialCards() {
         System.out.println("ff");
-
     }
 
-    private void giveTreasureCard() {
-        System.out.println("ff");
+	private void captureATreasure(){
+		TreasureHandler.getInstance().captureTreasure(player);
+	}
 
-    }
+    private void giveCard() {
+		System.out.println("Who do you want to give a card to?");
+		displayHands();
+		Player playernum = PlayerList.getInstance().choosePlayer(inputScanner);
+		int cardnum = player.chooseFromHand(inputScanner, "give");
+		player.giveTreasureCard(playernum, cardnum);
+	}
     
     private void giveOptions() {
 		printout("\nWhat do you want to do? You have " + " actions remaining");
 		printout("[8]	NOTHING!");
-		printout("[7]	NOTHING!");
+		printout("[7]	LOOK AT DISCARDED!");
 		printout("[6]	Look at Everyone's Hands!");
 		printout("[5]	N/A!");
-		printout("[4]	N/A!");
-		printout("[3]	N/A!!");
+		printout("[4]	Give a card to a buddy!");
+		printout("[3]	Capture a Treasure!!");
 		printout("[2]	N/A!!");
 		printout("[1]   N/A!!");
-		printout("[0]   N/A!");
+		printout("[0]   END YOUR TURN");
     }
     
 	private void printout(String toPrint) {
