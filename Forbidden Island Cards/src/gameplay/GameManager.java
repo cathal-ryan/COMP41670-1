@@ -30,15 +30,12 @@ public class GameManager {
         PlayerActions currentPActions;
         TreasureDraw currentTreasure;
         FloodDraw currentFlood;
-        boolean winners;
-        boolean losers;
         while (!gameOver) { // Main loop for doing PlayerTurns
             for (Player i: players.getAllPlayers()) {
                 
                 currentPActions = new PlayerActions(i,inputScanner);    // Make a new PlayerTurn
                 currentPActions.doActions();                            // Let it handle the turn
-                winners  = currentPActions.seeIfWon();
-                if(winners){
+                if(currentPActions.seeIfWon()){
                     System.out.println("Congrats! You win!");
                     gameOver=true;
                     break;
@@ -46,18 +43,26 @@ public class GameManager {
                 
                 currentTreasure = new TreasureDraw(i,inputScanner);    // Make a new PlayerTurn
                 currentTreasure.doTreasureDraw();                            // Let it handle the turn    
-                losers = currentTreasure.seeIfLost();
-                if(losers){
+                if(currentTreasure.seeIfLost()){
                     System.out.println("Sorry! You lose! The Flood Meter went too High :(");
+                    gameOver=true;
+                    break;
+                }
+                if(currentTreasure.seeIfWon()){
+                    System.out.println("Congrats! You win!");
                     gameOver=true;
                     break;
                 }
                 
                 currentFlood = new FloodDraw(inputScanner);    // Make a new PlayerTurn
                 currentFlood.doFloodDraw();                            // Let it handle the turn    
-                losers = currentFlood.seeIfLost();
-                if(losers){
+                if(currentFlood.seeIfLost()){
                     System.out.println("Sorry! You lose!");
+                    gameOver=true;
+                    break;
+                }
+                if(currentFlood.seeIfWon()){
+                    System.out.println("Congrats! You win!");
                     gameOver=true;
                     break;
                 }

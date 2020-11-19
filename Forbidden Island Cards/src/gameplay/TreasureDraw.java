@@ -25,6 +25,7 @@ import player.Team;
         private Player player;
         private Scanner inputScanner;
         private boolean lost;
+        private boolean won;
         private TreasureDiscardPile thePile;
         private TreasureDeck theTreasureDeck;
         private Team theTeam;
@@ -34,6 +35,7 @@ import player.Team;
             this.player = thisPlayer;
             this.inputScanner = inputScanner;
             this.lost = false;
+            this.won = true;
             this.thePile = TreasureDiscardPile.getInstance();
             this.theTreasureDeck= TreasureDeck.getInstance();
             this.theTeam = Team.getInstance();
@@ -43,7 +45,10 @@ import player.Team;
             int i =0;
             System.out.println("Now it's time to draw your treasure cards!");
             while(!lost && (i<2)){
-                theTeam.enquirePlayers(inputScanner, false);
+                if(theTeam.enquirePlayers(inputScanner, false)){
+                    won=true;
+                    return;
+                }
                 System.out.println(2-i+" cards to go! Press [return] to draw!");
                 @SuppressWarnings("unused")
                 String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start        
@@ -75,6 +80,9 @@ import player.Team;
         }
 		public boolean seeIfLost() {
 			return lost;
+        }
+        public boolean seeIfWon() {
+			return won;
 		}
 }    
 
