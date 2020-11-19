@@ -38,6 +38,7 @@ import cards.TreasureDiscardPile;
     
         public void doTreasureDraw() {
             int i =0;
+            System.out.println("Now it's time to draw your treasure cards!");
             while(!lost && (i<2)){
                 TreasureDeckCard c1 = (TreasureDeckCard) theTreasureDeck.dealCard();
                 if(c1 instanceof WaterRiseCard) {

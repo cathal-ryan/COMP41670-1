@@ -19,7 +19,7 @@ abstract public class Pawn {
     }
 
     public void helicopterMove() {
-        System.out.println("Some day I'll get around to moving..");
+        System.out.println("Some day I'll get around to flying..");
 
     }
 

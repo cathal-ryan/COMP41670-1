@@ -17,7 +17,7 @@ public class Hand {
 	public void addCard(TreasureDeckCard card){
 		handOfCards.add(card);
 	}
-	
+
 	public List<TreasureDeckCard> getCards(){
 		return handOfCards;
 	}

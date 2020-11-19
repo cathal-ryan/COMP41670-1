@@ -4,11 +4,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
+import gameplay.Choices;
 import gameplay.WaterMeter;
 import pawns.*;
 import cards.Card;
 import cards.DiscardPile;
 import cards.Hand;
+import cards.HelicopterLift;
+import cards.SandbagsCard;
 import cards.TreasureCard;
 import cards.TreasureDeck;
 import cards.TreasureDeckCard;
@@ -95,7 +98,18 @@ public class Player {
 		int userIn = 0;
 		boolean validIn = false;
 		System.out.println("Hey, "+playerName+". Your hand is too big...\n");
-		userIn = chooseFromHand(inputScanner, "discard?",false);
+		userIn = chooseFromHand(inputScanner, "discard or use?",false);
+		if(!(showHand().get(userIn) instanceof TreasureCard)){
+			System.out.println("It's use it or lose it! Do you want to use this card now? (Y/N) ");
+				if(Choices.getYesOrNo(inputScanner)){
+					if((showHand().get(userIn) instanceof SandbagsCard)){
+						System.out.println("Not fully decided where Sandbags will be called yet!");
+					}
+					if((showHand().get(userIn) instanceof HelicopterLift)){
+						System.out.println("Not fully decided where Helicopter Lift will be called yet!");
+					}
+				}
+		}
 		getHand().removeCard(userIn);
 	}
 

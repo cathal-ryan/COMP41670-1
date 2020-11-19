@@ -156,6 +156,7 @@ public class PlayerActions {
     private void giveCard() {
 		if(!player.getHand().canTrade()){
 			System.out.println("You can't trade right now :(");
+			return;
 		}
 		System.out.println("Who do you want to give a card to?");
 		displayHands();
