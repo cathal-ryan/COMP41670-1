@@ -8,6 +8,7 @@ import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
     import cards.WaterRiseCard;
     import player.Player;
+import player.Team;
     
     /**
      * PlayerTurn class manages all of the options a player can make whilst they
@@ -26,6 +27,7 @@ import cards.TreasureDiscardPile;
         private boolean lost;
         private TreasureDiscardPile thePile;
         private TreasureDeck theTreasureDeck;
+        private Team theTeam;
 
     
         public TreasureDraw(Player thisPlayer, Scanner inputScanner) {
@@ -34,12 +36,17 @@ import cards.TreasureDiscardPile;
             this.lost = false;
             this.thePile = TreasureDiscardPile.getInstance();
             this.theTreasureDeck= TreasureDeck.getInstance();
+            this.theTeam = Team.getInstance();
         }
     
         public void doTreasureDraw() {
             int i =0;
             System.out.println("Now it's time to draw your treasure cards!");
             while(!lost && (i<2)){
+                theTeam.enquirePlayers(inputScanner, false);
+                System.out.println(2-i+" cards to go! Press [return] to draw!");
+                @SuppressWarnings("unused")
+                String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start        
                 TreasureDeckCard c1 = (TreasureDeckCard) theTreasureDeck.dealCard();
                 if(c1 instanceof WaterRiseCard) {
                     WaterMeter.cardDrawn();
@@ -62,7 +69,7 @@ import cards.TreasureDiscardPile;
                 while (player.handSize() > 5) {
                     player.discardTreasureCard(inputScanner);
                 }
-                System.out.println("Cool, so "+ player.getName()+ " now has the following hand: ");
+                System.out.println("\nCool, so "+ player.getName()+ " now has the following hand: ");
                 player.getHand().printHand();
             }
         }

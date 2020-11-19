@@ -8,7 +8,7 @@ import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
 import player.Player;
-import player.PlayerList;
+import player.Team;
 
 public class CardSetup {
 
@@ -19,6 +19,7 @@ public class CardSetup {
 	private FloodDeck setupFloodDeck;
 	private FloodDiscardPile setupFloodDiscard;
 	private TreasureDiscardPile setupTreasureDiscard;
+	private Team setupTeam;
 	
 	//===========================================================
 	// Constructor
@@ -31,14 +32,14 @@ public class CardSetup {
 		this.setupFloodDeck = (FloodDeck) FloodDeck.getInstance();
 		this.setupFloodDiscard = FloodDiscardPile.getInstance();
 		this.setupTreasureDiscard = TreasureDiscardPile.getInstance();
+		this.setupTeam = Team.getInstance();
 	}
 
 	public void dealCards() {
-		PlayerList setupPlayers = PlayerList.getInstance();
 		int i=1;    // Iteration counter for cycling through Players        
-        int numPlayers = setupPlayers.getNumPlayers();
+        int numPlayers = setupTeam.getNumPlayers();
         while (i<=numPlayers) {  
-				Player playa1 =  setupPlayers.getPlayer(i);
+				Player playa1 =  setupTeam.getPlayer(i);
 				boolean cardsDealt=false;
         		for(int j=0;j<2;j++) {
 					cardsDealt=false;
@@ -49,14 +50,14 @@ public class CardSetup {
 							setupTreasureDeck.shuffle();
 						}
 						else {
-							setupPlayers.getPlayer(i).drawTreasureCard(c1);
+							setupTeam.getPlayer(i).drawTreasureCard(c1);
 							cardsDealt=true;
 						}
 					}
 				}
                 i++;
 			}
-		PlayerList.getInstance().showAllHands();
+		setupTeam.showAllHands();
 		// Take out 6 flood cards
         for(int k=0;k<6;k++) {
 			try{Thread.sleep(100);}

@@ -1,21 +1,21 @@
 package setup;
-import java.util.*; 
+
+import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 import player.Player;
-import player.PlayerList;
+import player.Team;
 
 public class PlayerSetup {
 
-	private PlayerList playerList;
+	private Team theTeam;
 	private Boolean validNumPlayers = false;
 	
 	public PlayerSetup() {
-		this.playerList = PlayerList.getInstance();
-
+		this.theTeam = Team.getInstance();
 	}
 
 	protected void createAllPlayers(Scanner user) {
@@ -77,8 +77,8 @@ public class PlayerSetup {
 		printout("\nPlayer "+(i+1)+"...");
 		printout("Enter your name:");
 		String name = user.nextLine();
-		playerList.addPlayer(new Player(i,name,k));
-		Player player = playerList.getPlayer(i+1);
+		theTeam.addPlayer(new Player(i,name,k));
+		Player player = theTeam.getPlayer(i+1);
 		printout(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
 	}
 

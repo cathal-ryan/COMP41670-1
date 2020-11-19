@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import cards.Deck;
 import player.Player;
-import player.PlayerList;
+import player.Team;
 
 public class GameManager {
 
@@ -12,7 +12,7 @@ public class GameManager {
     
     // Other variables
     private boolean    gameOver=false;
-    private PlayerList players;
+    private Team players;
     
     public static GameManager getInstance(){
         if(theGM == null){
@@ -23,7 +23,7 @@ public class GameManager {
     
     private GameManager() {
         this.gameOver     = false;
-        this.players      = PlayerList.getInstance();
+        this.players      = Team.getInstance();
     }
     
     public void doGameplay(Scanner inputScanner) {
@@ -53,7 +53,7 @@ public class GameManager {
                     break;
                 }
                 
-                currentFlood = new FloodDraw(i,inputScanner);    // Make a new PlayerTurn
+                currentFlood = new FloodDraw(inputScanner);    // Make a new PlayerTurn
                 currentFlood.doFloodDraw();                            // Let it handle the turn    
                 losers = currentFlood.seeIfLost();
                 if(losers){
@@ -61,6 +61,7 @@ public class GameManager {
                     gameOver=true;
                     break;
                 }
+                System.out.println("-------------------------------------------------");
             }
         }
     }

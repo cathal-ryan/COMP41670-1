@@ -3,28 +3,33 @@ package gameplay;
 import java.util.Scanner;
 
 import cards.Card;
+import cards.FloodDiscardPile;
 import cards.Hand;
 import cards.HelicopterLift;
 import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
 import player.Player;
-import player.PlayerList;
+import player.Team;
 
 public class PlayerActions {
 
 	private Player player;
 	private Scanner inputScanner;
 	private int		actionsLeft;
-	private PlayerList playerList;
+	private Team theTeam;
 	private TreasureDiscardPile treasurePile;
 	private TreasureHandler theTreasureHandler;
+	private FloodDiscardPile floodPile;
+	private boolean gameWon;
 
 	public PlayerActions(Player thisPlayer, Scanner inputScanner) {
 		this.player = thisPlayer;
 		this.inputScanner = inputScanner;
 		this.actionsLeft = 3;
-		this.playerList = PlayerList.getInstance();
+		this.theTeam = Team.getInstance();
 		this.treasurePile = TreasureDiscardPile.getInstance();
+		this.floodPile = FloodDiscardPile.getInstance();
+		gameWon= false;
 	}
 
 	public void doActions() {
@@ -76,16 +81,13 @@ public class PlayerActions {
 			    displayHands();
                 break;
             case 7:
-			    lookDiscarded();
+			    lookDiscarded(inputScanner);
 				break;
             case 8:
 			    useTeammateCard();
 				break;
 			default:
-				printout("An error has occured. I should not be here.");
-			}
-			if (actionsLeft < 1) {
-				turnOver = true;
+				printout("Invalid Input :(");
 			}
 		}
 		if(seeIfWon()){
@@ -99,68 +101,86 @@ public class PlayerActions {
     private void giveOptions() {
 		printout("\nWhat do you want to do? You have " +actionsLeft +" actions remaining");
 		printout("[8]	See if any teammates wish to use their special cards");
-		printout("[7]	Look at the discarded treasure pile.");
+		printout("[7]	Look at the discard pile.");
 		printout("[6]	Have a look at everyone's hands");
 		printout("[5]	Use Helicopter Lift!");
-		printout("[4]	Give a card to a teammate.");
-		printout("[3]	Capture a Treasure.");
-		printout("[2]	Shore Up. ");
+		printout("[4]	Give a card to a teammate. (1 action)");
+		printout("[3]	Capture a Treasure. (1 action)");
+		printout("[2]	Shore Up. (1 action)");
 		printout("[1]   Move. (1 action)");
 		printout("[0]   END YOUR TURN");
 	}
 	
 	private void move() {
+		if(!getActions()){
+			return;
+		}
 		player.getPawn().move();	
 		actionsLeft--;
 	}
 
+	private boolean getActions(){
+		if(actionsLeft>0){
+			return true;
+		}
+		else{
+			System.out.println("\nYou can't do that, you have no actions left :(");
+			return false;
+		}
+	}
+
 	private void shoreUp(){
+		if(!getActions()){
+			return;
+		}
 		player.getPawn().shoreUp();
 		actionsLeft--;
 	}
 	
-	private void lookDiscarded() {
-		System.out.println("The Treasure Discard Pile: ");
-        treasurePile.printPile();
+	private void lookDiscarded(Scanner inputScanner) {
+		if(Choices.getYesOrNo(inputScanner,"Do you want to look at the Treasure or Flood Discard Pile?", "Flood", "Treasure")){
+			System.out.println("The Treasure Discard Pile: ");
+			treasurePile.printPile();
+		}
+		else{
+			System.out.println("The Flood Discard Pile: ");
+			floodPile.printPile();		
+		}
     }
 
     private void displayHands() {
-        playerList.showAllHands();
+        theTeam.showAllHands();
     }
 
     private void useHelicopterLift() {
-		if(!player.getHand().checkContains(TreasureCardEnums.HELICOPTER_LIFT)){
-			System.out.println("You don't have a helicopter lift card :(");
-			return;
-		}
-		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.HELICOPTER_LIFT);
-		player.getHand().removeCard(pos);
-		if (canWin()){
-			System.out.println("You've played the Helicopter Lift card with all 4 treasures captured, with all players on Fools Landing!");
-		}
-		System.out.println("Who do you want to move?");
-		Player playerHelicopter = playerList.choosePlayer(inputScanner,null);
-		playerHelicopter.getPawn().helicopterMove();
+		theTeam.useHelicopterLift(inputScanner, player);
 	}
 	
 	private void useTeammateCard(){
 		System.out.println("Gonna do some");
+		gameWon = theTeam.enquirePlayers(inputScanner, true);
 	}
 
 	private void captureATreasure(){
+		if(!getActions()){
+			return;
+		}
 		if(theTreasureHandler.captureTreasure(player)){
 			actionsLeft--;
 		}
 	}
 
     private void giveCard() {
+		if(!getActions()){
+			return;
+		}
 		if(!player.getHand().canTrade()){
 			System.out.println("You can't trade right now :(");
 			return;
 		}
 		System.out.println("Who do you want to give a card to?");
 		displayHands();
-		Player playernum = playerList.choosePlayer(inputScanner, player);
+		Player playernum = theTeam.choosePlayer(inputScanner, player);
 		boolean validSelection = false;
 		while(!validSelection){
 			int cardnum = player.chooseFromHand(inputScanner, "give? You can't give Sandbags or Helicopter Lift", true);

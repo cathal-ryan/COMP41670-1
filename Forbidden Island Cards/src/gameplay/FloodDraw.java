@@ -1,20 +1,14 @@
 package gameplay;
 
+import java.util.Scanner;
 
-    import java.util.ArrayList;
-    import java.util.List;
-    import java.util.Scanner;
-    
-    import cards.Card;
-    import cards.Deck;
-    import cards.DiscardPile;
-    import cards.FloodDeck;
-    import cards.FloodDiscardPile;
-    import cards.TreasureDeck;
-    import cards.TreasureDiscardPile;
-    import cards.WaterRiseCard;
-    import enums.TilesEnums;
-    import player.Player;
+import cards.Card;
+
+import cards.FloodDeck;
+import cards.FloodDiscardPile;
+
+import player.Player;
+import player.Team;
     
     /**
      * PlayerTurn class manages all of the options a player can make whilst they
@@ -28,26 +22,32 @@ package gameplay;
         // ===========================================================
         // Setup Variables
         // ===========================================================
-        private Player player;
         private Scanner inputScanner;
         private FloodDiscardPile theDiscardPile;
         private FloodDeck theFloodDeck;
         private boolean lost;
+        private Team theTeam;
     
-        public FloodDraw(Player thisPlayer, Scanner inputScanner) {
-            this.player = thisPlayer;
+        public FloodDraw(Scanner inputScanner) {
             this.inputScanner = inputScanner;
             this.theDiscardPile = FloodDiscardPile.getInstance();
             this.theFloodDeck = FloodDeck.getInstance();
             this.lost = false;
+            this.theTeam = Team.getInstance();
         }
     
         public void doFloodDraw() {
-            for(int i =0;i<=WaterMeter.getWaterlevel();i++) {
+            System.out.println("Brace yourselves! It's now time to draw flood cards.");
+            for(int i =0;i<WaterMeter.getWaterlevel();i++) {
+                theTeam.enquirePlayers(inputScanner, false);
                 if(!lost){
+                    System.out.println(WaterMeter.getWaterlevel()-i+" card(s) to go! Press [return] to draw!");
+                    @SuppressWarnings("unused")
+                    String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start            
                     Card card1 = theFloodDeck.dealCard();
                     theDiscardPile.addToPile(card1);
                     // Take a flood card and add it to discard pile
+                    System.out.println("Oh no, "+ card1.getName() + " has been flooded\n");
                     floodTile(card1.getName()); // Flood the tile with this name.
                 }
             }        

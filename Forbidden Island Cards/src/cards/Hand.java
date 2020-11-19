@@ -40,6 +40,7 @@ public class Hand {
 				System.out.print(", ");
 			}
 		}
+		System.out.println("\n");
 	}
 	
 	public void removeCard(int i){
@@ -82,6 +83,7 @@ public class Hand {
 		}
 		return -1;
 	}
+	
 
 	public int numofInstances(TreasureCardEnums name){
 		return Collections.frequency(getNamesList(), name);
