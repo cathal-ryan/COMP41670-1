@@ -27,11 +27,11 @@ public class Team {
     }
 
     public Player getPlayer(int i) {
-    	return team.get(i-1);
+    	return team.get(i);
     }
     
     public void showAllHands(){
-        for(int i=1;i<=team.size();i++){
+        for(int i=0;i<team.size();i++){
             Player player = getPlayer(i);
             System.out.println("\n"+player.getName()+"'s hand: ");	
             player.getHand().printHand();
@@ -56,7 +56,7 @@ public class Team {
 
 	public Player choosePlayer(Scanner inputScanner, Player currentPlayer){
 		int userIn = 0;
-        for(int i=1;i<=team.size();i++){
+        for(int i=0;i<team.size();i++){
             Player player = getPlayer(i);
             if(currentPlayer != getPlayer(i)){
                 System.out.println("["+i+"] "+player.getName());	
@@ -69,8 +69,9 @@ public class Team {
 				userIn = Integer.parseInt(userString);
 			} catch (NumberFormatException e) {
 				continue;
-			}
-			if ((userIn >= 0) && (userIn <= team.size()) && (userIn != team.indexOf(currentPlayer)+1) ) {
+            }
+            System.out.println(team.indexOf(currentPlayer));
+			if ((userIn >= 0) && (userIn < team.size()) && (userIn != team.indexOf(currentPlayer)) ) {
 				validIn = true;
 			}
 		}
@@ -97,8 +98,8 @@ public class Team {
         }
         int userIn = 0;
         for(int j=0;j<eligible.size();j++){
-            Player player = getPlayer(eligible.get(j)+1);
-            System.out.println("["+j+"] "+player.getName());
+            Player player = getPlayer(eligible.get(j));
+            System.out.println("["+eligible.get(j)+"] "+player.getName());
         }
 		boolean validIn = false;
 		while (!validIn) {
@@ -112,13 +113,14 @@ public class Team {
 				validIn = true;
 			}
 		}
-        Player player1 = getPlayer(userIn+1);
+        Player player1 = getPlayer(userIn);
         if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT) && player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
             if(Choices.getYesOrNo(inputScanner,"Do you want to play Helicopter Lift or Sandbags", "Helicopter Lift", "Sandbags")){
                 return useHelicopterLift(inputScanner, player1);
             }
             else{
                 useSandbags(player1);
+                System.out.println("am i here2?");
                 return false;
             }
         }
@@ -126,6 +128,7 @@ public class Team {
             return useHelicopterLift(inputScanner, player1);
         }
         if(player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
+            System.out.println("am i here1?");
             useSandbags(player1);
             return false;
         }
@@ -149,17 +152,17 @@ public class Team {
         return false;
 	}
 
-    private void useSandbags(Player player) {
+    public void useSandbags(Player player) {
+        System.out.println("am i here3?");
 		if(!player.checkHasCard(TreasureCardEnums.SANDBAGS)){
 			System.out.println("You don't have a Sandbags card :(");
 			return;
 		}
 		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.SANDBAGS);
 		player.getHand().removeCard(pos);
-		System.out.println("Where do you want to shore up?");
         //Choose tile
         // tile.shoreUp()
-        System.out.println("Shoring up coming soon to a theatre near you");
+        System.out.println("\nShoring up coming soon to a theatre near you\n");
 	}
 
 	private boolean canWin() {

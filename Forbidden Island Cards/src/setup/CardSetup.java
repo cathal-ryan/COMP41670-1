@@ -36,9 +36,9 @@ public class CardSetup {
 	}
 
 	public void dealCards() {
-		int i=1;    // Iteration counter for cycling through Players        
+		int i=0;    // Iteration counter for cycling through Players        
         int numPlayers = setupTeam.getNumPlayers();
-        while (i<=numPlayers) {  
+        while (i<numPlayers) {  
 				Player playa1 =  setupTeam.getPlayer(i);
 				boolean cardsDealt=false;
         		for(int j=0;j<2;j++) {

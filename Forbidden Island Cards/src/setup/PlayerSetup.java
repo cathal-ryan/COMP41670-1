@@ -78,7 +78,7 @@ public class PlayerSetup {
 		printout("Enter your name:");
 		String name = user.nextLine();
 		theTeam.addPlayer(new Player(i,name,k));
-		Player player = theTeam.getPlayer(i+1);
+		Player player = theTeam.getPlayer(i);
 		printout(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
 	}
 

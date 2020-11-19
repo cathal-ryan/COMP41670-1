@@ -34,6 +34,7 @@ import player.Team;
             this.theDiscardPile = FloodDiscardPile.getInstance();
             this.theFloodDeck = FloodDeck.getInstance();
             this.lost = false;
+            this.won = false;
             this.theTeam = Team.getInstance();
         }
     
@@ -62,12 +63,11 @@ import player.Team;
             // if tile sinks, whatever player is on it should have to swim to nearby tile. If they cant, then seeIfLost should be able to return true.
             // also if fools landing is the one which sinks, player should lose.
         }
-
         public boolean seeIfLost() {
-			return false;
+			return lost;
         }
         public boolean seeIfWon() {
-			return true;
+			return won;
 		}
 }    
 

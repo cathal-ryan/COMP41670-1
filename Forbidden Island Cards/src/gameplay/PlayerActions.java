@@ -57,7 +57,6 @@ public class PlayerActions {
 					validInput = true;
 				}
 			}
-
 			switch (userInput) {
 			case 0:
 				turnOver = true;
@@ -76,14 +75,17 @@ public class PlayerActions {
                 break;
             case 5:
 			    useHelicopterLift();
-                break;
-            case 6:
-			    displayHands();
+				break;
+			case 6:
+			    useHelicopterLift();
                 break;
             case 7:
+			    displayHands();
+                break;
+            case 8:
 			    lookDiscarded(inputScanner);
 				break;
-            case 8:
+            case 9:
 			    useTeammateCard();
 				break;
 			default:
@@ -100,9 +102,10 @@ public class PlayerActions {
     
     private void giveOptions() {
 		printout("\nWhat do you want to do? You have " +actionsLeft +" actions remaining");
-		printout("[8]	See if any teammates wish to use their special cards");
-		printout("[7]	Look at the discard pile.");
-		printout("[6]	Have a look at everyone's hands");
+		printout("[9]	See if any teammates wish to use their special cards");
+		printout("[8]	Look at the discard pile.");
+		printout("[7]	Have a look at everyone's hands");
+		printout("[6]	Use Sandbags");
 		printout("[5]	Use Helicopter Lift!");
 		printout("[4]	Give a card to a teammate. (1 action)");
 		printout("[3]	Capture a Treasure. (1 action)");
@@ -155,9 +158,12 @@ public class PlayerActions {
     private void useHelicopterLift() {
 		theTeam.useHelicopterLift(inputScanner, player);
 	}
+
+    private void useSandbags() {
+		theTeam.useSandbags(player);
+	}
 	
 	private void useTeammateCard(){
-		System.out.println("Gonna do some");
 		gameWon = theTeam.enquirePlayers(inputScanner, true);
 	}
 

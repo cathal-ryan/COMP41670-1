@@ -35,7 +35,7 @@ import player.Team;
             this.player = thisPlayer;
             this.inputScanner = inputScanner;
             this.lost = false;
-            this.won = true;
+            this.won = false;
             this.thePile = TreasureDiscardPile.getInstance();
             this.theTreasureDeck= TreasureDeck.getInstance();
             this.theTeam = Team.getInstance();
