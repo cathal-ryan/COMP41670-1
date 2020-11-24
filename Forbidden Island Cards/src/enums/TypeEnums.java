@@ -6,7 +6,8 @@ public enum TypeEnums {
 	EARTH 			("The Earth Stone"),
 	WIND			("The Statue of the Wind"), 
 	FIRE 			("The Crystal of Fire"),
-	WATER			("The Ocean's Chalice");
+	WATER			("The Ocean's Chalice"),
+	SEA				("Sea Tile");
 
 	private final String type;
 	/**

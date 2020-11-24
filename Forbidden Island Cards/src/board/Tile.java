@@ -4,74 +4,32 @@ import java.util.Arrays;
 
 import enums.TilesEnums;
 import enums.TypeEnums;
+import java.awt.Point;
 
 public class Tile {
 
 	private TilesEnums tileName;
 	private TypeEnums tileType;
-	private int[] pos;
-	private int[] up;
-	private int[] down;
-	private int[] left;
-	private int[] right;
+	private Point pos;
+	private Point up;
+	private Point down;
+	private Point left;
+	private Point right;
 	private boolean flooded;
 	private boolean sunk;
 
-	protected Tile(int x, int y, TilesEnums name) {
-		this.tileName = name;
+	protected Tile(int x, int y) {
+		this.tileName = TilesEnums.SEA;
+		this.tileType = TypeEnums.SEA;
 
-		this.pos = new int[] {x, y};
-		this.up = new int[] {x, y+1};
-		this.down = new int[] {x, y-1};
-		this.left = new int[] {x-1, y};
-		this.right = new int[] {x+1, y};
-
-		switch(tileName) {
-			case FOOLS_LANDING:
-				this.tileType = TypeEnums.FOOLS_LANDING;
-				break;
-			case TEMPLE_OF_THE_MOON:
-				this.tileType = TypeEnums.EARTH;
-				break;
-			case TEMPLE_OF_THE_SUN:
-				this.tileType = TypeEnums.EARTH;
-				break;
-			case WHISPERING_GARDEN:
-				this.tileType = TypeEnums.WIND;
-				break;
-			case HOWLING_GARDEN:
-				this.tileType = TypeEnums.WIND;
-				break;
-			case CAVE_OF_EMBERS:
-				this.tileType = TypeEnums.FIRE;
-				break;
-			case CAVE_OF_SHADOWS:
-				this.tileType = TypeEnums.FIRE;
-				break;
-			case CORAL_PALACE:
-				this.tileType = TypeEnums.WATER;
-				break;
-			case TIDAL_PALACE:
-				this.tileType = TypeEnums.WATER;
-				break;
-			default:
-				this.tileType = TypeEnums.NORMAL;
-		}
+		this.pos = new Point(x,y);
+		this.up = new Point(x, y+1);
+		this.down = new Point(x, y-1);
+		this.left = new Point(x-1, y);
+		this.right = new Point(x+1, y);
 
 		this.flooded = false;
 		this.sunk = false;
-	}
-
-	public void flood() {
-		flooded = true;
-	}
-
-	public void shoreUp() {
-		flooded = false;
-	}
-
-	public void sink() {
-		sunk = true;
 	}
 
 	public TilesEnums getName() {
@@ -82,23 +40,23 @@ public class Tile {
 		return tileType;
 	}
 	
-	public int[] getPos() {
+	public Point getPos() {
 		return pos;
 	}
 
-	public int[] getUp() {
+	public Point getUp() {
 		return up;
 	}
 
-	public int[] getDown() {
+	public Point getDown() {
 		return down;
 	}
 
-	public int[] getLeft() {
+	public Point getLeft() {
 		return left;
 	}
 
-	public int[] getRight() {
+	public Point getRight() {
 		return right;
 	}
 
@@ -110,17 +68,86 @@ public class Tile {
 		return sunk;
 	}
 
+	public void flood() {
+		if(flooded)
+			sink();
+		else
+			flooded = true;
+	}
+
+	public void shoreUp() {
+		if(!sunk)
+			flooded = false;
+	}
+
+	private void sink() {
+		sunk = true;
+		setType(TilesEnums.SEA);
+	}
+
+	public void setType(TilesEnums name) {
+		tileName = name;
+		switch(tileName) {
+			case FOOLS_LANDING:
+				tileType = TypeEnums.FOOLS_LANDING;
+				break;
+			case TEMPLE_OF_THE_MOON:
+				tileType = TypeEnums.EARTH;
+				break;
+			case TEMPLE_OF_THE_SUN:
+				tileType = TypeEnums.EARTH;
+				break;
+			case WHISPERING_GARDEN:
+				tileType = TypeEnums.WIND;
+				break;
+			case HOWLING_GARDEN:
+				tileType = TypeEnums.WIND;
+				break;
+			case CAVE_OF_EMBERS:
+				tileType = TypeEnums.FIRE;
+				break;
+			case CAVE_OF_SHADOWS:
+				tileType = TypeEnums.FIRE;
+				break;
+			case CORAL_PALACE:
+				tileType = TypeEnums.WATER;
+				break;
+			case TIDAL_PALACE:
+				tileType = TypeEnums.WATER;
+				break;
+			case SEA:
+				tileType = TypeEnums.SEA;
+				break;
+			default:
+				tileType = TypeEnums.NORMAL;
+		}
+	}
+
 	public static void main(String[] args) {
 
-		Tile newTile = new Tile(0,0, TilesEnums.IRON_GATE);
+		Tile newTile = new Tile(0,0);
 		System.out.println("Tile name is: " + newTile.getName());
 		System.out.println("Tile type is: " + newTile.getType());
-		System.out.println("Tile pos is: " + Arrays.toString(newTile.getPos()));
+
+		newTile.setType(TilesEnums.HOWLING_GARDEN);
+		System.out.println("Tile name is: " + newTile.getName());
+		System.out.println("Tile type is: " + newTile.getType());
+		System.out.println("Tile pos is: " + newTile.getPos());
 		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
 		newTile.flood();
 		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
 		newTile.shoreUp();
 		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-
+		newTile.flood();
+		newTile.flood();
+		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
+		newTile.shoreUp();
+		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
+		newTile.shoreUp();
+		newTile.shoreUp();
+		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
 	}
 }

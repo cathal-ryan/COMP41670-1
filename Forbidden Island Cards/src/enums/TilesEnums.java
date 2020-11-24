@@ -24,7 +24,8 @@ public enum TilesEnums {
 	DUNES_OF_DECEPTION  ("Dunes of Deception"),
 	GOLD_GATE        	("Gold Gate"),
 	TWILIGHT_HOLLOW     ("Twilight Hollow"),
-	WATCHTOWER        	("Watchtower");
+	WATCHTOWER        	("Watchtower"),
+	SEA		       		("Sea");
 
 	private final String name;
 	/**
