@@ -69,14 +69,14 @@ public class Tile {
 	}
 
 	public void flood() {
-		if(flooded)
+		if(isFlooded())
 			sink();
 		else
 			flooded = true;
 	}
 
 	public void shoreUp() {
-		if(!sunk)
+		if(!isSunk())
 			flooded = false;
 	}
 
@@ -85,9 +85,12 @@ public class Tile {
 		setType(TilesEnums.SEA);
 	}
 
-	public void setType(TilesEnums name) {
+	public void setName(TilesEnums name) {
 		tileName = name;
-		switch(tileName) {
+	}
+
+	public void setType(TilesEnums name) {
+		switch(name) {
 			case FOOLS_LANDING:
 				tileType = TypeEnums.FOOLS_LANDING;
 				break;
@@ -126,28 +129,34 @@ public class Tile {
 	public static void main(String[] args) {
 
 		Tile newTile = new Tile(0,0);
-		System.out.println("Tile name is: " + newTile.getName());
+		System.out.println("\nTile name is: " + newTile.getName());
 		System.out.println("Tile type is: " + newTile.getType());
 
+		newTile.setName(TilesEnums.HOWLING_GARDEN);
 		newTile.setType(TilesEnums.HOWLING_GARDEN);
-		System.out.println("Tile name is: " + newTile.getName());
+		System.out.println("\nTile name is: " + newTile.getName());
 		System.out.println("Tile type is: " + newTile.getType());
 		System.out.println("Tile pos is: " + newTile.getPos());
 		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		
 		newTile.flood();
-		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		
 		newTile.shoreUp();
-		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		
 		newTile.flood();
 		newTile.flood();
-		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
 		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
+		
 		newTile.shoreUp();
-		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
 		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
+		
 		newTile.shoreUp();
 		newTile.shoreUp();
-		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
+		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
 		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
 	}
 }

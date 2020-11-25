@@ -49,6 +49,15 @@ public class Board {
     	return boardTiles.get(coords);
     }
 
+    private Tile getTile(TilesEnums name) {
+    	for(Tile t : boardTiles.values()) {
+    		if(t.getName() == name)
+    			return t;
+    	}
+    	System.out.println("Error: Tile does not exist");
+    	return null;
+    }
+
     public TilesEnums getTileName(Point coords) {
     	return getTile(coords).getName();
     }
@@ -57,55 +66,73 @@ public class Board {
     	return getTile(coords).getType();
     }
 
-    public Point getTilePos(Point coords) {
-    	return getTile(coords).getPos();
+    public Point getTilePos(TilesEnums name) {
+    	for (Point coords : boardTiles.keySet()) {
+    		if(getTile(coords).getName() == name)
+    			return coords;
+    	}
+    	return null;
     }
 
     public boolean isTileFlooded(Point coords) {
     	return getTile(coords).isFlooded();
     }
 
+    public boolean isTileFlooded(TilesEnums name) {
+    	return getTile(name).isFlooded();
+    }
+
     public boolean isTileSunk(Point coords) {
     	return getTile(coords).isSunk();
     }
 
+    public boolean isTileSunk(TilesEnums name) {
+    	return getTile(name).isSunk();
+    }
+
     public void setTile(Point coords, TilesEnums name) {
+    	getTile(coords).setName(name);
     	getTile(coords).setType(name);
     }
 
-    public void floodTile(Point coords) {
-    	getTile(coords).flood();
+    public void floodTile(TilesEnums name) {
+    	getTile(name).flood();
     }
 
-    public void shoreUpTile(Point coords) {
-    	getTile(coords).shoreUp();
+    public void shoreUpTile(TilesEnums name) {
+    	getTile(name).shoreUp();
     }
 
     public static void main(String[] args) {
     	Board thisBoard = new Board();
 		Point boardPos = new Point(0,0);
 
-    	System.out.println("Tile name is: " + thisBoard.getTileName(boardPos));
+    	System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
 		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
 
-		thisBoard.setTile(boardPos, TilesEnums.CAVE_OF_SHADOWS);
-		System.out.println("Tile name is: " + thisBoard.getTileName(boardPos));
+		thisBoard.setTile(boardPos, TilesEnums.IRON_GATE);
+		System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
 		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
-
-		System.out.println("Tile position is: " + thisBoard.getTilePos(boardPos).toString());
-
+		System.out.println("Tile position is: " + thisBoard.getTilePos(TilesEnums.IRON_GATE));
 		System.out.println("Is it flooded?: " + thisBoard.isTileFlooded(boardPos));
 		System.out.println("Is it sunk?: " + thisBoard.isTileSunk(boardPos));
 
-		thisBoard.floodTile(boardPos);
-		System.out.println("Is it flooded?: " + thisBoard.isTileFlooded(boardPos));
+		thisBoard.floodTile(TilesEnums.IRON_GATE);
+		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
 
-		thisBoard.shoreUpTile(boardPos);
-		System.out.println("Is it flooded?: " + thisBoard.isTileFlooded(boardPos));
+		thisBoard.shoreUpTile(TilesEnums.IRON_GATE);
+		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
 
-		thisBoard.floodTile(boardPos);
-		thisBoard.floodTile(boardPos);
+		thisBoard.floodTile(TilesEnums.IRON_GATE);
+		System.out.println("\nHas it sank?: " + thisBoard.isTileSunk(boardPos));
+		thisBoard.floodTile(TilesEnums.IRON_GATE);
 		System.out.println("Has it sank?: " + thisBoard.isTileSunk(boardPos));
+		
+		System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
+		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
+
+		thisBoard.shoreUpTile(TilesEnums.IRON_GATE);
+		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
     }
 	
 }
