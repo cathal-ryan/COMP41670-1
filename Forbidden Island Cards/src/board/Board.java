@@ -67,11 +67,7 @@ public class Board {
     }
 
     public Point getTilePos(TilesEnums name) {
-    	for (Point coords : boardTiles.keySet()) {
-    		if(getTile(coords).getName() == name)
-    			return coords;
-    	}
-    	return null;
+    	return getTile(name).getPos();
     }
 
     public boolean isTileFlooded(Point coords) {
@@ -105,7 +101,7 @@ public class Board {
 
     public static void main(String[] args) {
     	Board thisBoard = new Board();
-		Point boardPos = new Point(0,0);
+		Point boardPos = new Point(3,1);
 
     	System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
 		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
