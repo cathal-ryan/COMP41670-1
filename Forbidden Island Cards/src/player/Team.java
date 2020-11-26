@@ -54,12 +54,27 @@ public class Team {
     	return team;
     }
 
-	public Player choosePlayer(Scanner inputScanner, Player currentPlayer){
-		int userIn = 0;
+    public List<Integer> getAllPlayerNums(int exclude){
+        List<Integer> allPlayers = new ArrayList<>(); 
+        int i=0;
+        for (Player j:team){
+            if(!(j.getNum() == exclude)){
+                allPlayers.add(i);
+            }
+            i++;
+        }
+        System.out.println(allPlayers);
+        return allPlayers;
+    }
+
+	public Player choosePlayer(Scanner inputScanner, List<Integer> eligible){
+        if(eligible==null){
+            eligible = getAllPlayerNums(-1);
+        }
+        int userIn = 0;
         for(int i=0;i<team.size();i++){
-            Player player = getPlayer(i);
-            if(currentPlayer != getPlayer(i)){
-                System.out.println("["+i+"] "+player.getName());	
+            if (eligible.contains(i)){
+                System.out.println("["+i+"] "+ getPlayer(i).getName());
             }
         }
 		boolean validIn = false;
@@ -68,17 +83,20 @@ public class Team {
 			try {
 				userIn = Integer.parseInt(userString);
 			} catch (NumberFormatException e) {
+                System.out.println("Invalid Input");
 				continue;
             }
-            System.out.println(team.indexOf(currentPlayer));
-			if ((userIn >= 0) && (userIn < team.size()) && (userIn != team.indexOf(currentPlayer)) ) {
+			if ((userIn >= 0) && (userIn < team.size()) && ((eligible.contains(userIn)))) {
 				validIn = true;
-			}
+            }
+            else{
+                System.out.println("Invalid Input");
+            }
 		}
 		return getPlayer(userIn);
     }
 
-    public boolean enquirePlayers(Scanner inputScanner, boolean asked){
+    public List<Integer> getPlayerswithSpecials(){
         List<Integer> eligible = new ArrayList<>();
         int i=0;
         for (Player p1 : team){
@@ -87,6 +105,12 @@ public class Team {
             }
             i++;
         }
+        System.out.println(eligible);
+        return eligible;
+    }
+
+    public boolean enquirePlayers(Scanner inputScanner, boolean asked){
+        List<Integer> eligible = getPlayerswithSpecials();
         if(eligible.isEmpty()){
             if(asked){
                 System.out.println("No one has a special card...");
@@ -96,31 +120,13 @@ public class Team {
         if(!Choices.getYesOrNo(inputScanner,"Does anyone want to play their special card?", "No", "Yes")){
             return false;
         }
-        int userIn = 0;
-        for(int j=0;j<eligible.size();j++){
-            Player player = getPlayer(eligible.get(j));
-            System.out.println("["+eligible.get(j)+"] "+player.getName());
-        }
-		boolean validIn = false;
-		while (!validIn) {
-			String userString = inputScanner.nextLine();
-			try {
-				userIn = Integer.parseInt(userString);
-			} catch (NumberFormatException e) {
-				continue;
-			}
-			if ((userIn >= 0) && (eligible.contains(userIn)))  {
-				validIn = true;
-			}
-		}
-        Player player1 = getPlayer(userIn);
+        Player player1 = choosePlayer(inputScanner,eligible);
         if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT) && player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
-            if(Choices.getYesOrNo(inputScanner,"Do you want to play Helicopter Lift or Sandbags", "Helicopter Lift", "Sandbags")){
+            if(Choices.getYesOrNo(inputScanner,"Do you want to play Helicopter Lift or Sandbags", "Sandbags", "Helicopter Lift")){
                 return useHelicopterLift(inputScanner, player1);
             }
             else{
                 useSandbags(player1);
-                System.out.println("am i here2?");
                 return false;
             }
         }
@@ -128,7 +134,6 @@ public class Team {
             return useHelicopterLift(inputScanner, player1);
         }
         if(player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
-            System.out.println("am i here1?");
             useSandbags(player1);
             return false;
         }
@@ -145,15 +150,22 @@ public class Team {
 		if (canWin()){
             System.out.println("You've played the Helicopter Lift card with all 4 treasures captured, with all players on Fools Landing!");
             return true;
-		}
-		System.out.println("Who do you want to move?");
-        Player playerForHeliMove = theTeam.choosePlayer(inputScanner,null);
-        playerForHeliMove.helicopterMove();
+        }
+        System.out.println("Where do you want to move to\n Board.selectTile() coming soon...");
+        System.out.println("Who is gonna fly there?");
+        List <Integer> availforMove = getAllPlayerNums(-1);
+        boolean keepMoving = true;
+        do{
+            Player playerForHeliMove = theTeam.choosePlayer(inputScanner,availforMove);
+            playerForHeliMove.helicopterMove();
+            availforMove.remove(playerForHeliMove.getNum());
+            keepMoving = Choices.getYesOrNo(inputScanner,"Want to move anyone else here?", "No", "Yes");
+        }
+        while(!availforMove.isEmpty() && keepMoving);
         return false;
 	}
 
     public void useSandbags(Player player) {
-        System.out.println("am i here3?");
 		if(!player.checkHasCard(TreasureCardEnums.SANDBAGS)){
 			System.out.println("You don't have a Sandbags card :(");
 			return;
@@ -162,7 +174,7 @@ public class Team {
 		player.getHand().removeCard(pos);
         //Choose tile
         // tile.shoreUp()
-        System.out.println("\nShoring up coming soon to a theatre near you\n");
+        System.out.println("\nSandbags coming soon to a theatre near you\n");
 	}
 
 	private boolean canWin() {

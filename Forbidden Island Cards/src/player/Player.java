@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import gameplay.Choices;
+import pawns.Pawn;
 import pawns.*;
 
 import cards.Hand;
@@ -21,10 +22,12 @@ public class Player {
 	private String playerName;
 	private Hand playerHand;
 	private Pawn playerPawn;
+	private int playerNum;
 
 	public Player(int playerNum, String playerName, int adventurerNum) {
 		this.playerName = playerName;
 		this.playerHand = new Hand();
+		this.playerNum = playerNum;
 		switch (adventurerNum) {
 			case 0:
 				playerPawn = new Diver();
@@ -51,6 +54,9 @@ public class Player {
 	
 	public String getName() {
 		return playerName;
+	}
+	public int getNum() {
+		return playerNum;
 	}
 
 	public List<TreasureDeckCard> showHand() {

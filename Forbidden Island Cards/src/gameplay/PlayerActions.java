@@ -77,7 +77,7 @@ public class PlayerActions {
 			    useHelicopterLift();
 				break;
 			case 6:
-			    useHelicopterLift();
+			    useSandbags();
                 break;
             case 7:
 			    displayHands();
@@ -186,7 +186,7 @@ public class PlayerActions {
 		}
 		System.out.println("Who do you want to give a card to?");
 		displayHands();
-		Player playernum = theTeam.choosePlayer(inputScanner, player);
+		Player playernum = theTeam.choosePlayer(inputScanner, theTeam.getAllPlayerNums(player.getNum()));
 		boolean validSelection = false;
 		while(!validSelection){
 			int cardnum = player.chooseFromHand(inputScanner, "give? You can't give Sandbags or Helicopter Lift", true);
