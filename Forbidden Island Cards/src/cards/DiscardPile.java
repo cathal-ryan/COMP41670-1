@@ -30,7 +30,7 @@ abstract public class DiscardPile {
 		// Pop the top element of the stack 
 		Discarded.pop(); 
 	 
-		// Recursively call the function PrintStack 
+		// Recursively call the function PrintPile 
 		printPile(); 
 	 
 		// Print the stack element starting 

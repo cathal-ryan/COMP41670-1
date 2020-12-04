@@ -22,36 +22,31 @@ public class PlayerSetup {
 		int numOfPlayers;
 		boolean playersSelected = false;
 
-		while (!playersSelected) {
-			numOfPlayers = 0;
-			while (!validNumPlayers) {
-				numOfPlayers = getNumberOfPlayers(user);
-			}
-			List<Integer> thelist = new ArrayList<>();
-
-	        thelist.add(0);
-	        thelist.add(1);
-	        thelist.add(2);
-	        thelist.add(3);
-	        thelist.add(4);
-	        thelist.add(5);
-
-			for (int i = 0; i < numOfPlayers; i++) {
-		        Random rand = new Random(); 
-		        int randint = rand.nextInt(thelist.size()); 
-		        int k = thelist.get(randint);
-		        thelist.remove(randint);
-
-				createIndividualPlayer(user, i, k);
-			}
-			playersSelected = true;
+		numOfPlayers = 0;
+		while (!validNumPlayers) {
+			numOfPlayers = getNumberOfPlayers(user);
 		}
-		
+		List<Integer> thelist = new ArrayList<>();
+
+		thelist.add(0);
+		thelist.add(1);
+		thelist.add(2);
+		thelist.add(3);
+		thelist.add(4);
+		thelist.add(5);
+
+		for (int i = 0; i < numOfPlayers; i++) {
+			Random rand = new Random(); 
+			int randint = rand.nextInt(thelist.size()); 
+			int k = thelist.get(randint);
+			thelist.remove(randint);
+			createIndividualPlayer(user, i, k);
+		}
 	}
 
 	public int getNumberOfPlayers(Scanner user) {
 		String userString;
-		printout("\nHow many people are playing? (must be between 2 and 4)");
+		System.out.println("\nHow many people are playing? (must be between 2 and 4");
 		userString = user.nextLine();
 		return setNumPlayers(userString);
 	}
@@ -68,21 +63,16 @@ public class PlayerSetup {
 			validNumPlayers = true;
 		}
 		else{
-			printout("Incorrect input\n");
+			System.out.println("Incorrect input\n");
 		}
 		return numOfPlayers;
 	}
 
 	public void createIndividualPlayer(Scanner user, int i, int k) {
-		printout("\nPlayer "+(i+1)+"...");
-		printout("Enter your name:");
+		System.out.println("\nPlayer "+(i+1)+"...\nEnter your name:");
 		String name = user.nextLine();
 		theTeam.addPlayer(new Player(i,name,k));
 		Player player = theTeam.getPlayer(i);
-		printout(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
-	}
-
-	private void printout(String toPrint) {
-		System.out.println(toPrint);
+		System.out.println(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
 	}
 }

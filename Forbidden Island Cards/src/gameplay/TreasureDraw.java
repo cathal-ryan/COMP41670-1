@@ -11,10 +11,9 @@ import cards.TreasureDiscardPile;
 import player.Team;
     
     /**
-     * PlayerTurn class manages all of the options a player can make whilst they
-     * have a turn.
+     * Treasure Draw class manages drawing treasure cards
      * 
-     * @author Conor Kennedy and Fergal Lonergan
+     * @author Cathal Ryan and Conor Kneafsey
      *
      */
     public class TreasureDraw {

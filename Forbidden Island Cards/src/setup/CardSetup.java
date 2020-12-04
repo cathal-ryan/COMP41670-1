@@ -55,8 +55,8 @@ public class CardSetup {
 						}
 					}
 				}
-                i++;
-			}
+            i++;
+		}
 		setupTeam.showAllHands();
 		// Take out 6 flood cards
         for(int k=0;k<6;k++) {
@@ -69,7 +69,7 @@ public class CardSetup {
 			// could have a board.flood(c1.getName) here
         	setupFloodDiscard.addToPile(c1);
         }
-        }
+    }
 }
 	
 

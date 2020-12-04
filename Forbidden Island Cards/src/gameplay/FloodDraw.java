@@ -14,7 +14,7 @@ import player.Team;
      * PlayerTurn class manages all of the options a player can make whilst they
      * have a turn.
      * 
-     * @author Conor Kennedy and Fergal Lonergan
+     * @author Cathal Ryan and Conor Kneafsey
      *
      */
     public class FloodDraw {
