@@ -45,8 +45,7 @@ public class tileStack {
 
 	public static void main(String[] args) {
 		tileStack test = new tileStack();
-		int stackSize = test.size();
-		for (int i=0; i < stackSize; i++) {
+		while (test.size() >= 1) {
 			System.out.println("This Tile is: " + test.pop());
 		}
 	}
