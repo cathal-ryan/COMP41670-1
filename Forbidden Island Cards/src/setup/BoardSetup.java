@@ -72,10 +72,6 @@ public class BoardSetup {
 		}
 	}
 
-	public Board getBoard() {
-		return theBoard;
-	}
-
 	public static void main(String[] args) {
 		BoardSetup bSet = new BoardSetup();
 		bSet.setTiles();
