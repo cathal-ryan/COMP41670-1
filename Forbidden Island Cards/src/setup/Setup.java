@@ -22,7 +22,7 @@ public class Setup {
         // Create instances of Player set up and card set up
         this.waterHandler   = new WaterMeterSetup();
         this.boardHandler   = new BoardSetup();
-        this.playerHandler  = new PlayerSetup(boardHandler.getBoard());
+        this.playerHandler  = new PlayerSetup();
         this.cardHandler    = new CardSetup();
     }
     

@@ -18,9 +18,9 @@ public class PlayerSetup {
 	private Board theBoard;
 	private Point startLoc;
 	
-	public PlayerSetup(Board b) {
+	public PlayerSetup() {
 		this.theTeam = Team.getInstance();
-		this.theBoard = b;
+		this.theBoard = Board.getInstance();
 	}
 
 	protected void createAllPlayers(Scanner user) {
@@ -81,5 +81,6 @@ public class PlayerSetup {
 		player.setPawnPos(startLoc);
 		theTeam.addPlayer(player);
 		System.out.println(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
+		System.out.println("The Player pos is: " +theTeam.getPlayer(i).getPawnPos().toString());
 	}
 }
