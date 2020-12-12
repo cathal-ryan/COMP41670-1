@@ -62,6 +62,11 @@ public class Player {
 	public List<TreasureDeckCard> showHand() {
 		return playerHand.getCards();
 	}
+
+	public String handAsString() {
+		String hand;
+		for(int i=0;i<playerHand.)
+	}
 	
 	public Hand getHand() {
 		return playerHand;
@@ -116,6 +121,7 @@ public class Player {
 
 	public int chooseFromHand(Scanner inputScanner, String action, boolean ineligible){
 		int userIn = 0;
+		System.out.println("\nWhich of the cards would you like to " + action);
 		for (int i = 0; i < showHand().size(); i++) {
 			if (!(ineligible && !(showHand().get(i) instanceof TreasureCard))){
 				System.out.println("[" + i + "]: " + showHand().get(i).getName());
@@ -123,7 +129,6 @@ public class Player {
 		}
 		boolean validIn = false;
 		while (!validIn) {
-			System.out.println("Which of the cards would you like to " + action);
 			String userString = inputScanner.nextLine();
 			try {
 				userIn = Integer.parseInt(userString);
@@ -132,6 +137,9 @@ public class Player {
 			}
 			if ((userIn >= 0) && (userIn <= showHand().size()-1)) {
 				validIn = true;
+			}
+			else{
+				System.out.println("Invalid Input");
 			}
 		}
 		return userIn;
@@ -146,5 +154,13 @@ public class Player {
 
 	public void helicopterMove(){
 		playerPawn.helicopterMove();
+	}
+
+	public boolean canMove() {
+		return true;
+	}
+
+	public boolean canShoreUp() {
+		return true;
 	}
 }

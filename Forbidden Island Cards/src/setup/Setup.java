@@ -44,5 +44,7 @@ public class Setup {
     	System.out.println(" ░ ░   ░ ░ ░ ▒    ░░   ░  ░    ░  ▒ ░ ░ ░  ░  ░ ░  ░    ░      ░   ░ ░     ▒ ░░  ░  ░    ░ ░    ░   ▒      ░   ░ ░  ░ ░  ░         ");
         System.out.println("           ░ ░     ░      ░       ░     ░       ░       ░  ░         ░     ░        ░      ░  ░     ░  ░         ░    ░            ");
         System.out.println("                               ░      ░       ░                                                                     ░      ");
+        
+        System.out.println("Welcome to Forbidden Island - by Conor Kneafsey and Cathal Ryan");
     }
 }

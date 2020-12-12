@@ -42,7 +42,7 @@ import player.Team;
     
         public void doTreasureDraw() {
             int i =0;
-            System.out.println("Now it's time to draw your treasure cards!");
+            System.out.println("Now it's time to draw your treasure cards!\n");
             while(!lost && (i<2)){
                 if(theTeam.enquirePlayers(inputScanner, false)){
                     won=true;

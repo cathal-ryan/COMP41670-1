@@ -28,8 +28,8 @@ public class CardSetup {
 	 * Constructor for the CardSetup class
 	 */
 	public CardSetup() {
-		this.setupTreasureDeck = (TreasureDeck) TreasureDeck.getInstance();
-		this.setupFloodDeck = (FloodDeck) FloodDeck.getInstance();
+		this.setupTreasureDeck = TreasureDeck.getInstance();
+		this.setupFloodDeck = FloodDeck.getInstance();
 		this.setupFloodDiscard = FloodDiscardPile.getInstance();
 		this.setupTreasureDiscard = TreasureDiscardPile.getInstance();
 		this.setupTeam = Team.getInstance();
@@ -68,7 +68,8 @@ public class CardSetup {
 			System.out.println(c1.getName() +" has been flooded!");
 			// could have a board.flood(c1.getName) here
         	setupFloodDiscard.addToPile(c1);
-        }
+		}
+		System.out.println("-------------------------------------------------");
     }
 }
 	

@@ -34,16 +34,12 @@ public class Team {
         for(int i=0;i<team.size();i++){
             Player player = getPlayer(i);
             System.out.println("\n"+player.getName()+"'s hand: ");	
-            player.getHand().printHand();
+            System.out.println(player.getHand().printHand());
         }
     }
 
     public int getPlayerIndex(Player player){
-    	return team.indexOf(player)+1;
-    }
-
-    public void setPlayer(int i, Player updatedPlayer) {
-    	team.set(i-1, updatedPlayer);
+    	return team.indexOf(player);
     }
     
     public void addPlayer(Player newPlayer) {
@@ -58,12 +54,11 @@ public class Team {
         List<Integer> allPlayers = new ArrayList<>(); 
         int i=0;
         for (Player j:team){
-            if(!(j.getNum() == exclude)){
+            if((j.getNum() != exclude)){
                 allPlayers.add(i);
             }
             i++;
         }
-        System.out.println(allPlayers);
         return allPlayers;
     }
 
@@ -105,7 +100,6 @@ public class Team {
             }
             i++;
         }
-        System.out.println(eligible);
         return eligible;
     }
 
@@ -120,6 +114,8 @@ public class Team {
         if(!Choices.getYesOrNo(inputScanner,"Does anyone want to play their special card?", "No", "Yes")){
             return false;
         }
+        showAllHands();
+        System.out.println("\nWho will play their special card?");
         Player player1 = choosePlayer(inputScanner,eligible);
         if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT) && player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
             if(Choices.getYesOrNo(inputScanner,"Do you want to play Helicopter Lift or Sandbags", "Sandbags", "Helicopter Lift")){
@@ -130,10 +126,10 @@ public class Team {
                 return false;
             }
         }
-        if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT)){
+        else if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT)){
             return useHelicopterLift(inputScanner, player1);
         }
-        if(player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
+        else if(player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
             useSandbags(player1);
             return false;
         }
@@ -142,7 +138,7 @@ public class Team {
 
     public boolean useHelicopterLift(Scanner inputScanner, Player player) {
 		if(!player.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT)){
-			System.out.println("You don't have a helicopter lift card :(");
+			System.out.println("\nYou don't have a helicopter lift card :(");
 			return false;
 		}
 		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.HELICOPTER_LIFT);
@@ -158,7 +154,8 @@ public class Team {
         do{
             Player playerForHeliMove = theTeam.choosePlayer(inputScanner,availforMove);
             playerForHeliMove.helicopterMove();
-            availforMove.remove(playerForHeliMove.getNum());
+            System.out.println(availforMove);
+            availforMove.remove(new Integer(playerForHeliMove.getNum()));
             keepMoving = Choices.getYesOrNo(inputScanner,"Want to move anyone else here?", "No", "Yes");
         }
         while(!availforMove.isEmpty() && keepMoving);
@@ -167,7 +164,7 @@ public class Team {
 
     public void useSandbags(Player player) {
 		if(!player.checkHasCard(TreasureCardEnums.SANDBAGS)){
-			System.out.println("You don't have a Sandbags card :(");
+			System.out.println("\nYou don't have a Sandbags card :(");
 			return;
 		}
 		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.SANDBAGS);

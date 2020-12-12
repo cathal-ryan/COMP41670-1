@@ -29,10 +29,10 @@ public class WaterMeterSetup {
 	protected int getDifficulty(Scanner user) {
         String userString;
         System.out.println("What difficulty level would you like to play at? The options are: ");
-        System.out.println("[0] - Novice, Flood Level set to 2");
-        System.out.println("[1] - Normal, Flood Level set to 2");
-        System.out.println("[2] - Elite, Flood Level set to 3");
-        System.out.println("[3] - Legendary, Flood Level set to 3");
+        System.out.println("[1] - Novice, Flood Level set to 1");
+        System.out.println("[2] - Normal, Flood Level set to 2");
+        System.out.println("[3] - Elite, Flood Level set to 3");
+        System.out.println("[4] - Legendary, Flood Level set to 4");
         userString = user.nextLine();
 		return setDifficulty(userString);
     }
@@ -45,7 +45,7 @@ public class WaterMeterSetup {
 			return waterlevel;
 		}
 
-		if ((waterlevel >= 0) && (waterlevel <= 3)) {
+		if ((waterlevel >= 1) && (waterlevel <= 4)) {
 			validWaterLevel = true;
 		}
 		else{

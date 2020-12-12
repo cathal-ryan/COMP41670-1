@@ -39,21 +39,21 @@ import player.Team;
         }
     
         public void doFloodDraw() {
-            System.out.println("Brace yourselves! It's now time to draw flood cards.");
+            System.out.println("\nBrace yourselves! It's now time to draw flood cards.");
             for(int i =0;i<WaterMeter.getWaterlevel();i++) {
                 if(theTeam.enquirePlayers(inputScanner, false)){
                     won=true;
                     return;
                 }                
                 if(!lost){
-                System.out.println(WaterMeter.getWaterlevel()-i+" card(s) to go! Press [return] to draw!");
-                @SuppressWarnings("unused")
-                String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start            
-                Card card1 = theFloodDeck.dealCard();
-                theDiscardPile.addToPile(card1);
-                // Take a flood card and add it to discard pile
-                System.out.println("Oh no, "+ card1.getName() + " has been flooded\n");
-                floodTile(card1.getName()); // Flood the tile with this name.
+                    System.out.println(WaterMeter.getWaterlevel()-i+" card(s) to go! Press [return] to draw!");
+                    @SuppressWarnings("unused")
+                    String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start            
+                    Card card1 = theFloodDeck.dealCard();
+                    theDiscardPile.addToPile(card1);
+                    // Take a flood card and add it to discard pile
+                    System.out.println("Oh no, "+ card1.getName() + " has been flooded");
+                    floodTile(card1.getName()); // Flood the tile with this name.
                 }
             }        
         }

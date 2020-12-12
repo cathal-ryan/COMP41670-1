@@ -32,4 +32,11 @@ public class FloodDiscardPile extends DiscardPile{
 	public FloodDiscardPile() {
 		this.Discarded = new Stack<Card>();
 	}
+
+	public static void main(String[] args) {
+		FloodDiscardPile d1 = new FloodDiscardPile();
+		System.out.println(d1.returnPrintedPile());
+		System.out.println("hello");
+	}
+
 }
