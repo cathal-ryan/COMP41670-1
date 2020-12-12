@@ -7,6 +7,8 @@ import java.util.Observer;
 import gameplay.GameInputs;
 import player.Player;
 import cards.DiscardPile;
+import cards.HelicopterLift;
+import cards.SandbagsCard;
 import cards.TreasureCard;
 import enums.TreasureCardEnums;
 
@@ -52,7 +54,7 @@ public class Controller implements Observer{
 	}
 
     public String returnPlayerName(){
-        return theGameState.getPlayerName(-1);
+        return theGameState.getPlayerNameFromIndex(-1);
     }
 
     public int getActionsLeft(){
@@ -69,18 +71,20 @@ public class Controller implements Observer{
 
     public void movement(){
         if(theGameState.getActionsLeft()<1){
-            theOutputs.noActionsLeftMessage();
+            theOutputs.noActionsLeft();
         }
         else{
             theGameState.movePlayer();
         }
     }
 
-    // public DiscardPile getDiscardPile(boolean treasure){
-    //     return theGameState.returnDiscard(treasure);
-    // }
-
 	public void shoreUp() {
+        if(theGameState.getActionsLeft()<1){
+            theOutputs.noActionsLeft();
+        }
+        else{
+            theGameState.movePlayer();
+        }
 	}
 
 	public void lookDiscarded() {
@@ -91,7 +95,7 @@ public class Controller implements Observer{
 
 	public void lookAtHands() {
         for(int i=0;i<theGameState.getNumPlayers();i++){
-            String name = theGameState.getPlayerName(i);
+            String name = theGameState.getPlayerNameFromIndex(i);
             String hand = theGameState.getHandasString(i);
             theOutputs.printHand(name, hand);
         }
@@ -109,6 +113,7 @@ public class Controller implements Observer{
             }
             else{
                 theOutputs.cantTrade();
+                return;
             }
         }
         lookAtHands();
@@ -120,14 +125,15 @@ public class Controller implements Observer{
 			int cardnum = chooseFromHand(null, true);
 			validSelection = giveTreasureCard(playerB, cardnum);
 		}
-		//actionsLeft--;
+		theGameState.decreaseActions();
     }
     
     public int chooseFromHand(Player playerA, boolean ineligible){
-        if(p1==null){
+        if(playerA==null){
             playerA = theGameState.getCurrentPlayer();
         }
         List hands = theGameState.getPlayerHand(playerA);
+        System.out.println(hands);
 		for (int i = 0; i < hands.size(); i++) {
 			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
                 theOutputs.showOption(i,hands.get(i).toString());
@@ -142,15 +148,33 @@ public class Controller implements Observer{
         }
         int handSizeB = theGameState.getHandSize(playerB);
         while(handSizeB > 5){
-			discardTreasureCard(playerB);
+			discardTreasure(playerB);
 		}
 		return true;
 	}
 
     public void discardTreasure(Player player){
-        
+        boolean validIn = false;
+        String name = theGameState.getPlayerName(player);
+        List hand = theGameState.getPlayerHand(player);
+        theOutputs.handTooBig(name);
+        int userIn = chooseFromHand(player,false);
+        if(!(hand.get(userIn) instanceof TreasureCard)){
+            theOutputs.useIt();
+            if(theInputs.getYesOrNo("No", "Yes")){
+                if((hand.get(userIn) instanceof SandbagsCard)){
+                    useSandbags(player);
+                    return;
+                }
+                if((hand.get(userIn) instanceof HelicopterLift)){
+                    useHelicopterLift(player);
+                    return;
+                }
+            }
+        }
+        theGameState.removeCardByIndex(player, userIn);
     }
-
+    
 	public Player choosePlayer(List<Integer> eligible){
         theOutputs.choosePl();
         if(eligible==null){
@@ -170,7 +194,7 @@ public class Controller implements Observer{
         if(p1==null){
             p1 = theGameState.getCurrentPlayer();
         }
-        if(!theGameState.checkHasCard(true)){
+        if(!theGameState.checkHasCard(p1, true)){
             theOutputs.noHeli();
             return;
         }
@@ -187,13 +211,17 @@ public class Controller implements Observer{
         while(!availforMove.isEmpty() && keepGoingHeli());
 	}
 
-	public void useSandbags() {
-        if(!theGameState.checkHasCard("Sandbags")){
+	public void useSandbags(Player p1) {
+        if(p1==null){
+            p1 = theGameState.getCurrentPlayer();
+        }
+        if(!theGameState.checkHasCard(p1, false)){
             theOutputs.noSandbags();
+            return;
         }
-        else{
-            theGameState.useSandbags();
-        }
+        theGameState.removeCard(p1, TreasureCardEnums.SANDBAGS);
+        theGameState.useSandbags();
+        
 	}
 
 	public boolean keepGoingHeli() {

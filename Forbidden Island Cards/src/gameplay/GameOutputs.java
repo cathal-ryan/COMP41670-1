@@ -93,13 +93,21 @@ public class GameOutputs {
 	}
 
 	public void cardChoice(boolean trading) {
-        System.out.println("\nWhich of the cards would you like to");
+        System.out.print("\nWhich of the cards would you like to");
         if(trading){
             System.out.print(" give? You can't give Helicopter Lift or Sandbags");
         }
         else{
-            System.out.println(" discard");
+            System.out.print(" discard");
         }
+	}
+
+	public void handTooBig(String name) {
+        System.out.println("Hey, "+name+", your hand is too big..");
+	}
+
+	public void useIt() {
+        System.out.println("It's use it or lose it! Do you want to use this card now?");
 	}
 
 }

@@ -65,11 +65,15 @@ public class GameState extends Observable {
         return theTeam.getAllPlayers().size();
     }
 
-	public String getPlayerName(int index) {
+	public String getPlayerNameFromIndex(int index) {
         if(index<0){
             return currentPlayer.getName();
         }
         return theTeam.getPlayer(index).getName();
+    }
+
+    public String getPlayerName(Player player){
+        player.getName();
     }
     
     public void setActionsLeft(){
@@ -95,15 +99,6 @@ public class GameState extends Observable {
         }
     }
 
-    // public DiscardPile returnDiscard(boolean treasure){
-    //     if (treasure){
-    //         return theTreasureDiscardPile;
-    //     }
-    //     else{
-    //         return theFloodDiscardPile;
-    //     }
-    // }
-
     public String showDiscard(boolean Treasure){
         if(Treasure){
             return theTreasureDiscardPile.returnPrintedPile();
@@ -119,9 +114,13 @@ public class GameState extends Observable {
         }
         else{
             currentPlayer.getPawn().move();
+            decreaseActions();
         }
 	}
 
+    void decreaseActions(){
+        actionsLeft--;
+    }
 	void shoreUp(){
 		if(!currentPlayer.canShoreUp()){
 			return;
@@ -153,20 +152,27 @@ public class GameState extends Observable {
     }
 
 	public boolean canTrade() {
-		return false;
+        Hand hand = currentPlayer.getHand();
+        if(!hand.canTrade()){
+            return false;
+        }
+        if(checkPlayerPostions()){
+            return false;
+        }
+        return true;
 	}
-
-	public void trade() {
-    }    
     
-    //////////////////////////////////////
-	public boolean checkHasCard(boolean cardName) {
+	private boolean checkPlayerPostions() {
+        return false;
+    }
+
+    public boolean checkHasCard(Player p1, boolean cardName) {
 		if (cardName==false){
-            return currentPlayer.checkHasCard(TreasureCardEnums.SANDBAGS);
+            return p1.checkHasCard(TreasureCardEnums.SANDBAGS);
         }
         else if (cardName){
             System.out.println("");
-            return currentPlayer.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT);
+            return p1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT);
         }
         return false;
 	}
@@ -217,5 +223,9 @@ public class GameState extends Observable {
     public int getHandSize(Player play1){
         return play1.handSize();
     }
+    
+	public void removeCardByIndex(Player player, int userIn) {
+        player.getHand().getCards().remove(userIn);
+	}
 
 }

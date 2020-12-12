@@ -82,7 +82,7 @@ public class PlayerActions {
 	}
 
     private void useSandbags() {
-		theController.useSandbags();
+		theController.useSandbags(null);
 	}
 	
 	private void useTeammateCard(){
