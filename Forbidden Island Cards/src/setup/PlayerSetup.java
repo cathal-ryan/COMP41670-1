@@ -5,17 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.awt.Point;
 
 import player.Player;
 import player.Team;
+import board.Board;
 
 public class PlayerSetup {
 
 	private Team theTeam;
 	private Boolean validNumPlayers = false;
+	private Board theBoard;
+	private Point startLoc;
 	
 	public PlayerSetup() {
 		this.theTeam = Team.getInstance();
+		this.theBoard = Board.getInstance();
 	}
 
 	protected void createAllPlayers(Scanner user) {
@@ -71,8 +76,11 @@ public class PlayerSetup {
 	public void createIndividualPlayer(Scanner user, int i, int k) {
 		System.out.println("\nPlayer "+(i+1)+"...\nEnter your name:");
 		String name = user.nextLine();
-		theTeam.addPlayer(new Player(i,name,k));
-		Player player = theTeam.getPlayer(i);
+		Player player = new Player(i,name,k);
+		startLoc = new Point(theBoard.getTilePos(player.pawnStartLoc()));
+		player.setPawnPos(startLoc);
+		theTeam.addPlayer(player);
 		System.out.println(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
+		System.out.println("The Player pos is: " +theTeam.getPlayer(i).getPawnPos().toString());
 	}
 }

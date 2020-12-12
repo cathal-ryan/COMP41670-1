@@ -9,6 +9,7 @@ public class Setup {
     private PlayerSetup      playerHandler;
     private CardSetup        cardHandler;
     private WaterMeterSetup  waterHandler;
+    private BoardSetup       boardHandler;
     
     public static Setup getInstance(){
         if(theSetup == null){
@@ -20,6 +21,7 @@ public class Setup {
     private Setup() {
         // Create instances of Player set up and card set up
         this.waterHandler   = new WaterMeterSetup();
+        this.boardHandler   = new BoardSetup();
         this.playerHandler  = new PlayerSetup();
         this.cardHandler    = new CardSetup();
     }
@@ -28,6 +30,7 @@ public class Setup {
     public void doAllSetup(Scanner user) {
         welcomeScreen();
         waterHandler.createWaterLevel(user);
+        boardHandler.setTiles();
         playerHandler.createAllPlayers(user); //does here fine
         cardHandler.dealCards(); // does here ok i think
         

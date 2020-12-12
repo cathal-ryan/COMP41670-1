@@ -1,5 +1,7 @@
 package pawns;
 
+import enums.TilesEnums;
+
 public class Navigator extends Pawn{
 
 
@@ -9,6 +11,10 @@ public class Navigator extends Pawn{
 	@Override
 	public String getPlayerType() {
 		return "Navigator";
+	}
+
+	public TilesEnums startLoc() {
+		return TilesEnums.GOLD_GATE;
 	}
 
 }
