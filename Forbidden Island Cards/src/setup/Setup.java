@@ -30,6 +30,7 @@ public class Setup {
     public void doAllSetup(Scanner user) {
         welcomeScreen();
         waterHandler.createWaterLevel(user);
+        boardHandler.setTiles();
         playerHandler.createAllPlayers(user); //does here fine
         cardHandler.dealCards(); // does here ok i think
         
