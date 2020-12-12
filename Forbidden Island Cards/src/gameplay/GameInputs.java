@@ -1,19 +1,20 @@
 package gameplay;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class GameInputs {
 
-    private Messenger theMessenger;
+    private static GameOutputs theOutputs;
     private static Scanner input;
 
     public GameInputs() {
-		input = new Scanner(System.in);
-		theMessenger = new Messenger();
-	}
+        input = new Scanner(System.in);
+        theOutputs = new GameOutputs();
+    }
 
-    public boolean floodOrTreasure(){
-        theMessenger.printFloodorTreasure();
+    public boolean floodOrTreasure() {
+        theOutputs.printFloodorTreasure();
         return getYesOrNo("Flood", "Treasure");
     }
 
@@ -28,13 +29,13 @@ public class GameInputs {
             } catch (NumberFormatException e) {
                 continue;
             }
-            switch(userIn) {
+            switch (userIn) {
                 case 0:
                     return false;
                 case 1:
                     return true;
                 default:
-                System.out.println("Invalid input.");
+                    theOutputs.generalError();
             }
         }
     }
@@ -47,7 +48,7 @@ public class GameInputs {
             try {
                 userInput = Integer.parseInt(userString);
             } catch (NumberFormatException e) {
-                theMessenger.generalError();
+                theOutputs.generalError();
                 continue;
             }
             if ((userInput >= 0) && (userInput < 10)) {
@@ -60,5 +61,31 @@ public class GameInputs {
     public void nextLine(){
         @SuppressWarnings("unused")
         String start = input.nextLine();
+    }
+
+    public int playerChoice(int size, List eligible){
+        int userIn=0;
+        boolean validIn = false;
+		while (!validIn) {
+			String userString = input.nextLine();
+			try {
+				userIn = Integer.parseInt(userString);
+			} catch (NumberFormatException e) {
+                theOutputs.generalError();
+				continue;
+            }
+			if ((userIn >= 0) && (userIn < size && ((eligible.contains(userIn))))) {
+				validIn = true;
+            }
+            else{
+                theOutputs.generalError();
+            }
+        }
+        return userIn;
+    }
+
+    public int heliWhere(){
+        System.out.println("Where do you want to move to?\nBoard prints..\they pick");
+        return 0;
     }
 }

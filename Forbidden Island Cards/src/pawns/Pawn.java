@@ -18,8 +18,8 @@ abstract public class Pawn {
 
     }
 
-    public void helicopterMove() {
-        System.out.println("\nSome day I'll get around to flying..");
+    public void helicopterMove(int k) {
+        System.out.println("\nSome day I'll get around to flying.."+k);
 
     }
 

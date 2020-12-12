@@ -1,14 +1,19 @@
 package gameplay;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 import gameplay.GameInputs;
+import player.Player;
 import cards.DiscardPile;
+import cards.TreasureCard;
+import enums.TreasureCardEnums;
 
 public class Controller implements Observer{
 
     private GameState theGameState;
-    private Messenger theMessenger;
+    private GameOutputs theOutputs;
     private GameInputs theInputs;
 
     private static Controller theController = null;
@@ -16,7 +21,7 @@ public class Controller implements Observer{
     private Controller() {
         theGameState = GameState.getInstance();
         theInputs = new GameInputs();
-        theMessenger = new Messenger();
+        theOutputs = new GameOutputs();
     }
 
     public static Controller getInstance() {
@@ -64,7 +69,7 @@ public class Controller implements Observer{
 
     public void movement(){
         if(theGameState.getActionsLeft()<1){
-            theMessenger.noActionsLeftMessage();
+            theOutputs.noActionsLeftMessage();
         }
         else{
             theGameState.movePlayer();
@@ -81,47 +86,121 @@ public class Controller implements Observer{
 	public void lookDiscarded() {
         boolean FlorTr = theInputs.floodOrTreasure();
         String pile = theGameState.showDiscard(FlorTr);
-        theMessenger.printPile(FlorTr, pile);
+        theOutputs.printPile(FlorTr, pile);
 	}
 
 	public void lookAtHands() {
         for(int i=0;i<theGameState.getNumPlayers();i++){
             String name = theGameState.getPlayerName(i);
             String hand = theGameState.getHandasString(i);
-            theMessenger.printHand(name, hand);
+            theOutputs.printHand(name, hand);
         }
     }
 
 	public void giveCard() {
+        List traders = new ArrayList<>();
         if(theGameState.getActionsLeft()<1){
-            theMessenger.noActionsLeft();
+            theOutputs.noActionsLeft();
+            return;
         }
         else{
             if(theGameState.canTrade()){
-                theGameState.Trade();
+                traders = theGameState.getTradePartners();
             }
             else{
-                theMessenger.cantTrade();
+                theOutputs.cantTrade();
             }
         }
-
-        if(!getActions()){
-			return;
-		}
-		if(!player.getHand().canTrade()){
-			System.out.println("You can't trade right now :(");
-			return;
-		}
-		// Needs to be changed to who is on the same tile as you.
-		displayHands();
-		System.out.println("\nWho do you want to give a card to?");
-
-		Player playernum = theTeam.choosePlayer(inputScanner, theTeam.getAllPlayerNums(player.getNum()));
+        lookAtHands();
+        theOutputs.whoToTrade();
+        Player p1 = choosePlayer(traders);
+        theOutputs.cardChoice(true);
 		boolean validSelection = false;
 		while(!validSelection){
-			int cardnum = player.chooseFromHand(inputScanner, "give? You can't give Sandbags or Helicopter Lift", true);
-			validSelection = player.giveTreasureCard(playernum, cardnum, inputScanner);
+			int cardnum = p1.chooseFromHand(p1, true);
+			validSelection = p1.giveTreasureCard(playernum, cardnum, inputScanner);
 		}
 		actionsLeft--;
+    }
+    
+    public int chooseFromHand(Player p1, boolean ineligible){
+        if(p1==null){
+            p1 = theGameState.getCurrentPlayer();
+        }
+        int userIn = 0;
+        List hands = theGameState.getPlayerHand(p1);
+		for (int i = 0; i < hands.size(); i++) {
+			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
+				System.out.println("[" + i + "]: " + showHand().get(i).getName());
+			}
+		}
+		boolean validIn = false;
+		while (!validIn) {
+			String userString = inputScanner.nextLine();
+			try {
+				userIn = Integer.parseInt(userString);
+			} catch (NumberFormatException e) {
+				continue;
+			}
+			if ((userIn >= 0) && (userIn <= showHand().size()-1)) {
+				validIn = true;
+			}
+			else{
+				System.out.println("Invalid Input");
+			}
+		}
+		return userIn;
 	}
+ 
+
+	public Player choosePlayer(List<Integer> eligible){
+        theOutputs.choosePl();
+        if(eligible==null){
+            eligible = theGameState.getAllPlayerNums(-1);
+        }
+        int size = theGameState.getTeamSize();
+        for(int i=0;i<size;i++){
+            if (eligible.contains(i)){
+                theOutputs.showPlayer(i, theGameState.getPlayer(i).getName());
+            }
+        }
+        int userIn = theInputs.playerChoice(theGameState.getTeamSize(), eligible);
+		return theGameState.getPlayer(userIn);
+    }
+
+    public void useHelicopterLift(Player p1) {
+        if(p1==null){
+            p1 = theGameState.getCurrentPlayer();
+        }
+        if(!theGameState.checkHasCard(true)){
+            theOutputs.noHeli();
+            return;
+        }
+        theGameState.removeCard(p1, TreasureCardEnums.HELICOPTER_LIFT);
+        int k = theInputs.heliWhere();
+        theOutputs.whoWillFly();
+        List <Integer> availforMove = theGameState.getAllPlayerNums(-1);
+        boolean keepMoving = true;
+        do{
+            Player playerForHeliMove = choosePlayer(availforMove);
+            theGameState.heliMovePlayer(playerForHeliMove, k);
+            availforMove.remove(new Integer(playerForHeliMove.getNum()));
+        }
+        while(!availforMove.isEmpty() && keepGoingHeli());
+	}
+
+	public void useSandbags() {
+        if(!theGameState.checkHasCard("Sandbags")){
+            theOutputs.noSandbags();
+        }
+        else{
+            theGameState.useSandbags();
+        }
+	}
+
+	public boolean keepGoingHeli() {
+        theOutputs.heliAnyoneElse();
+        return theInputs.getYesOrNo("No","Yes");
+	}
+
 }

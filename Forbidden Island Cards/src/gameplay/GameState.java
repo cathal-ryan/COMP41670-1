@@ -1,5 +1,6 @@
 package gameplay;
 
+import java.util.List;
 import java.util.Observable;
 
 import cards.Deck;
@@ -8,10 +9,12 @@ import cards.FloodDeck;
 import cards.FloodDiscardPile;
 import cards.TreasureDeck;
 import cards.TreasureDiscardPile;
+import enums.TreasureCardEnums;
 import player.Player;
 import player.Team;
 
 public class GameState extends Observable {
+//    private Controller theController = Controller.getInstance();
     private Team theTeam;
     private Player currentPlayer;
     private int actionsLeft;
@@ -30,7 +33,8 @@ public class GameState extends Observable {
         theTreasureDiscardPile = TreasureDiscardPile.getInstance();
         theFloodDiscardPile = FloodDiscardPile.getInstance();
         theTreasureDeck = TreasureDeck.getInstance();
-        currentPlayer = theTeam.getPlayer(0);
+        currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers()-1);
+       // theController = Controller.getInstance();
     }
 
     public static GameState getInstance() {
@@ -48,6 +52,10 @@ public class GameState extends Observable {
         catch(Exception e){
             currentPlayer = theTeam.getPlayer(0);
         }
+    }
+
+    public Player getCurrentPlayer(){
+        return currentPlayer;
     }
 
     public int getNumPlayers(){
@@ -118,13 +126,9 @@ public class GameState extends Observable {
         else{
             currentPlayer.getPawn().shoreUp();
         }
-	}
-
-    private void useHelicopterLift() {
-		theTeam.useHelicopterLift(inputScanner, player);
-	}
-
-    private void useSandbags() {
+    }
+    
+    void useSandbags() {
 		theTeam.useSandbags(player);
 	}
 	
@@ -141,33 +145,57 @@ public class GameState extends Observable {
 		}
 	}
 
-    private void giveCard() {
-		if(!getActions()){
-			return;
-		}
-		if(!player.getHand().canTrade()){
-			System.out.println("You can't trade right now :(");
-			return;
-		}
-		// Needs to be changed to who is on the same tile as you.
-		displayHands();
-		System.out.println("\nWho do you want to give a card to?");
-
-		Player playernum = theTeam.choosePlayer(inputScanner, theTeam.getAllPlayerNums(player.getNum()));
-		boolean validSelection = false;
-		while(!validSelection){
-			int cardnum = player.chooseFromHand(inputScanner, "give? You can't give Sandbags or Helicopter Lift", true);
-			validSelection = player.giveTreasureCard(playernum, cardnum, inputScanner);
-		}
-		actionsLeft--;
-	}
-
 	public String getHandasString(int i) {
         return theTeam.getPlayer(i).getHand().printHand();
     }
 
 	public boolean canTrade() {
 		return false;
-	}    
+	}
+
+	public void trade() {
+    }    
+    
+    //////////////////////////////////////
+	public boolean checkHasCard(boolean cardName) {
+		if (cardName==false){
+            return currentPlayer.checkHasCard(TreasureCardEnums.SANDBAGS);
+        }
+        else if (cardName){
+            System.out.println("");
+            return currentPlayer.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT);
+        }
+        return false;
+	}
+
+	public List<Integer> getAllPlayerNums(int i) {
+		return theTeam.getAllPlayerNums(i);
+	}
+
+	public int getTeamSize() {
+		return theTeam.getNumPlayers();
+	}
+
+	public Player getPlayer(int userIn) {
+		return theTeam.getPlayer(userIn);
+	}
+
+	public void removeCard(Player p1, TreasureCardEnums card) {
+        int pos = p1.getHand().getIndexOfCard(card);
+		p1.getHand().removeCard(pos);
+	}
+
+	public void heliMovePlayer(Player playerForHeliMove, int k) {
+        playerForHeliMove.helicopterMove(k);
+	}
+
+	public List getTradePartners() {
+        // GONNA NEED SOME LOGIC TO GIVE WHICH PLAYERS ARE ON SAME TILE AS CURRENTPLAYER, right now just returns everyone.
+        return theTeam.getAllPlayerNums(currentPlayer.getNum()); 
+	}
+
+	public List getPlayerHand(Player p1) {
+		return p1.showHand();
+	}
 
 }

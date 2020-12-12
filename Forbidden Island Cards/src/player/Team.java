@@ -63,13 +63,14 @@ public class Team {
     }
 
 	public Player choosePlayer(Scanner inputScanner, List<Integer> eligible){
+        String list='';
         if(eligible==null){
             eligible = getAllPlayerNums(-1);
         }
         int userIn = 0;
         for(int i=0;i<team.size();i++){
             if (eligible.contains(i)){
-                System.out.println("["+i+"] "+ getPlayer(i).getName());
+                list = "["+i+"] "+ getPlayer(i).getName()) + '';
             }
         }
 		boolean validIn = false;
@@ -137,25 +138,15 @@ public class Team {
     }
 
     public boolean useHelicopterLift(Scanner inputScanner, Player player) {
-		if(!player.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT)){
-			System.out.println("\nYou don't have a helicopter lift card :(");
-			return false;
-		}
 		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.HELICOPTER_LIFT);
 		player.getHand().removeCard(pos);
-		if (canWin()){
-            System.out.println("You've played the Helicopter Lift card with all 4 treasures captured, with all players on Fools Landing!");
-            return true;
-        }
-        System.out.println("Where do you want to move to\n Board.selectTile() coming soon...");
-        System.out.println("Who is gonna fly there?");
         List <Integer> availforMove = getAllPlayerNums(-1);
         boolean keepMoving = true;
         do{
             Player playerForHeliMove = theTeam.choosePlayer(inputScanner,availforMove);
             playerForHeliMove.helicopterMove();
-            System.out.println(availforMove);
             availforMove.remove(new Integer(playerForHeliMove.getNum()));
+            keepMoving = theController.keepGoingHeli();
             keepMoving = Choices.getYesOrNo(inputScanner,"Want to move anyone else here?", "No", "Yes");
         }
         while(!availforMove.isEmpty() && keepMoving);
@@ -163,13 +154,9 @@ public class Team {
 	}
 
     public void useSandbags(Player player) {
-		if(!player.checkHasCard(TreasureCardEnums.SANDBAGS)){
-			System.out.println("\nYou don't have a Sandbags card :(");
-			return;
-		}
 		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.SANDBAGS);
 		player.getHand().removeCard(pos);
-        //Choose tile
+        // Choose tile
         // tile.shoreUp()
         System.out.println("\nSandbags coming soon to a theatre near you\n");
 	}

@@ -12,19 +12,19 @@ import enums.TreasureCardEnums;
 import player.Player;
 import player.Team;
 import gameplay.Controller;
-import gameplay.Messenger;
+import gameplay.GameOutputs;
 
 public class PlayerActions {
 
 	private Scanner inputScanner;
 	private boolean gameWon;
 	private Controller	theController;
-	private Messenger theMessenger;
+	private GameOutputs theOutputs;
 	private GameInputs theInputs;
 
 	public PlayerActions(Scanner inputScanner) {
 		theController = Controller.getInstance();
-		theMessenger = new Messenger();
+		theOutputs = new GameOutputs();
 		theInputs = new GameInputs();
 		this.inputScanner = inputScanner;
 		gameWon= false;
@@ -32,10 +32,10 @@ public class PlayerActions {
 
 	public void doActions() {
 		int userInput;
-		theMessenger.printTurnStart(theController.returnPlayerName());
+		theOutputs.printTurnStart(theController.returnPlayerName());
 		theInputs.nextLine(); // Make player press return to confirm turn start
 		while (!theController.getTurnOver()){
-			theMessenger.giveOptions(theController.getActionsLeft());
+			theOutputs.giveOptions(theController.getActionsLeft());
 			userInput = theInputs.turnChoice();
 			switch (userInput) {
 			case 0:
@@ -69,20 +69,20 @@ public class PlayerActions {
 			    useTeammateCard();
 				break;
 			default:
-				theMessenger.generalError();
+				theOutputs.generalError();
 			}
 		}
 		if(!theController.isGameOver()){
-			theMessenger.printTurnOver();
+			theOutputs.printTurnOver();
 		}
 	}
 
     private void useHelicopterLift() {
-		theTeam.useHelicopterLift(inputScanner, player);
+		theController.useHelicopterLift(null);
 	}
 
     private void useSandbags() {
-		theTeam.useSandbags(player);
+		theController.useSandbags();
 	}
 	
 	private void useTeammateCard(){
