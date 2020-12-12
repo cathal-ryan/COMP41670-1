@@ -6,7 +6,7 @@ import enums.TilesEnums;
 
 abstract public class Pawn {
 
-    protected Point location;
+    protected Point position;
 
     protected Pawn() {
 	}
@@ -14,12 +14,12 @@ abstract public class Pawn {
 
     abstract public TilesEnums startLoc();
 
-    public void setLoc(Point p) {
-        this.location = new Point(p);
+    public void setPos(Point p) {
+        this.position = new Point(p);
     }
 
-    public Point getLoc() {
-        return location;
+    public Point getPos() {
+        return position;
     }
     
     public void shoreUp() {
