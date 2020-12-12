@@ -1,12 +1,14 @@
 package pawns;
 
-abstract public class Pawn {
+import enums.TilesEnums;
 
-    private int[] location;
+abstract public class Pawn {
 
     protected Pawn() {
 	}
     abstract public String getPlayerType();
+
+    abstract public TilesEnums startLoc();
     
     public void shoreUp() {
         System.out.println("Some day I'll get around to shoring up");

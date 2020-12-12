@@ -1,5 +1,7 @@
 package pawns;
 
+import enums.TilesEnums;
+
 public class Diver extends Pawn{
 
 	public Diver() {
@@ -9,6 +11,10 @@ public class Diver extends Pawn{
 	@Override
 	public String getPlayerType() {
 		return "Diver";
+	}
+
+	public TilesEnums startLoc() {
+		return TilesEnums.IRON_GATE;
 	}
 
 }
