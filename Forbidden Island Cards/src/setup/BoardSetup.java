@@ -3,7 +3,7 @@ package setup;
 import java.awt.Point;
 
 import board.Board;
-import enums.tileStack;
+import enums.TileStack;
 import enums.TilesEnums;
 
 public class BoardSetup {
@@ -11,7 +11,7 @@ public class BoardSetup {
 	private Point p;
 
 	public BoardSetup() {
-		tileStack names = new tileStack();
+		TileStack names = new TileStack();
 		this.theBoard = Board.getInstance();
 
 		for(int x=0; x < theBoard.getCols(); x++) {

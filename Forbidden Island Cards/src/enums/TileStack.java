@@ -3,11 +3,11 @@ package enums;
 import java.util.Collections;
 import java.util.Stack;
 
-public class tileStack {
+public class TileStack {
 	
 	private Stack<TilesEnums> enumStack = new Stack<TilesEnums>();
 
-	public tileStack() {
+	public TileStack() {
 		    enumStack.push(TilesEnums.FOOLS_LANDING);
 		    enumStack.push(TilesEnums.TEMPLE_OF_THE_SUN);
 		    enumStack.push(TilesEnums.CORAL_PALACE);
@@ -44,7 +44,7 @@ public class tileStack {
 	}
 
 	public static void main(String[] args) {
-		tileStack test = new tileStack();
+		TileStack test = new TileStack();
 		while (test.size() >= 1) {
 			System.out.println("This Tile is: " + test.pop());
 		}
