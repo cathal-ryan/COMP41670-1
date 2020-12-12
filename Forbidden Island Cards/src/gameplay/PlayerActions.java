@@ -1,6 +1,5 @@
 package gameplay;
 
-import java.util.Scanner;
 import java.util.ResourceBundle.Control;
 
 import cards.Card;
@@ -16,17 +15,15 @@ import gameplay.GameOutputs;
 
 public class PlayerActions {
 
-	private Scanner inputScanner;
 	private boolean gameWon;
 	private Controller	theController;
 	private GameOutputs theOutputs;
 	private GameInputs theInputs;
 
-	public PlayerActions(Scanner inputScanner) {
+	public PlayerActions() {
 		theController = Controller.getInstance();
 		theOutputs = new GameOutputs();
 		theInputs = new GameInputs();
-		this.inputScanner = inputScanner;
 		gameWon= false;
 	}
 

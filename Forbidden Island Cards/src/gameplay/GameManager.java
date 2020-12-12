@@ -25,13 +25,13 @@ public class GameManager {
         this.theController = Controller.getInstance();
     }
     
-    public void doGameplay(Scanner inputScanner) {
+    public void doGameplay() {
         PlayerActions currentPActions;
         TreasureDraw currentTreasure;
         FloodDraw currentFlood;
         while (!theController.isGameOver()) { // Main loop for doing PlayerTurns
                 theController.newTurn();
-                currentPActions = new PlayerActions(inputScanner);    // Make a new PlayerTurn
+                currentPActions = new PlayerActions();    // Make a new PlayerTurn
                 while(!theController.getTurnOver()){
                     currentPActions.doActions();                          // Let it handle the turn
                     if(theController.isGameWon()){

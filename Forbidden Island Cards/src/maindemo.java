@@ -11,7 +11,7 @@ public class maindemo {
 		
         Setup.getInstance().doAllSetup(inputScanner);
         
-        GameManager.getInstance().doGameplay(inputScanner);
+        GameManager.getInstance().doGameplay();
 
         inputScanner.close();
         
