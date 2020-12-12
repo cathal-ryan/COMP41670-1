@@ -113,45 +113,43 @@ public class Controller implements Observer{
         }
         lookAtHands();
         theOutputs.whoToTrade();
-        Player p1 = choosePlayer(traders);
+        Player playerB = choosePlayer(traders);
         theOutputs.cardChoice(true);
 		boolean validSelection = false;
 		while(!validSelection){
-			int cardnum = p1.chooseFromHand(p1, true);
-			validSelection = p1.giveTreasureCard(playernum, cardnum, inputScanner);
+			int cardnum = chooseFromHand(null, true);
+			validSelection = giveTreasureCard(playerB, cardnum);
 		}
-		actionsLeft--;
+		//actionsLeft--;
     }
     
-    public int chooseFromHand(Player p1, boolean ineligible){
+    public int chooseFromHand(Player playerA, boolean ineligible){
         if(p1==null){
-            p1 = theGameState.getCurrentPlayer();
+            playerA = theGameState.getCurrentPlayer();
         }
-        int userIn = 0;
-        List hands = theGameState.getPlayerHand(p1);
+        List hands = theGameState.getPlayerHand(playerA);
 		for (int i = 0; i < hands.size(); i++) {
 			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
-				System.out.println("[" + i + "]: " + showHand().get(i).getName());
+                theOutputs.showOption(i,hands.get(i).toString());
 			}
 		}
-		boolean validIn = false;
-		while (!validIn) {
-			String userString = inputScanner.nextLine();
-			try {
-				userIn = Integer.parseInt(userString);
-			} catch (NumberFormatException e) {
-				continue;
-			}
-			if ((userIn >= 0) && (userIn <= showHand().size()-1)) {
-				validIn = true;
-			}
-			else{
-				System.out.println("Invalid Input");
-			}
+        return theInputs.handChoice(hands.size());
+    }
+    
+    public boolean giveTreasureCard(Player playerB, int canum){
+        if (!theGameState.addCardfromPlayerA(playerB,canum)){
+            return false;
+        }
+        int handSizeB = theGameState.getHandSize(playerB);
+        while(handSizeB > 5){
+			discardTreasureCard(playerB);
 		}
-		return userIn;
+		return true;
 	}
- 
+
+    public void discardTreasure(Player player){
+        
+    }
 
 	public Player choosePlayer(List<Integer> eligible){
         theOutputs.choosePl();
@@ -161,7 +159,7 @@ public class Controller implements Observer{
         int size = theGameState.getTeamSize();
         for(int i=0;i<size;i++){
             if (eligible.contains(i)){
-                theOutputs.showPlayer(i, theGameState.getPlayer(i).getName());
+                theOutputs.showOption(i, theGameState.getPlayer(i).getName());
             }
         }
         int userIn = theInputs.playerChoice(theGameState.getTeamSize(), eligible);
@@ -201,6 +199,7 @@ public class Controller implements Observer{
 	public boolean keepGoingHeli() {
         theOutputs.heliAnyoneElse();
         return theInputs.getYesOrNo("No","Yes");
-	}
+    }
+    
 
 }

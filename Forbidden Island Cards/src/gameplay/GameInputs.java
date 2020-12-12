@@ -84,6 +84,27 @@ public class GameInputs {
         return userIn;
     }
 
+    public int handChoice(int size){
+        int userIn=0;
+        boolean validIn = false;
+		while (!validIn) {
+			String userString = input.nextLine();
+			try {
+				userIn = Integer.parseInt(userString);
+			} catch (NumberFormatException e) {
+                theOutputs.generalError();
+				continue;
+            }
+			if ((userIn >= 0) && (userIn < size -1)) {
+				validIn = true;
+            }
+            else{
+                theOutputs.generalError();
+            }
+        }
+        return userIn;
+    }
+
     public int heliWhere(){
         System.out.println("Where do you want to move to?\nBoard prints..\they pick");
         return 0;

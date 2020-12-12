@@ -88,6 +88,10 @@ public class Player {
 		return playerPawn.getPlayerType();
 	}
 
+	public void addCardtoHand(TreasureDeckCard c1){
+		playerHand.addCard(c1);
+	}
+
 	public boolean giveTreasureCard(Player plnum, int canum, Scanner inputScanner){
 		TreasureDeckCard c1 = playerHand.getCards().get(canum);
 		if(!(c1 instanceof TreasureCard)){

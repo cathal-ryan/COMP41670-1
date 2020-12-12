@@ -76,7 +76,7 @@ public class GameOutputs {
         System.out.println("Is anyone else going to fly here?");
     }
 
-	public void showPlayer(int i, String name) {
+	public void showOption(int i, String name) {
         System.out.println("["+i+"] "+ name);
 	}
 

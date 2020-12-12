@@ -7,7 +7,10 @@ import cards.Deck;
 import cards.DiscardPile;
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
+import cards.Hand;
+import cards.TreasureCard;
 import cards.TreasureDeck;
+import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
 import player.Player;
@@ -197,5 +200,22 @@ public class GameState extends Observable {
 	public List getPlayerHand(Player p1) {
 		return p1.showHand();
 	}
+
+	public boolean addCardfromPlayerA(Player PlayerB, int canum) {
+        Hand playerHand = currentPlayer.getHand();
+        TreasureDeckCard c1 = playerHand.getCards().get(canum);
+		if(!(c1 instanceof TreasureCard)){
+			return false;
+        }
+        else{
+            PlayerB.addCardtoHand(c1);
+            currentPlayer.getHand().getCards().remove(canum);
+            return true;
+        }
+    }
+    
+    public int getHandSize(Player play1){
+        return play1.handSize();
+    }
 
 }
