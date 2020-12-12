@@ -1,5 +1,6 @@
 package gameplay;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
@@ -15,6 +16,7 @@ import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
 import player.Player;
 import player.Team;
+import javax.security.auth.Subject;
 
 public class GameState extends Observable {
 //    private Controller theController = Controller.getInstance();
@@ -22,6 +24,7 @@ public class GameState extends Observable {
     private Player currentPlayer;
     private int actionsLeft;
     private boolean turnOver;
+    private WaterMeter theWaterMeter;
     private TreasureDiscardPile theTreasureDiscardPile;
     private FloodDiscardPile theFloodDiscardPile;
     private FloodDeck theFloodDeck;
@@ -37,6 +40,7 @@ public class GameState extends Observable {
         theFloodDiscardPile = FloodDiscardPile.getInstance();
         theTreasureDeck = TreasureDeck.getInstance();
         currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers()-1);
+        theWaterMeter = WaterMeter.getInstance();
        // theController = Controller.getInstance();
     }
 
@@ -133,19 +137,6 @@ public class GameState extends Observable {
     void useSandbags() {
 		theTeam.useSandbags(player);
 	}
-	
-	private void useTeammateCard(){
-		gameWon = theTeam.enquirePlayers(inputScanner, true);
-	}
-
-	private void captureATreasure(){
-		if(!getActions()){
-			return;
-		}
-		if(theTreasureHandler.captureTreasure(player)){
-			actionsLeft--;
-		}
-	}
 
 	public String getHandasString(int i) {
         return theTeam.getPlayer(i).getHand().printHand();
@@ -226,6 +217,19 @@ public class GameState extends Observable {
     
 	public void removeCardByIndex(Player player, int userIn) {
         player.getHand().getCards().remove(userIn);
-	}
+    }
+
+    public List<Integer> getPlayerswithSpecials(){
+        List<Integer> eligible = new ArrayList<>();
+        int i=0;
+        for (Player p1 : theTeam.getAllPlayers()){
+            if(p1.getHand().checkContains(TreasureCardEnums.HELICOPTER_LIFT) || p1.getHand().checkContains(TreasureCardEnums.SANDBAGS)){
+                eligible.add(i);
+            }
+            i++;
+        }
+        return eligible;
+    }
+    
 
 }

@@ -2,8 +2,6 @@ package player;
 
 import java.util.List;
 import java.util.Scanner;
-
-import gameplay.Choices;
 import pawns.Pawn;
 import pawns.*;
 
@@ -62,11 +60,6 @@ public class Player {
 	public List<TreasureDeckCard> showHand() {
 		return playerHand.getCards();
 	}
-
-	public String handAsString() {
-		String hand;
-		for(int i=0;i<playerHand.)
-	}
 	
 	public Hand getHand() {
 		return playerHand;
@@ -90,63 +83,6 @@ public class Player {
 
 	public void addCardtoHand(TreasureDeckCard c1){
 		playerHand.addCard(c1);
-	}
-
-	public boolean giveTreasureCard(Player plnum, int canum, Scanner inputScanner){
-		TreasureDeckCard c1 = playerHand.getCards().get(canum);
-		if(!(c1 instanceof TreasureCard)){
-			return false;
-		}
-		plnum.getHand().addCard(c1);
-		if(plnum.handSize()>5){
-			plnum.discardTreasureCard(inputScanner);
-		}
-		getHand().getCards().remove(canum);
-		return true;
-	}
-
-	public void discardTreasureCard(Scanner inputScanner){
-		int userIn = 0;
-		boolean validIn = false;
-		System.out.println("Hey, "+playerName+". Your hand is too big...\n");
-		userIn = chooseFromHand(inputScanner, "discard or use?",false);
-		if(!(showHand().get(userIn) instanceof TreasureCard)){
-			if(Choices.getYesOrNo(inputScanner,"It's use it or lose it! Do you want to use this card now?", "No", "Yes")){
-				if((showHand().get(userIn) instanceof SandbagsCard)){
-					System.out.println("Not fully decided where Sandbags will be called yet!");
-				}
-				if((showHand().get(userIn) instanceof HelicopterLift)){
-					System.out.println("Not fully decided where Helicopter Lift will be called yet!");
-				}
-			}
-		}
-		getHand().removeCard(userIn);
-	}
-
-	public int chooseFromHand(Scanner inputScanner, String action, boolean ineligible){
-		int userIn = 0;
-		System.out.println("\nWhich of the cards would you like to " + action);
-		for (int i = 0; i < showHand().size(); i++) {
-			if (!(ineligible && !(showHand().get(i) instanceof TreasureCard))){
-				System.out.println("[" + i + "]: " + showHand().get(i).getName());
-			}
-		}
-		boolean validIn = false;
-		while (!validIn) {
-			String userString = inputScanner.nextLine();
-			try {
-				userIn = Integer.parseInt(userString);
-			} catch (NumberFormatException e) {
-				continue;
-			}
-			if ((userIn >= 0) && (userIn <= showHand().size()-1)) {
-				validIn = true;
-			}
-			else{
-				System.out.println("Invalid Input");
-			}
-		}
-		return userIn;
 	}
 
 	public boolean checkHasCard(TreasureCardEnums name){

@@ -29,14 +29,6 @@ public class Team {
     public Player getPlayer(int i) {
     	return team.get(i);
     }
-    
-    public void showAllHands(){
-        for(int i=0;i<team.size();i++){
-            Player player = getPlayer(i);
-            System.out.println("\n"+player.getName()+"'s hand: ");	
-            System.out.println(player.getHand().printHand());
-        }
-    }
 
     public int getPlayerIndex(Player player){
     	return team.indexOf(player);
@@ -60,36 +52,6 @@ public class Team {
             i++;
         }
         return allPlayers;
-    }
-
-	public Player choosePlayer(Scanner inputScanner, List<Integer> eligible){
-        String list='';
-        if(eligible==null){
-            eligible = getAllPlayerNums(-1);
-        }
-        int userIn = 0;
-        for(int i=0;i<team.size();i++){
-            if (eligible.contains(i)){
-                list = "["+i+"] "+ getPlayer(i).getName()) + '';
-            }
-        }
-		boolean validIn = false;
-		while (!validIn) {
-			String userString = inputScanner.nextLine();
-			try {
-				userIn = Integer.parseInt(userString);
-			} catch (NumberFormatException e) {
-                System.out.println("Invalid Input");
-				continue;
-            }
-			if ((userIn >= 0) && (userIn < team.size()) && ((eligible.contains(userIn)))) {
-				validIn = true;
-            }
-            else{
-                System.out.println("Invalid Input");
-            }
-		}
-		return getPlayer(userIn);
     }
 
     public List<Integer> getPlayerswithSpecials(){
@@ -136,30 +98,6 @@ public class Team {
         }
         return false;
     }
-
-    public boolean useHelicopterLift(Scanner inputScanner, Player player) {
-		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.HELICOPTER_LIFT);
-		player.getHand().removeCard(pos);
-        List <Integer> availforMove = getAllPlayerNums(-1);
-        boolean keepMoving = true;
-        do{
-            Player playerForHeliMove = theTeam.choosePlayer(inputScanner,availforMove);
-            playerForHeliMove.helicopterMove();
-            availforMove.remove(new Integer(playerForHeliMove.getNum()));
-            keepMoving = theController.keepGoingHeli();
-            keepMoving = Choices.getYesOrNo(inputScanner,"Want to move anyone else here?", "No", "Yes");
-        }
-        while(!availforMove.isEmpty() && keepMoving);
-        return false;
-	}
-
-    public void useSandbags(Player player) {
-		int pos = player.getHand().getIndexOfCard(TreasureCardEnums.SANDBAGS);
-		player.getHand().removeCard(pos);
-        // Choose tile
-        // tile.shoreUp()
-        System.out.println("\nSandbags coming soon to a theatre near you\n");
-	}
 
 	private boolean canWin() {
         // Check the position of all players if theyre on fools landing

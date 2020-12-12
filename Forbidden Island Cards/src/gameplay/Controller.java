@@ -22,6 +22,8 @@ public class Controller implements Observer{
     
     private Controller() {
         theGameState = GameState.getInstance();
+        EndingGame theWin = new EndingGame(theGameState);
+        theGameState.addObserver(theWin);
         theInputs = new GameInputs();
         theOutputs = new GameOutputs();
     }
@@ -133,7 +135,6 @@ public class Controller implements Observer{
             playerA = theGameState.getCurrentPlayer();
         }
         List hands = theGameState.getPlayerHand(playerA);
-        System.out.println(hands);
 		for (int i = 0; i < hands.size(); i++) {
 			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
                 theOutputs.showOption(i,hands.get(i).toString());
@@ -228,6 +229,37 @@ public class Controller implements Observer{
         theOutputs.heliAnyoneElse();
         return theInputs.getYesOrNo("No","Yes");
     }
-    
+
+    public void enquirePlayers(boolean asked){
+        List<Integer> eligible = theGameState.getPlayerswithSpecials();
+        if(eligible.isEmpty()){
+            if(asked){
+                theOutputs.noSpecials();
+            }
+            return;
+        }
+        theOutputs.playSpecials();
+        if(!theInputs.getYesOrNo("No","Yes")){
+            return;
+        }
+        lookAtHands();
+        theOutputs.whoForSpecial();
+        Player player1 = choosePlayer(eligible);
+        if(theGameState.checkHasCard(player1, true) && theGameState.checkHasCard(player1, false)){
+            theOutputs.heliOrSand();
+            if(theInputs.getYesOrNo("Sandbags", "Helicopter Lift")){
+                useHelicopterLift(player1);
+            }
+            else{
+                useSandbags(player1);
+            }
+        }
+        else if(theGameState.checkHasCard(player1, true)){
+            useHelicopterLift(player1);
+        }
+        else if(theGameState.checkHasCard(player1, false)){
+            useSandbags(player1);
+        }
+    }
 
 }

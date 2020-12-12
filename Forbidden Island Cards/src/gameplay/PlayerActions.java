@@ -51,13 +51,13 @@ public class PlayerActions {
 				captureATreasure();
                 break;
             case 4:
-			    giveCard();
-                break;
+				theController.giveCard();
+				break;
             case 5:
-			    useHelicopterLift();
+				theController.useHelicopterLift(null);
 				break;
 			case 6:
-			    useSandbags();
+				theController.useSandbags(null);
                 break;
             case 7:
 				theController.lookAtHands();
@@ -76,17 +76,9 @@ public class PlayerActions {
 			theOutputs.printTurnOver();
 		}
 	}
-
-    private void useHelicopterLift() {
-		theController.useHelicopterLift(null);
-	}
-
-    private void useSandbags() {
-		theController.useSandbags(null);
-	}
 	
 	private void useTeammateCard(){
-		gameWon = theTeam.enquirePlayers(inputScanner, true);
+		theController.enquirePlayers(true);
 	}
 
 	private void captureATreasure(){
@@ -96,9 +88,5 @@ public class PlayerActions {
 		if(theTreasureHandler.captureTreasure(player)){
 			actionsLeft--;
 		}
-	}
-
-    private void giveCard() {
-		theController.giveCard();
 	}
 }

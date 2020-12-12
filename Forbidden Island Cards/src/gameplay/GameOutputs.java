@@ -110,4 +110,20 @@ public class GameOutputs {
         System.out.println("It's use it or lose it! Do you want to use this card now?");
 	}
 
+	public void noSpecials() {
+        System.out.println("No one has any special cards...");
+	}
+
+	public void playSpecials() {
+        System.out.println("Is there anyone who wants to play their special card?");
+    }
+
+    public void whoForSpecial() {
+        System.out.println("Who will play their special card?");
+    }
+    
+    public void heliOrSand(){
+        System.out.println("Do you want to play the Helicopter Lift or Sandbags card?");
+    }
+
 }

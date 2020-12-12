@@ -57,7 +57,7 @@ public class CardSetup {
 				}
             i++;
 		}
-		setupTeam.showAllHands();
+		//setupTeam.showAllHands();
 		// Take out 6 flood cards
         for(int k=0;k<6;k++) {
 			try{Thread.sleep(100);}
