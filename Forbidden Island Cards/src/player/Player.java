@@ -2,6 +2,9 @@ package player;
 
 import java.util.List;
 import java.util.Scanner;
+import java.awt.Point;
+
+import gameplay.Choices;
 import pawns.Pawn;
 import pawns.*;
 
@@ -11,6 +14,7 @@ import cards.SandbagsCard;
 import cards.TreasureCard;
 import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
+import enums.TilesEnums;
 
 
 public class Player {
@@ -75,6 +79,18 @@ public class Player {
 	
 	public Pawn getPawn(){
 		return playerPawn;
+	}
+
+	public void setPawnPos(Point p){
+		playerPawn.setPos(p);
+	}
+
+	public Point getPawnPos(){
+		return playerPawn.getPos();
+	}
+
+	public TilesEnums pawnStartLoc(){
+		return playerPawn.startLoc();
 	}
 
 	public String getPlayerType(){

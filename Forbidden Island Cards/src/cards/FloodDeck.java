@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Stack;
 
 import enums.TilesEnums;
-import enums.tileStack;
+import enums.TileStack;
 
 public class FloodDeck extends Deck{
 	protected static FloodDeck theFloodDeck;
@@ -19,7 +19,7 @@ public class FloodDeck extends Deck{
     }
 	
 	public FloodDeck() {
-		tileStack names = new tileStack();
+		TileStack names = new TileStack();
 
 		// Prepare empty array of Cards
 	    this.cardsInDeck = new Stack<Card>();

@@ -4,9 +4,13 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
+import java.awt.Point;
+
 
 import player.Player;
 import player.Team;
+import board.Board;
 
 public class PlayerSetup {
 
@@ -14,11 +18,14 @@ public class PlayerSetup {
 	private SetupOutputs setupOuts;
 	private SetupInputs setupIns;
 	private Boolean validNumPlayers = false;
+	private Board theBoard;
+	private Point startLoc;
 	
 	public PlayerSetup() {
 		this.theTeam = Team.getInstance();
 		setupOuts = new SetupOutputs();
 		setupIns = new SetupInputs();
+		this.theBoard = Board.getInstance();
 	}
 
 	protected void createAllPlayers() {
@@ -56,10 +63,14 @@ public class PlayerSetup {
 			}
 		}
 		usedNames.add(name);
-		theTeam.addPlayer(new Player(i,name,k));
+    Player player = new Player(i,name,k);
+    startLoc = new Point(theBoard.getTilePos(player.pawnStartLoc()));
+		player.setPawnPos(startLoc);
+		theTeam.addPlayer(player);
 		Player player = theTeam.getPlayer(i);
 		String playerType =  player.getPlayerType();
 		setupOuts.playerAndType(name, playerType);
 		return usedNames;
 	}
+
 }

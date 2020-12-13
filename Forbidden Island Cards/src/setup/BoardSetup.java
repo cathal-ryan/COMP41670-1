@@ -3,7 +3,7 @@ package setup;
 import java.awt.Point;
 
 import board.Board;
-import enums.tileStack;
+import enums.TileStack;
 import enums.TilesEnums;
 
 public class BoardSetup {
@@ -11,9 +11,11 @@ public class BoardSetup {
 	private Point p;
 
 	public BoardSetup() {
-		tileStack names = new tileStack();
 		this.theBoard = Board.getInstance();
+	}
 
+	public void setTiles() {
+		TileStack names = new TileStack();
 		for(int x=0; x < theBoard.getCols(); x++) {
 			for(int y=0; y < theBoard.getRows(); y++) {
 				p = new Point(x,y);
@@ -21,7 +23,7 @@ public class BoardSetup {
 					theBoard.setTile(p, TilesEnums.SEA);
 
 				else if(p.equals(new Point(1,0)))
-					System.out.println("In 2nd if");
+					theBoard.setTile(p, TilesEnums.SEA);
 
 				else if(p.equals(new Point(4,0)))
 					theBoard.setTile(p, TilesEnums.SEA);
@@ -72,6 +74,7 @@ public class BoardSetup {
 
 	public static void main(String[] args) {
 		BoardSetup bSet = new BoardSetup();
+		bSet.setTiles();
 		bSet.displayBoard();
 	}
 }

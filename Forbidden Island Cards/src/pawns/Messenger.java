@@ -1,5 +1,7 @@
 package pawns;
 
+import enums.TilesEnums;
+
 public class Messenger extends Pawn{
 
 
@@ -11,6 +13,10 @@ public class Messenger extends Pawn{
 	@Override
 	public String getPlayerType() {
 		return "Messenger";
+	}
+
+	public TilesEnums startLoc() {
+		return TilesEnums.SILVER_GATE;
 	}
 
 }
