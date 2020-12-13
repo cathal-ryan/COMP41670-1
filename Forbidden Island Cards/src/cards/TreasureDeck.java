@@ -54,8 +54,7 @@ public class TreasureDeck extends Deck{
 
 		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
 		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
-		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
-		    
+		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));		    
 		    shuffle();
 		}
 		public Card dealCard() {

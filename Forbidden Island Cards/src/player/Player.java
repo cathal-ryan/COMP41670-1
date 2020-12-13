@@ -97,58 +97,8 @@ public class Player {
 		return playerPawn.getPlayerType();
 	}
 
-	public boolean giveTreasureCard(Player plnum, int canum, Scanner inputScanner){
-		TreasureDeckCard c1 = playerHand.getCards().get(canum);
-		if(!(c1 instanceof TreasureCard)){
-			return false;
-		}
-		plnum.getHand().addCard(c1);
-		if(plnum.handSize()>5){
-			plnum.discardTreasureCard(inputScanner);
-		}
-		getHand().getCards().remove(canum);
-		return true;
-	}
-
-	public void discardTreasureCard(Scanner inputScanner){
-		int userIn = 0;
-		boolean validIn = false;
-		System.out.println("Hey, "+playerName+". Your hand is too big...\n");
-		userIn = chooseFromHand(inputScanner, "discard or use?",false);
-		if(!(showHand().get(userIn) instanceof TreasureCard)){
-			if(Choices.getYesOrNo(inputScanner,"It's use it or lose it! Do you want to use this card now?", "No", "Yes")){
-				if((showHand().get(userIn) instanceof SandbagsCard)){
-					System.out.println("Not fully decided where Sandbags will be called yet!");
-				}
-				if((showHand().get(userIn) instanceof HelicopterLift)){
-					System.out.println("Not fully decided where Helicopter Lift will be called yet!");
-				}
-			}
-		}
-		getHand().removeCard(userIn);
-	}
-
-	public int chooseFromHand(Scanner inputScanner, String action, boolean ineligible){
-		int userIn = 0;
-		for (int i = 0; i < showHand().size(); i++) {
-			if (!(ineligible && !(showHand().get(i) instanceof TreasureCard))){
-				System.out.println("[" + i + "]: " + showHand().get(i).getName());
-			}
-		}
-		boolean validIn = false;
-		while (!validIn) {
-			System.out.println("Which of the cards would you like to " + action);
-			String userString = inputScanner.nextLine();
-			try {
-				userIn = Integer.parseInt(userString);
-			} catch (NumberFormatException e) {
-				continue;
-			}
-			if ((userIn >= 0) && (userIn <= showHand().size()-1)) {
-				validIn = true;
-			}
-		}
-		return userIn;
+	public void addCardtoHand(TreasureDeckCard c1){
+		playerHand.addCard(c1);
 	}
 
 	public boolean checkHasCard(TreasureCardEnums name){
@@ -158,7 +108,15 @@ public class Player {
 		return true;		
 	}
 
-	public void helicopterMove(){
-		playerPawn.helicopterMove();
+	public void helicopterMove(int k){
+		playerPawn.helicopterMove(k);
+	}
+
+	public boolean canMove() {
+		return true;
+	}
+
+	public boolean canShoreUp() {
+		return true;
 	}
 }

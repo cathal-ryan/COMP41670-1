@@ -1,19 +1,15 @@
 import java.util.Scanner;
 
-import gameplay.GameManager;
+import gameplay.control.GameManager;
 import setup.Setup;
 
 
 public class maindemo {
     public static void main(String[] args) {
-
-		Scanner inputScanner = new Scanner(System.in);
 		
-        Setup.getInstance().doAllSetup(inputScanner);
+        Setup.getInstance().doAllSetup();
         
-        GameManager.getInstance().doGameplay(inputScanner);
-
-        inputScanner.close();
+        GameManager.getInstance().doGameplay();
         
     }
 }

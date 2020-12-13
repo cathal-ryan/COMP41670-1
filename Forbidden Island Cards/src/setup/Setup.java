@@ -1,6 +1,9 @@
 package setup;
 import java.util.Scanner;
 
+import gameplay.model.GameModel;
+
+
 public class Setup {
     
     private static Setup theSetup;
@@ -9,6 +12,9 @@ public class Setup {
     private PlayerSetup      playerHandler;
     private CardSetup        cardHandler;
     private WaterMeterSetup  waterHandler;
+    private SetupOutputs setupOutputs;
+    private SetupInputs setupInputs;
+    private GameModel theGameModel;
     private BoardSetup       boardHandler;
     
     public static Setup getInstance(){
@@ -20,6 +26,8 @@ public class Setup {
 
     private Setup() {
         // Create instances of Player set up and card set up
+        setupInputs = new SetupInputs();
+        setupOutputs = new SetupOutputs();
         this.waterHandler   = new WaterMeterSetup();
         this.boardHandler   = new BoardSetup();
         this.playerHandler  = new PlayerSetup();
@@ -27,25 +35,13 @@ public class Setup {
     }
     
 
-    public void doAllSetup(Scanner user) {
-        welcomeScreen();
-        waterHandler.createWaterLevel(user);
+    public void doAllSetup() {
+        setupOutputs.welcomeScreen();
+        waterHandler.createWaterLevel(setupInputs,setupOutputs);
+        playerHandler.createAllPlayers(); // does here fine
         boardHandler.setTiles();
-        playerHandler.createAllPlayers(user); //does here fine
         cardHandler.dealCards(); // does here ok i think
-        
-    }
-
-    public void welcomeScreen(){
-        System.out.println("  █████▒▒█████   ██▀███   ▄▄▄▄    ██▓▓█████▄ ▓█████▄ ▓█████  ███▄    █     ██▓  ██████  ██▓    ▄▄▄       ███▄    █ ▓█████▄         ");
-        System.out.println("▓██   ▒▒██▒  ██▒▓██ ▒ ██▒▓█████▄ ▓██▒▒██▀ ██▌▒██▀ ██▌▓█   ▀  ██ ▀█   █    ▓██▒▒██    ▒ ▓██▒   ▒████▄     ██ ▀█   █ ▒██▀ ██▌       ");
-    	System.out.println("▒████ ░▒██░  ██▒▓██ ░▄█ ▒▒██▒ ▄██▒██▒░██   █▌░██   █▌▒███   ▓██  ▀█ ██▒   ▒██▒░ ▓██▄   ▒██░   ▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌       ");
-    	System.out.println("░▓█▒  ░▒██   ██░▒██▀▀█▄  ▒██░█▀  ░██░░▓█▄   ▌░▓█▄   ▌▒▓█  ▄ ▓██▒  ▐▌██▒   ░██░  ▒   ██▒▒██░   ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌       ");
-    	System.out.println("░▒█░   ░ ████▓▒░░██▓ ▒██▒░▓█  ▀█▓░██░░▒████▓ ░▒████▓ ░▒████▒▒██░   ▓██░   ░██░▒██████▒▒░██████▒▓█   ▓██▒▒██░   ▓██░░▒████▓        ");
-    	System.out.println(" ▒ ░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░▒▓███▀▒░▓   ▒▒▓  ▒  ▒▒▓  ▒ ░░ ▒░ ░░ ▒░   ▒ ▒    ░▓  ▒ ▒▓▒ ▒ ░░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒▓  ▒         ");
-    	System.out.println(" ░       ░ ▒ ▒░   ░▒ ░ ▒░▒░▒   ░  ▒ ░ ░ ▒  ▒  ░ ▒  ▒  ░ ░  ░░ ░░   ░ ▒░    ▒ ░░ ░▒  ░ ░░ ░ ▒  ░ ▒   ▒▒ ░░ ░░   ░ ▒░ ░ ▒  ▒         ");
-    	System.out.println(" ░ ░   ░ ░ ░ ▒    ░░   ░  ░    ░  ▒ ░ ░ ░  ░  ░ ░  ░    ░      ░   ░ ░     ▒ ░░  ░  ░    ░ ░    ░   ▒      ░   ░ ░  ░ ░  ░         ");
-        System.out.println("           ░ ░     ░      ░       ░     ░       ░       ░  ░         ░     ░        ░      ░  ░     ░  ░         ░    ░            ");
-        System.out.println("                               ░      ░       ░                                                                     ░      ");
+        theGameModel = GameModel.getInstance();
+        setupOutputs.setupOver();
     }
 }

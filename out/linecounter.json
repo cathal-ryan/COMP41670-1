@@ -5,26 +5,26 @@
     "linecount": [
         {
             "version": "0.2.7",
-            "counttime": "2020-12-04 19:37:04",
-            "filesum": 84,
-            "codesum": 1759,
-            "commentsum": 104,
-            "blanksum": 369,
+            "counttime": "2020-12-13 00:59:06",
+            "filesum": 100,
+            "codesum": 2230,
+            "commentsum": 137,
+            "blanksum": 489,
             "statistics": {
                 "": {
                     "code": 36,
                     "comment": 0,
                     "blank": 0
                 },
+                ".java": {
+                    "code": 2183,
+                    "comment": 137,
+                    "blank": 489
+                },
                 ".prefs": {
                     "code": 11,
                     "comment": 0,
                     "blank": 0
-                },
-                ".java": {
-                    "code": 1712,
-                    "comment": 104,
-                    "blank": 369
                 }
             },
             "filelist": [
@@ -172,6 +172,13 @@
                     "comment": 0
                 },
                 {
+                    "filename": "Forbidden Island Cards/bin/enums/tileStack.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
                     "filename": "Forbidden Island Cards/bin/enums/TreasureCardEnums.class",
                     "isbinaryfile": true,
                     "blank": 0,
@@ -186,35 +193,49 @@
                     "comment": 0
                 },
                 {
-                    "filename": "Forbidden Island Cards/bin/gameplay/Choices.class",
+                    "filename": "Forbidden Island Cards/bin/gameplay/control/Controller.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
                     "comment": 0
                 },
                 {
-                    "filename": "Forbidden Island Cards/bin/gameplay/FloodDraw.class",
+                    "filename": "Forbidden Island Cards/bin/gameplay/control/EndingGame.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
                     "comment": 0
                 },
                 {
-                    "filename": "Forbidden Island Cards/bin/gameplay/GameManager.class",
+                    "filename": "Forbidden Island Cards/bin/gameplay/control/FloodDraw.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
                     "comment": 0
                 },
                 {
-                    "filename": "Forbidden Island Cards/bin/gameplay/PlayerActions.class",
+                    "filename": "Forbidden Island Cards/bin/gameplay/control/GameManager.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
                     "comment": 0
                 },
                 {
-                    "filename": "Forbidden Island Cards/bin/gameplay/TreasureDraw.class",
+                    "filename": "Forbidden Island Cards/bin/gameplay/control/PlayerActions.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Forbidden Island Cards/bin/gameplay/control/TreasureDraw.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Forbidden Island Cards/bin/gameplay/model/GameModel.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
@@ -222,6 +243,20 @@
                 },
                 {
                     "filename": "Forbidden Island Cards/bin/gameplay/TreasureHandler.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Forbidden Island Cards/bin/gameplay/view/GameInputs.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Forbidden Island Cards/bin/gameplay/view/GameOutputs.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
@@ -305,6 +340,13 @@
                     "comment": 0
                 },
                 {
+                    "filename": "Forbidden Island Cards/bin/setup/BoardSetup.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
                     "filename": "Forbidden Island Cards/bin/setup/CardSetup.class",
                     "isbinaryfile": true,
                     "blank": 0,
@@ -320,6 +362,20 @@
                 },
                 {
                     "filename": "Forbidden Island Cards/bin/setup/Setup.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Forbidden Island Cards/bin/setup/SetupInputs.class",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "Forbidden Island Cards/bin/setup/SetupOutputs.class",
                     "isbinaryfile": true,
                     "blank": 0,
                     "code": 0,
@@ -357,8 +413,8 @@
                     "filename": "Forbidden Island Cards/src/cards/Deck.java"
                 },
                 {
-                    "blank": 12,
-                    "code": 25,
+                    "blank": 15,
+                    "code": 30,
                     "comment": 7,
                     "filename": "Forbidden Island Cards/src/cards/DiscardPile.java"
                 },
@@ -369,20 +425,20 @@
                     "filename": "Forbidden Island Cards/src/cards/FloodCard.java"
                 },
                 {
-                    "blank": 4,
-                    "code": 53,
+                    "blank": 6,
+                    "code": 33,
                     "comment": 1,
                     "filename": "Forbidden Island Cards/src/cards/FloodDeck.java"
                 },
                 {
-                    "blank": 6,
-                    "code": 29,
+                    "blank": 8,
+                    "code": 34,
                     "comment": 0,
                     "filename": "Forbidden Island Cards/src/cards/FloodDiscardPile.java"
                 },
                 {
-                    "blank": 18,
-                    "code": 79,
+                    "blank": 17,
+                    "code": 80,
                     "comment": 0,
                     "filename": "Forbidden Island Cards/src/cards/Hand.java"
                 },
@@ -405,7 +461,7 @@
                     "filename": "Forbidden Island Cards/src/cards/TreasureCard.java"
                 },
                 {
-                    "blank": 11,
+                    "blank": 10,
                     "code": 58,
                     "comment": 1,
                     "filename": "Forbidden Island Cards/src/cards/TreasureDeck.java"
@@ -435,6 +491,12 @@
                     "filename": "Forbidden Island Cards/src/enums/TilesEnums.java"
                 },
                 {
+                    "blank": 7,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "Forbidden Island Cards/src/enums/tileStack.java"
+                },
+                {
                     "blank": 8,
                     "code": 17,
                     "comment": 9,
@@ -447,34 +509,46 @@
                     "filename": "Forbidden Island Cards/src/enums/TypeEnums.java"
                 },
                 {
-                    "blank": 4,
-                    "code": 27,
-                    "comment": 0,
-                    "filename": "Forbidden Island Cards/src/gameplay/Choices.java"
+                    "blank": 29,
+                    "code": 233,
+                    "comment": 1,
+                    "filename": "Forbidden Island Cards/src/gameplay/control/Controller.java"
+                },
+                {
+                    "blank": 11,
+                    "code": 14,
+                    "comment": 1,
+                    "filename": "Forbidden Island Cards/src/gameplay/control/EndingGame.java"
                 },
                 {
                     "blank": 10,
                     "code": 49,
                     "comment": 16,
-                    "filename": "Forbidden Island Cards/src/gameplay/FloodDraw.java"
+                    "filename": "Forbidden Island Cards/src/gameplay/control/FloodDraw.java"
                 },
                 {
-                    "blank": 11,
-                    "code": 61,
-                    "comment": 8,
-                    "filename": "Forbidden Island Cards/src/gameplay/GameManager.java"
+                    "blank": 8,
+                    "code": 36,
+                    "comment": 28,
+                    "filename": "Forbidden Island Cards/src/gameplay/control/GameManager.java"
                 },
                 {
-                    "blank": 23,
-                    "code": 186,
-                    "comment": 2,
-                    "filename": "Forbidden Island Cards/src/gameplay/PlayerActions.java"
+                    "blank": 8,
+                    "code": 81,
+                    "comment": 1,
+                    "filename": "Forbidden Island Cards/src/gameplay/control/PlayerActions.java"
                 },
                 {
                     "blank": 8,
                     "code": 70,
                     "comment": 10,
-                    "filename": "Forbidden Island Cards/src/gameplay/TreasureDraw.java"
+                    "filename": "Forbidden Island Cards/src/gameplay/control/TreasureDraw.java"
+                },
+                {
+                    "blank": 35,
+                    "code": 196,
+                    "comment": 3,
+                    "filename": "Forbidden Island Cards/src/gameplay/model/GameModel.java"
                 },
                 {
                     "blank": 10,
@@ -483,14 +557,26 @@
                     "filename": "Forbidden Island Cards/src/gameplay/TreasureHandler.java"
                 },
                 {
+                    "blank": 11,
+                    "code": 104,
+                    "comment": 0,
+                    "filename": "Forbidden Island Cards/src/gameplay/view/GameInputs.java"
+                },
+                {
+                    "blank": 27,
+                    "code": 98,
+                    "comment": 4,
+                    "filename": "Forbidden Island Cards/src/gameplay/view/GameOutputs.java"
+                },
+                {
                     "blank": 6,
                     "code": 25,
                     "comment": 0,
                     "filename": "Forbidden Island Cards/src/gameplay/WaterMeter.java"
                 },
                 {
-                    "blank": 8,
-                    "code": 11,
+                    "blank": 6,
+                    "code": 9,
                     "comment": 0,
                     "filename": "Forbidden Island Cards/src/maindemo.java"
                 },
@@ -537,38 +623,56 @@
                     "filename": "Forbidden Island Cards/src/pawns/Pilot.java"
                 },
                 {
-                    "blank": 18,
-                    "code": 129,
+                    "blank": 17,
+                    "code": 86,
                     "comment": 3,
                     "filename": "Forbidden Island Cards/src/player/Player.java"
                 },
                 {
-                    "blank": 20,
-                    "code": 162,
-                    "comment": 3,
+                    "blank": 12,
+                    "code": 48,
+                    "comment": 1,
                     "filename": "Forbidden Island Cards/src/player/Team.java"
                 },
                 {
-                    "blank": 8,
-                    "code": 56,
-                    "comment": 12,
+                    "blank": 19,
+                    "code": 58,
+                    "comment": 0,
+                    "filename": "Forbidden Island Cards/src/setup/BoardSetup.java"
+                },
+                {
+                    "blank": 7,
+                    "code": 58,
+                    "comment": 11,
                     "filename": "Forbidden Island Cards/src/setup/CardSetup.java"
                 },
                 {
-                    "blank": 16,
-                    "code": 72,
+                    "blank": 7,
+                    "code": 58,
                     "comment": 0,
                     "filename": "Forbidden Island Cards/src/setup/PlayerSetup.java"
                 },
                 {
                     "blank": 9,
-                    "code": 37,
+                    "code": 33,
                     "comment": 4,
                     "filename": "Forbidden Island Cards/src/setup/Setup.java"
                 },
                 {
-                    "blank": 12,
-                    "code": 46,
+                    "blank": 9,
+                    "code": 45,
+                    "comment": 4,
+                    "filename": "Forbidden Island Cards/src/setup/SetupInputs.java"
+                },
+                {
+                    "blank": 16,
+                    "code": 49,
+                    "comment": 4,
+                    "filename": "Forbidden Island Cards/src/setup/SetupOutputs.java"
+                },
+                {
+                    "blank": 6,
+                    "code": 16,
                     "comment": 0,
                     "filename": "Forbidden Island Cards/src/setup/WaterMeterSetup.java"
                 }
