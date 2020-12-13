@@ -98,7 +98,7 @@ public class GameInputs {
                 theOutputs.generalError();
 				continue;
             }
-			if ((userIn >= 0) && (userIn < size -1)) {
+			if ((userIn >= 0) && (userIn < size )) {
 				validIn = true;
             }
             else{

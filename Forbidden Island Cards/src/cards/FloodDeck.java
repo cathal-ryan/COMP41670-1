@@ -18,7 +18,7 @@ public class FloodDeck extends Deck{
         return theFloodDeck;
     }
 	
-	public FloodDeck() {
+	private FloodDeck() {
 		TileStack names = new TileStack();
 
 		// Prepare empty array of Cards

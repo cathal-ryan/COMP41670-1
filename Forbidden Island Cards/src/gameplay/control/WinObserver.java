@@ -1,10 +1,5 @@
 package gameplay.control;
 
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.security.auth.Subject;
-
 import gameplay.model.GameModel;
 
 
@@ -18,7 +13,7 @@ public class WinObserver implements Observer {
     }
 
     @Override
-    public void update(Observable arg0, Object arg1) {
+    public void update() {
         // TODO Auto-generated method stub
 
     }

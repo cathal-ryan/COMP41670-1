@@ -6,10 +6,10 @@ import player.Team;
 public class GameManager {
 
     private static GameManager theGM;
-    
     // Other variables
     private boolean    gameOver=false;
     private Controller theController;
+    private LoseObserver Losing = new LoseObserver();
 
     public static GameManager getInstance(){
         if(theGM == null){
@@ -21,13 +21,14 @@ public class GameManager {
     private GameManager() {
         this.gameOver     = false;
         this.theController = Controller.getInstance();
+        this.Losing = new LoseObserver();
     }
     
     public void doGameplay() {
         PlayerActions currentPActions;
         TreasureDraw currentTreasure;
         FloodDraw currentFlood;
-        while (!theController.isGameOver()) { // Main loop for doing PlayerTurns
+        while (!Losing.isGameOver()) { // Main loop for doing PlayerTurns
                 theController.newTurn();
                 currentPActions = new PlayerActions();    // Make a new PlayerTurn
                 while(!theController.getTurnOver()){
