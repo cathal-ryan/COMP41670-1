@@ -37,9 +37,9 @@ public class Setup {
 
     public void doAllSetup() {
         setupOutputs.welcomeScreen();
+        boardHandler.setTiles();
         waterHandler.createWaterLevel(setupInputs,setupOutputs);
         playerHandler.createAllPlayers(); // does here fine
-        boardHandler.setTiles();
         cardHandler.dealCards(); // does here ok i think
         theGameModel = GameModel.getInstance();
         setupOutputs.setupOver();

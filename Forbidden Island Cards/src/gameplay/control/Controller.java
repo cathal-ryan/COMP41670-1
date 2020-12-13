@@ -27,7 +27,7 @@ public class Controller implements Observer{
     
     private Controller() {
         theGameModel = GameModel.getInstance();
-        EndingGame theWin = new EndingGame(theGameModel);
+        LoseObserver theWin = new LoseObserver(theGameModel);
         theGameModel.addObserver(theWin);
         theInputs = new GameInputs();
         theOutputs = new GameOutputs();

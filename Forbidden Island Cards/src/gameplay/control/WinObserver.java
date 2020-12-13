@@ -9,11 +9,11 @@ import gameplay.model.GameModel;
 
 
 
-public class EndingGame implements Observer {
+public class WinObserver implements Observer {
 
     private GameModel theGS;
 
-    public EndingGame(GameModel game){
+    public WinObserver(GameModel game){
         this.theGS = game;
     }
 
