@@ -15,6 +15,7 @@ import cards.TreasureDeck;
 import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
+import enums.TilesEnums;
 import enums.TreasureCardEnums;
 import gameplay.WaterMeter;
 import player.Player;
@@ -22,6 +23,7 @@ import player.Team;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
 import gameplay.model.Subject;
+
 
 public class GameModel implements Subject {
     // private Controller theController = Controller.getInstance();
@@ -35,6 +37,8 @@ public class GameModel implements Subject {
     private FloodDeck theFloodDeck;
     private TreasureDeck theTreasureDeck;
     private boolean gameLost;
+    private Observer loser;
+    private Observer winner;
     private List<Observer> observers = new ArrayList<>();
     private static GameModel theGameModel = null;
 
@@ -46,8 +50,8 @@ public class GameModel implements Subject {
         theTreasureDeck = TreasureDeck.getInstance();
         currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers() - 1);
         theWaterMeter = WaterMeter.getInstance();
-        Observer o = new LoseObserver();
-        attach(o);
+        loser = new LoseObserver();
+        winner = new LoseObserver();
     }
 
     public static GameModel getInstance() {
@@ -243,7 +247,7 @@ public class GameModel implements Subject {
             WaterMeter.cardDrawn();
             int waterLevel = WaterMeter.getWaterlevel();
             if (waterLevel >= 5) {
-                notifyUpdate();
+                notifyUpdate(loser,6);
             }
         }
         return c1;
@@ -264,24 +268,14 @@ public class GameModel implements Subject {
     public Card dealFlood() {
         Card card1 = theFloodDeck.dealCard();
         theFloodDiscardPile.addToPile(card1);
-        // NEEDS TO NOTIFY OBSERVER WHO HAS BEEN FLOODED, ARE THEY DEAD ETC.
+        if (card1.getName() == TilesEnums.FOOLS_LANDING){
+            notifyUpdate(loser,4);
+        }
         return card1;
     }
 
     @Override
-    public void attach(Observer o) {
-        observers.add(o);
-    }
-
-    @Override
-    public void detach(Observer o) {
-        observers.remove(o);
-    }
-
-    @Override
-    public void notifyUpdate() {
-        for(Observer o:observers){
-            o.update();
-        }
+    public void notifyUpdate(Observer o, int m) {
+        o.update(m);
     }
 }

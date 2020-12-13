@@ -7,7 +7,8 @@ public enum EndGameEnums {
 	GARDENS			    ("Both Garden tiles have sunk!"), 
 	FOOLS 			    ("Fool's Landing has sunk!"),
 	NOSWIM			    ("There's nowhere you can swim to!"),
-	WATERLEVEL		    ("The water level has reached 5!");
+	WATERLEVEL		    ("The water level has reached 5!"),
+	HELICOPTER		    ("You've flown off Fools' Landing!");
 
 	private final String type;
 	/**

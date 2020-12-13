@@ -17,20 +17,22 @@ import cards.TreasureCard;
 import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
 
-public class Controller implements Observer{
+public class Controller{
 
     private GameModel theGameModel;
     private GameOutputs theOutputs;
     private GameInputs theInputs;
+    private LoseObserver losing = new LoseObserver();
+    private WinObserver winning = new WinObserver();
 
     private static Controller theController = null;
     
     private Controller() {
         theGameModel = GameModel.getInstance();
-     //   LoseObserver theWin = new LoseObserver(theGameModel);
-    //    theGameModel.addObserver(theWin);
         theInputs = new GameInputs();
         theOutputs = new GameOutputs();
+        this.losing = new LoseObserver();
+        this.winning = new WinObserver();
     }
 
     public static Controller getInstance() {
@@ -40,14 +42,8 @@ public class Controller implements Observer{
         return theController;
     }
 
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public boolean isGameOver() {
-		return false;
+		return losing.isGameOver();
 	}
 
 	public void newTurn() {
@@ -297,5 +293,11 @@ public class Controller implements Observer{
 	public void dealFloodCard() {
         Card card1 = theGameModel.dealFlood();
         theOutputs.floodedTile(card1.getName().toString());
+	}
+
+	public void gameOver() {
+	}
+
+	public void gameOverPrompt() {
 	}
 }

@@ -7,52 +7,52 @@ import enums.EndGameEnums;
 
 public class LoseObserver implements Observer{
 
-    private static boolean gameOver;
-    private static boolean gameLost;
-    private static boolean gameWon;
-    private static Enum lossCondition;
+    private static boolean gameOver =false;
+    private static boolean gameLost = false;
+    private static String lossCondition;
 
     @Override
     public void update(int method) {
         gameOver=true;
-        gameLost=true;
-        System.out.println("Game is lost!");
+        if(method>=0 && method<=6){
+            gameLost=true;
+        }
         switch (method) {
 			case 0:
-				lossCondition = EndGameEnums.CAVES;
+				lossCondition = EndGameEnums.TEMPLES.toString();
 				break;
 			case 1:
-                lossCondition = EndGameEnums.CAVES;
+                lossCondition = EndGameEnums.CAVES.toString();
                 break;
 			case 2:
-                lossCondition = EndGameEnums.CAVES;
+                lossCondition = EndGameEnums.PALACES.toString();
                 break;
             case 3:
-                lossCondition = EndGameEnums.CAVES;
+                lossCondition = EndGameEnums.GARDENS.toString();
                 break;
 			case 4:
-                lossCondition = EndGameEnums.CAVES;
+                lossCondition = EndGameEnums.FOOLS.toString();
                 break;
 			case 5:
-                lossCondition = EndGameEnums.CAVES;
+                lossCondition = EndGameEnums.NOSWIM.toString();
                 break;
             case 6:
-                lossCondition = EndGameEnums.CAVES;
-                break;
-            case 7:
-                lossCondition = EndGameEnums.CAVES;
-                break;
-            case 8:
-                lossCondition = EndGameEnums.CAVES;
+                lossCondition = EndGameEnums.WATERLEVEL.toString();
                 break;
 			default:
-				System.out.println("I shouldn't be here!");
-
-        this.gameLost = true;
-        this.gameOver = true;
+                lossCondition = EndGameEnums.FOOLS.toString();
+        }
     }
 
     public boolean isGameOver(){
         return gameOver;
+    }
+
+    public boolean isGameLost(){
+        return gameLost;
+    }
+
+    public String getLossCondition(){
+        return lossCondition;
     }
 }
