@@ -6,8 +6,9 @@ import cards.Card;
 import cards.TreasureDeck;
 import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
-    import cards.WaterRiseCard;
-    import player.Player;
+import cards.WaterRiseCard;
+import gameplay.view.*;
+import player.Player;
 import player.Team;
     
     /**
@@ -28,11 +29,14 @@ import player.Team;
         private TreasureDiscardPile thePile;
         private TreasureDeck theTreasureDeck;
         private Team theTeam;
-
+        private Controller theController;
+        private GameOutputs theOutputs;
+        private GameInputs theInputs;    
     
-        public TreasureDraw(Player thisPlayer, Scanner inputScanner) {
-            this.player = thisPlayer;
-            this.inputScanner = inputScanner;
+        public TreasureDraw() {
+            this.theController = Controller.getInstance();
+            theOutputs = new GameOutputs();
+            theInputs = new GameInputs();    
             this.lost = false;
             this.won = false;
             this.thePile = TreasureDiscardPile.getInstance();
@@ -42,46 +46,28 @@ import player.Team;
     
         public void doTreasureDraw() {
             int i =0;
-            System.out.println("Now it's time to draw your treasure cards!\n");
+            theOutputs.treasureTime();
             while(!lost && (i<2)){
-                if(theTeam.enquirePlayers(inputScanner, false)){
-                    won=true;
-                    return;
-                }
-                System.out.println(2-i+" cards to go! Press [return] to draw!");
-                @SuppressWarnings("unused")
-                String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start        
-                TreasureDeckCard c1 = (TreasureDeckCard) theTreasureDeck.dealCard();
-                if(c1 instanceof WaterRiseCard) {
-                    WaterMeter.cardDrawn();
-                    int waterLevel = WaterMeter.getWaterlevel();
-                    if(waterLevel>5){
-                        lost=true;
-                    }
-                    else{
-                        System.out.println("Oh no! The Water Rises!! Flood Level currently at: "+ waterLevel);
-                        thePile.addToPile(c1);
-                    }
+                theController.enquirePlayers(false);
+                theOutputs.cardsLeft(2-i);
+                theInputs.confirm();
+                TreasureDeckCard c1 = theController.getTreasureCard();
+                if (c1 instanceof WaterRiseCard){
+                    theController.addToPile(c1);
+                    theOutputs.waterRise(theController.getWaterLevel());
                 }
                 else {
-                    player.getHand().addCard(c1);
-                    System.out.println("Great! You've drawn "+ c1.getName());
+                    theController.addCardtoHand(c1);
+                    theOutputs.drawnCard(c1.getName().toString());
                 }
                 i++;
             }
             if(!lost){
-                while (player.handSize() > 5) {
-                    player.discardTreasureCard(inputScanner);
+                while (theController.getHandSize(null) > 5) {
+                    theController.discardTreasure(null);
                 }
-                System.out.println("\nCool, so "+ player.getName()+ " now has the following hand: ");
-                player.getHand().getHandasString();
+                theOutputs.printHand(theController.returnPlayerName(),theController.showAHand());
             }
         }
-		public boolean seeIfLost() {
-			return lost;
-        }
-        public boolean seeIfWon() {
-			return won;
-		}
 }    
 

@@ -9,10 +9,12 @@ import gameplay.model.GameModel;
 import gameplay.view.GameInputs;
 import gameplay.view.GameOutputs;
 import player.Player;
+import cards.Card;
 import cards.DiscardPile;
 import cards.HelicopterLift;
 import cards.SandbagsCard;
 import cards.TreasureCard;
+import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
 
 public class Controller implements Observer{
@@ -102,6 +104,10 @@ public class Controller implements Observer{
         }
     }
 
+    public String showAHand(){
+        return theGameModel.getHandasString(-1);
+    }
+
 	public void giveCard() {
         List traders = new ArrayList<>();
         if(theGameModel.getActionsLeft()<1){
@@ -133,11 +139,12 @@ public class Controller implements Observer{
         if(playerA==null){
             playerA = theGameModel.getCurrentPlayer();
         }
-        List hands = theGameModel.getPlayerHand(playerA);
+        List<Card> hands = theGameModel.getPlayerHand(playerA);
 		for (int i = 0; i < hands.size(); i++) {
 			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
-                theOutputs.showOption(i,hands.get(i).toString());
-			}
+                Enum name = hands.get(i).getName();
+                theOutputs.showOption(i,name.toString());
+            }
 		}
         return theInputs.handChoice(hands.size());
     }
@@ -146,7 +153,7 @@ public class Controller implements Observer{
         if (!theGameModel.addCardfromPlayerA(playerB,canum)){
             return false;
         }
-        int handSizeB = theGameModel.getHandSize(playerB);
+        int handSizeB = getHandSize(playerB);
         while(handSizeB > 5){
 			discardTreasure(playerB);
 		}
@@ -154,6 +161,9 @@ public class Controller implements Observer{
 	}
 
     public void discardTreasure(Player player){
+        if(player==null){
+            player = theGameModel.getCurrentPlayer();
+        }
         boolean validIn = false;
         String name = theGameModel.getPlayerName(player);
         List hand = theGameModel.getPlayerHand(player);
@@ -260,4 +270,32 @@ public class Controller implements Observer{
             useSandbags(player1);
         }
     }
+
+	public TreasureDeckCard getTreasureCard() {
+        return theGameModel.dealTreasure();
+	}
+
+	public void addToPile(TreasureDeckCard c1) {
+        theGameModel.addToPile(c1);
+	}
+
+	public void addCardtoHand(TreasureDeckCard c1) {
+        theGameModel.addCardfromDeck(c1);
+	}
+
+	public int getHandSize(Player play1) {
+        if(play1==null){
+            play1 = theGameModel.getCurrentPlayer();
+        }
+		return theGameModel.getHandSize(play1);
+    }
+    
+    public int getWaterLevel(){
+        return theGameModel.getWaterLevel();
+    }
+
+	public void dealFloodCard() {
+        Card card1 = theGameModel.dealFlood();
+        theOutputs.floodedTile(card1.getName().toString());
+	}
 }

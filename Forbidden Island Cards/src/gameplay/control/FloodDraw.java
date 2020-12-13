@@ -6,7 +6,8 @@ import cards.Card;
 
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
-
+import gameplay.view.GameInputs;
+import gameplay.view.GameOutputs;
 import player.Player;
 import player.Team;
     
@@ -28,9 +29,14 @@ import player.Team;
         private boolean lost;
         private boolean won;
         private Team theTeam;
+        private GameOutputs theOutputs;
+        private GameInputs theInputs;   
+        private Controller theController; 
     
-        public FloodDraw(Scanner inputScanner) {
-            this.inputScanner = inputScanner;
+        public FloodDraw() {
+            theOutputs = new GameOutputs();
+            theInputs = new GameInputs();    
+            this.theController = Controller.getInstance();
             this.theDiscardPile = FloodDiscardPile.getInstance();
             this.theFloodDeck = FloodDeck.getInstance();
             this.lost = false;
@@ -39,35 +45,17 @@ import player.Team;
         }
     
         public void doFloodDraw() {
-            System.out.println("\nBrace yourselves! It's now time to draw flood cards.");
-            for(int i =0;i<WaterMeter.getWaterlevel();i++) {
-                if(theTeam.enquirePlayers(inputScanner, false)){
-                    won=true;
-                    return;
-                }                
+            theOutputs.floodDrawTime();
+            int waterLevel = theController.getWaterLevel();
+            for(int i =0;i<waterLevel;i++) {
+                theController.enquirePlayers(false);       
                 if(!lost){
-                    System.out.println(WaterMeter.getWaterlevel()-i+" card(s) to go! Press [return] to draw!");
-                    @SuppressWarnings("unused")
-                    String playerStartsTurn = inputScanner.nextLine(); // Make player press return to confirm turn start            
-                    Card card1 = theFloodDeck.dealCard();
-                    theDiscardPile.addToPile(card1);
-                    // Take a flood card and add it to discard pile
-                    System.out.println("Oh no, "+ card1.getName() + " has been flooded");
-                    floodTile(card1.getName()); // Flood the tile with this name.
+                    theOutputs.cardsLeft(waterLevel-i);
+                    theInputs.confirm(); //             
+                    theController.dealFloodCard();
                 }
-            }        
+            }    
+            theOutputs.turnEndo();    
         }
-
-		private void floodTile(Enum name) {
-            // this is a placeholder method. This method will be invoked to flood a tile.
-            // if tile sinks, whatever player is on it should have to swim to nearby tile. If they cant, then seeIfLost should be able to return true.
-            // also if fools landing is the one which sinks, player should lose.
-        }
-        public boolean seeIfLost() {
-			return lost;
-        }
-        public boolean seeIfWon() {
-			return won;
-		}
 }    
 

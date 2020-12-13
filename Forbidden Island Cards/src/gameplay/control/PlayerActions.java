@@ -30,7 +30,7 @@ public class PlayerActions {
 	public void doActions() {
 		int userInput;
 		theOutputs.printTurnStart(theController.returnPlayerName());
-		theInputs.nextLine(); // Make player press return to confirm turn start
+		theInputs.confirm(); // Make player press return to confirm turn start
 		while (!theController.getTurnOver()){
 			theOutputs.giveOptions(theController.getActionsLeft());
 			userInput = theInputs.turnChoice();
@@ -63,7 +63,7 @@ public class PlayerActions {
 				theController.lookDiscarded();
 				break;
             case 9:
-			    useTeammateCard();
+				theController.enquirePlayers(true);
 				break;
 			default:
 				theOutputs.generalError();
@@ -74,10 +74,6 @@ public class PlayerActions {
 		}
 	}
 	
-	private void useTeammateCard(){
-		theController.enquirePlayers(true);
-	}
-
 	private void captureATreasure(){
 		if(!getActions()){
 			return;

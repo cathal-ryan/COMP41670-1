@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
+import cards.Card;
 import cards.Deck;
 import cards.DiscardPile;
 import cards.FloodDeck;
@@ -13,11 +14,14 @@ import cards.TreasureCard;
 import cards.TreasureDeck;
 import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
+import cards.WaterRiseCard;
 import enums.TreasureCardEnums;
 import gameplay.WaterMeter;
 import player.Player;
 import player.Team;
 import javax.security.auth.Subject;
+
+import FloodCard;
 
 public class GameModel extends Observable {
 //    private Controller theController = Controller.getInstance();
@@ -135,6 +139,9 @@ public class GameModel extends Observable {
     }
 
 	public String getHandasString(int i) {
+        if(i==-1){
+            return currentPlayer.getHand().getHandasString();
+        }
         return theTeam.getPlayer(i).getHand().getHandasString();
     }
 
@@ -228,6 +235,37 @@ public class GameModel extends Observable {
     }
 
 	public void useSandbags() {
+	}
+
+	public TreasureDeckCard dealTreasure() {
+        TreasureDeckCard c1 =  (TreasureDeckCard) theTreasureDeck.dealCard();
+        if(c1 instanceof WaterRiseCard) {
+            WaterMeter.cardDrawn();
+            int waterLevel = WaterMeter.getWaterlevel();
+            if(waterLevel>5){
+                //Tell someone they've lost
+            }
+        }
+        return c1;
+    }
+
+	public void addToPile(TreasureDeckCard c1) {
+        theTreasureDiscardPile.addToPile(c1);
+	}
+
+	public void addCardfromDeck(TreasureDeckCard c1) {
+        currentPlayer.getHand().addCard(c1);
+    }
+    
+    public int getWaterLevel(){
+        return theWaterMeter.getWaterlevel();
+    }
+
+	public Card dealFlood() {
+        Card card1 = theFloodDeck.dealCard();
+        theFloodDiscardPile.addToPile(card1);
+        // NEEDS TO NOTIFY OBSERVER WHO HAS BEEN FLOODED, ARE THEY DEAD ETC.
+        return card1;
 	}
     
 

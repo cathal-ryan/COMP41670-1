@@ -41,10 +41,10 @@ public class GameOutputs {
     
     public void printPile(boolean Treasure, String pile){
         if(Treasure){
-            System.out.println("The Treasure Discard Pile:"+ pile);
+            System.out.println("The Treasure Discard Pile: "+ pile);
         }
         else{
-            System.out.println("The Flood Discard Pile:"+ pile);
+            System.out.println("The Flood Discard Pile: "+ pile);
         }
     }
 
@@ -76,8 +76,8 @@ public class GameOutputs {
         System.out.println("Is anyone else going to fly here?");
     }
 
-	public void showOption(int i, String name) {
-        System.out.println("["+i+"] "+ name);
+	public void showOption(int i, String string) {
+        System.out.println("["+i+"] "+ string);
 	}
 
 	public void choosePl() {
@@ -95,7 +95,7 @@ public class GameOutputs {
 	public void cardChoice(boolean trading) {
         System.out.print("\nWhich of the cards would you like to");
         if(trading){
-            System.out.print(" give? You can't give Helicopter Lift or Sandbags");
+            System.out.print(" give? You can't give Helicopter Lift or Sandbags\n");
         }
         else{
             System.out.print(" discard");
@@ -126,4 +126,31 @@ public class GameOutputs {
         System.out.println("Do you want to play the Helicopter Lift or Sandbags card?");
     }
 
+	public void treasureTime() {
+        System.out.println("Now it's time to draw your treasure cards!");
+	}
+
+	public void cardsLeft(int i) {
+        System.out.println(i+" cards to go! Press [return] to draw!");
+    }
+
+	public void drawnCard(String name) {
+        System.out.println("Great! You've drawn "+ name);
+	}
+
+	public void waterRise(int waterLevel) {
+        System.out.println("Oh no! The water has risen! Now at level"+waterLevel);
+	}
+
+	public void floodDrawTime() {
+        System.out.println("Brace Yourselves! It's time to draw flood cards.");
+	}
+
+	public void floodedTile(String string) {
+        System.out.println("Oh no! "+ string+ " has been flooded!");
+    }
+    
+    public void turnEndo(){
+        System.out.println("-------------------------------------------");
+    }
 }

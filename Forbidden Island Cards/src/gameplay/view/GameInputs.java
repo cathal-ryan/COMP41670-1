@@ -61,7 +61,7 @@ public class GameInputs {
         return userInput;
     }
 
-    public void nextLine(){
+    public void confirm(){
         @SuppressWarnings("unused")
         String start = input.nextLine();
     }
