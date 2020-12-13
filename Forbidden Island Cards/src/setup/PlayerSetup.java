@@ -4,7 +4,6 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 
 import player.Player;
 import player.Team;
@@ -12,67 +11,55 @@ import player.Team;
 public class PlayerSetup {
 
 	private Team theTeam;
+	private SetupOutputs setupOuts;
+	private SetupInputs setupIns;
 	private Boolean validNumPlayers = false;
 	
 	public PlayerSetup() {
 		this.theTeam = Team.getInstance();
+		setupOuts = new SetupOutputs();
+		setupIns = new SetupInputs();
 	}
 
-	protected void createAllPlayers(Scanner user) {
-		int numOfPlayers;
+	protected void createAllPlayers() {
 		boolean playersSelected = false;
-
-		numOfPlayers = 0;
-		while (!validNumPlayers) {
-			numOfPlayers = getNumberOfPlayers(user);
-		}
+		setupOuts.howManyPlaying();
+		int numOfPlayers = setupIns.setBetween(false);
 		List<Integer> thelist = new ArrayList<>();
-
+		List<String> usedNames = new ArrayList();
 		thelist.add(0);
 		thelist.add(1);
 		thelist.add(2);
 		thelist.add(3);
 		thelist.add(4);
 		thelist.add(5);
-
 		for (int i = 0; i < numOfPlayers; i++) {
 			Random rand = new Random(); 
 			int randint = rand.nextInt(thelist.size()); 
 			int k = thelist.get(randint);
 			thelist.remove(randint);
-			createIndividualPlayer(user, i, k);
+			usedNames = createIndividualPlayer(i, k, usedNames);
 		}
 	}
-
-	public int getNumberOfPlayers(Scanner user) {
-		String userString;
-		System.out.println("\nHow many people are playing? (must be between 2 and 4");
-		userString = user.nextLine();
-		return setNumPlayers(userString);
-	}
-
-	public int setNumPlayers(String userString) {
-		int numOfPlayers =0;
-		try {
-			numOfPlayers = Integer.parseInt(userString);
-		} catch (NumberFormatException e) {
-			return numOfPlayers;
+	
+	public List<String> createIndividualPlayer(int i, int k, List<String> usedNames) {
+		setupOuts.selectName(i);
+		boolean validName=false;
+		String name = "";
+		while(!validName){
+			name = setupIns.playerName();
+			if (!usedNames.contains(name)){
+				validName=true;
+			}
+			else{
+				setupOuts.nameError();
+			}
 		}
-
-		if ((numOfPlayers >= 2) && (numOfPlayers <= 4)) {
-			validNumPlayers = true;
-		}
-		else{
-			System.out.println("Incorrect input\n");
-		}
-		return numOfPlayers;
-	}
-
-	public void createIndividualPlayer(Scanner user, int i, int k) {
-		System.out.println("\nPlayer "+(i+1)+"...\nEnter your name:");
-		String name = user.nextLine();
+		usedNames.add(name);
 		theTeam.addPlayer(new Player(i,name,k));
 		Player player = theTeam.getPlayer(i);
-		System.out.println(player.getName()+"'s adventurer is: "+ player.getPlayerType()+" ");
+		String playerType =  player.getPlayerType();
+		setupOuts.playerAndType(name, playerType);
+		return usedNames;
 	}
 }

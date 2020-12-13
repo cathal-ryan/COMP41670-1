@@ -1,6 +1,8 @@
 package setup;
 import java.util.Scanner;
 
+import gameplay.model.GameModel;
+
 
 public class Setup {
     
@@ -12,6 +14,7 @@ public class Setup {
     private WaterMeterSetup  waterHandler;
     private SetupOutputs setupOutputs;
     private SetupInputs setupInputs;
+    private GameModel theGameModel;
     
     public static Setup getInstance(){
         if(theSetup == null){
@@ -30,10 +33,12 @@ public class Setup {
     }
     
 
-    public void doAllSetup(Scanner user) {
+    public void doAllSetup() {
         setupOutputs.welcomeScreen();
         waterHandler.createWaterLevel(setupInputs,setupOutputs);
-        playerHandler.createAllPlayers(user); // does here fine
+        playerHandler.createAllPlayers(); // does here fine
         cardHandler.dealCards(); // does here ok i think
+        theGameModel = GameModel.getInstance();
+        setupOutputs.setupOver();
     }
 }

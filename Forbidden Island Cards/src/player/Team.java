@@ -53,52 +53,6 @@ public class Team {
         }
         return allPlayers;
     }
-
-    public List<Integer> getPlayerswithSpecials(){
-        List<Integer> eligible = new ArrayList<>();
-        int i=0;
-        for (Player p1 : team){
-            if(p1.getHand().checkContains(TreasureCardEnums.HELICOPTER_LIFT) || p1.getHand().checkContains(TreasureCardEnums.SANDBAGS)){
-                eligible.add(i);
-            }
-            i++;
-        }
-        return eligible;
-    }
-
-    public boolean enquirePlayers(Scanner inputScanner, boolean asked){
-        List<Integer> eligible = getPlayerswithSpecials();
-        if(eligible.isEmpty()){
-            if(asked){
-                System.out.println("No one has a special card...");
-            }
-            return false;
-        }
-        if(!Choices.getYesOrNo(inputScanner,"Does anyone want to play their special card?", "No", "Yes")){
-            return false;
-        }
-        showAllHands();
-        System.out.println("\nWho will play their special card?");
-        Player player1 = choosePlayer(inputScanner,eligible);
-        if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT) && player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
-            if(Choices.getYesOrNo(inputScanner,"Do you want to play Helicopter Lift or Sandbags", "Sandbags", "Helicopter Lift")){
-                return useHelicopterLift(inputScanner, player1);
-            }
-            else{
-                useSandbags(player1);
-                return false;
-            }
-        }
-        else if(player1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT)){
-            return useHelicopterLift(inputScanner, player1);
-        }
-        else if(player1.checkHasCard(TreasureCardEnums.SANDBAGS)){
-            useSandbags(player1);
-            return false;
-        }
-        return false;
-    }
-
 	private boolean canWin() {
         // Check the position of all players if theyre on fools landing
         return false;

@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.view;
 
 import java.util.List;
 import java.util.Scanner;
@@ -53,6 +53,9 @@ public class GameInputs {
             }
             if ((userInput >= 0) && (userInput < 10)) {
                 validInput = true;
+            }
+            else{
+                theOutputs.generalError();
             }
         }
         return userInput;

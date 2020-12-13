@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,11 +14,12 @@ import cards.TreasureDeck;
 import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
+import gameplay.WaterMeter;
 import player.Player;
 import player.Team;
 import javax.security.auth.Subject;
 
-public class GameState extends Observable {
+public class GameModel extends Observable {
 //    private Controller theController = Controller.getInstance();
     private Team theTeam;
     private Player currentPlayer;
@@ -30,10 +31,9 @@ public class GameState extends Observable {
     private FloodDeck theFloodDeck;
     private TreasureDeck theTreasureDeck;
     
-
-    private static GameState theGameState = null;
+    private static GameModel theGameModel = null;
     
-    private GameState() {
+    private GameModel() {
         theTeam = Team.getInstance();
         theFloodDeck = FloodDeck.getInstance();
         theTreasureDiscardPile = TreasureDiscardPile.getInstance();
@@ -44,11 +44,11 @@ public class GameState extends Observable {
        // theController = Controller.getInstance();
     }
 
-    public static GameState getInstance() {
-        if(theGameState == null) {
-            theGameState = new GameState();
+    public static GameModel getInstance() {
+        if(theGameModel == null) {
+            theGameModel = new GameModel();
         }
-        return theGameState;
+        return theGameModel;
     }
 
     public void setNextPlayer() {
@@ -77,7 +77,7 @@ public class GameState extends Observable {
     }
 
     public String getPlayerName(Player player){
-        player.getName();
+        return player.getName();
     }
     
     public void setActionsLeft(){
@@ -112,7 +112,7 @@ public class GameState extends Observable {
         }
     }
 
-    void movePlayer() {
+    public void movePlayer() {
 		if(!currentPlayer.canMove()){
 			return;
         }
@@ -122,10 +122,10 @@ public class GameState extends Observable {
         }
 	}
 
-    void decreaseActions(){
+    public void decreaseActions(){
         actionsLeft--;
     }
-	void shoreUp(){
+	public void shoreUp(){
 		if(!currentPlayer.canShoreUp()){
 			return;
         }
@@ -133,13 +133,9 @@ public class GameState extends Observable {
             currentPlayer.getPawn().shoreUp();
         }
     }
-    
-    void useSandbags() {
-		theTeam.useSandbags(player);
-	}
 
 	public String getHandasString(int i) {
-        return theTeam.getPlayer(i).getHand().printHand();
+        return theTeam.getPlayer(i).getHand().getHandasString();
     }
 
 	public boolean canTrade() {
@@ -230,6 +226,9 @@ public class GameState extends Observable {
         }
         return eligible;
     }
+
+	public void useSandbags() {
+	}
     
 
 }

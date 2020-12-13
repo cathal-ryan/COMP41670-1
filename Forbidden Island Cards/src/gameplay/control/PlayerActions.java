@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.control;
 
 import java.util.ResourceBundle.Control;
 
@@ -10,8 +10,8 @@ import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
 import player.Player;
 import player.Team;
-import gameplay.Controller;
-import gameplay.GameOutputs;
+import gameplay.control.Controller;
+import gameplay.view.*;
 
 public class PlayerActions {
 

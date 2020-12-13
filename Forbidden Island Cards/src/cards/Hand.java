@@ -30,7 +30,7 @@ public class Hand {
 		return s1;
 	}
 
-	public String printHand(){
+	public String getHandasString(){
 		String hand = "";
 		if(handOfCards.size()==0){
 			hand = ("Nada..."+" ¯\\_(ツ)_/¯");
@@ -88,10 +88,6 @@ public class Hand {
 		return -1;
 	}
 	
-
-	public int numofInstances(TreasureCardEnums name){
-		return Collections.frequency(getNamesList(), name);
-	}
 	public boolean checkContains(TreasureCardEnums name){
 		return (getNamesList().contains(name));
 	}	

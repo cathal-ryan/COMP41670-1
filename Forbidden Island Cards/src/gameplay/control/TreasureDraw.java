@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.control;
 
 import java.util.Scanner;
 
@@ -74,7 +74,7 @@ import player.Team;
                     player.discardTreasureCard(inputScanner);
                 }
                 System.out.println("\nCool, so "+ player.getName()+ " now has the following hand: ");
-                player.getHand().printHand();
+                player.getHand().getHandasString();
             }
         }
 		public boolean seeIfLost() {

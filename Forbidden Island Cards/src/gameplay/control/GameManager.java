@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.control;
 import java.util.Scanner;
 import player.Player;
 import player.Team;
@@ -10,8 +10,6 @@ public class GameManager {
     // Other variables
     private boolean    gameOver=false;
     private Controller theController;
-    
-
 
     public static GameManager getInstance(){
         if(theGM == null){

@@ -1,17 +1,19 @@
-package gameplay;
+package gameplay.control;
 
 import java.util.Observable;
 import java.util.Observer;
 
 import javax.security.auth.Subject;
 
+import gameplay.model.GameModel;
+
 
 
 public class EndingGame implements Observer {
 
-    private GameState theGS;
+    private GameModel theGS;
 
-    public EndingGame(GameState game){
+    public EndingGame(GameModel game){
         this.theGS = game;
     }
 

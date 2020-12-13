@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.control;
 
 import java.util.Scanner;
 

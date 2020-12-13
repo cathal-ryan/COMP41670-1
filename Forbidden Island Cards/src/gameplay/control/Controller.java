@@ -1,10 +1,13 @@
-package gameplay;
+package gameplay.control;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
-import gameplay.GameInputs;
+
+import gameplay.model.GameModel;
+import gameplay.view.GameInputs;
+import gameplay.view.GameOutputs;
 import player.Player;
 import cards.DiscardPile;
 import cards.HelicopterLift;
@@ -14,16 +17,16 @@ import enums.TreasureCardEnums;
 
 public class Controller implements Observer{
 
-    private GameState theGameState;
+    private GameModel theGameModel;
     private GameOutputs theOutputs;
     private GameInputs theInputs;
 
     private static Controller theController = null;
     
     private Controller() {
-        theGameState = GameState.getInstance();
-        EndingGame theWin = new EndingGame(theGameState);
-        theGameState.addObserver(theWin);
+        theGameModel = GameModel.getInstance();
+        EndingGame theWin = new EndingGame(theGameModel);
+        theGameModel.addObserver(theWin);
         theInputs = new GameInputs();
         theOutputs = new GameOutputs();
     }
@@ -33,10 +36,6 @@ public class Controller implements Observer{
             theController = new Controller();
         }
         return theController;
-    }
-
-    public boolean isGameWon(){
-        return false;
     }
 
 	@Override
@@ -50,68 +49,68 @@ public class Controller implements Observer{
 	}
 
 	public void newTurn() {
-        theGameState.setTurnOver(false);
-        theGameState.setActionsLeft();
-        theGameState.setNextPlayer();
+        theGameModel.setTurnOver(false);
+        theGameModel.setActionsLeft();
+        theGameModel.setNextPlayer();
 	}
 
     public String returnPlayerName(){
-        return theGameState.getPlayerNameFromIndex(-1);
+        return theGameModel.getPlayerNameFromIndex(-1);
     }
 
     public int getActionsLeft(){
-        return theGameState.getActionsLeft();
+        return theGameModel.getActionsLeft();
     }
 
 	public boolean getTurnOver() {
-		return theGameState.getTurnOver();
+		return theGameModel.getTurnOver();
     }
     
     public void setTurnOver(){
-        theGameState.setTurnOver(true);
+        theGameModel.setTurnOver(true);
     }
 
     public void movement(){
-        if(theGameState.getActionsLeft()<1){
+        if(theGameModel.getActionsLeft()<1){
             theOutputs.noActionsLeft();
         }
         else{
-            theGameState.movePlayer();
+            theGameModel.movePlayer();
         }
     }
 
 	public void shoreUp() {
-        if(theGameState.getActionsLeft()<1){
+        if(theGameModel.getActionsLeft()<1){
             theOutputs.noActionsLeft();
         }
         else{
-            theGameState.movePlayer();
+            theGameModel.movePlayer();
         }
 	}
 
 	public void lookDiscarded() {
         boolean FlorTr = theInputs.floodOrTreasure();
-        String pile = theGameState.showDiscard(FlorTr);
+        String pile = theGameModel.showDiscard(FlorTr);
         theOutputs.printPile(FlorTr, pile);
 	}
 
 	public void lookAtHands() {
-        for(int i=0;i<theGameState.getNumPlayers();i++){
-            String name = theGameState.getPlayerNameFromIndex(i);
-            String hand = theGameState.getHandasString(i);
+        for(int i=0;i<theGameModel.getNumPlayers();i++){
+            String name = theGameModel.getPlayerNameFromIndex(i);
+            String hand = theGameModel.getHandasString(i);
             theOutputs.printHand(name, hand);
         }
     }
 
 	public void giveCard() {
         List traders = new ArrayList<>();
-        if(theGameState.getActionsLeft()<1){
+        if(theGameModel.getActionsLeft()<1){
             theOutputs.noActionsLeft();
             return;
         }
         else{
-            if(theGameState.canTrade()){
-                traders = theGameState.getTradePartners();
+            if(theGameModel.canTrade()){
+                traders = theGameModel.getTradePartners();
             }
             else{
                 theOutputs.cantTrade();
@@ -125,16 +124,16 @@ public class Controller implements Observer{
 		boolean validSelection = false;
 		while(!validSelection){
 			int cardnum = chooseFromHand(null, true);
-			validSelection = giveTreasureCard(playerB, cardnum);
+			validSelection = transferTreasure(playerB, cardnum);
 		}
-		theGameState.decreaseActions();
+		theGameModel.decreaseActions();
     }
     
     public int chooseFromHand(Player playerA, boolean ineligible){
         if(playerA==null){
-            playerA = theGameState.getCurrentPlayer();
+            playerA = theGameModel.getCurrentPlayer();
         }
-        List hands = theGameState.getPlayerHand(playerA);
+        List hands = theGameModel.getPlayerHand(playerA);
 		for (int i = 0; i < hands.size(); i++) {
 			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
                 theOutputs.showOption(i,hands.get(i).toString());
@@ -143,11 +142,11 @@ public class Controller implements Observer{
         return theInputs.handChoice(hands.size());
     }
     
-    public boolean giveTreasureCard(Player playerB, int canum){
-        if (!theGameState.addCardfromPlayerA(playerB,canum)){
+    public boolean transferTreasure(Player playerB, int canum){
+        if (!theGameModel.addCardfromPlayerA(playerB,canum)){
             return false;
         }
-        int handSizeB = theGameState.getHandSize(playerB);
+        int handSizeB = theGameModel.getHandSize(playerB);
         while(handSizeB > 5){
 			discardTreasure(playerB);
 		}
@@ -156,8 +155,8 @@ public class Controller implements Observer{
 
     public void discardTreasure(Player player){
         boolean validIn = false;
-        String name = theGameState.getPlayerName(player);
-        List hand = theGameState.getPlayerHand(player);
+        String name = theGameModel.getPlayerName(player);
+        List hand = theGameModel.getPlayerHand(player);
         theOutputs.handTooBig(name);
         int userIn = chooseFromHand(player,false);
         if(!(hand.get(userIn) instanceof TreasureCard)){
@@ -173,65 +172,65 @@ public class Controller implements Observer{
                 }
             }
         }
-        theGameState.removeCardByIndex(player, userIn);
+        theGameModel.removeCardByIndex(player, userIn);
     }
     
 	public Player choosePlayer(List<Integer> eligible){
         theOutputs.choosePl();
         if(eligible==null){
-            eligible = theGameState.getAllPlayerNums(-1);
+            eligible = theGameModel.getAllPlayerNums(-1);
         }
-        int size = theGameState.getTeamSize();
+        int size = theGameModel.getTeamSize();
         for(int i=0;i<size;i++){
             if (eligible.contains(i)){
-                theOutputs.showOption(i, theGameState.getPlayer(i).getName());
+                theOutputs.showOption(i, theGameModel.getPlayer(i).getName());
             }
         }
-        int userIn = theInputs.playerChoice(theGameState.getTeamSize(), eligible);
-		return theGameState.getPlayer(userIn);
+        int userIn = theInputs.playerChoice(theGameModel.getTeamSize(), eligible);
+		return theGameModel.getPlayer(userIn);
     }
 
     public void useHelicopterLift(Player p1) {
         if(p1==null){
-            p1 = theGameState.getCurrentPlayer();
+            p1 = theGameModel.getCurrentPlayer();
         }
-        if(!theGameState.checkHasCard(p1, true)){
+        if(!theGameModel.checkHasCard(p1, true)){
             theOutputs.noHeli();
             return;
         }
-        theGameState.removeCard(p1, TreasureCardEnums.HELICOPTER_LIFT);
+        theGameModel.removeCard(p1, TreasureCardEnums.HELICOPTER_LIFT);
         int k = theInputs.heliWhere();
         theOutputs.whoWillFly();
-        List <Integer> availforMove = theGameState.getAllPlayerNums(-1);
+        List <Integer> availforMove = theGameModel.getAllPlayerNums(-1);
         boolean keepMoving = true;
         do{
             Player playerForHeliMove = choosePlayer(availforMove);
-            theGameState.heliMovePlayer(playerForHeliMove, k);
+            theGameModel.heliMovePlayer(playerForHeliMove, k);
             availforMove.remove(new Integer(playerForHeliMove.getNum()));
         }
         while(!availforMove.isEmpty() && keepGoingHeli());
-	}
+    }
 
-	public void useSandbags(Player p1) {
-        if(p1==null){
-            p1 = theGameState.getCurrentPlayer();
-        }
-        if(!theGameState.checkHasCard(p1, false)){
-            theOutputs.noSandbags();
-            return;
-        }
-        theGameState.removeCard(p1, TreasureCardEnums.SANDBAGS);
-        theGameState.useSandbags();
-        
-	}
-
-	public boolean keepGoingHeli() {
+    public boolean keepGoingHeli() {
         theOutputs.heliAnyoneElse();
         return theInputs.getYesOrNo("No","Yes");
     }
 
+	public void useSandbags(Player p1) {
+        if(p1==null){
+            p1 = theGameModel.getCurrentPlayer();
+        }
+        if(!theGameModel.checkHasCard(p1, false)){
+            theOutputs.noSandbags();
+            return;
+        }
+        theGameModel.removeCard(p1, TreasureCardEnums.SANDBAGS);
+        theGameModel.useSandbags();
+	}
+
+
     public void enquirePlayers(boolean asked){
-        List<Integer> eligible = theGameState.getPlayerswithSpecials();
+        List<Integer> eligible = theGameModel.getPlayerswithSpecials();
         if(eligible.isEmpty()){
             if(asked){
                 theOutputs.noSpecials();
@@ -245,7 +244,7 @@ public class Controller implements Observer{
         lookAtHands();
         theOutputs.whoForSpecial();
         Player player1 = choosePlayer(eligible);
-        if(theGameState.checkHasCard(player1, true) && theGameState.checkHasCard(player1, false)){
+        if(theGameModel.checkHasCard(player1, true) && theGameModel.checkHasCard(player1, false)){
             theOutputs.heliOrSand();
             if(theInputs.getYesOrNo("Sandbags", "Helicopter Lift")){
                 useHelicopterLift(player1);
@@ -254,12 +253,11 @@ public class Controller implements Observer{
                 useSandbags(player1);
             }
         }
-        else if(theGameState.checkHasCard(player1, true)){
+        else if(theGameModel.checkHasCard(player1, true)){
             useHelicopterLift(player1);
         }
-        else if(theGameState.checkHasCard(player1, false)){
+        else if(theGameModel.checkHasCard(player1, false)){
             useSandbags(player1);
         }
     }
-
 }

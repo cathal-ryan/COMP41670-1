@@ -16,7 +16,7 @@ public class WaterMeterSetup {
 	protected void createWaterLevel(SetupInputs inputs, SetupOutputs outputs) {
 		int level=0;
 		outputs.waterOptions();
-		int water = inputs.setDifficulty();
+		int water = inputs.setBetween(true);
 		setupWaterMeter.setWatermeter(water);
 	}
 }

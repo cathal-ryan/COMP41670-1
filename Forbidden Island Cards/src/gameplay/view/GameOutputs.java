@@ -1,4 +1,4 @@
-package gameplay;
+package gameplay.view;
 import cards.DiscardPile;
 
 /**Provides major communications with the player, with system.out

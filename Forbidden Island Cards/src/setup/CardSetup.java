@@ -20,7 +20,7 @@ public class CardSetup {
 	private FloodDiscardPile setupFloodDiscard;
 	private TreasureDiscardPile setupTreasureDiscard;
 	private Team setupTeam;
-	
+	private SetupOutputs setupOuts;
 	//===========================================================
 	// Constructor
 	//===========================================================
@@ -33,6 +33,8 @@ public class CardSetup {
 		this.setupFloodDiscard = FloodDiscardPile.getInstance();
 		this.setupTreasureDiscard = TreasureDiscardPile.getInstance();
 		this.setupTeam = Team.getInstance();
+		setupOuts = new SetupOutputs();
+
 	}
 
 	public void dealCards() {
@@ -57,19 +59,16 @@ public class CardSetup {
 				}
             i++;
 		}
-		//setupTeam.showAllHands();
-		// Take out 6 flood cards
         for(int k=0;k<6;k++) {
 			try{Thread.sleep(100);}
 			catch(InterruptedException ex)
 			{Thread.currentThread().interrupt();}
-
 			Card c1 = setupFloodDeck.dealCard();
-			System.out.println(c1.getName() +" has been flooded!");
+			String floodName = c1.getName().toString();
+			setupOuts.flooded(floodName);
 			// could have a board.flood(c1.getName) here
         	setupFloodDiscard.addToPile(c1);
 		}
-		System.out.println("-------------------------------------------------");
     }
 }
 	

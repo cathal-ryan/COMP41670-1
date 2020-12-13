@@ -18,7 +18,14 @@ public class SetupInputs {
         setupOutputs = new SetupOutputs();
     }
 
-    public int setDifficulty() {
+    public int setBetween(boolean flood) {
+        int[] lims = new int[2];
+        if(flood){
+            lims[0] = 1; lims[1] = 4;
+        }
+        else{
+            lims[0] = 2; lims[1] = 4;
+        }
         boolean validInput = false;
         int waterlevel =0;
         while(!validInput){
@@ -27,14 +34,25 @@ public class SetupInputs {
 			    waterlevel = Integer.parseInt(decision);
             } 
             catch (NumberFormatException e) {
-                setupOutputs.error();
+                setupOutputs.numError(lims[0],lims[1]);
 			    continue;
 		    }
-		    if ((waterlevel >= 1) && (waterlevel <= 4)) {
+		    if ((waterlevel >= lims[0]) && (waterlevel <= lims[1])) {
 			    validInput = true;
-		    }
+            }
+            else{
+                setupOutputs.numError(lims[0],lims[1]);
+            }
         }
         return waterlevel;
+    }
+
+	public int getNumberOfPlayers() {
+		return 0;
+    }
+    
+    public String playerName(){
+        return input.nextLine();
     }
     
 }
