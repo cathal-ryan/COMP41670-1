@@ -21,6 +21,10 @@ public class WinObserver implements Observer {
 
 	public boolean isGameWon() {
 		return gameWon;
-	}
+    }
+    
+    public String getWinCondition(){
+        return winCondition;
+    }
     
 }

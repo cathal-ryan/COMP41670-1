@@ -18,7 +18,7 @@ public class PlayerActions {
 		int userInput;
 		theOutputs.printTurnStart(theController.returnPlayerName());
 		theInputs.confirm(); // Make player press return to confirm turn start
-		while (!theController.getTurnOver()){
+		while (!theController.getTurnOver() && !theController.isGameOver()){
 			theOutputs.giveOptions(theController.getActionsLeft());
 			userInput = theInputs.turnChoice();
 			switch (userInput) {

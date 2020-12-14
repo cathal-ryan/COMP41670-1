@@ -32,10 +32,10 @@ public class GameManager {
         FloodDraw currentFlood;
         while (!theController.isGameOver()) { // Main loop for doing PlayerTurns
             theController.newTurn();
+            
             currentPActions = new PlayerActions();    // Make a new PlayerTurn
-            while(!theController.getTurnOver() && !theController.isGameOver()){
-                currentPActions.doActions();                          // Let it handle the turn
-            }
+            currentPActions.doActions();                          // Let it handle the turn
+            
             if(!theController.isGameOver()){
                 currentTreasure = new TreasureDraw();    // Make a new PlayerTurn
                 currentTreasure.doTreasureDraw();                            // Let it handle the turn    

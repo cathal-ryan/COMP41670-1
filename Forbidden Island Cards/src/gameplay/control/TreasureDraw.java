@@ -40,6 +40,9 @@ import player.Team;
             theOutputs.treasureTime();
             while(!lost && (i<2)){
                 theController.enquirePlayers(false);
+                if(theController.isGameOver()){
+                    return;
+                }
                 theOutputs.cardsLeft(2-i);
                 theInputs.confirm();
                 TreasureDeckCard c1 = theController.getTreasureCard();

@@ -34,6 +34,9 @@ import gameplay.view.GameOutputs;
             int waterLevel = theController.getWaterLevel();
             for(int i =0;i<waterLevel;i++) {
                 theController.enquirePlayers(false);
+                if(theController.isGameOver()){
+                    return;
+                }
                 theOutputs.cardsLeft(waterLevel-i);
                 theInputs.confirm(); //             
                 theController.dealFloodCard();

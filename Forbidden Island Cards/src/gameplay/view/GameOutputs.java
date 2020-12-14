@@ -146,9 +146,9 @@ public class GameOutputs {
         System.out.println("Brace Yourselves! It's time to draw flood cards.");
 	}
 
-	public void floodedTile(String string) {
+public void floodedTile(String string) {
         System.out.println("Oh no! "+ string+ " has been flooded!");
-    }
+}
     
     public void turnEndo(){
         System.out.println("-------------------------------------------");
@@ -165,4 +165,16 @@ public class GameOutputs {
         System.out.println(gameLoss);
         System.out.println("\nPlease play again some time!");
 	}
+
+        public void aWinnerIsYou(String gameWon) {
+                System.out.println("____    __    ____  __  .__   __. .__   __.  _______ .______          _______. __   __   __                  ");
+                System.out.println("\\   \\  /  \\  /   / |  | |  \\ |  | |  \\ |  | |   ____||   _  \\        /       ||  | |  | |  |                 ");
+                System.out.println(" \\   \\/    \\/   /  |  | |   \\|  | |   \\|  | |  |__   |  |_)  |      |   (----`|  | |  | |  | ");
+                System.out.println("  \\            /   |  | |  . `  | |  . `  | |   __|  |      /        \\   \\    |  | |  | |  | ");
+                System.out.println("   \\    /\\    /    |  | |  |\\   | |  |\\   | |  |____ |  |\\  \\----.----)   |   |__| |__| |__| ");
+                System.out.println("    \\__/  \\__/     |__| |__| \\__| |__| \\__| |_______|| _| `._____|_______/    (__) (__) (__) ");
+                System.out.println("                                                                                             ");
+                System.out.println(gameWon);
+                System.out.println("\nPlease play again some time!");
+        }
 }

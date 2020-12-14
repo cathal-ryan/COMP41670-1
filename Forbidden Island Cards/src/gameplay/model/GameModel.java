@@ -1,4 +1,5 @@
 package gameplay.model;
+
 import java.util.ArrayList;
 import java.util.List;
 import cards.*;
@@ -8,6 +9,7 @@ import gameplay.WaterMeter;
 import player.*;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
+import gameplay.control.WinObserver;
 
 public class GameModel implements Subject {
     // private Controller theController = Controller.getInstance();
@@ -34,7 +36,7 @@ public class GameModel implements Subject {
         currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers() - 1);
         theWaterMeter = WaterMeter.getInstance();
         loser = new LoseObserver();
-        winner = new LoseObserver();
+        winner = new WinObserver();
     }
 
     public static GameModel getInstance() {
@@ -262,4 +264,19 @@ public class GameModel implements Subject {
     public void notifyUpdate(Observer o, int m) {
         o.update(m);
     }
+
+	public boolean canWin() {
+        // check the positions of all players, if they're on fools landing
+        // check if all 4 treasures have been captured if thats the case then set it so checkifwon returns true
+        double x= Math.random();
+        boolean checkifWon = (x>0.5);
+        if(checkifWon){
+            notifyUpdate(winner,7);
+            notifyUpdate(loser,7);
+            return true;
+        }
+        else{
+            return false;
+        }
+	}
 }

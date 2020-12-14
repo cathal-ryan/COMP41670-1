@@ -204,6 +204,9 @@ public class Controller{
             return;
         }
         theGameModel.removeCard(p1, TreasureCardEnums.HELICOPTER_LIFT);
+        if(theGameModel.canWin()){
+            return;
+        }
         int k = theInputs.heliWhere();
         theOutputs.whoWillFly();
         List <Integer> availforMove = theGameModel.getAllPlayerNums(-1);
@@ -295,7 +298,13 @@ public class Controller{
 	}
 
 	public void gameOverPrompt() {
-        String gameLoss = losing.getLossCondition();
-        theOutputs.gameOver(gameLoss);
+        if(losing.isGameLost()){
+            String gameLoss = losing.getLossCondition();
+            theOutputs.gameOver(gameLoss);
+        }
+        if(winning.isGameWon()){
+            String gameWon = winning.getWinCondition();
+            theOutputs.aWinnerIsYou(gameWon);
+        }
 	}
 }
