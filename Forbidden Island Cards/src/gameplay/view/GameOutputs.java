@@ -139,7 +139,7 @@ public class GameOutputs {
 	}
 
 	public void waterRise(int waterLevel) {
-        System.out.println("Oh no! The water has risen! Now at level"+waterLevel);
+        System.out.println("Oh no! The water has risen! Now at level "+waterLevel);
 	}
 
 	public void floodDrawTime() {
@@ -153,4 +153,16 @@ public class GameOutputs {
     public void turnEndo(){
         System.out.println("-------------------------------------------");
     }
+
+	public void gameOver(String gameLoss) {
+        System.out.println("  ▄▀  ██   █▀▄▀█ ▄███▄       ████▄     ▄   ▄███▄   █▄▄▄▄ ");
+        System.out.println("▄▀    █ █  █ █ █ █▀   ▀      █   █      █  █▀   ▀  █  ▄▀"); 
+        System.out.println("█ ▀▄  █▄▄█ █ ▄ █ ██▄▄        █   █ █     █ ██▄▄    █▀▀▌");
+        System.out.println("█   █ █  █ █   █ █▄   ▄▀     ▀████  █    █ █▄   ▄▀ █  █ ");
+        System.out.println(" ███     █    █  ▀███▀               █  █  ▀███▀     █   ");
+        System.out.println("        █    ▀                        █▐            ▀    ");
+        System.out.println("        ▀                              ▐                  ");
+        System.out.println(gameLoss);
+        System.out.println("\nPlease play again some time!");
+	}
 }

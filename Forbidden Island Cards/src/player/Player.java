@@ -1,17 +1,12 @@
 package player;
 
 import java.util.List;
-import java.util.Scanner;
 import java.awt.Point;
 
-import gameplay.Choices;
 import pawns.Pawn;
 import pawns.*;
 
 import cards.Hand;
-import cards.HelicopterLift;
-import cards.SandbagsCard;
-import cards.TreasureCard;
 import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
 import enums.TilesEnums;

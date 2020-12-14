@@ -2,10 +2,6 @@ package player;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-
-import enums.TreasureCardEnums;
-import gameplay.Choices;
 
 public class Team {
     private static Team  theTeam;

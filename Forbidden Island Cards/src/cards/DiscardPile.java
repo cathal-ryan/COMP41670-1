@@ -42,7 +42,7 @@ abstract public class DiscardPile {
 		Discarded.push(x); 
 	} 
 
-	public  String returnPrintedPile() {
+	public String returnPrintedPile() {
 		discardsAsString = "";
 		printPile();
 		return discardsAsString;

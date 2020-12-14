@@ -21,7 +21,7 @@ public class TreasureDiscardPile extends DiscardPile{
 		}
 	}
 	
-	public TreasureDiscardPile() {
+	private TreasureDiscardPile() {
 		this.Discarded = new Stack<Card>();
 	}
 }

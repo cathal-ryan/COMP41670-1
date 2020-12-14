@@ -9,14 +9,13 @@ public class WinObserver implements Observer {
 
     private static boolean gameOver;
     private static boolean gameWon;
-    private static Enum winCondition;
+    private static String winCondition;
 
     @Override
     public void update(int method) {
         gameWon=true;
         if(method==7){
             winCondition = EndGameEnums.HELICOPTER.toString();
-            break;
         }
     }
 

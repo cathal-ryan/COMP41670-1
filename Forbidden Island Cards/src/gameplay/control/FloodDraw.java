@@ -4,12 +4,8 @@ import java.util.Scanner;
 
 import cards.Card;
 
-import cards.FloodDeck;
-import cards.FloodDiscardPile;
 import gameplay.view.GameInputs;
 import gameplay.view.GameOutputs;
-import player.Player;
-import player.Team;
     
     /**
      * PlayerTurn class manages all of the options a player can make whilst they
@@ -37,9 +33,7 @@ import player.Team;
             theOutputs.floodDrawTime();
             int waterLevel = theController.getWaterLevel();
             for(int i =0;i<waterLevel;i++) {
-                if(theController.enquirePlayers(false)){
-                    return;       //game is won
-                }
+                theController.enquirePlayers(false);
                 theOutputs.cardsLeft(waterLevel-i);
                 theInputs.confirm(); //             
                 theController.dealFloodCard();

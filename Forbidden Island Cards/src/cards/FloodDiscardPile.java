@@ -11,7 +11,11 @@ public class FloodDiscardPile extends DiscardPile{
         	theFloodDiscardPile = new FloodDiscardPile();
         }
         return theFloodDiscardPile;
-    }
+	}
+
+	private FloodDiscardPile() {
+		this.Discarded = new Stack<Card>();
+	}
 	
 	public void putbackall() {
 		if(Discarded.size()==0) {
@@ -29,14 +33,6 @@ public class FloodDiscardPile extends DiscardPile{
 		}
 	}
 	
-	public FloodDiscardPile() {
-		this.Discarded = new Stack<Card>();
-	}
 
-	public static void main(String[] args) {
-		FloodDiscardPile d1 = new FloodDiscardPile();
-		System.out.println(d1.returnPrintedPile());
-		System.out.println("hello");
-	}
 
 }

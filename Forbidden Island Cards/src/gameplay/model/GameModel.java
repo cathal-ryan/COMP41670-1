@@ -1,29 +1,13 @@
 package gameplay.model;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Observable;
-
-import cards.Card;
-import cards.Deck;
-import cards.DiscardPile;
-import cards.FloodDeck;
-import cards.FloodDiscardPile;
-import cards.Hand;
-import cards.TreasureCard;
-import cards.TreasureDeck;
-import cards.TreasureDeckCard;
-import cards.TreasureDiscardPile;
-import cards.WaterRiseCard;
+import cards.*;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
 import gameplay.WaterMeter;
-import player.Player;
-import player.Team;
+import player.*;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
-import gameplay.model.Subject;
-
 
 public class GameModel implements Subject {
     // private Controller theController = Controller.getInstance();
@@ -36,7 +20,6 @@ public class GameModel implements Subject {
     private FloodDiscardPile theFloodDiscardPile;
     private FloodDeck theFloodDeck;
     private TreasureDeck theTreasureDeck;
-    private boolean gameLost;
     private Observer loser;
     private Observer winner;
     private List<Observer> observers = new ArrayList<>();
@@ -269,8 +252,9 @@ public class GameModel implements Subject {
         Card card1 = theFloodDeck.dealCard();
         theFloodDiscardPile.addToPile(card1);
         if (card1.getName() == TilesEnums.FOOLS_LANDING){
-            notifyUpdate(loser,4);
+            notifyUpdate(loser,4); // currently you lose whenever fools landing drawn
         }
+        // should check other ways in which the player can lose here.
         return card1;
     }
 

@@ -10,7 +10,6 @@ import gameplay.view.GameInputs;
 import gameplay.view.GameOutputs;
 import player.Player;
 import cards.Card;
-import cards.DiscardPile;
 import cards.HelicopterLift;
 import cards.SandbagsCard;
 import cards.TreasureCard;
@@ -295,9 +294,8 @@ public class Controller{
         theOutputs.floodedTile(card1.getName().toString());
 	}
 
-	public void gameOver() {
-	}
-
 	public void gameOverPrompt() {
+        String gameLoss = losing.getLossCondition();
+        theOutputs.gameOver(gameLoss);
 	}
 }
