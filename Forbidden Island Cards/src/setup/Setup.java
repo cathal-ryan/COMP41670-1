@@ -1,5 +1,4 @@
 package setup;
-import java.util.Scanner;
 
 import gameplay.model.GameModel;
 

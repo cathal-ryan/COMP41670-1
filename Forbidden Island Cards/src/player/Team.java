@@ -49,9 +49,4 @@ public class Team {
         }
         return allPlayers;
     }
-	private boolean canWin() {
-        // Check the position of all players if theyre on fools landing
-        return false;
-    }
-
 }

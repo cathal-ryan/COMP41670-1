@@ -1,8 +1,6 @@
 package gameplay.control;
 
 import enums.EndGameEnums;
-import gameplay.model.GameModel;
-
 
 
 public class WinObserver implements Observer {

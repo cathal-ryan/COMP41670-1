@@ -1,10 +1,8 @@
 package setup;
 
-import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import java.awt.Point;
 
 

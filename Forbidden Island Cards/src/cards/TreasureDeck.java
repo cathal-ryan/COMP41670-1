@@ -1,11 +1,5 @@
-	package cards;
-	import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-	import java.util.Random;
+package cards;
 import java.util.Stack;
-
-import enums.TilesEnums;
 import enums.TreasureCardEnums;
 
 public class TreasureDeck extends Deck{

@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 import gameplay.control.GameManager;
 import setup.Setup;
 

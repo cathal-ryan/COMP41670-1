@@ -1,11 +1,7 @@
 package cards;
 
 import java.util.Collections;
-import java.util.List;
 import java.util.Stack;
-
-import enums.TilesEnums;
-
 
 abstract public class DiscardPile {
 	protected  Stack<Card>  Discarded;

@@ -1,9 +1,5 @@
 package setup;
 
-import java.util.Scanner;
-
-import cards.DiscardPile;
-
 /**Provides major communications with the player, with system.out
  * as a way of communicating
  * This can be changed if you wish by creating a different version of messenger e.g with a GUI

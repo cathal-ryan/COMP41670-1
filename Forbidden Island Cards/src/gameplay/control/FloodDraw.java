@@ -1,9 +1,4 @@
 package gameplay.control;
-
-import java.util.Scanner;
-
-import cards.Card;
-
 import gameplay.view.GameInputs;
 import gameplay.view.GameOutputs;
     

@@ -1,6 +1,4 @@
 package gameplay.control;
-
-import gameplay.model.GameModel;
 import enums.EndGameEnums;
 
 

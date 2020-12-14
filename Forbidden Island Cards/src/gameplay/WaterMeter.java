@@ -1,7 +1,6 @@
 package gameplay;
 
 import cards.FloodDiscardPile;
-import cards.TreasureDeck;
 
 public class WaterMeter {
 	private static int watermeter;

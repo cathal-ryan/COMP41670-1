@@ -1,7 +1,4 @@
 package gameplay.control;
-import java.util.Scanner;
-import player.Player;
-import player.Team;
 
 public class GameManager {
 
