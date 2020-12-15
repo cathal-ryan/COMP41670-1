@@ -30,17 +30,21 @@ public class Hand {
 		return s1;
 	}
 
-	public void printHand(){
+	public String getHandasString(){
+		String hand = "";
+		if(handOfCards.size()==0){
+			hand = ("Nada..."+" ¯\\_(ツ)_/¯");
+		}
 		for (int k = 0; k < handOfCards.size(); k++) {
-			System.out.print(handOfCards.get(k).getName());
+			hand = hand + (handOfCards.get(k).getName());
 			if(k==handOfCards.size()-1){
-				System.out.print(".\n");
+				hand = hand + (".\n");
 			}
 			else{
-				System.out.print(", ");
+				hand = hand + (", ");
 			}
 		}
-		System.out.println("\n");
+		return hand;
 	}
 	
 	public void removeCard(int i){
@@ -84,10 +88,6 @@ public class Hand {
 		return -1;
 	}
 	
-
-	public int numofInstances(TreasureCardEnums name){
-		return Collections.frequency(getNamesList(), name);
-	}
 	public boolean checkContains(TreasureCardEnums name){
 		return (getNamesList().contains(name));
 	}	

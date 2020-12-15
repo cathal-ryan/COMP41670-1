@@ -38,7 +38,7 @@ public class TreasureHandler {
             return true;
 		}
 		else{
-            System.out.println("You need at least 4 of the same card to claim a treasure!");
+            System.out.println("\nYou need at least 4 of the same card to claim a treasure!");
             return false;
 		}
     }
