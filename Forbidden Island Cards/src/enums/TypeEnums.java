@@ -1,13 +1,13 @@
 package enums;
 
 public enum TypeEnums {
-	NORMAL 			("Normal Tile"),
-	FOOLS_LANDING 	("Fool's Landing"),
-	EARTH 			("The Earth Stone"),
-	WIND			("The Statue of the Wind"), 
-	FIRE 			("The Crystal of Fire"),
-	WATER			("The Ocean's Chalice"),
-	SEA				("Sea Tile");
+	NORMAL 			("   Normal Tile    "),
+	FOOLS_LANDING 	("  Fool's Landing  "),
+	EARTH 			("   Earth Stone    "),
+	WIND			("Statue of the Wind"), 
+	FIRE 			(" Crystal of Fire  "),
+	WATER			(" Ocean's Chalice  "),
+	SEA				("     Sea Tile     ");
 
 	private final String type;
 	/**
