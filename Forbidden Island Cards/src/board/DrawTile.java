@@ -17,9 +17,11 @@ public class DrawTile {
 
 	List<List<String>> lst2d;
 
-	public DrawTile() {
+	public DrawTile(Tile t) {
 		this.lst2d = new ArrayList<List<String>>();
-		
+		createPerim(t);
+		writeName(t);
+		writeType(t);
 	}
 
 	private void createPerim(Tile t) {
@@ -60,13 +62,10 @@ public class DrawTile {
 	}
 
 	public static void main(String[] args) {
-		DrawTile dTile = new DrawTile();
 		Tile newTile = new Tile(0,0);
 		newTile.setName(TilesEnums.SEA);
 		newTile.setType(TilesEnums.SEA);
-		dTile.createPerim(newTile);
-		dTile.writeName(newTile);
-		dTile.writeType(newTile);
+		DrawTile dTile = new DrawTile(newTile);
 		List<List<String>> testList = dTile.get2dList();
 		for(List<String> list : testList) {
 			for(String s : list) {
@@ -78,10 +77,8 @@ public class DrawTile {
 		Tile tile2 = new Tile(1,0);
 		tile2.setName(TilesEnums.CAVE_OF_SHADOWS);
 		tile2.setType(TilesEnums.CAVE_OF_SHADOWS);
-		dTile.createPerim(tile2);
-		dTile.writeName(tile2);
-		dTile.writeType(tile2);
-		List<List<String>> testList2 = dTile.get2dList();
+		DrawTile dTile2 = new DrawTile(tile2);
+		List<List<String>> testList2 = dTile2.get2dList();
 		System.out.println("\nPrinting tile2");
 		for(List<String> list : testList2) {
 			for(String s : list) {
@@ -89,5 +86,6 @@ public class DrawTile {
 			}
 			System.out.println();
 		}
+		System.out.println(testList2.get(1).get(1));
 	}
 }
