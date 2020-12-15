@@ -18,7 +18,7 @@ public class FloodDeck extends Deck{
         return theFloodDeck;
     }
 	
-	public FloodDeck() {
+	private FloodDeck() {
 		TileStack names = new TileStack();
 
 		// Prepare empty array of Cards
@@ -30,6 +30,7 @@ public class FloodDeck extends Deck{
 
 	public Card dealCard() {
 		if(cardsInDeck.size()<1) {
+			System.out.println("putting back cards");
 			FloodDiscardPile.getInstance().putbackall();
 			return cardsInDeck.pop();
 		}

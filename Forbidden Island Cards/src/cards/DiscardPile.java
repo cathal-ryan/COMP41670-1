@@ -9,6 +9,7 @@ import enums.TilesEnums;
 
 abstract public class DiscardPile {
 	protected  Stack<Card>  Discarded;
+	private String discardsAsString;
 	
 	abstract public void putbackall();
 
@@ -19,8 +20,7 @@ abstract public class DiscardPile {
 		Collections.shuffle(Discarded);
 	}
 
-	public void printPile() 
-	{ 
+	public void printPile() { 
 		// If stack is empty then return 
 		if (Discarded.isEmpty()) 
 			return; 
@@ -35,10 +35,18 @@ abstract public class DiscardPile {
 	 
 		// Print the stack element starting 
 		// from the bottom 
-		System.out.print(x.getName() + ", "); 
+		discardsAsString = discardsAsString + (x.getName() + ", "); 
 	 
 		// Push the same element onto the stack 
 		// to preserve the order 
 		Discarded.push(x); 
 	} 
+
+	public String returnPrintedPile() {
+		discardsAsString = "";
+		printPile();
+		return discardsAsString;
 	}
+
+
+}

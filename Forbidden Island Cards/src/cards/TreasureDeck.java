@@ -18,7 +18,7 @@ public class TreasureDeck extends Deck{
 	        return theTreasureDeck;
 	    }
 		
-		public TreasureDeck() {
+		private TreasureDeck() {
 		    // Prepare empty array of Cards
 		    this.cardsInDeck = new Stack<Card>();
 		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.EARTH_STONE));
@@ -54,8 +54,7 @@ public class TreasureDeck extends Deck{
 
 		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
 		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
-		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
-		    
+		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));		    
 		    shuffle();
 		}
 		public Card dealCard() {

@@ -2,7 +2,7 @@ package cards;
 
 abstract public class Card {
 	@SuppressWarnings("rawtypes")
-    private Enum name;   // Name of object referred to by card,  e.g. "Mrs. Peacock"
+    private Enum name;   // Name of card
 
 	Card(@SuppressWarnings("rawtypes") Enum name){
 		this.name   = name;
