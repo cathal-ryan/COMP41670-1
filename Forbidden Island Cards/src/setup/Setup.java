@@ -41,6 +41,7 @@ public class Setup {
         waterHandler.createWaterLevel(setupInputs,setupOutputs);
         playerHandler.createAllPlayers(); // does here fine
         cardHandler.dealCards(); // does here ok i think
+        boardHandler.displayBoard();
         theGameModel = GameModel.getInstance();
         setupOutputs.setupOver();
     }

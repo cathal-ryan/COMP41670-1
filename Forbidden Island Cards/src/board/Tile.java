@@ -1,10 +1,10 @@
 package board;
 
 import java.util.Arrays;
+import java.awt.Point;
 
 import enums.TilesEnums;
 import enums.TypeEnums;
-import java.awt.Point;
 
 public class Tile {
 

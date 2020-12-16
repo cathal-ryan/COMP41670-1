@@ -45,11 +45,11 @@ public class Board {
     	return cols;
     }
 
-    private Tile getTile(Point coords) {
+    public Tile getTile(Point coords) {
     	return boardTiles.get(coords);
     }
 
-    private Tile getTile(TilesEnums name) {
+    public Tile getTile(TilesEnums name) {
     	for(Tile t : boardTiles.values()) {
     		if(t.getName() == name)
     			return t;
@@ -112,6 +112,7 @@ public class Board {
 		System.out.println("Tile position is: " + thisBoard.getTilePos(TilesEnums.IRON_GATE));
 		System.out.println("Is it flooded?: " + thisBoard.isTileFlooded(boardPos));
 		System.out.println("Is it sunk?: " + thisBoard.isTileSunk(boardPos));
+        thisBoard.getTile(boardPos);
 
 		thisBoard.floodTile(TilesEnums.IRON_GATE);
 		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
