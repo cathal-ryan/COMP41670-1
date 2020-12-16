@@ -34,11 +34,11 @@ public class DrawTile {
 			List<String> lst = new ArrayList<String>();
 			if(t.getType() == TypeEnums.SEA) {
 				if(i == 0 || i==row-1)
-					lst.add("wwwwwwwwwwwwwwwwwwww ");
+					lst.add("                     ");
 				else {
-					lst.add("w");
+					lst.add(" ");
 					lst.add("                  ");
-					lst.add("w ");
+					lst.add("  ");
 				}
 			}
 			else {
