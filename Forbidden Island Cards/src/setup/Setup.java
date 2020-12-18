@@ -46,6 +46,5 @@ public class Setup {
         cardHandler.dealCards(); // does here ok i think
         theGameModel = GameModel.getInstance();
         setupOutputs.setupOver();
-        gameOutputs.printBoard();
     }
 }

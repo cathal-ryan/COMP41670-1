@@ -10,11 +10,13 @@ import player.*;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
 import gameplay.control.WinObserver;
+import board.Board;
 
 public class GameModel implements Subject {
     // private Controller theController = Controller.getInstance();
     private Team theTeam;
     private Player currentPlayer;
+    private Board theBoard;
     private int actionsLeft;
     private boolean turnOver;
     private WaterMeter theWaterMeter;
@@ -29,6 +31,7 @@ public class GameModel implements Subject {
 
     private GameModel() {
         theTeam = Team.getInstance();
+        theBoard = Board.getInstance();
         theFloodDeck = FloodDeck.getInstance();
         theTreasureDiscardPile = TreasureDiscardPile.getInstance();
         theFloodDiscardPile = FloodDiscardPile.getInstance();
@@ -180,7 +183,7 @@ public class GameModel implements Subject {
         playerForHeliMove.helicopterMove(k);
     }
 
-    public List getTradePartners() {
+    public List<Integer> getTradePartners() {
         // GONNA NEED SOME LOGIC TO GIVE WHICH PLAYERS ARE ON SAME TILE AS
         // CURRENTPLAYER, right now just returns everyone.
         return theTeam.getAllPlayerNums(currentPlayer.getNum());
@@ -252,12 +255,18 @@ public class GameModel implements Subject {
 
     public Card dealFlood() {
         Card card1 = theFloodDeck.dealCard();
+        TilesEnums t1 = (TilesEnums) card1.getName();
+        theBoard.floodTile(t1);
         theFloodDiscardPile.addToPile(card1);
         if (card1.getName() == TilesEnums.FOOLS_LANDING){
             notifyUpdate(loser,4); // currently you lose whenever fools landing drawn
         }
         // should check other ways in which the player can lose here.
         return card1;
+    }
+
+    public Boolean isSunk(TilesEnums name) {
+        return theBoard.isTileSunk(name);
     }
 
     @Override
