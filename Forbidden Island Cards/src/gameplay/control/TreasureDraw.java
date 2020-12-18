@@ -1,14 +1,8 @@
 package gameplay.control;
 
-import java.util.Scanner;
-
-import cards.TreasureDeck;
 import cards.TreasureDeckCard;
-import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
 import gameplay.view.*;
-import player.Player;
-import player.Team;
     
     /**
      * Treasure Draw class manages drawing treasure cards

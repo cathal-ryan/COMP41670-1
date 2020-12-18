@@ -2,6 +2,7 @@ package gameplay.control;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import gameplay.model.GameModel;
 import gameplay.view.GameInputs;
 import gameplay.view.GameOutputs;
@@ -14,11 +15,6 @@ import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
 import enums.TilesEnums;
-
-
-
-
-
 
 public class Controller{
 
@@ -77,6 +73,7 @@ public class Controller{
             theOutputs.noActionsLeft();
         }
         else{
+
             theGameModel.movePlayer();
         }
     }
@@ -115,10 +112,8 @@ public class Controller{
             return;
         }
         else{
-            if(theGameModel.canTrade()){
-                traders = theGameModel.getTradePartners();
-            }
-            else{
+            traders = theGameModel.getTradePartners();
+            if(traders.isEmpty()){
                 theOutputs.cantTrade();
                 return;
             }
@@ -155,7 +150,8 @@ public class Controller{
         }
         int handSizeB = getHandSize(playerB);
         while(handSizeB > 5){
-			discardTreasure(playerB);
+            discardTreasure(playerB);
+            handSizeB = getHandSize(playerB);
 		}
 		return true;
 	}
@@ -170,8 +166,7 @@ public class Controller{
         theOutputs.handTooBig(name);
         int userIn = chooseFromHand(player,false);
         if(!(hand.get(userIn) instanceof TreasureCard)){
-            theOutputs.useIt();
-            if(chooseOrShowState("No", "Yes")){
+            if(chooseOrShowState(2,"No", "Yes")){
                 if((hand.get(userIn) instanceof SandbagsCard)){
                     useSandbags(player);
                     return;
@@ -225,8 +220,7 @@ public class Controller{
     }
 
     public boolean keepGoingHeli() {
-        theOutputs.heliAnyoneElse();
-        return chooseOrShowState("No","Yes");
+        return chooseOrShowState(3, "No","Yes");
     }
 
 	public void useSandbags(Player p1) {
@@ -241,9 +235,25 @@ public class Controller{
         theGameModel.useSandbags();
     }
     
-    private boolean chooseOrShowState(String n, String y){
-        int select1 =2;
+    private boolean chooseOrShowState(int mode, String n, String y){
+        int select1=2;
         while(select1==2){
+            switch (mode) {
+                case 0:
+                    theOutputs.playSpecials();
+                    break;
+                case 1:
+                    theOutputs.heliOrSand();
+                    break;
+                case 2:
+                    theOutputs.useIt();
+                    break;
+                case 3:
+                    theOutputs.heliAnyoneElse();
+                    break;
+                default:
+                    System.out.println("I shouldn't be here!");
+            }
             select1 =(theInputs.getYesOrNo(n, y, "Show the game state"));
             if(select1==0){
                 return false;
@@ -252,13 +262,25 @@ public class Controller{
                 return true;
             }
             else if (select1==2){
-                //showBoard();
-                lookAtHands();
+                showGameState();
             }
         }
         return false;
     }
 
+    private void showGameState(){
+        theOutputs.printBoard();
+        lookAtHands();
+        theOutputs.displayWater(getWaterLevel());
+        theOutputs.printPile(false, theGameModel.showDiscard(false));
+        theOutputs.printPile(true, theGameModel.showDiscard(true));
+        displayTreasures();
+    }
+
+    public void displayTreasures(){
+        List<TypeEnums> treasures = theGameModel.listCaptured();
+        theOutputs.showCaptured(treasures);
+    }
 
     public boolean enquirePlayers(boolean asked){
         List<Integer> eligible = theGameModel.getPlayerswithSpecials();
@@ -268,16 +290,17 @@ public class Controller{
             }
             return true;
         }
-        theOutputs.playSpecials();
-        if(!chooseOrShowState("No, Draw card!","Yes, play special card!")){
-            return false;
+        String n = "No, Draw card!";
+        if (asked)
+            n="Nope!";
+        if(!chooseOrShowState(0,n,"Yes, play special card!")){
+                return false;
         }
         lookAtHands();
         theOutputs.whoForSpecial();
         Player player1 = choosePlayer(eligible);
         if(theGameModel.checkHasCard(player1, true) && theGameModel.checkHasCard(player1, false)){
-            theOutputs.heliOrSand();
-            if(chooseOrShowState("Sandbags", "Helicopter Lift")){
+            if(chooseOrShowState(1, "Sandbags", "Helicopter Lift")){
                 useHelicopterLift(player1);
             }
             else{

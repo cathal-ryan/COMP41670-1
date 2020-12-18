@@ -60,13 +60,4 @@ public class PlayerActions {
 			theOutputs.printTurnOver();
 		}
 	}
-	
-	// private void captureATreasure(){
-	// 	if(!getActions()){
-	// 		return;
-	// 	}
-	// 	if(theTreasureHandler.captureTreasure(player)){
-	// 		actionsLeft--;
-	// 	}
-	// }
 }

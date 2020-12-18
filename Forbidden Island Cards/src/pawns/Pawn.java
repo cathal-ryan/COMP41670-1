@@ -29,6 +29,9 @@ abstract public class Pawn {
     }
 
     public void move() {
+        Point p = Board.getInstance().getTilePos(TilesEnums.TEMPLE_OF_THE_MOON);
+        setPos(p);
+
         System.out.println("\nSome day I'll get around to moving..");
         System.out.println(getPos());
         System.out.println(Board.getInstance().getTileType(getPos()));

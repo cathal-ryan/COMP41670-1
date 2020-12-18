@@ -1,5 +1,10 @@
 package gameplay.model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
 import player.Player;
@@ -52,6 +57,23 @@ public class TreasureHandler {
         else{
             return false;
         }
+    }
+
+    public List<TypeEnums> captured(){
+        List<TypeEnums> h1 = new ArrayList<TypeEnums>();
+        if(earth){
+            h1.add(TypeEnums.EARTH);
+        }
+        if(water){
+            h1.add(TypeEnums.WATER);
+        }
+        if(fire){
+            h1.add(TypeEnums.FIRE);
+        }
+        if(wind){
+            h1.add(TypeEnums.WIND);
+        }
+        return h1;
     }
 
 	public boolean queryCaptured(TypeEnums tile) {

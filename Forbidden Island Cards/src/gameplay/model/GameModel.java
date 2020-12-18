@@ -3,6 +3,7 @@ package gameplay.model;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import board.Board;
 import cards.*;
@@ -13,13 +14,13 @@ import player.*;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
 import gameplay.control.WinObserver;
+import pawns.Messenger;
 import board.Board;
 
 public class GameModel implements Subject {
     // private Controller theController = Controller.getInstance();
     private Team theTeam;
     private Player currentPlayer;
-    private Board theBoard;
     private int actionsLeft;
     private boolean turnOver;
     private WaterMeter theWaterMeter;
@@ -31,7 +32,6 @@ public class GameModel implements Subject {
     private TreasureHandler theTreasureHandler;
     private Observer loser;
     private Observer winner;
-    private List<Observer> observers = new ArrayList<>();
     private static GameModel theGameModel = null;
 
     private GameModel() {
@@ -143,20 +143,20 @@ public class GameModel implements Subject {
         return theTeam.getPlayer(i).getHand().getHandasString();
     }
 
-    public boolean canTrade() {
-        Hand hand = currentPlayer.getHand();
-        if (!hand.canTrade()) {
-            return false;
-        }
-        if (checkPlayerPostions()) {
-            return false;
-        }
-        return true;
-    }
+    // public boolean canTrade() {
+    //     Hand hand = currentPlayer.getHand();
+    //     if (!hand.canTrade()) {
+    //         return false;
+    //     }
+    //     if (checkPlayerPostions()) {
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
-    private boolean checkPlayerPostions() {
-        return false;
-    }
+    // private boolean checkPlayerPostions() {
+    //     return false;
+    // }
 
     public boolean checkHasCard(Player p1, boolean cardName) {
         if (cardName == false) {
@@ -190,9 +190,15 @@ public class GameModel implements Subject {
     }
 
     public List<Integer> getTradePartners() {
-        // GONNA NEED SOME LOGIC TO GIVE WHICH PLAYERS ARE ON SAME TILE AS
-        // CURRENTPLAYER, right now just returns everyone.
-        return theTeam.getAllPlayerNums(currentPlayer.getNum());
+        List<Integer> traders = theTeam.getAllPlayerNums(currentPlayer.getNum());
+        if(!(currentPlayer.getPawn() instanceof Messenger)){
+            for(int playerNum:traders){
+                if (getPlayer(playerNum).getPawnPos() != currentPlayer.getPawnPos()){
+                    traders.remove(playerNum);
+                }
+            }
+        }
+        return traders;
     }
 
     public List getPlayerHand(Player p1) {
@@ -263,11 +269,35 @@ public class GameModel implements Subject {
         Card card1 = theFloodDeck.dealCard();
         TilesEnums t1 = (TilesEnums) card1.getName();
         theBoard.floodTile(t1);
-        theFloodDiscardPile.addToPile(card1);
-        if (card1.getName() == TilesEnums.FOOLS_LANDING){
+        if((isSunk(TilesEnums.FOOLS_LANDING))){
             notifyUpdate(loser,4); // currently you lose whenever fools landing drawn
         }
+        if((isSunk(TilesEnums.TEMPLE_OF_THE_MOON)) && (isSunk(TilesEnums.TEMPLE_OF_THE_SUN))){
+            if(theTreasureHandler.queryCaptured(TypeEnums.EARTH)){
+                notifyUpdate(loser,0);
+            }        
+        }
+        if((isSunk(TilesEnums.CAVE_OF_EMBERS)) && (isSunk(TilesEnums.CAVE_OF_SHADOWS))){
+            if(theTreasureHandler.queryCaptured(TypeEnums.FIRE)){
+                notifyUpdate(loser,1);
+            }
+        }
+        if((isSunk(TilesEnums.CORAL_PALACE)) && (isSunk(TilesEnums.TIDAL_PALACE))){
+            if(theTreasureHandler.queryCaptured(TypeEnums.WATER)){
+                notifyUpdate(loser,2);
+            }        
+        }
+        if((isSunk(TilesEnums.WHISPERING_GARDEN)) && (isSunk(TilesEnums.HOWLING_GARDEN))){
+            if(theTreasureHandler.queryCaptured(TypeEnums.WIND)){
+                notifyUpdate(loser,3);
+            }        
+        }
         // should check other ways in which the player can lose here.
+        // If its sunk, dont bother adding card to discard pile, remove from play
+        // If its just flooded then add it.
+        if(!isSunk(t1)){
+            theFloodDiscardPile.addToPile(card1);
+        }
         return card1;
     }
 
@@ -278,6 +308,10 @@ public class GameModel implements Subject {
     @Override
     public void notifyUpdate(Observer o, int m) {
         o.update(m);
+    }
+
+    public List<TypeEnums> listCaptured(){
+        return theTreasureHandler.captured();
     }
 
 	public boolean canWin() {

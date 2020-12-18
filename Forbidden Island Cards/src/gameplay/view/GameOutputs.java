@@ -2,6 +2,10 @@ package gameplay.view;
 
 import cards.DiscardPile;
 import enums.TypeEnums;
+
+import java.util.List;
+import java.util.Map;
+
 import board.Board;
 
 /**Provides major communications with the player, with system.out
@@ -146,8 +150,13 @@ public class GameOutputs {
 	}
 
 	public void waterRise(int waterLevel) {
-        System.out.println("Oh no! The water has risen! Now at level "+waterLevel);
-	}
+        System.out.println("Oh no! The water has risen! ");
+        displayWater(waterLevel);
+    }
+    
+    public void displayWater(int waterLevel){
+        System.out.println("Water level at: "+ waterLevel);
+    }
 
 	public void floodDrawTime() {
         System.out.println("Brace Yourselves! It's time to draw flood cards.");
@@ -208,5 +217,24 @@ public class GameOutputs {
 
 		public void treasureCaptured(TypeEnums tile) {
                         System.out.println("\nYou have succesfully captured the "+tile+"!");
+		}
+
+		public void showCaptured(List<TypeEnums> treasures) {
+            System.out.print("Captured Treasures: ");
+            for( TypeEnums i:treasures){
+                if(i==TypeEnums.EARTH){
+                    System.out.print(i.toString() + "🌎");
+                }
+                if(i==TypeEnums.WATER){
+                    System.out.print(i.toString() + "🍷");
+                }
+                if(i==TypeEnums.FIRE){
+                    System.out.print(i.toString() + "🔥");
+                }
+                if(i==TypeEnums.WIND){
+                    System.out.print(i.toString() + "💨");
+                }
+            }
+            System.out.println();
 		}
 }
