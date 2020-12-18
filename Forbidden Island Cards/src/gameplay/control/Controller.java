@@ -77,7 +77,9 @@ public class Controller{
             theOutputs.noActionsLeft();
         }
         else{
-            theGameModel.movePlayer();
+            theOutputs.whereMove();
+            char dir = theInputs.moveDir();
+            theGameModel.movePlayer(dir);
         }
     }
 
@@ -86,7 +88,7 @@ public class Controller{
             theOutputs.noActionsLeft();
         }
         else{
-            theGameModel.movePlayer();
+            // theGameModel.movePlayer();
         }
 	}
 

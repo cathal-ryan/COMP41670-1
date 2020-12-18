@@ -13,6 +13,41 @@ public class GameInputs {
         theOutputs = new GameOutputs();
     }
 
+    public char moveDir() {
+        char userInput = 0;
+        boolean validInput = false;
+        while (!validInput) {
+            String userString = input.nextLine();
+            try {
+                userInput = userString.charAt(0);
+            } catch (NumberFormatException e) {
+                theOutputs.generalError();
+                continue;
+            }
+            if ((userInput == 'w') || (userInput == 'W')) {
+                validInput = true;
+                userInput = 'w';
+            }
+            else if ((userInput == 'a') || (userInput == 'A')) {
+                validInput = true;
+                userInput = 'a';
+            }
+            else if ((userInput == 's') || (userInput == 'D')) {
+                validInput = true;
+                userInput = 's';
+            }
+            else if ((userInput == 'd') || (userInput == 'D')) {
+                validInput = true;
+                userInput = 'd';
+            }
+            else{
+                theOutputs.generalError();
+            }
+        }
+        return userInput;
+
+    }
+
     public boolean floodOrTreasure() {
         theOutputs.printFloodorTreasure();
         return boolYN("Flood", "Treasure");

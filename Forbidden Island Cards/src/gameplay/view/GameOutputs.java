@@ -29,6 +29,14 @@ public class GameOutputs {
 		System.out.println("[1]\tMove. (1 action)");
 		System.out.println("[0]\tEnd your turn.");
     }
+
+    public void whereMove() {
+        System.out.println("Which direction would you like to move?");
+        System.out.println("[w]     Move Up");
+        System.out.println("[a]     Move Left");
+        System.out.println("[s]     Move Down");
+        System.out.println("[d]     Move Right");
+    }
     
     public void printTurnOver(){
         System.out.println("Your turn is over.\n");
