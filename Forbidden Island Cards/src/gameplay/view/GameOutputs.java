@@ -148,7 +148,7 @@ public class GameOutputs {
 	}
 
     public void sunkTile(String string) {
-        System.out.println("Oh no! "+ string+ " has been flooded!");
+        System.out.println("Oh no! "+ string+ " has sank!");
     }
 
     public void floodedTile(String string) {
