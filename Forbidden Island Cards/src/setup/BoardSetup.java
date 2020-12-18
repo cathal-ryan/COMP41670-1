@@ -66,7 +66,13 @@ public class BoardSetup {
 	public static void main(String[] args) {
 		BoardSetup bSet = new BoardSetup();
 		GameOutputs gameOutputs = new GameOutputs();
+		Board theBoard = Board.getInstance();
 		bSet.setTiles();
+		gameOutputs.printBoard();
+		theBoard.floodTile(TilesEnums.SILVER_GATE);
+		theBoard.floodTile(TilesEnums.SILVER_GATE);
+		theBoard.floodTile(TilesEnums.CORAL_PALACE);
+		theBoard.floodTile(TilesEnums.CORAL_PALACE);
 		gameOutputs.printBoard();
 	}
 }
