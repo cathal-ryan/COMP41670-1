@@ -1,5 +1,7 @@
 package gameplay.view;
+
 import cards.DiscardPile;
+import enums.TypeEnums;
 import board.Board;
 
 /**Provides major communications with the player, with system.out
@@ -193,7 +195,11 @@ public class GameOutputs {
 		}
 
 		public void cantCapture(String reason, TypeEnums tile) {
-                        System.out.println("You can't capture a treasure right now."+reason+tile);
+                        System.out.print("You can't capture a treasure right now. "+reason);
+                        if(tile!=null){
+                            System.out.print(tile);
+                        }
+                        System.out.print("\n");
 		}
 
 		public void treasureCaptured(TypeEnums tile) {

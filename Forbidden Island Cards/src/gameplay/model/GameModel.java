@@ -276,9 +276,12 @@ public class GameModel implements Subject {
         // check the positions of all players, if they're on fools landing
         // check if all 4 treasures have been captured if thats the case then set it so checkifwon returns true
         double x= Math.random();
-        if (theTreasureHandler.allCaptured()) {
-
+        if (!theTreasureHandler.allCaptured()) {
+            return false;
         }
+
+        // check positions of players
+
         boolean checkifWon = (x>0.5);
         if(checkifWon){
             notifyUpdate(winner,7);
@@ -311,6 +314,7 @@ public class GameModel implements Subject {
 
         currentPlayer.getHand().discardforTreasure(tile);
         theTreasureHandler.setTreasureCapture(tile);
+        decreaseActions();
 		return 0;
     }
 

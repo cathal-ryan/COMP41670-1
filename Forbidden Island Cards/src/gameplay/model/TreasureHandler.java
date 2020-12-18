@@ -45,7 +45,7 @@ public class TreasureHandler {
         }
     }
 
-    public boolean allTreasuresCaptured(){
+    public boolean allCaptured(){
         if(wind && fire && water && earth){
             return true;
         }
