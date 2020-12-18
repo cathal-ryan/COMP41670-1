@@ -12,6 +12,7 @@ import cards.SandbagsCard;
 import cards.TreasureCard;
 import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
+import enums.TypeEnums;
 
 public class Controller{
 
@@ -163,7 +164,7 @@ public class Controller{
         int userIn = chooseFromHand(player,false);
         if(!(hand.get(userIn) instanceof TreasureCard)){
             theOutputs.useIt();
-            if(theInputs.getYesOrNo("No", "Yes")){
+            if(chooseOrShowState("No", "Yes")){
                 if((hand.get(userIn) instanceof SandbagsCard)){
                     useSandbags(player);
                     return;
@@ -218,7 +219,7 @@ public class Controller{
 
     public boolean keepGoingHeli() {
         theOutputs.heliAnyoneElse();
-        return theInputs.getYesOrNo("No","Yes");
+        return chooseOrShowState("No","Yes");
     }
 
 	public void useSandbags(Player p1) {
@@ -231,27 +232,45 @@ public class Controller{
         }
         theGameModel.removeCard(p1, TreasureCardEnums.SANDBAGS);
         theGameModel.useSandbags();
-	}
+    }
+    
+    private boolean chooseOrShowState(String n, String y){
+        int select1 =2;
+        while(select1==2){
+            select1 =(theInputs.getYesOrNo(n, y, "Show the game state"));
+            if(select1==0){
+                return false;
+            }
+            if(select1==1){
+                return true;
+            }
+            else if (select1==2){
+                //showBoard();
+                lookAtHands();
+            }
+        }
+        return false;
+    }
 
 
-    public void enquirePlayers(boolean asked){
+    public boolean enquirePlayers(boolean asked){
         List<Integer> eligible = theGameModel.getPlayerswithSpecials();
         if(eligible.isEmpty()){
             if(asked){
                 theOutputs.noSpecials();
             }
-            return;
+            return true;
         }
         theOutputs.playSpecials();
-        if(!theInputs.getYesOrNo("No","Yes")){
-            return;
+        if(!chooseOrShowState("No, Draw card!","Yes, play special card!")){
+            return false;
         }
         lookAtHands();
         theOutputs.whoForSpecial();
         Player player1 = choosePlayer(eligible);
         if(theGameModel.checkHasCard(player1, true) && theGameModel.checkHasCard(player1, false)){
             theOutputs.heliOrSand();
-            if(theInputs.getYesOrNo("Sandbags", "Helicopter Lift")){
+            if(chooseOrShowState("Sandbags", "Helicopter Lift")){
                 useHelicopterLift(player1);
             }
             else{
@@ -264,6 +283,7 @@ public class Controller{
         else if(theGameModel.checkHasCard(player1, false)){
             useSandbags(player1);
         }
+        return true;
     }
 
 	public TreasureDeckCard getTreasureCard() {
@@ -302,6 +322,26 @@ public class Controller{
         if(winning.isGameWon()){
             String gameWon = winning.getWinCondition();
             theOutputs.aWinnerIsYou(gameWon);
+        }
+	}
+	public void captureATreasure() {
+        if(theGameModel.getActionsLeft()<1){
+            theOutputs.noActionsLeft();
+            return;
+        }
+        TypeEnums tile = theGameModel.getCurrentTile();
+        int captureMode = theGameModel.capture();
+        if(captureMode == 0){
+            theOutputs.treasureCaptured(tile);
+        }
+        else if (captureMode == 1){
+            theOutputs.cantCapture("You've already captured the ",tile);
+        }
+        else if (captureMode == 2){
+            theOutputs.cantCapture("You're not on the right tile to capture a treasure..",null);
+        }
+        else if (captureMode == 3){
+            theOutputs.cantCapture("You don't have enough cards..",null);
         }
 	}
 }

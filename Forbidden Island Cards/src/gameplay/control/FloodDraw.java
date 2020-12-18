@@ -28,12 +28,15 @@ import gameplay.view.GameOutputs;
             theOutputs.floodDrawTime();
             int waterLevel = theController.getWaterLevel();
             for(int i =0;i<waterLevel;i++) {
-                theController.enquirePlayers(false);
+                theOutputs.cardsLeft(waterLevel-i);
+                boolean isSpecialPlayed = theController.enquirePlayers(false);
                 if(theController.isGameOver()){
                     return;
                 }
-                theOutputs.cardsLeft(waterLevel-i);
-                theInputs.confirm(); //             
+                if(isSpecialPlayed){
+                    theOutputs.pressReturn();
+                    theInputs.confirm(); //
+                }             
                 theController.dealFloodCard();
                 if(theController.isGameOver()){
                     return; //Game is lost

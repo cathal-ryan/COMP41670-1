@@ -32,7 +32,7 @@ public class PlayerActions {
 				theController.shoreUp();
 				break;
 			case 3:
-				theController.shoreUp(); // should be captrure treasure
+				theController.captureATreasure(); // should be captrure treasure
 				break;
             case 4:
 				theController.giveCard();

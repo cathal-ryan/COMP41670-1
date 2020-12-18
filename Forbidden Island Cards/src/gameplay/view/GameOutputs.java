@@ -1,5 +1,6 @@
 package gameplay.view;
 import cards.DiscardPile;
+import enums.TypeEnums;
 
 /**Provides major communications with the player, with system.out
  * as a way of communicating
@@ -28,7 +29,7 @@ public class GameOutputs {
     }
     
     public void printTurnOver(){
-        System.out.println("Your turn is over.");
+        System.out.println("Your turn is over.\n");
     }
 
 	public void noActionsLeft() {
@@ -115,7 +116,7 @@ public class GameOutputs {
 	}
 
 	public void playSpecials() {
-        System.out.println("Is there anyone who wants to play their special card?");
+        System.out.println("\nIs there anyone who wants to play their special card?");
     }
 
     public void whoForSpecial() {
@@ -131,7 +132,11 @@ public class GameOutputs {
 	}
 
 	public void cardsLeft(int i) {
-        System.out.println(i+" cards to go! Press [return] to draw!");
+        System.out.println("\n"+i+" cards to go!");
+    }
+
+    public void pressReturn(){
+        System.out.println("Press [return] to draw!");
     }
 
 	public void drawnCard(String name) {
@@ -147,7 +152,7 @@ public class GameOutputs {
 	}
 
 public void floodedTile(String string) {
-        System.out.println("Oh no! "+ string+ " has been flooded!");
+        System.out.println("\nOh no! "+ string+ " has been flooded!");
 }
     
     public void turnEndo(){
@@ -177,4 +182,16 @@ public void floodedTile(String string) {
                 System.out.println(gameWon);
                 System.out.println("\nPlease play again some time!");
         }
+
+		public void option(int i, String opt) {
+                        System.out.println("["+i+"] "+opt);
+		}
+
+		public void cantCapture(String reason, TypeEnums tile) {
+                        System.out.println("You can't capture a treasure right now."+reason+tile);
+		}
+
+		public void treasureCaptured(TypeEnums tile) {
+                        System.out.println("\nYou have succesfully captured the "+tile+"!");
+		}
 }

@@ -39,12 +39,15 @@ import player.Team;
             int i =0;
             theOutputs.treasureTime();
             while(!lost && (i<2)){
-                theController.enquirePlayers(false);
+                theOutputs.cardsLeft(2-i);
+                boolean isSpecialPlayed = theController.enquirePlayers(false);
                 if(theController.isGameOver()){
                     return;
                 }
-                theOutputs.cardsLeft(2-i);
-                theInputs.confirm();
+                if(isSpecialPlayed){
+                    theOutputs.pressReturn();
+                    theInputs.confirm();
+                }
                 TreasureDeckCard c1 = theController.getTreasureCard();
                 if (c1 instanceof WaterRiseCard){
                     theController.addToPile(c1);

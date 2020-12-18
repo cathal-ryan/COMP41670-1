@@ -15,13 +15,38 @@ public class GameInputs {
 
     public boolean floodOrTreasure() {
         theOutputs.printFloodorTreasure();
-        return getYesOrNo("Flood", "Treasure");
+        return boolYN("Flood", "Treasure");
     }
 
-    public static boolean getYesOrNo(String n, String y) {
+    public static int getYesOrNo(String n, String y, String other) {
         int userIn = 0;
-        System.out.println("[0] " + n);
-        System.out.println("[1] " + y);
+        theOutputs.option(0,n);
+        theOutputs.option(1,y);
+        theOutputs.option(2,other);
+        while (true) {
+            String decision = input.nextLine();
+            try {
+                userIn = Integer.parseInt(decision);
+            } catch (NumberFormatException e) {
+                continue;
+            }
+            switch (userIn) {
+                case 0:
+                    return 0;
+                case 1:
+                    return 1;
+                case 2:
+                    return 2;
+                default:
+                    theOutputs.generalError();
+            }
+        }
+    }
+
+    public static boolean boolYN(String n, String y) {
+        int userIn = 0;
+        theOutputs.option(0,n);
+        theOutputs.option(1,y);
         while (true) {
             String decision = input.nextLine();
             try {

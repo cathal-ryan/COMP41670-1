@@ -1,6 +1,7 @@
 package cards;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import enums.TreasureCardEnums;
@@ -85,6 +86,10 @@ public class Hand {
 			}
 		}
 		return -1;
+	}
+
+	public int numofInstances(TreasureCardEnums name){
+		return Collections.frequency(getNamesList(), name);
 	}
 	
 	public boolean checkContains(TreasureCardEnums name){

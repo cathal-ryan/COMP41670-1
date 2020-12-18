@@ -2,9 +2,12 @@ package gameplay.model;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import board.Board;
 import cards.*;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
+import enums.TypeEnums;
 import gameplay.WaterMeter;
 import player.*;
 import gameplay.control.LoseObserver;
@@ -18,10 +21,12 @@ public class GameModel implements Subject {
     private int actionsLeft;
     private boolean turnOver;
     private WaterMeter theWaterMeter;
+    private Board theBoard;
     private TreasureDiscardPile theTreasureDiscardPile;
     private FloodDiscardPile theFloodDiscardPile;
     private FloodDeck theFloodDeck;
     private TreasureDeck theTreasureDeck;
+    private TreasureHandler theTreasureHandler;
     private Observer loser;
     private Observer winner;
     private List<Observer> observers = new ArrayList<>();
@@ -29,10 +34,12 @@ public class GameModel implements Subject {
 
     private GameModel() {
         theTeam = Team.getInstance();
+        theBoard = Board.getInstance();
         theFloodDeck = FloodDeck.getInstance();
         theTreasureDiscardPile = TreasureDiscardPile.getInstance();
         theFloodDiscardPile = FloodDiscardPile.getInstance();
         theTreasureDeck = TreasureDeck.getInstance();
+        theTreasureHandler = TreasureHandler.getInstance();
         currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers() - 1);
         theWaterMeter = WaterMeter.getInstance();
         loser = new LoseObserver();
@@ -278,5 +285,30 @@ public class GameModel implements Subject {
         else{
             return false;
         }
+	}
+
+	public int capture() {
+        // Check players position for if its on a treasure tile, and get name of tile
+        // tile = pawn.currentTile();
+        TreasureCardEnums tile = TreasureCardEnums.CRYSTAL_OF_FIRE; // dont keep like this
+        boolean onTreasureTile = true;
+        boolean alreadyCaptured = false;
+        if(alreadyCaptured){
+            return 1;
+        }
+        if(!onTreasureTile){
+            return 2;
+        }
+        if(currentPlayer.getHand().numofInstances(tile)<4){
+            return 3;
+        }
+        currentPlayer.getHand().discardforTreasure(tile);
+        theTreasureHandler.setTreasureCapture(tile);
+		return 0;
+    }
+
+	public TypeEnums getCurrentTile() {
+        location = currentPlayer.getCoords();
+        return getTileType(location);
 	}
 }
