@@ -13,6 +13,12 @@ import cards.TreasureCard;
 import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
+import enums.TilesEnums;
+
+
+
+
+
 
 public class Controller{
 
@@ -47,6 +53,7 @@ public class Controller{
         theGameModel.setTurnOver(false);
         theGameModel.setActionsLeft();
         theGameModel.setNextPlayer();
+        theOutputs.printBoard();
 	}
 
     public String returnPlayerName(){
@@ -102,7 +109,7 @@ public class Controller{
     }
 
 	public void giveCard() {
-        List traders = new ArrayList<>();
+        List<Integer> traders = new ArrayList<Integer>();
         if(theGameModel.getActionsLeft()<1){
             theOutputs.noActionsLeft();
             return;
@@ -311,7 +318,11 @@ public class Controller{
 
 	public void dealFloodCard() {
         Card card1 = theGameModel.dealFlood();
-        theOutputs.floodedTile(card1.getName().toString());
+        TilesEnums t1 = (TilesEnums) card1.getName();
+        if(theGameModel.isSunk(t1))
+            theOutputs.sunkTile(card1.getName().toString());
+        else
+            theOutputs.floodedTile(card1.getName().toString());
 	}
 
 	public void gameOverPrompt() {

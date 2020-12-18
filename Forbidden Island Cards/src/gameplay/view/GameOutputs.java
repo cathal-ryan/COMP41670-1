@@ -153,6 +153,10 @@ public class GameOutputs {
         System.out.println("Brace Yourselves! It's time to draw flood cards.");
 	}
 
+    public void sunkTile(String string) {
+        System.out.println("Oh no! "+ string+ " has been flooded!");
+    }
+
     public void floodedTile(String string) {
             System.out.println("Oh no! "+ string+ " has been flooded!");
     }
