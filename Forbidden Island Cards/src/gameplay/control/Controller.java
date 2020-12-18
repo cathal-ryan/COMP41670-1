@@ -80,6 +80,7 @@ public class Controller{
             theOutputs.whereMove();
             char dir = theInputs.moveDir();
             theGameModel.movePlayer(dir);
+            theOutputs.printBoard();
         }
     }
 

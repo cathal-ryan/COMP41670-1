@@ -41,7 +41,7 @@ public class Player {
 				break;
 			case 3:
 				playerPawn = new Navigator();
-				playerChar = "\uD83D\uDDFA";
+				playerChar = "\uD83E\uDDED";
 				break;
 			case 4:
 				playerPawn = new Pilot();

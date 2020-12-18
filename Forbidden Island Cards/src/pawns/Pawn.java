@@ -47,7 +47,7 @@ abstract public class Pawn {
             case 'a':
                 movePosX--;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY > 0) {
+                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX > 0) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -65,7 +65,7 @@ abstract public class Pawn {
             case 'd':
                 movePosX++;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY < 6) {
+                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX < 6) {
                     position.move(movePosX,movePosY);
                     return true;
                 }

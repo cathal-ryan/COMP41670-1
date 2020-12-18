@@ -86,7 +86,6 @@ public class DrawTile {
 				charSymb += p.getChar();
 			}
 		}
-		// String charSymb = "\uD83E\uDD3F";
 		int size = charSymb.length();
 		if(size == 0)
 			charSymb = "                  ";
