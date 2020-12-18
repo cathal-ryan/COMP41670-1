@@ -14,6 +14,7 @@ public class Board {
 	private int cols;
 	private Point p;
 	private HashMap<Point, Tile> boardTiles;
+    private DrawTile drawnTiles;
 
 	public static Board getInstance(){
         if(playBoard == null){
@@ -27,6 +28,7 @@ public class Board {
     	this.rows = 6;
     	this.cols = 6;
     	this.boardTiles = new HashMap<Point, Tile>();
+        this.drawnTiles = new DrawTile();
     	// this.coords = new Point();
 
     	for(int x = 0; x < cols; x++) {
@@ -99,8 +101,18 @@ public class Board {
     	getTile(name).shoreUp();
     }
 
+    public void drawBoard() {
+        for(int y=getCols()-1; y>=0; y--) {
+            for(int x=getRows()-1; x>=0; x--) { 
+                Point p = new Point(x,y);
+                drawnTiles.createTile(getTile(p));
+            }
+            drawnTiles.dispAllRows();
+        }
+    }
+
     public static void main(String[] args) {
-    	Board thisBoard = new Board();
+    	Board thisBoard = Board.getInstance();
 		Point boardPos = new Point(3,1);
 
     	System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
@@ -130,6 +142,8 @@ public class Board {
 
 		thisBoard.shoreUpTile(TilesEnums.IRON_GATE);
 		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
+
+        thisBoard.drawBoard();
     }
 	
 }

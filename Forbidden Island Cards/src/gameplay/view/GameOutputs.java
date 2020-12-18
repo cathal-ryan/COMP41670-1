@@ -1,6 +1,6 @@
 package gameplay.view;
 import cards.DiscardPile;
-import enums.TypeEnums;
+import board.Board;
 
 /**Provides major communications with the player, with system.out
  * as a way of communicating
@@ -151,12 +151,17 @@ public class GameOutputs {
         System.out.println("Brace Yourselves! It's time to draw flood cards.");
 	}
 
-public void floodedTile(String string) {
-        System.out.println("\nOh no! "+ string+ " has been flooded!");
-}
+    public void floodedTile(String string) {
+            System.out.println("Oh no! "+ string+ " has been flooded!");
+    }
     
     public void turnEndo(){
         System.out.println("-------------------------------------------");
+    }
+
+    public void printBoard() {
+        Board theBoard = Board.getInstance();
+        theBoard.drawBoard();
     }
 
 	public void gameOver(String gameLoss) {
