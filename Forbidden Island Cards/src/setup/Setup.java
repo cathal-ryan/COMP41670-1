@@ -2,6 +2,7 @@ package setup;
 import java.util.Scanner;
 
 import gameplay.model.GameModel;
+import gameplay.view.GameOutputs;
 
 
 public class Setup {
@@ -16,6 +17,7 @@ public class Setup {
     private SetupInputs setupInputs;
     private GameModel theGameModel;
     private BoardSetup       boardHandler;
+    private GameOutputs      gameOutputs;
     
     public static Setup getInstance(){
         if(theSetup == null){
@@ -28,6 +30,7 @@ public class Setup {
         // Create instances of Player set up and card set up
         setupInputs = new SetupInputs();
         setupOutputs = new SetupOutputs();
+        this.gameOutputs = new GameOutputs();
         this.waterHandler   = new WaterMeterSetup();
         this.boardHandler   = new BoardSetup();
         this.playerHandler  = new PlayerSetup();
@@ -41,8 +44,8 @@ public class Setup {
         waterHandler.createWaterLevel(setupInputs,setupOutputs);
         playerHandler.createAllPlayers(); // does here fine
         cardHandler.dealCards(); // does here ok i think
-        boardHandler.displayBoard();
         theGameModel = GameModel.getInstance();
         setupOutputs.setupOver();
+        gameOutputs.printBoard();
     }
 }

@@ -3,13 +3,14 @@ package setup;
 import java.awt.Point;
 
 import board.Board;
-import board.DrawBoard;
 import enums.TileStack;
 import enums.TilesEnums;
+import gameplay.view.GameOutputs;
 
 public class BoardSetup {
 	private Board theBoard;
 	private Point p;
+	private SetupOutputs setupOuts;
 
 	public BoardSetup() {
 		this.theBoard = Board.getInstance();
@@ -62,13 +63,10 @@ public class BoardSetup {
 		}
 	}
 
-	public void displayBoard() {
-		DrawBoard drawnBoard = new DrawBoard();
-	}
-
 	public static void main(String[] args) {
 		BoardSetup bSet = new BoardSetup();
+		GameOutputs gameOutputs = new GameOutputs();
 		bSet.setTiles();
-		bSet.displayBoard();
+		gameOutputs.printBoard();
 	}
 }
