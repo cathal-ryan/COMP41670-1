@@ -27,8 +27,7 @@ public class DrawTile {
 		createPerim(t);
 		writeName(t);
 		writeType(t);
-		if(t.getType() != TypeEnums.SEA)
-			writeStatus(t);
+		writeFlooded(t);
 	}
 
 	private void createPerim(Tile t) {
@@ -61,16 +60,19 @@ public class DrawTile {
 	}
 
 	private void writeType(Tile t) {
-		lst2d.get(2).set(1,t.getType().toString());
+		if(t.getType() != TypeEnums.NORMAL)
+			lst2d.get(2).set(1,t.getType().toString());
 	}
 
-	private void writeStatus(Tile t) {
-		String status;
-		if(t.isFlooded())
-			status = "  Flooded: True   ";
-		else
-			status = "  Flooded: False  ";
-		lst2d.get(3).set(1,status);
+	private void writeFlooded(Tile t) {
+		if(t.isSunk()) {
+			String status = "     Has Sunk     ";
+			lst2d.get(3).set(1,status);
+		}
+		else if(t.isFlooded()) {
+			String status = "     Flooded      ";
+			lst2d.get(3).set(1,status);
+		}
 	}
 
 	public List<List<String>> get2dList() {
