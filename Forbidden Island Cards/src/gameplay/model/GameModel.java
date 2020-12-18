@@ -2,6 +2,7 @@ package gameplay.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -190,15 +191,19 @@ public class GameModel implements Subject {
     }
 
     public List<Integer> getTradePartners() {
-        List<Integer> traders = theTeam.getAllPlayerNums(currentPlayer.getNum());
+        List<Integer> allPlayers = theTeam.getAllPlayerNums(currentPlayer.getNum());
+      //  System.out.println(traders);
+
         if(!(currentPlayer.getPawn() instanceof Messenger)){
-            for(int playerNum:traders){
-                if (getPlayer(playerNum).getPawnPos() != currentPlayer.getPawnPos()){
-                    traders.remove(playerNum);
+            Iterator<Integer> i = allPlayers.iterator();
+            while (i.hasNext()){
+                int x = i.next();
+                if (getPlayer(x).getPawnPos() != currentPlayer.getPawnPos()){
+                    i.remove();
                 }
             }
         }
-        return traders;
+        return allPlayers;
     }
 
     public List getPlayerHand(Player p1) {
