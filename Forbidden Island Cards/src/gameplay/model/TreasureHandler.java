@@ -1,6 +1,7 @@
-package gameplay;
+package gameplay.model;
 
 import enums.TreasureCardEnums;
+import enums.TypeEnums;
 import player.Player;
 
 public class TreasureHandler {
@@ -25,18 +26,18 @@ public class TreasureHandler {
         water    = false;
     }
     
-    public static void setTreasureCapture(TreasureCardEnums tile){
+    public static void setTreasureCapture(TypeEnums tile){
 		switch (tile) {
-			case CRYSTAL_OF_FIRE:
+			case FIRE:
 				fire=true;
 				break;
-			case OCEANS_CHALICE:
+			case WATER:
 				water=true;
 				break;
-			case STATUE_OF_THE_WIND:
+			case WIND:
 				wind=true;
 				break;
-			case EARTH_STONE:
+			case EARTH:
 				earth=true;
                 break;
             default:
@@ -52,4 +53,20 @@ public class TreasureHandler {
             return false;
         }
     }
+
+	public boolean queryCaptured(TypeEnums tile) {
+        if(tile == TypeEnums.EARTH){
+            return earth;
+        }
+        if(tile == TypeEnums.FIRE){
+            return fire;
+        }
+        if(tile == TypeEnums.WATER){
+            return water;
+        }
+        if(tile == TypeEnums.WIND){
+            return wind;
+        }
+		return false;
+	}
 }

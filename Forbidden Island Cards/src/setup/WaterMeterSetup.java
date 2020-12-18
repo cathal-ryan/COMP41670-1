@@ -1,6 +1,6 @@
 package setup;
 
-import gameplay.WaterMeter;
+import gameplay.model.WaterMeter;
 
 public class WaterMeterSetup {
 

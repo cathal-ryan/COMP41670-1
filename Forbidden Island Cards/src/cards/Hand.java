@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import enums.TreasureCardEnums;
+import enums.TypeEnums;
 
 public class Hand {
 
@@ -52,7 +53,8 @@ public class Hand {
 		handOfCards.remove(i);
 	}
 	
-	public void discardforTreasure(TreasureCardEnums name){
+	public void discardforTreasure(TypeEnums typename){
+		TreasureCardEnums name = convertTypetoTreasure(typename);
 		int k=0;
 		for (int j=0;j<handOfCards.size();j++){
 			Card c1 = handOfCards.get(j);
@@ -88,13 +90,35 @@ public class Hand {
 		return -1;
 	}
 
-	public int numofInstances(TreasureCardEnums name){
+	public int numofInstances(TypeEnums typename){
+		TreasureCardEnums name = convertTypetoTreasure(typename);
 		return Collections.frequency(getNamesList(), name);
 	}
 	
 	public boolean checkContains(TreasureCardEnums name){
 		return (getNamesList().contains(name));
 	}	
+
+	private TreasureCardEnums convertTypetoTreasure(TypeEnums typename){
+		TreasureCardEnums name;
+		switch (typename) {
+			case FIRE:
+				name=TreasureCardEnums.CRYSTAL_OF_FIRE;
+				break;
+			case WATER:
+				name=TreasureCardEnums.OCEANS_CHALICE;
+				break;
+			case WIND:
+				name=TreasureCardEnums.STATUE_OF_THE_WIND;
+				break;
+			case EARTH:
+				name=TreasureCardEnums.EARTH_STONE;
+                break;
+            default:
+				name = TreasureCardEnums.CRYSTAL_OF_FIRE;
+		}
+		return name;
+	}
 }
 
 

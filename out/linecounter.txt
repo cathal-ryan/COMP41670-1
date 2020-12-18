@@ -498,3 +498,132 @@ Forbidden Island Cards/src/setup/SetupInputs.java, code is 44, comment is 4, bla
 Forbidden Island Cards/src/setup/SetupOutputs.java, code is 47, comment is 4, blank is 14.
 Forbidden Island Cards/src/setup/WaterMeterSetup.java, code is 15, comment is 0, blank is 5.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecounter
+EXTENSION VERSION : 0.2.7
+-------------------------------------------------------------------------------
+count time : 2020-12-18 17:05:43
+count workspace : /home/cathalryan/College/SoftwareEngineering/ForbiddenIsland/COMP41670
+total files : 110
+total code lines : 2603
+total comment lines : 136
+total blank lines : 549
+
+    statistics
+   |      extension|     total code|  total comment|    total blank|percent|
+   -------------------------------------------------------------------------
+   |               |             36|              0|              0|    1.4|
+   |          .java|           2556|            136|            549|     98|
+   |         .prefs|             11|              0|              0|   0.42|
+   -------------------------------------------------------------------------
+.gitignore, code is 2, comment is 0, blank is 0.
+Forbidden Island Cards/.classpath, code is 6, comment is 0, blank is 0.
+Forbidden Island Cards/.project, code is 28, comment is 0, blank is 0.
+Forbidden Island Cards/.settings/org.eclipse.jdt.core.prefs, code is 11, comment is 0, blank is 0.
+Forbidden Island Cards/bin/board/Board.class, it is a binary file.
+Forbidden Island Cards/bin/board/DrawTile.class, it is a binary file.
+Forbidden Island Cards/bin/board/Tile.class, it is a binary file.
+Forbidden Island Cards/bin/cards/Card.class, it is a binary file.
+Forbidden Island Cards/bin/cards/Deck.class, it is a binary file.
+Forbidden Island Cards/bin/cards/DiscardPile.class, it is a binary file.
+Forbidden Island Cards/bin/cards/FloodCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/FloodDeck.class, it is a binary file.
+Forbidden Island Cards/bin/cards/FloodDiscardPile.class, it is a binary file.
+Forbidden Island Cards/bin/cards/Hand.class, it is a binary file.
+Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
+Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
+Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
+Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
+Forbidden Island Cards/bin/enums/TilesEnums.class, it is a binary file.
+Forbidden Island Cards/bin/enums/TileStack.class, it is a binary file.
+Forbidden Island Cards/bin/enums/TreasureCardEnums.class, it is a binary file.
+Forbidden Island Cards/bin/enums/TypeEnums.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/Controller.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/FloodDraw.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/GameManager.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/LoseObserver.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/Observer.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/PlayerActions.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/TreasureDraw.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/control/WinObserver.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/model/GameModel.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/model/Subject.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/model/TreasureHandler.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/model/WaterMeter.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/view/GameInputs.class, it is a binary file.
+Forbidden Island Cards/bin/gameplay/view/GameOutputs.class, it is a binary file.
+Forbidden Island Cards/bin/maindemo.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Diver.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Engineer.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Explorer.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Messenger.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Navigator.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Pawn.class, it is a binary file.
+Forbidden Island Cards/bin/pawns/Pilot.class, it is a binary file.
+Forbidden Island Cards/bin/player/Player.class, it is a binary file.
+Forbidden Island Cards/bin/player/Team.class, it is a binary file.
+Forbidden Island Cards/bin/setup/BoardSetup.class, it is a binary file.
+Forbidden Island Cards/bin/setup/CardSetup.class, it is a binary file.
+Forbidden Island Cards/bin/setup/PlayerSetup.class, it is a binary file.
+Forbidden Island Cards/bin/setup/Setup.class, it is a binary file.
+Forbidden Island Cards/bin/setup/SetupInputs.class, it is a binary file.
+Forbidden Island Cards/bin/setup/SetupOutputs.class, it is a binary file.
+Forbidden Island Cards/bin/setup/WaterMeterSetup.class, it is a binary file.
+Forbidden Island Cards/src/board/Board.java, code is 115, comment is 1, blank is 33.
+Forbidden Island Cards/src/board/DrawTile.java, code is 94, comment is 3, blank is 17.
+Forbidden Island Cards/src/board/Tile.java, code is 133, comment is 0, blank is 29.
+Forbidden Island Cards/src/cards/Card.java, code is 12, comment is 1, blank is 3.
+Forbidden Island Cards/src/cards/Deck.java, code is 16, comment is 0, blank is 6.
+Forbidden Island Cards/src/cards/DiscardPile.java, code is 28, comment is 7, blank is 13.
+Forbidden Island Cards/src/cards/FloodCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/FloodDeck.java, code is 29, comment is 1, blank is 6.
+Forbidden Island Cards/src/cards/FloodDiscardPile.java, code is 29, comment is 0, blank is 9.
+Forbidden Island Cards/src/cards/Hand.java, code is 83, comment is 0, blank is 18.
+Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureDeck.java, code is 53, comment is 1, blank is 9.
+Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
+Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
+Forbidden Island Cards/src/enums/TilesEnums.java, code is 35, comment is 9, blank is 5.
+Forbidden Island Cards/src/enums/TileStack.java, code is 45, comment is 0, blank is 7.
+Forbidden Island Cards/src/enums/TreasureCardEnums.java, code is 17, comment is 9, blank is 8.
+Forbidden Island Cards/src/enums/TypeEnums.java, code is 17, comment is 9, blank is 5.
+Forbidden Island Cards/src/gameplay/control/Controller.java, code is 311, comment is 1, blank is 35.
+Forbidden Island Cards/src/gameplay/control/FloodDraw.java, code is 33, comment is 12, blank is 5.
+Forbidden Island Cards/src/gameplay/control/GameManager.java, code is 41, comment is 7, blank is 7.
+Forbidden Island Cards/src/gameplay/control/LoseObserver.java, code is 48, comment is 0, blank is 8.
+Forbidden Island Cards/src/gameplay/control/Observer.java, code is 5, comment is 0, blank is 1.
+Forbidden Island Cards/src/gameplay/control/PlayerActions.java, code is 58, comment is 10, blank is 6.
+Forbidden Island Cards/src/gameplay/control/TreasureDraw.java, code is 55, comment is 10, blank is 8.
+Forbidden Island Cards/src/gameplay/control/WinObserver.java, code is 20, comment is 0, blank is 8.
+Forbidden Island Cards/src/gameplay/model/GameModel.java, code is 262, comment is 10, blank is 44.
+Forbidden Island Cards/src/gameplay/model/Subject.java, code is 5, comment is 0, blank is 1.
+Forbidden Island Cards/src/gameplay/model/TreasureHandler.java, code is 48, comment is 0, blank is 7.
+Forbidden Island Cards/src/gameplay/model/WaterMeter.java, code is 24, comment is 0, blank is 6.
+Forbidden Island Cards/src/gameplay/view/GameInputs.java, code is 128, comment is 0, blank is 12.
+Forbidden Island Cards/src/gameplay/view/GameOutputs.java, code is 158, comment is 4, blank is 40.
+Forbidden Island Cards/src/maindemo.java, code is 8, comment is 0, blank is 5.
+Forbidden Island Cards/src/pawns/Diver.java, code is 14, comment is 0, blank is 6.
+Forbidden Island Cards/src/pawns/Engineer.java, code is 14, comment is 0, blank is 6.
+Forbidden Island Cards/src/pawns/Explorer.java, code is 14, comment is 0, blank is 6.
+Forbidden Island Cards/src/pawns/Messenger.java, code is 14, comment is 0, blank is 8.
+Forbidden Island Cards/src/pawns/Navigator.java, code is 14, comment is 0, blank is 6.
+Forbidden Island Cards/src/pawns/Pawn.java, code is 25, comment is 0, blank is 15.
+Forbidden Island Cards/src/pawns/Pilot.java, code is 14, comment is 0, blank is 7.
+Forbidden Island Cards/src/player/Player.java, code is 93, comment is 3, blank is 21.
+Forbidden Island Cards/src/player/Team.java, code is 42, comment is 0, blank is 10.
+Forbidden Island Cards/src/setup/BoardSetup.java, code is 54, comment is 0, blank is 18.
+Forbidden Island Cards/src/setup/CardSetup.java, code is 58, comment is 11, blank is 7.
+Forbidden Island Cards/src/setup/PlayerSetup.java, code is 64, comment is 0, blank is 9.
+Forbidden Island Cards/src/setup/Setup.java, code is 39, comment is 4, blank is 9.
+Forbidden Island Cards/src/setup/SetupInputs.java, code is 44, comment is 4, blank is 8.
+Forbidden Island Cards/src/setup/SetupOutputs.java, code is 47, comment is 4, blank is 14.
+Forbidden Island Cards/src/setup/WaterMeterSetup.java, code is 15, comment is 0, blank is 5.
+===============================================================================

@@ -2,6 +2,7 @@ package pawns;
 
 import java.awt.Point;
 
+import board.Board;
 import enums.TilesEnums;
 
 abstract public class Pawn {
@@ -24,16 +25,18 @@ abstract public class Pawn {
     
     public void shoreUp() {
         System.out.println("\nSome day I'll get around to shoring up");
-
+        System.out.println(getPos());
     }
 
     public void move() {
         System.out.println("\nSome day I'll get around to moving..");
-
+        System.out.println(getPos());
+        System.out.println(Board.getInstance().getTileType(getPos()));
     }
 
     public void helicopterMove(int k) {
         System.out.println("\nSome day I'll get around to flying.."+k);
+        System.out.println(getPos());
 
     }
 

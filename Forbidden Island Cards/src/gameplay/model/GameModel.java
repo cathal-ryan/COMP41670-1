@@ -1,5 +1,6 @@
 package gameplay.model;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +9,6 @@ import cards.*;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
-import gameplay.WaterMeter;
 import player.*;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
@@ -276,6 +276,9 @@ public class GameModel implements Subject {
         // check the positions of all players, if they're on fools landing
         // check if all 4 treasures have been captured if thats the case then set it so checkifwon returns true
         double x= Math.random();
+        if (theTreasureHandler.allCaptured()) {
+
+        }
         boolean checkifWon = (x>0.5);
         if(checkifWon){
             notifyUpdate(winner,7);
@@ -290,25 +293,30 @@ public class GameModel implements Subject {
 	public int capture() {
         // Check players position for if its on a treasure tile, and get name of tile
         // tile = pawn.currentTile();
-        TreasureCardEnums tile = TreasureCardEnums.CRYSTAL_OF_FIRE; // dont keep like this
-        boolean onTreasureTile = true;
-        boolean alreadyCaptured = false;
-        if(alreadyCaptured){
-            return 1;
-        }
+        TypeEnums tile = theGameModel.getCurrentTileType();
+        // Need to check are they on a treasure tile
+        boolean onTreasureTile = (tile==TypeEnums.EARTH) || (tile==TypeEnums.FIRE) || (tile==TypeEnums.WIND) || (tile==TypeEnums.WATER);
         if(!onTreasureTile){
             return 2;
         }
+
+        // Need to check if a treasure has already been captured.
+        if(theTreasureHandler.queryCaptured(tile)){
+            return 1;
+        }
+
         if(currentPlayer.getHand().numofInstances(tile)<4){
             return 3;
         }
+
         currentPlayer.getHand().discardforTreasure(tile);
         theTreasureHandler.setTreasureCapture(tile);
 		return 0;
     }
 
-	public TypeEnums getCurrentTile() {
-        location = currentPlayer.getCoords();
-        return getTileType(location);
-	}
+	public TypeEnums getCurrentTileType() {
+        Point location = currentPlayer.getPawnPos();
+        return theBoard.getTileType(location);
+    }
+    
 }

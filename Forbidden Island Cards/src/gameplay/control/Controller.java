@@ -329,7 +329,7 @@ public class Controller{
             theOutputs.noActionsLeft();
             return;
         }
-        TypeEnums tile = theGameModel.getCurrentTile();
+        TypeEnums tile = theGameModel.getCurrentTileType();
         int captureMode = theGameModel.capture();
         if(captureMode == 0){
             theOutputs.treasureCaptured(tile);
