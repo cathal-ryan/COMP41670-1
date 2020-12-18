@@ -6,6 +6,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.text.Position;
+
 import board.Board;
 import cards.*;
 import enums.TilesEnums;
@@ -192,13 +194,12 @@ public class GameModel implements Subject {
 
     public List<Integer> getTradePartners() {
         List<Integer> allPlayers = theTeam.getAllPlayerNums(currentPlayer.getNum());
-      //  System.out.println(traders);
 
         if(!(currentPlayer.getPawn() instanceof Messenger)){
             Iterator<Integer> i = allPlayers.iterator();
             while (i.hasNext()){
                 int x = i.next();
-                if (getPlayer(x).getPawnPos() != currentPlayer.getPawnPos()){
+                if (!getPlayer(x).getPawnPos().equals(currentPlayer.getPawnPos())){
                     i.remove();
                 }
             }
