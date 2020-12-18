@@ -3,6 +3,7 @@ package setup;
 import java.awt.Point;
 
 import board.Board;
+import board.DrawBoard;
 import enums.TileStack;
 import enums.TilesEnums;
 
@@ -62,14 +63,7 @@ public class BoardSetup {
 	}
 
 	public void displayBoard() {
-		for(int x=0; x < theBoard.getCols(); x++) {
-			for(int y=0; y < theBoard.getRows(); y++) {
-				p = new Point(x,y);
-				System.out.println("\nTile Pos is: " +p.toString());
-				System.out.println("Tile name is: " +theBoard.getTileName(p));
-				System.out.println("Tile type is: " +theBoard.getTileType(p));
-			}
-		}
+		DrawBoard drawnBoard = new DrawBoard();
 	}
 
 	public static void main(String[] args) {
