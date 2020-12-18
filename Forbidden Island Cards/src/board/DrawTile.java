@@ -3,9 +3,11 @@ package board;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.awt.Point;
 
 import board.Tile;
 import enums.TypeEnums;
+import player.*;
 
 // To be removed
 import enums.TilesEnums;
@@ -28,6 +30,7 @@ public class DrawTile {
 		writeName(t);
 		writeType(t);
 		writeFlooded(t);
+		placePawn(t);
 	}
 
 	private void createPerim(Tile t) {
@@ -73,6 +76,29 @@ public class DrawTile {
 			String status = "     Flooded      ";
 			lst2d.get(3).set(1,status);
 		}
+	}
+
+	private void placePawn(Tile t) {
+		Team theTeam = Team.getInstance();
+		String charSymb = "";
+		for(Player p : theTeam.getAllPlayers()) {
+			if(p.getPawnPos().equals(t.getPos())) {
+				charSymb += p.getChar();
+			}
+		}
+		// String charSymb = "\uD83E\uDD3F";
+		int size = charSymb.length();
+		if(size == 0)
+			charSymb = "                  ";
+		else if(size == 1)
+			charSymb = "        "+charSymb+"         ";
+		else if(size == 2)
+			charSymb = "        "+charSymb+"        ";
+		else if(size == 3)
+			charSymb = "        "+charSymb+"       ";
+		else if(size == 4)
+			charSymb = "       "+charSymb+"       ";
+		lst2d.get(4).set(1,charSymb);
 	}
 
 	public List<List<String>> get2dList() {
