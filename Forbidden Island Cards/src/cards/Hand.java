@@ -56,15 +56,19 @@ public class Hand {
 	public void discardforTreasure(TypeEnums typename){
 		TreasureCardEnums name = convertTypetoTreasure(typename);
 		int k=0;
+		List<Integer> forRemoval = new ArrayList();
 		for (int j=0;j<handOfCards.size();j++){
 			Card c1 = handOfCards.get(j);
 				if (c1.getName()==name){
-					removeCard(j);
+					forRemoval.add(j);
 					k++;
-					if(k>=3){
-						return;
+					if(k>=4){
+						break;
 					}
 				}
+		}
+		for(k=0;k<forRemoval.size();k++){
+			removeCard(forRemoval.get(k));
 		}
 	}
 
