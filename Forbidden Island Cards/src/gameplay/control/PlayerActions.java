@@ -37,20 +37,23 @@ public class PlayerActions {
             case 4:
 				theController.giveCard();
 				break;
-            case 5:
-				theController.useHelicopterLift(null);
+			case 5:
+				theController.enquirePlayers(true);
 				break;
 			case 6:
 				theController.useSandbags(null);
                 break;
             case 7:
-				theController.lookAtHands();
+				theController.useHelicopterLift(null);
                 break;
             case 8:
 				theController.lookDiscarded();
 				break;
             case 9:
-				theController.enquirePlayers(true);
+				theController.lookAtHands();
+				break;
+			case 10:
+				theController.lookAtBoard();
 				break;
 			default:
 				theOutputs.generalError();

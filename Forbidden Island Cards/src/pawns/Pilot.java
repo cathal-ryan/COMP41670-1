@@ -18,4 +18,8 @@ public class Pilot extends Pawn{
 		return TilesEnums.FOOLS_LANDING;
 	}
 
+	@Override
+	public boolean canSwim() {
+		return true;
+	}
 }

@@ -20,12 +20,13 @@ public class GameOutputs {
     }
 
     public void giveOptions(int actions) {
-		System.out.println("\nWhat do you want to do? You have " +actions +" actions remaining.");
-		System.out.println("[9]\tAsk the team if anyone wants to use a special card.");
+        System.out.println("\nWhat do you want to do? You have " +actions +" actions remaining.");
+        System.out.println("[10]\tLook at the game board.");
+		System.out.println("[9]\tLook at everyone's hands.");
 		System.out.println("[8]\tLook at the discard piles.");
-		System.out.println("[7]\tHave a look at everyone's hands.");
+		System.out.println("[7]\tUse Helicopter Lift");
 		System.out.println("[6]\tUse Sandbags.");
-		System.out.println("[5]\tUse Helicopter Lift.");
+		System.out.println("[5]\tAsk the team if anyone wants to use a special card.");
 		System.out.println("[4]\tGive a card to a teammate. (1 action)");
 		System.out.println("[3]\tCapture a Treasure. (1 action)");
 		System.out.println("[2]\tShore Up. (1 action)");
@@ -170,7 +171,7 @@ public class GameOutputs {
 	}
 
     public void sunkTile(String string) {
-        System.out.println("Oh no! "+ string+ " has sank!");
+        System.out.println("Oh no! "+ string+ " has sunk! The "+string+" card has been removed from play!");
     }
 
     public void floodedTile(String string) {
@@ -245,6 +246,24 @@ public class GameOutputs {
             System.out.println();
 		}
 
-		public void showPlayerPawns(Player player) {
+		public void needToSwim(String name,String type) {
+            System.out.println("Oh no! "+ name + " must swim to safety. Where will you swim to?");
+            switch (name) {
+                case "Diver":
+                    System.out.println("You are a Diver, and so can swim to the nearest tile.");
+                    break;
+                case "Explorer":
+                System.out.println("You are an Explorer, and so can swim diagonally");
+                    break;
+                case "Pilot":
+                System.out.println("You are a pilot, and so can fly anywhere on the board.");
+                    break;
+                default:
+                    System.out.println("You can swim up, down, left or right");
+            }
+        }
+        
+		public void noSwim() {
+            System.out.println("You can't swim here.");
 		}
 }

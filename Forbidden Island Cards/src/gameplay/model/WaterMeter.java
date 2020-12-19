@@ -1,4 +1,4 @@
-package gameplay.model;
+package gameplay;
 
 import cards.FloodDiscardPile;
 

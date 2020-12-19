@@ -1,5 +1,6 @@
 package gameplay.view;
 
+import java.awt.Point;
 import java.util.List;
 import java.util.Scanner;
 
@@ -111,7 +112,7 @@ public class GameInputs {
                 theOutputs.generalError();
                 continue;
             }
-            if ((userInput >= 0) && (userInput < 10)) {
+            if ((userInput >= 0) && (userInput < 11)) {
                 validInput = true;
             }
             else{
@@ -172,4 +173,8 @@ public class GameInputs {
         System.out.println("Where do you want to move to?\nBoard prints..\they pick");
         return 0;
     }
+
+	public Point selectSwimming() {
+		return null;
+	}
 }

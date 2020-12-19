@@ -1,6 +1,9 @@
 package player;
 
 import java.util.List;
+
+import board.Board;
+
 import java.awt.Point;
 
 import pawns.Pawn;

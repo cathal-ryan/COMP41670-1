@@ -1,6 +1,7 @@
 package pawns;
 
 import java.awt.Point;
+import java.util.List;
 
 import board.Board;
 import enums.TilesEnums;
@@ -9,6 +10,7 @@ import enums.TypeEnums;
 abstract public class Pawn {
 
     protected Point position;
+    protected List<Point> viableSwim;
 
     protected Pawn() {
     }
@@ -77,10 +79,47 @@ abstract public class Pawn {
         }
     }
 
-    public void helicopterMove(int k) {
-        System.out.println("\nSome day I'll get around to flying.."+k);
+    public void helicopterMove(Point p) {
+        System.out.println("\nSome day I'll get around to flying..");
+        setPos(p);
         System.out.println(getPos());
+    }
 
+    // could also use this to check if you can move.
+    public boolean canSwim() {
+        boolean isSwimmable = false;
+        viableSwim.clear();
+        Board theBoard = Board.getInstance();
+        int movePosX = (int) position.getX();
+        int movePosY = (int) position.getY();
+        int x=0;int y=0;
+        for(y=movePosY-1;y<movePosY+2;y=y+2){
+			x = movePosX;
+            Point p = new Point(x,y);
+			Boolean can2 = (movePosX > 0) && (movePosX < 6) && (movePosY < 6) && (movePosY > 0);
+			if(can2){
+                if((theBoard.getTileType(p) != TypeEnums.SEA)){
+                    isSwimmable =true;
+                    viableSwim.add(p);
+                }
+			}
+        }
+		for(x=movePosX-1;x<movePosX+2;x=x+2){
+			y = movePosY;
+			Point p = new Point(x,y);
+			Boolean can2 = (movePosX > 0) && (movePosX < 6) && (movePosY < 6) && (movePosY > 0);
+			if(can2){
+                if (theBoard.getTileType(p) != TypeEnums.SEA){
+                    isSwimmable=true;
+                    viableSwim.add(p);
+                }
+			}
+        }
+        return isSwimmable;
+    }
+
+    public List<Point> getViableSwims(){
+        return viableSwim;
     }
 
 }

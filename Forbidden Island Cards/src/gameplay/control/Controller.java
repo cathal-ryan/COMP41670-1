@@ -15,6 +15,7 @@ import cards.TreasureDeckCard;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
 import enums.TilesEnums;
+import java.awt.Point;
 
 public class Controller{
 
@@ -197,13 +198,13 @@ public class Controller{
         if(eligible==null){
             eligible = theGameModel.getAllPlayerNums(-1);
         }
-        int size = theGameModel.getTeamSize();
+        int size = theGameModel.getNumPlayers();
         for(int i=0;i<size;i++){
             if (eligible.contains(i)){
                 theOutputs.showOption(i, theGameModel.getPlayer(i).getName());
             }
         }
-        int userIn = theInputs.playerChoice(theGameModel.getTeamSize(), eligible);
+        int userIn = theInputs.playerChoice(theGameModel.getNumPlayers(), eligible);
 		return theGameModel.getPlayer(userIn);
     }
 
@@ -281,18 +282,22 @@ public class Controller{
     }
 
     private void showGameState(){
-        theOutputs.printBoard();
+        lookAtBoard();
         lookAtHands();
-        theOutputs.displayWater(getWaterLevel());
         theOutputs.printPile(false, theGameModel.showDiscard(false));
         theOutputs.printPile(true, theGameModel.showDiscard(true));
-        displayTreasures();
     }
 
     public void displayTreasures(){
         List<TypeEnums> treasures = theGameModel.listCaptured();
         theOutputs.showCaptured(treasures);
     }
+
+    public void lookAtBoard() {
+        theOutputs.printBoard();
+        theOutputs.displayWater(getWaterLevel());
+        displayTreasures();
+	}
 
     public boolean enquirePlayers(boolean asked){
         List<Integer> eligible = theGameModel.getPlayerswithSpecials();
@@ -354,12 +359,38 @@ public class Controller{
 	public void dealFloodCard() {
         Card card1 = theGameModel.dealFlood();
         TilesEnums t1 = (TilesEnums) card1.getName();
-        if(theGameModel.isSunk(t1))
+        if(theGameModel.isSunk(t1)){
             theOutputs.sunkTile(card1.getName().toString());
+            sunkenTile(t1);
+        }
         else
             theOutputs.floodedTile(card1.getName().toString());
 	}
 
+    private void sunkenTile(TilesEnums tile){
+        for (int i=0;i<theGameModel.getNumPlayers();i++){
+            Player player = theGameModel.getPlayer(i);
+            if (theGameModel.getTilePos(tile).equals(player.getPawnPos())){
+                if(!theGameModel.canPlayerSwim(player)){
+                    System.out.println("Player cant swim!");
+                    return;
+                }
+                theOutputs.needToSwim(player.getName(),player.getPlayerType());
+                boolean canSwimHere = false;
+                while(!canSwimHere){
+                    Point swim = theInputs.selectSwimming();
+                    List<Point> swimmables = player.getPawn().getViableSwims();
+                    if(swimmables.contains(swim)){
+                        theGameModel.heliMovePlayer(player, swim);
+                        canSwimHere=true;
+                    }
+                    if(!canSwimHere){
+                        theOutputs.noSwim();
+                    }
+                }
+            }
+        }
+    }
 	public void gameOverPrompt() {
         if(losing.isGameLost()){
             String gameLoss = losing.getLossCondition();
@@ -394,5 +425,4 @@ public class Controller{
 	public String returnChar() {
 		return theGameModel.getCurrentPlayer().getChar();
 	}
-
 }

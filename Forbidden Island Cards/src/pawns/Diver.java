@@ -17,4 +17,9 @@ public class Diver extends Pawn{
 		return TilesEnums.IRON_GATE;
 	}
 
+	@Override
+	public boolean canSwim() {
+		return true;
+	}
+
 }

@@ -18,6 +18,7 @@ import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
 import gameplay.control.WinObserver;
 import pawns.Messenger;
+import pawns.*;
 import board.Board;
 
 public class GameModel implements Subject {
@@ -72,7 +73,7 @@ public class GameModel implements Subject {
     }
 
     public int getNumPlayers() {
-        return theTeam.getAllPlayers().size();
+        return theTeam.getNumPlayers();
     }
 
     public String getPlayerNameFromIndex(int index) {
@@ -121,6 +122,7 @@ public class GameModel implements Subject {
     }
 
     public void movePlayer(char dir) {
+        // always false rn
         if (!currentPlayer.canMove()) {
             return;
         } 
@@ -163,10 +165,6 @@ public class GameModel implements Subject {
         return theTeam.getAllPlayerNums(i);
     }
 
-    public int getTeamSize() {
-        return theTeam.getNumPlayers();
-    }
-
     public Player getPlayer(int userIn) {
         if(userIn<0){
             return currentPlayer;
@@ -179,8 +177,8 @@ public class GameModel implements Subject {
         p1.getHand().removeCard(pos);
     }
 
-    public void heliMovePlayer(Player playerForHeliMove, int k) {
-        playerForHeliMove.helicopterMove(k);
+    public void heliMovePlayer(Player playerForHeliMove, Point p) {
+        playerForHeliMove.helicopterMove(p);
     }
 
     public List<Integer> getTradePartners() {
@@ -273,6 +271,7 @@ public class GameModel implements Subject {
         Card card1 = theFloodDeck.dealCard();
         TilesEnums t1 = (TilesEnums) card1.getName();
         theBoard.floodTile(t1);
+
         if((isSunk(TilesEnums.FOOLS_LANDING))){
             notifyUpdate(loser,4); // currently you lose whenever fools landing drawn
         }
@@ -296,9 +295,7 @@ public class GameModel implements Subject {
                 notifyUpdate(loser,3);
             }        
         }
-        // should check other ways in which the player can lose here.
-        // If its sunk, dont bother adding card to discard pile, remove from play
-        // If its just flooded then add it.
+
         if(!isSunk(t1)){
             theFloodDiscardPile.addToPile(card1);
         }
@@ -366,5 +363,19 @@ public class GameModel implements Subject {
         Point location = currentPlayer.getPawnPos();
         return theBoard.getTileType(location);
     }
+
+	public Point getTilePos(TilesEnums t1) {
+		return theBoard.getTilePos(t1);
+	}
+
+	public boolean canPlayerSwim(Player player) {
+        if (!player.getPawn().canSwim()){
+            notifyUpdate(loser,5);
+            return false;
+        }
+        else{
+            return true;
+        }
+	}
     
 }
