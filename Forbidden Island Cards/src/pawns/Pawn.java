@@ -5,7 +5,10 @@ import java.awt.Point;
 import board.Board;
 import enums.TilesEnums;
 import enums.TypeEnums;
+<<<<<<< HEAD
 import gameplay.model.TreasureHandler;
+=======
+>>>>>>> e436e8070df5524389c99e1c65186af7ba79d989
 
 abstract public class Pawn {
 
@@ -31,18 +34,51 @@ abstract public class Pawn {
         System.out.println(getPos());
     }
 
-    public void move() {
-        Point p = Board.getInstance().getTilePos(TilesEnums.FOOLS_LANDING);
-        TreasureHandler.getInstance().setTreasureCapture(TypeEnums.FIRE);
-        TreasureHandler.getInstance().setTreasureCapture(TypeEnums.WATER);
-        TreasureHandler.getInstance().setTreasureCapture(TypeEnums.WIND);
-        TreasureHandler.getInstance().setTreasureCapture(TypeEnums.EARTH);
-
-        setPos(p);
-
-        System.out.println("\nSome day I'll get around to moving..");
-        System.out.println(getPos());
-        System.out.println(Board.getInstance().getTileType(getPos()));
+    public boolean move(char dir) {
+        Board theBoard = Board.getInstance();
+        Point p;
+        int movePosX = (int) position.getX();
+        int movePosY = (int) position.getY();
+        switch(dir) {
+            case 'w':
+                movePosY++;
+                p = new Point(movePosX,movePosY);
+                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY < 6) {
+                    position.move(movePosX,movePosY);
+                    return true;
+                }
+                else
+                    return false;
+            case 'a':
+                movePosX--;
+                p = new Point(movePosX,movePosY);
+                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX > 0) {
+                    position.move(movePosX,movePosY);
+                    return true;
+                }
+                else
+                    return false;
+            case 's':
+                movePosY--;
+                p = new Point(movePosX,movePosY);
+                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY > 0) {
+                    position.move(movePosX,movePosY);
+                    return true;
+                }
+                else
+                    return false;
+            case 'd':
+                movePosX++;
+                p = new Point(movePosX,movePosY);
+                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX < 6) {
+                    position.move(movePosX,movePosY);
+                    return true;
+                }
+                else
+                    return false;
+            default:
+                return false;
+        }
     }
 
     public void helicopterMove(int k) {

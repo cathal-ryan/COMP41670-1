@@ -27,7 +27,6 @@ public class GameModel implements Subject {
     private int actionsLeft;
     private boolean turnOver;
     private WaterMeter theWaterMeter;
-    private Board theBoard;
     private TreasureDiscardPile theTreasureDiscardPile;
     private FloodDiscardPile theFloodDiscardPile;
     private FloodDeck theFloodDeck;
@@ -105,7 +104,8 @@ public class GameModel implements Subject {
     public Deck returnDeck(boolean treasure) {
         if (treasure) {
             return theTreasureDeck;
-        } else {
+        } 
+        else {
             return theFloodDeck;
         }
     }
@@ -113,17 +113,19 @@ public class GameModel implements Subject {
     public String showDiscard(boolean Treasure) {
         if (Treasure) {
             return theTreasureDiscardPile.returnPrintedPile();
-        } else {
+        } 
+        else {
             return theFloodDiscardPile.returnPrintedPile();
         }
     }
 
-    public void movePlayer() {
+    public void movePlayer(char dir) {
         if (!currentPlayer.canMove()) {
             return;
-        } else {
-            currentPlayer.getPawn().move();
-            decreaseActions();
+        } 
+        else {
+            if(currentPlayer.getPawn().move(dir))
+                decreaseActions();
         }
     }
 
