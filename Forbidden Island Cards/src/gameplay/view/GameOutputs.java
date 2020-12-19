@@ -110,7 +110,7 @@ public class GameOutputs {
 	}
 
 	public void handTooBig(String name) {
-        System.out.println("Hey, "+name+", your hand is too big..");
+        System.out.println("Hey, "+name+", your hand is too big.. Please select a card to discard.");
 	}
 
 	public void useIt() {

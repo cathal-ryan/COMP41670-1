@@ -149,7 +149,7 @@ public class Controller{
             return false;
         }
         int handSizeB = getHandSize(playerB);
-        while(handSizeB > 5){
+        while(handSizeB > 5 && !isGameOver()){
             discardTreasure(playerB);
             handSizeB = getHandSize(playerB);
 		}

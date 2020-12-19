@@ -194,7 +194,6 @@ public class GameModel implements Subject {
 
     public List<Integer> getTradePartners() {
         List<Integer> allPlayers = theTeam.getAllPlayerNums(currentPlayer.getNum());
-
         if(!(currentPlayer.getPawn() instanceof Messenger)){
             Iterator<Integer> i = allPlayers.iterator();
             while (i.hasNext()){
@@ -321,24 +320,22 @@ public class GameModel implements Subject {
     }
 
 	public boolean canWin() {
-        // check the positions of all players, if they're on fools landing
-        // check if all 4 treasures have been captured if thats the case then set it so checkifwon returns true
-        double x= Math.random();
+        boolean winnable = true;
         if (!theTreasureHandler.allCaptured()) {
-            return false;
+            winnable= false;
         }
-
-        // check positions of players
-
-        boolean checkifWon = (x>0.5);
-        if(checkifWon){
+        for (Player player:theTeam.getAllPlayers()){
+            Point playerpos = player.getPawnPos();
+            TilesEnums tilename = theBoard.getTileName(playerpos);
+            if(!tilename.equals(TilesEnums.FOOLS_LANDING)){
+                winnable= false;
+            }
+        }
+        if(winnable){
             notifyUpdate(winner,7);
             notifyUpdate(loser,7);
-            return true;
         }
-        else{
-            return false;
-        }
+        return winnable;
 	}
 
 	public int capture() {
