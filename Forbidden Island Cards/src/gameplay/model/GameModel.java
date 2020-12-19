@@ -279,22 +279,22 @@ public class GameModel implements Subject {
             notifyUpdate(loser,4); // currently you lose whenever fools landing drawn
         }
         if((isSunk(TilesEnums.TEMPLE_OF_THE_MOON)) && (isSunk(TilesEnums.TEMPLE_OF_THE_SUN))){
-            if(theTreasureHandler.queryCaptured(TypeEnums.EARTH)){
+            if(!theTreasureHandler.queryCaptured(TypeEnums.EARTH)){
                 notifyUpdate(loser,0);
             }        
         }
         if((isSunk(TilesEnums.CAVE_OF_EMBERS)) && (isSunk(TilesEnums.CAVE_OF_SHADOWS))){
-            if(theTreasureHandler.queryCaptured(TypeEnums.FIRE)){
+            if(!theTreasureHandler.queryCaptured(TypeEnums.FIRE)){
                 notifyUpdate(loser,1);
             }
         }
         if((isSunk(TilesEnums.CORAL_PALACE)) && (isSunk(TilesEnums.TIDAL_PALACE))){
-            if(theTreasureHandler.queryCaptured(TypeEnums.WATER)){
+            if(!theTreasureHandler.queryCaptured(TypeEnums.WATER)){
                 notifyUpdate(loser,2);
             }        
         }
         if((isSunk(TilesEnums.WHISPERING_GARDEN)) && (isSunk(TilesEnums.HOWLING_GARDEN))){
-            if(theTreasureHandler.queryCaptured(TypeEnums.WIND)){
+            if(!theTreasureHandler.queryCaptured(TypeEnums.WIND)){
                 notifyUpdate(loser,3);
             }        
         }

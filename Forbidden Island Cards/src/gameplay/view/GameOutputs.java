@@ -251,7 +251,7 @@ public class GameOutputs {
 		}
 
 		public void needToSwim(String name, String type) {
-            System.out.println(name + " must swim to safety. Where will you swim to?");
+            System.out.println("\n"+name + " must swim to safety. Where will you swim to?");
             switch (name) {
                 case "Diver":
                     System.out.println("You are a Diver, and so can swim to the nearest tile.");

@@ -1,5 +1,6 @@
 package setup;
 
+import board.Board;
 import cards.Card;
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
@@ -7,6 +8,7 @@ import cards.TreasureDeck;
 import cards.TreasureDeckCard;
 import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
+import enums.TilesEnums;
 import player.Player;
 import player.Team;
 
@@ -21,6 +23,7 @@ public class CardSetup {
 	private TreasureDiscardPile setupTreasureDiscard;
 	private Team setupTeam;
 	private SetupOutputs setupOuts;
+	private Board theBoard;
 	//===========================================================
 	// Constructor
 	//===========================================================
@@ -34,7 +37,7 @@ public class CardSetup {
 		this.setupTreasureDiscard = TreasureDiscardPile.getInstance();
 		this.setupTeam = Team.getInstance();
 		setupOuts = new SetupOutputs();
-
+		this.theBoard       = Board.getInstance();
 	}
 
 	public void dealCards() {
@@ -66,8 +69,8 @@ public class CardSetup {
 			Card c1 = setupFloodDeck.dealCard();
 			String floodName = c1.getName().toString();
 			setupOuts.flooded(floodName);
-			// could have a board.flood(c1.getName) here
-        	setupFloodDiscard.addToPile(c1);
+			setupFloodDiscard.addToPile(c1);
+			theBoard.floodTile((TilesEnums)c1.getName());
 		}
     }
 }
