@@ -1,6 +1,8 @@
 package board;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.Point;
 
@@ -49,7 +51,11 @@ public class Board {
 
     public Tile getTile(Point coords) {
     	return boardTiles.get(coords);
-    }
+	}
+	
+	public HashMap<Point, Tile> getBoardTiles(){
+		return boardTiles;
+	}
 
     public Tile getTile(TilesEnums name) {
     	for(Tile t : boardTiles.values()) {
@@ -109,7 +115,28 @@ public class Board {
             }
             drawnTiles.dispAllRows();
         }
-    }
+	}
+
+	// returns a list of viable points, ie not sunk or sea
+	public List<Point> getValidTiles() {
+        List<Point> valid = new ArrayList();
+        for(Point p: getBoardTiles().keySet()){
+            if (getTileType(p) != TypeEnums.SEA){
+                valid.add(p);
+            }
+        }
+		return valid;
+	}
+
+	public List<Point> getSandbagsTiles() {
+        List<Point> valid = new ArrayList();
+        for(Point p: getBoardTiles().keySet()){
+            if (getTileType(p) != TypeEnums.SEA && !isTileFlooded(p)){
+                valid.add(p);
+            }
+        }
+		return valid;
+	}
 
     public static void main(String[] args) {
     	Board thisBoard = Board.getInstance();
@@ -145,5 +172,5 @@ public class Board {
 
         thisBoard.drawBoard();
     }
-	
+
 }

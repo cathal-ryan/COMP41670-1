@@ -91,6 +91,10 @@ public class GameOutputs {
         System.out.println("Is anyone else going to fly here?");
     }
 
+    public void heliWhere(){
+        System.out.println("Where do you want to move to?");
+    }
+
 	public void showOption(int i, String string) {
         System.out.println("["+i+"] "+ string);
 	}
@@ -246,8 +250,8 @@ public class GameOutputs {
             System.out.println();
 		}
 
-		public void needToSwim(String name,String type) {
-            System.out.println("Oh no! "+ name + " must swim to safety. Where will you swim to?");
+		public void needToSwim(String name, String type) {
+            System.out.println(name + " must swim to safety. Where will you swim to?");
             switch (name) {
                 case "Diver":
                     System.out.println("You are a Diver, and so can swim to the nearest tile.");
@@ -263,7 +267,21 @@ public class GameOutputs {
             }
         }
         
-		public void noSwim() {
-            System.out.println("You can't swim here.");
+		public void noMove() {
+            System.out.println("You can't move here.");
+        }
+
+        
+        
+        public void enterCoords(char x){
+            System.out.println("Please enter in "+ x + " coordinate.");
+        }
+
+		public void sandbagsWhere() {
+            System.out.println("Where do you want to shore up?");
+		}
+
+		public void cantSandbags() {
+            System.out.println("You can't use Sandbags here.");
 		}
 }

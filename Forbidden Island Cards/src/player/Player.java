@@ -117,8 +117,8 @@ public class Player {
 		return true;		
 	}
 
-	public void helicopterMove(int k){
-		playerPawn.helicopterMove(k);
+	public void helicopterMove(Point p){
+		playerPawn.helicopterMove(p);
 	}
 
 	public boolean canMove() {

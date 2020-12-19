@@ -1,5 +1,6 @@
 package pawns;
 
+import board.Board;
 import enums.TilesEnums;
 
 public class Pilot extends Pawn{
@@ -20,6 +21,7 @@ public class Pilot extends Pawn{
 
 	@Override
 	public boolean canSwim() {
+		viableSwim = Board.getInstance().getValidTiles();
 		return true;
 	}
 }

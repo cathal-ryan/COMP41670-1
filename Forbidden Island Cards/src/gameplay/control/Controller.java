@@ -220,16 +220,30 @@ public class Controller{
         if(theGameModel.canWin()){
             return;
         }
-        int k = theInputs.heliWhere();
+        theOutputs.heliWhere();
+        lookAtBoard();
+        List<Point> heliOptions = theGameModel.getValidTiles();
+        boolean validSelection=false;
+        Point p = new Point(0,0);
+        while(!validSelection){
+            p = theInputs.selectTile();
+            if(heliOptions.contains(p)){
+                validSelection=true;
+            }
+            else{
+                theOutputs.noMove();
+            }
+        }
         theOutputs.whoWillFly();
         List <Integer> availforMove = theGameModel.getAllPlayerNums(-1);
         boolean keepMoving = true;
         do{
             Player playerForHeliMove = choosePlayer(availforMove);
-            theGameModel.heliMovePlayer(playerForHeliMove, k);
+            theGameModel.heliMovePlayer(playerForHeliMove, p);
             availforMove.remove(new Integer(playerForHeliMove.getNum()));
         }
         while(!availforMove.isEmpty() && keepGoingHeli());
+        lookAtBoard();
     }
 
     public boolean keepGoingHeli() {
@@ -245,7 +259,22 @@ public class Controller{
             return;
         }
         theGameModel.removeCard(p1, TreasureCardEnums.SANDBAGS);
-        theGameModel.useSandbags();
+        theOutputs.sandbagsWhere();
+        lookAtBoard();
+        List<Point> sandOptions = theGameModel.getSandbagsTiles();
+        boolean validSelection=false;
+        Point p = new Point(0,0);
+        while(!validSelection){
+            p = theInputs.selectTile();
+            if(sandOptions.contains(p)){
+                validSelection=true;
+            }
+            else{
+                theOutputs.cantSandbags();
+            }
+        }
+        theGameModel.useSandbags(p);
+        lookAtBoard();
     }
     
     private boolean chooseOrShowState(int mode, String n, String y){
@@ -376,16 +405,17 @@ public class Controller{
                     return;
                 }
                 theOutputs.needToSwim(player.getName(),player.getPlayerType());
+                lookAtBoard();
                 boolean canSwimHere = false;
+                List<Point> swimmables = player.getPawn().getViableSwims();
                 while(!canSwimHere){
-                    Point swim = theInputs.selectSwimming();
-                    List<Point> swimmables = player.getPawn().getViableSwims();
+                    Point swim = theInputs.selectTile();
                     if(swimmables.contains(swim)){
                         theGameModel.heliMovePlayer(player, swim);
                         canSwimHere=true;
                     }
                     if(!canSwimHere){
-                        theOutputs.noSwim();
+                        theOutputs.noMove();
                     }
                 }
             }

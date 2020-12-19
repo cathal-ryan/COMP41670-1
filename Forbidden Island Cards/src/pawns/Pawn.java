@@ -1,6 +1,7 @@
 package pawns;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.List;
 
 import board.Board;
@@ -10,7 +11,7 @@ import enums.TypeEnums;
 abstract public class Pawn {
 
     protected Point position;
-    protected List<Point> viableSwim;
+    protected List<Point> viableSwim = new ArrayList<Point>();
 
     protected Pawn() {
     }
@@ -80,7 +81,6 @@ abstract public class Pawn {
     }
 
     public void helicopterMove(Point p) {
-        System.out.println("\nSome day I'll get around to flying..");
         setPos(p);
         System.out.println(getPos());
     }

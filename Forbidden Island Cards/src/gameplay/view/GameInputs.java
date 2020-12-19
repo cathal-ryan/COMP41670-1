@@ -4,6 +4,10 @@ import java.awt.Point;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.text.Position;
+
+import board.Board;
+
 public class GameInputs {
 
     private static GameOutputs theOutputs;
@@ -169,12 +173,33 @@ public class GameInputs {
         return userIn;
     }
 
-    public int heliWhere(){
-        System.out.println("Where do you want to move to?\nBoard prints..\they pick");
-        return 0;
+	public Point selectTile() {
+        int[] intArray = {0,0};
+        boolean valid = false;
+        for(int i=0;i<2;i++){
+            if(i==0){
+                theOutputs.enterCoords('x');
+            }
+            if(i==1){
+                theOutputs.enterCoords('y');
+            }
+            valid = false;
+            while (!valid) {
+                String userString = input.nextLine();
+                try {
+                    intArray[i] = Integer.parseInt(userString);
+                } catch (NumberFormatException e) {
+                    theOutputs.generalError();
+                    continue;
+                }
+                if ((intArray[i] >= 0) && (intArray[i] < 6 )) {
+                    valid = true;
+                }
+                else{
+                    theOutputs.generalError();
+                }
+            }
+        }
+        return new Point(intArray[0],intArray[1]);
     }
-
-	public Point selectSwimming() {
-		return null;
-	}
 }

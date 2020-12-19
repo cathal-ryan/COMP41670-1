@@ -2,6 +2,7 @@ package gameplay.model;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import java.util.Map;
 import javax.swing.text.Position;
 
 import board.Board;
+import board.Tile;
 import cards.*;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
@@ -240,7 +242,9 @@ public class GameModel implements Subject {
         return eligible;
     }
 
-    public void useSandbags() {
+    public void useSandbags(Point p) {
+        TilesEnums name = theBoard.getTileName(p);
+        theBoard.shoreUpTile(name);
     }
 
     public TreasureDeckCard dealTreasure() {
@@ -377,5 +381,12 @@ public class GameModel implements Subject {
             return true;
         }
 	}
-    
+
+	public List<Point> getValidTiles() {
+        return theBoard.getValidTiles();
+    }
+
+	public List<Point> getSandbagsTiles() {
+		return theBoard.getSandbagsTiles();
+	}
 }

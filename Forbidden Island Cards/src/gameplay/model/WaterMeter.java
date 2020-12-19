@@ -1,10 +1,11 @@
-package gameplay;
+package gameplay.model;
 
 import cards.FloodDiscardPile;
 
 public class WaterMeter {
 	private static int watermeter;
-	private static int[] waterlevels = {0,1,2,3,4,5};
+	//private static int[] waterlevels = {0,1,2,3,4,5};
+	private static int[] waterlevels = {90,91,92,93,94,95};
 	private static WaterMeter theWaterMeter;
 
 	public static WaterMeter getInstance(){
