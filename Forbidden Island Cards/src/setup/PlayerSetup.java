@@ -65,7 +65,7 @@ public class PlayerSetup {
     	startLoc = new Point(theBoard.getTilePos(player.pawnStartLoc()));
 		player.setPawnPos(startLoc);
 		theTeam.addPlayer(player);
-		String playerType =  player.getPlayerType();
+		String playerType =  player.getPlayerType() +" "+ player.getChar();
 		setupOuts.playerAndType(name, playerType);
 		return usedNames;
 	}

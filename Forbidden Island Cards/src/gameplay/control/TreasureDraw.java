@@ -59,8 +59,9 @@ import gameplay.view.*;
             while (theController.getHandSize(null) > 5) {
                 theController.discardTreasure(null);
             }
-            theOutputs.printHand(theController.returnPlayerName(),theController.showAHand());
-            
+            String name = theController.returnPlayerName(-1);
+            String pawn = theController.returnPawnChar(-1);
+            theOutputs.printHand(name,pawn,theController.showAHand());
         }
 }    
 

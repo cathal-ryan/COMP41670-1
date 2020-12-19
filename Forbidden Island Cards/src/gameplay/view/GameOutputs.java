@@ -1,10 +1,9 @@
 package gameplay.view;
 
-import cards.DiscardPile;
 import enums.TypeEnums;
+import player.Player;
 
 import java.util.List;
-import java.util.Map;
 
 import board.Board;
 
@@ -16,8 +15,8 @@ public class GameOutputs {
 
     public GameOutputs(){}
     
-    public void printTurnStart(String name) {
-        System.out.println("It is " + name + "'s turn! Press [return] to begin.");
+    public void printTurnStart(String name, String pawn) {
+        System.out.println("It is " + name + "'s turn! ( "+pawn+" ) Press [return] to begin.");
     }
 
     public void giveOptions(int actions) {
@@ -63,8 +62,8 @@ public class GameOutputs {
         }
     }
 
-    public void printHand(String playerName, String hand){
-        System.out.println(playerName+"'s hand: \n" + hand );
+    public void printHand(String playerName, String pawn, String hand){
+        System.out.println(pawn + " "+ playerName+"'s hand: " + hand );
     }
 
 	public void generalError() {
@@ -244,5 +243,8 @@ public class GameOutputs {
                 }
             }
             System.out.println();
+		}
+
+		public void showPlayerPawns(Player player) {
 		}
 }

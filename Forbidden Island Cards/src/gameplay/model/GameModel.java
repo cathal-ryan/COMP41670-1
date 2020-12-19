@@ -168,6 +168,9 @@ public class GameModel implements Subject {
     }
 
     public Player getPlayer(int userIn) {
+        if(userIn<0){
+            return currentPlayer;
+        }
         return theTeam.getPlayer(userIn);
     }
 

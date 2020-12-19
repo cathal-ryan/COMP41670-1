@@ -50,10 +50,15 @@ public class Controller{
         theGameModel.setActionsLeft();
         theGameModel.setNextPlayer();
         theOutputs.printBoard();
+        lookAtHands();
 	}
 
-    public String returnPlayerName(){
-        return theGameModel.getPlayerNameFromIndex(-1);
+    public String returnPlayerName(int i){
+        return theGameModel.getPlayerNameFromIndex(i);
+    }
+
+    public String returnPawnChar(int i){
+        return theGameModel.getPlayer(i).getChar();
     }
 
     public int getActionsLeft(){
@@ -97,9 +102,10 @@ public class Controller{
 
 	public void lookAtHands() {
         for(int i=0;i<theGameModel.getNumPlayers();i++){
-            String name = theGameModel.getPlayerNameFromIndex(i);
+            String name = returnPlayerName(i);
+            String pawn = theGameModel.getPlayer(i).getChar();
             String hand = theGameModel.getHandasString(i);
-            theOutputs.printHand(name, hand);
+            theOutputs.printHand(name,pawn,hand);
         }
     }
 
@@ -384,4 +390,9 @@ public class Controller{
             theOutputs.cantCapture("You don't have enough cards..",null);
         }
 	}
+
+	public String returnChar() {
+		return theGameModel.getCurrentPlayer().getChar();
+	}
+
 }
