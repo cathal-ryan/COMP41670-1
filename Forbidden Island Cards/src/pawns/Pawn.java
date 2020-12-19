@@ -41,6 +41,8 @@ abstract public class Pawn {
         switch(dir) {
             case 'w':
                 movePosY++;
+                if(movePosY > 5)
+                    return false;
                 p = new Point(movePosX,movePosY);
                 if(movePosY < 6 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
@@ -59,6 +61,8 @@ abstract public class Pawn {
                     return false;
             case 's':
                 movePosY--;
+                if(movePosY < 0)
+                    return false;
                 p = new Point(movePosX,movePosY);
                 if(movePosY >= 0 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
@@ -68,6 +72,8 @@ abstract public class Pawn {
                     return false;
             case 'd':
                 movePosX++;
+                if(movePosX > 5)
+                    return false;
                 p = new Point(movePosX,movePosY);
                 if(movePosX < 6 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
