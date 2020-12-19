@@ -5,10 +5,6 @@ import java.awt.Point;
 import board.Board;
 import enums.TilesEnums;
 import enums.TypeEnums;
-<<<<<<< HEAD
-import gameplay.model.TreasureHandler;
-=======
->>>>>>> e436e8070df5524389c99e1c65186af7ba79d989
 
 abstract public class Pawn {
 

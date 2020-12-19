@@ -114,6 +114,10 @@ public class Controller{
             return;
         }
         else{
+            if(!theGameModel.hasCardsforTrade()){
+                theOutputs.cantTrade();
+                return;
+            }
             traders = theGameModel.getTradePartners();
             if(traders.isEmpty()){
                 theOutputs.cantTrade();

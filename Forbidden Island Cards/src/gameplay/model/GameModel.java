@@ -30,6 +30,7 @@ public class GameModel implements Subject {
     private TreasureDiscardPile theTreasureDiscardPile;
     private FloodDiscardPile theFloodDiscardPile;
     private FloodDeck theFloodDeck;
+    private Board theBoard;
     private TreasureDeck theTreasureDeck;
     private TreasureHandler theTreasureHandler;
     private Observer loser;
@@ -148,21 +149,6 @@ public class GameModel implements Subject {
         return theTeam.getPlayer(i).getHand().getHandasString();
     }
 
-    // public boolean canTrade() {
-    //     Hand hand = currentPlayer.getHand();
-    //     if (!hand.canTrade()) {
-    //         return false;
-    //     }
-    //     if (checkPlayerPostions()) {
-    //         return false;
-    //     }
-    //     return true;
-    // }
-
-    // private boolean checkPlayerPostions() {
-    //     return false;
-    // }
-
     public boolean checkHasCard(Player p1, boolean cardName) {
         if (cardName == false) {
             return p1.checkHasCard(TreasureCardEnums.SANDBAGS);
@@ -206,6 +192,14 @@ public class GameModel implements Subject {
             }
         }
         return allPlayers;
+    }
+
+    public boolean hasCardsforTrade() {
+        Hand hand = currentPlayer.getHand();
+        if(!hand.canTrade()) 
+            return false;
+        else
+            return true;
     }
 
     public List getPlayerHand(Player p1) {
