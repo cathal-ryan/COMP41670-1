@@ -33,7 +33,7 @@ public class Explorer extends Pawn{
         for(x=movePosX-1;x<movePosX+2;x++){
             for(y=movePosY-1;y<movePosY+2;y++){
 				Point p = new Point(x,y);
-                Boolean can2 = (movePosX > 0) && (movePosX < 6) && (movePosY < 6) && (movePosY > 0);
+                boolean can2 = (x > 0) && (x < 6) && (y < 6) && (y > 0);
                 if(can2){
 					if (theBoard.getTileType(p) != TypeEnums.SEA){
 						isSwimmable=true;

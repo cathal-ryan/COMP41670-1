@@ -16,10 +16,12 @@ public class PlayerActions {
 
 	public void doActions() {
 		int userInput;
-		theOutputs.printTurnStart(theController.returnPlayerName(-1),theController.returnChar());
+		String player = theController.returnPlayerName(-1);
+		String pawn = theController.returnPawnChar(-1);
+		theOutputs.printTurnStart(player,pawn);
 		theInputs.confirm(); // Make player press return to confirm turn start
 		while (!theController.getTurnOver() && !theController.isGameOver()){
-			theOutputs.giveOptions(theController.getActionsLeft());
+			theOutputs.giveOptions(player, pawn, theController.getActionsLeft());
 			userInput = theInputs.turnChoice();
 			switch (userInput) {
 			case 0:
@@ -41,7 +43,7 @@ public class PlayerActions {
 				theController.enquirePlayers(true);
 				break;
 			case 6:
-				theController.useSandbags(null);
+				theController.useSandbags(null,false);
                 break;
             case 7:
 				theController.useHelicopterLift(null);

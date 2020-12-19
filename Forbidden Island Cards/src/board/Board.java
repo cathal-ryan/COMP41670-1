@@ -131,7 +131,7 @@ public class Board {
 	public List<Point> getSandbagsTiles() {
         List<Point> valid = new ArrayList();
         for(Point p: getBoardTiles().keySet()){
-            if (getTileType(p) != TypeEnums.SEA && !isTileFlooded(p)){
+            if (getTileType(p) != TypeEnums.SEA && isTileFlooded(p)){
                 valid.add(p);
             }
         }

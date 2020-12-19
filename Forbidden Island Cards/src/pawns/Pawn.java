@@ -42,7 +42,7 @@ abstract public class Pawn {
             case 'w':
                 movePosY++;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY < 6) {
+                if(movePosY < 6 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -51,7 +51,7 @@ abstract public class Pawn {
             case 'a':
                 movePosX--;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX > 0) {
+                if(movePosX >= 0 && theBoard.getTileType(p) != TypeEnums.SEA ) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -60,7 +60,7 @@ abstract public class Pawn {
             case 's':
                 movePosY--;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY > 0) {
+                if(movePosY >= 0 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -69,7 +69,7 @@ abstract public class Pawn {
             case 'd':
                 movePosX++;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX < 6) {
+                if(movePosX < 6 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -96,7 +96,7 @@ abstract public class Pawn {
         for(y=movePosY-1;y<movePosY+2;y=y+2){
 			x = movePosX;
             Point p = new Point(x,y);
-			Boolean can2 = (movePosX > 0) && (movePosX < 6) && (movePosY < 6) && (movePosY > 0);
+			boolean can2 = (x > 0) && (x < 6) && (y < 6) && (y > 0);
 			if(can2){
                 if((theBoard.getTileType(p) != TypeEnums.SEA)){
                     isSwimmable =true;
@@ -107,7 +107,7 @@ abstract public class Pawn {
 		for(x=movePosX-1;x<movePosX+2;x=x+2){
 			y = movePosY;
 			Point p = new Point(x,y);
-			Boolean can2 = (movePosX > 0) && (movePosX < 6) && (movePosY < 6) && (movePosY > 0);
+			boolean can2 = (x > 0) && (x < 6) && (y < 6) && (y > 0);
 			if(can2){
                 if (theBoard.getTileType(p) != TypeEnums.SEA){
                     isSwimmable=true;

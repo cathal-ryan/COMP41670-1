@@ -19,8 +19,8 @@ public class GameOutputs {
         System.out.println("It is " + name + "'s turn! ( "+pawn+" ) Press [return] to begin.");
     }
 
-    public void giveOptions(int actions) {
-        System.out.println("\nWhat do you want to do? You have " +actions +" actions remaining.");
+    public void giveOptions(String player,String pawn, int actions) {
+        System.out.println("\n"+player +"'s turn. ( "+pawn+" ) What do you want to do? You have " +actions +" actions remaining.");
         System.out.println("[10]\tLook at the game board.");
 		System.out.println("[9]\tLook at everyone's hands.");
 		System.out.println("[8]\tLook at the discard piles.");
@@ -95,8 +95,8 @@ public class GameOutputs {
         System.out.println("Where do you want to move to?");
     }
 
-	public void showOption(int i, String string) {
-        System.out.println("["+i+"] "+ string);
+	public void showOption(int i, String name, String pawn) {
+        System.out.println("["+i+"] "+ name+ " "+ pawn);
 	}
 
 	public void choosePl() {
@@ -104,11 +104,11 @@ public class GameOutputs {
 	}
 
 	public void cantTrade() {
-        System.out.println("There's no one to trade with!");
+        System.out.println("You can't give any cards right now!");
 	}
 
 	public void whoToTrade() {
-        System.out.println("Who do you want to trade with?");
+        System.out.println("Who do you want to give a card to?");
 	}
 
 	public void cardChoice(boolean trading) {
@@ -122,7 +122,7 @@ public class GameOutputs {
 	}
 
 	public void handTooBig(String name) {
-        System.out.println("Hey, "+name+", your hand is too big.. Please select a card to discard.");
+        System.out.println("Hey, "+name+", your hand is too big.. Before discarding a card, would you like to see the current game state?");
 	}
 
 	public void useIt() {
@@ -270,8 +270,6 @@ public class GameOutputs {
 		public void noMove() {
             System.out.println("You can't move here.");
         }
-
-        
         
         public void enterCoords(char x){
             System.out.println("Please enter in "+ x + " coordinate.");
@@ -283,5 +281,13 @@ public class GameOutputs {
 
 		public void cantSandbags() {
             System.out.println("You can't use Sandbags here.");
+		}
+
+		public void nowhereToShore() {
+            System.out.println("There's nowhere to shore up!");
+		}
+
+		public void nowSelectCard() {
+            System.out.println("Now, please select a card to discard.");
 		}
 }

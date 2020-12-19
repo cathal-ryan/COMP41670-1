@@ -151,7 +151,7 @@ public class Controller{
 		for (int i = 0; i < hands.size(); i++) {
 			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
                 Enum name = hands.get(i).getName();
-                theOutputs.showOption(i,name.toString());
+                theOutputs.showOption(i,name.toString(),"");
             }
 		}
         return theInputs.handChoice(hands.size());
@@ -177,11 +177,15 @@ public class Controller{
         String name = theGameModel.getPlayerName(player);
         List hand = theGameModel.getPlayerHand(player);
         theOutputs.handTooBig(name);
+        if(theInputs.boolYN("No","Yes")){
+            showGameState();
+        }
+        theOutputs.nowSelectCard();
         int userIn = chooseFromHand(player,false);
         if(!(hand.get(userIn) instanceof TreasureCard)){
             if(chooseOrShowState(2,"No", "Yes")){
                 if((hand.get(userIn) instanceof SandbagsCard)){
-                    useSandbags(player);
+                    useSandbags(player,true);
                     return;
                 }
                 if((hand.get(userIn) instanceof HelicopterLift)){
@@ -201,7 +205,7 @@ public class Controller{
         int size = theGameModel.getNumPlayers();
         for(int i=0;i<size;i++){
             if (eligible.contains(i)){
-                theOutputs.showOption(i, theGameModel.getPlayer(i).getName());
+                theOutputs.showOption(i,returnPlayerName(i),returnPawnChar(i));
             }
         }
         int userIn = theInputs.playerChoice(theGameModel.getNumPlayers(), eligible);
@@ -250,7 +254,7 @@ public class Controller{
         return chooseOrShowState(3, "No","Yes");
     }
 
-	public void useSandbags(Player p1) {
+	public void useSandbags(Player p1, boolean discarding) {
         if(p1==null){
             p1 = theGameModel.getCurrentPlayer();
         }
@@ -258,10 +262,17 @@ public class Controller{
             theOutputs.noSandbags();
             return;
         }
+        List<Point> sandOptions = theGameModel.getSandbagsTiles();
+        if(sandOptions.isEmpty()){
+            theOutputs.nowhereToShore();
+            if(discarding){
+                theGameModel.removeCard(p1, TreasureCardEnums.SANDBAGS);
+            }
+            return;
+        }
         theGameModel.removeCard(p1, TreasureCardEnums.SANDBAGS);
         theOutputs.sandbagsWhere();
         lookAtBoard();
-        List<Point> sandOptions = theGameModel.getSandbagsTiles();
         boolean validSelection=false;
         Point p = new Point(0,0);
         while(!validSelection){
@@ -329,35 +340,38 @@ public class Controller{
 	}
 
     public boolean enquirePlayers(boolean asked){
-        List<Integer> eligible = theGameModel.getPlayerswithSpecials();
-        if(eligible.isEmpty()){
-            if(asked){
-                theOutputs.noSpecials();
+        boolean keepAsking = true;
+        while(keepAsking){
+            List<Integer> eligible = theGameModel.getPlayerswithSpecials();
+            if(eligible.isEmpty()){
+                if(asked){
+                    theOutputs.noSpecials();
+                }
+                return true;
             }
-            return true;
-        }
-        String n = "No, Draw card!";
-        if (asked)
-            n="Nope!";
-        if(!chooseOrShowState(0,n,"Yes, play special card!")){
-                return false;
-        }
-        lookAtHands();
-        theOutputs.whoForSpecial();
-        Player player1 = choosePlayer(eligible);
-        if(theGameModel.checkHasCard(player1, true) && theGameModel.checkHasCard(player1, false)){
-            if(chooseOrShowState(1, "Sandbags", "Helicopter Lift")){
+            String n = "No, Draw card!";
+            if (asked)
+                n="Nope!";
+            if(!chooseOrShowState(0,n,"Yes, play special card!")){
+                    return false;
+            }
+            lookAtHands();
+            theOutputs.whoForSpecial();
+            Player player1 = choosePlayer(eligible);
+            if(theGameModel.checkHasCard(player1, true) && theGameModel.checkHasCard(player1, false)){
+                if(chooseOrShowState(1, "Sandbags", "Helicopter Lift")){
+                    useHelicopterLift(player1);
+                }
+                else{
+                    useSandbags(player1,false);
+                }
+            }
+            else if(theGameModel.checkHasCard(player1, true)){
                 useHelicopterLift(player1);
             }
-            else{
-                useSandbags(player1);
+            else if(theGameModel.checkHasCard(player1, false)){
+                useSandbags(player1,false);
             }
-        }
-        else if(theGameModel.checkHasCard(player1, true)){
-            useHelicopterLift(player1);
-        }
-        else if(theGameModel.checkHasCard(player1, false)){
-            useSandbags(player1);
         }
         return true;
     }
@@ -390,7 +404,8 @@ public class Controller{
         TilesEnums t1 = (TilesEnums) card1.getName();
         if(theGameModel.isSunk(t1)){
             theOutputs.sunkTile(card1.getName().toString());
-            sunkenTile(t1);
+            if (!isGameOver())
+                sunkenTile(t1);
         }
         else
             theOutputs.floodedTile(card1.getName().toString());
@@ -450,9 +465,5 @@ public class Controller{
         else if (captureMode == 3){
             theOutputs.cantCapture("You don't have enough cards..",null);
         }
-	}
-
-	public String returnChar() {
-		return theGameModel.getCurrentPlayer().getChar();
 	}
 }

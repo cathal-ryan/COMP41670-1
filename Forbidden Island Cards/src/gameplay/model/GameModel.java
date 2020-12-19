@@ -275,7 +275,6 @@ public class GameModel implements Subject {
         Card card1 = theFloodDeck.dealCard();
         TilesEnums t1 = (TilesEnums) card1.getName();
         theBoard.floodTile(t1);
-
         if((isSunk(TilesEnums.FOOLS_LANDING))){
             notifyUpdate(loser,4); // currently you lose whenever fools landing drawn
         }
@@ -299,7 +298,6 @@ public class GameModel implements Subject {
                 notifyUpdate(loser,3);
             }        
         }
-
         if(!isSunk(t1)){
             theFloodDiscardPile.addToPile(card1);
         }
