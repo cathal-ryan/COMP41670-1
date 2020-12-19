@@ -37,8 +37,10 @@ abstract public class Pawn {
         switch(dir) {
             case 'w':
                 movePosY++;
+                if(movePosY > 5)
+                    return false;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY < 6) {
+                if(theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -46,8 +48,10 @@ abstract public class Pawn {
                     return false;
             case 'a':
                 movePosX--;
-                p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX > 0) {
+                if(movePosX < 0)
+                    return false;
+                p = new Point(movePosX,movePosX);
+                if(theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -55,8 +59,10 @@ abstract public class Pawn {
                     return false;
             case 's':
                 movePosY--;
+                if(movePosY < 0)
+                    return false;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosY > 0) {
+                if(theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
@@ -64,8 +70,10 @@ abstract public class Pawn {
                     return false;
             case 'd':
                 movePosX++;
+                if(movePosX > 5)
+                    return false;
                 p = new Point(movePosX,movePosY);
-                if(theBoard.getTileType(p) != TypeEnums.SEA && movePosX < 6) {
+                if(theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
                     return true;
                 }
