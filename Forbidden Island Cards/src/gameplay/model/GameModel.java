@@ -211,10 +211,12 @@ public class GameModel implements Subject {
 
     public boolean addCardfromPlayerA(Player PlayerB, int canum) {
         Hand playerHand = currentPlayer.getHand();
-        TreasureDeckCard c1 = playerHand.getCards().get(canum);
-        if (!(c1 instanceof TreasureCard)) {
+        TreasureCard c1 = playerHand.getCards().get(canum);
+        TreasureCardEnums name = (TreasureCardEnums)c1.getName();
+        if ((name == TreasureCardEnums.HELICOPTER_LIFT || name == TreasureCardEnums.SANDBAGS)) {
             return false;
-        } else {
+        } 
+        else {
             PlayerB.addCardtoHand(c1);
             currentPlayer.getHand().getCards().remove(canum);
             return true;
@@ -247,9 +249,9 @@ public class GameModel implements Subject {
         theBoard.shoreUpTile(name);
     }
 
-    public TreasureDeckCard dealTreasure() {
-        TreasureDeckCard c1 = (TreasureDeckCard) theTreasureDeck.dealCard();
-        if (c1 instanceof WaterRiseCard) {
+    public TreasureCard dealTreasure() {
+        TreasureCard c1 = (TreasureCard) theTreasureDeck.dealCard();
+        if ((TreasureCardEnums)c1.getName() == TreasureCardEnums.WATERS_RISE) {
             WaterMeter.cardDrawn();
             int waterLevel = WaterMeter.getWaterlevel();
             if (waterLevel >= 5) {
@@ -259,11 +261,11 @@ public class GameModel implements Subject {
         return c1;
     }
 
-    public void addToPile(TreasureDeckCard c1) {
+    public void addToPile(TreasureCard c1) {
         theTreasureDiscardPile.addToPile(c1);
     }
 
-    public void addCardfromDeck(TreasureDeckCard c1) {
+    public void addCardfromDeck(TreasureCard c1) {
         currentPlayer.getHand().addCard(c1);
     }
 

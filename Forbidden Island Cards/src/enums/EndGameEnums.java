@@ -8,7 +8,7 @@ public enum EndGameEnums {
 	FOOLS 			    ("Fool's Landing has sunk!"),
 	NOSWIM			    ("There's nowhere you can swim to!"),
 	WATERLEVEL		    ("The water level has reached 5!"),
-	HELICOPTER		    ("You've flown off Fools' Landing!");
+	HELICOPTER		    ("With all 4 treasures captured, the team has succesfully flown off Fools' Landing!");
 
 	private final String type;
 	/**

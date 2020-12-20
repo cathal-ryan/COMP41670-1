@@ -1,25 +1,43 @@
 package gameplay.control;
 
 import gameplay.view.*;
-
+/**
+ * PlayerActions class manages all options player can make when 
+ * they have a turn, and have not started draw phase.
+ * @author Cathal Ryan and Conor Kneafsey
+ *
+ */
 public class PlayerActions {
 
-	private Controller	theController;
-	private GameOutputs theOutputs;
-	private GameInputs theInputs;
+	// ===========================================================
+	// Setup Variables
+	// ===========================================================
+	private Controller		theController; 	// Access to main game logic
+	private GameOutputs 	theOutputs;		// I/O to player
+	private GameInputs 		theInputs;
 
+    /**
+     * Constructor for PlayerActions.
+     */
 	public PlayerActions() {
 		theController = Controller.getInstance();
 		theOutputs = new GameOutputs();
 		theInputs = new GameInputs();
 	}
 
-	public void doActions() {
+	/**
+	 * Manages player's turn and their actions, giving all possible options
+	 * whether they use an explicit action or just want to view state of game
+	 */
+	protected void doActions() {
 		int userInput;
 		String player = theController.returnPlayerName(-1);
 		String pawn = theController.returnPawnChar(-1);
-		theOutputs.printTurnStart(player,pawn);
+		theOutputs.printTurnStart(player,pawn); // Announce it is player's turn
+		
 		theInputs.confirm(); // Make player press return to confirm turn start
+		
+		// Main loop enacting each action based on user input.
 		while (!theController.getTurnOver() && !theController.isGameOver()){
 			theOutputs.giveOptions(player, pawn, theController.getActionsLeft());
 			userInput = theInputs.turnChoice();
@@ -34,7 +52,7 @@ public class PlayerActions {
 				theController.shoreUp();
 				break;
 			case 3:
-				theController.captureATreasure(); // should be captrure treasure
+				theController.captureATreasure();
 				break;
             case 4:
 				theController.giveCard();

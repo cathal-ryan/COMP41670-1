@@ -1,5 +1,11 @@
 package enums;
 
+/**
+ * Class holding the enumerated types for tile types in Forbidden Island.
+ * @author Cathal Ryan and Conor Kneafsey
+ * @version 1.0
+ *
+ */
 public enum TypeEnums {
 	NORMAL 			("   Normal Tile    "),
 	FOOLS_LANDING 	("  Fool's Landing  "),
@@ -10,19 +16,22 @@ public enum TypeEnums {
 	SEA				("     Sea Tile     ");
 
 	private final String type;
+
+
 	/**
-	 * Constructor for room enum
-	 * @param s String which will be set to the name of the room.
+	 * Constructor for Type Enum
+	 * @param s String which will be set to the type.
 	 */
 	private TypeEnums(final String s){
-		type = s;  // String for name of Room
+		type = s;  // String for name of Type
 	}
 	
 
 	/**
-	 * returns the string name of the EoomEnum
-	 * @return name of room which is a string.
+	 * returns the string name of TypeEnum
+	 * @return type as a string.
 	 */
+	@Override
 	public String toString(){
 		return type;
 	}	

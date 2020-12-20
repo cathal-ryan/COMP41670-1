@@ -5,7 +5,7 @@ import cards.Card;
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
 import cards.TreasureDeck;
-import cards.TreasureDeckCard;
+import cards.TreasureCard;
 import cards.TreasureDiscardPile;
 import cards.WaterRiseCard;
 import enums.TilesEnums;
@@ -49,7 +49,7 @@ public class CardSetup {
         		for(int j=0;j<2;j++) {
 					cardsDealt=false;
 					while(!cardsDealt){
-						TreasureDeckCard c1 = (TreasureDeckCard) setupTreasureDeck.dealCard();
+						TreasureCard c1 = (TreasureCard) setupTreasureDeck.dealCard();
 						if(c1 instanceof WaterRiseCard) {
 							setupTreasureDeck.addCard(c1);
 							setupTreasureDeck.shuffle();

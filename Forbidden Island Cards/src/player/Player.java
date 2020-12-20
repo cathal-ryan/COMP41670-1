@@ -1,34 +1,43 @@
 package player;
 
 import java.util.List;
-
-import board.Board;
-
 import java.awt.Point;
+import java.lang.System.Logger;
 
 import pawns.Pawn;
 import pawns.*;
-
 import cards.Hand;
-import cards.TreasureDeckCard;
+import cards.TreasureCard;
 import enums.TreasureCardEnums;
 import enums.TilesEnums;
 
-
+/**
+ * Class for each Player Players have a unique name, character and number to
+ * identify them, along with a hand and a pawn
+ * 
+ * @author Cathal Ryan and Conor Kneafsey
+ */
 public class Player {
-	// ===========================================================
-	// Variable Setup
-	// ===========================================================
+
 	private String playerName;
 	private Hand playerHand;
 	private Pawn playerPawn;
 	private int playerNum;
 	private String playerChar;
 
+	/**
+	 * Constructor for a Player object
+	 * 
+	 * @param playerNum     The Player's number
+	 * @param playerName    The Player's name
+	 * @param adventurerNum Integer representing what adventurer to set the pawn as.
+	 *                      Should be generated randomly between 0 and 5
+	 */
 	public Player(int playerNum, String playerName, int adventurerNum) {
 		this.playerName = playerName;
-		this.playerHand = new Hand();
+		this.playerHand = new Hand(); // Create hand
 		this.playerNum = playerNum;
+		// Player's pawn and character will be based on adventurerNum
 		switch (adventurerNum) {
 			case 0:
 				playerPawn = new Diver();
@@ -55,8 +64,10 @@ public class Player {
 				playerChar = "\u2709";
 				break;
 			default:
-				System.out.println("I shouldn't be here!");
-		}
+				playerPawn = new Navigator();
+				playerChar = "\uD83E\uDDED";
+				break;
+	}
 	}
 	
 	public String getName() {
@@ -66,7 +77,7 @@ public class Player {
 		return playerNum;
 	}
 
-	public List<TreasureDeckCard> showHand() {
+	public List<TreasureCard> showHand() {
 		return playerHand.getCards();
 	}
 	
@@ -78,7 +89,7 @@ public class Player {
 		return playerHand.getCards().size();
 	}
 
-	public void drawTreasureCard(TreasureDeckCard card1) {
+	public void drawTreasureCard(TreasureCard card1) {
 		playerHand.addCard(card1);
 	}
 	
@@ -106,7 +117,7 @@ public class Player {
 		return playerPawn.getPlayerType();
 	}
 
-	public void addCardtoHand(TreasureDeckCard c1){
+	public void addCardtoHand(TreasureCard c1){
 		playerHand.addCard(c1);
 	}
 

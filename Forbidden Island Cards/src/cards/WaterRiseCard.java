@@ -2,7 +2,7 @@ package cards;
 
 import enums.TreasureCardEnums;
 
-public class WaterRiseCard extends TreasureDeckCard{
+public class WaterRiseCard extends TreasureCard{
 
 	WaterRiseCard(TreasureCardEnums name) {
 		super(name);

@@ -8,10 +8,8 @@ import gameplay.view.GameInputs;
 import gameplay.view.GameOutputs;
 import player.Player;
 import cards.Card;
-import cards.HelicopterLift;
-import cards.SandbagsCard;
 import cards.TreasureCard;
-import cards.TreasureDeckCard;
+import cards.TreasureCard;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
 import enums.TilesEnums;
@@ -19,13 +17,13 @@ import java.awt.Point;
 
 public class Controller{
 
-    private GameModel theGameModel;
-    private GameOutputs theOutputs;
-    private GameInputs theInputs;
-    private LoseObserver losing = new LoseObserver();
-    private WinObserver winning = new WinObserver();
+    private GameModel           theGameModel;
+    private GameOutputs         theOutputs;
+    private GameInputs          theInputs;
+    private LoseObserver        losing;
+    private WinObserver         winning;
 
-    private static Controller theController = null;
+    private static Controller   theController;
     
     private Controller() {
         theGameModel = GameModel.getInstance();
@@ -149,8 +147,8 @@ public class Controller{
         }
         List<Card> hands = theGameModel.getPlayerHand(playerA);
 		for (int i = 0; i < hands.size(); i++) {
-			if (!(ineligible && !(hands.get(i) instanceof TreasureCard))){
-                Enum name = hands.get(i).getName();
+            TreasureCardEnums name = (TreasureCardEnums) hands.get(i).getName();
+			if (!(ineligible && (name==TreasureCardEnums.SANDBAGS || name==TreasureCardEnums.HELICOPTER_LIFT))){
                 theOutputs.showOption(i,name.toString(),"");
             }
 		}
@@ -175,20 +173,21 @@ public class Controller{
         }
         boolean validIn = false;
         String name = theGameModel.getPlayerName(player);
-        List hand = theGameModel.getPlayerHand(player);
+        List<Card> hand = theGameModel.getPlayerHand(player);
         theOutputs.handTooBig(name);
         if(theInputs.boolYN("No","Yes")){
             showGameState();
         }
         theOutputs.nowSelectCard();
         int userIn = chooseFromHand(player,false);
-        if(!(hand.get(userIn) instanceof TreasureCard)){
+        TreasureCardEnums cardname = (TreasureCardEnums) hand.get(userIn).getName();
+        if((cardname==TreasureCardEnums.SANDBAGS || cardname == TreasureCardEnums.HELICOPTER_LIFT)){
             if(chooseOrShowState(2,"No", "Yes")){
-                if((hand.get(userIn) instanceof SandbagsCard)){
+                if(cardname==TreasureCardEnums.SANDBAGS){
                     useSandbags(player,true);
                     return;
                 }
-                if((hand.get(userIn) instanceof HelicopterLift)){
+                if(cardname == TreasureCardEnums.HELICOPTER_LIFT){
                     useHelicopterLift(player);
                     return;
                 }
@@ -307,7 +306,7 @@ public class Controller{
                 default:
                     System.out.println("I shouldn't be here!");
             }
-            select1 =(theInputs.getYesOrNo(n, y, "Show the game state"));
+            select1 =(theInputs.get3Choice(n, y, "Show the game state"));
             if(select1==0){
                 return false;
             }
@@ -376,15 +375,15 @@ public class Controller{
         return true;
     }
 
-	public TreasureDeckCard getTreasureCard() {
+	public TreasureCard getTreasureCard() {
         return theGameModel.dealTreasure();
 	}
 
-	public void addToPile(TreasureDeckCard c1) {
+	public void addToPile(TreasureCard c1) {
         theGameModel.addToPile(c1);
 	}
 
-	public void addCardtoHand(TreasureDeckCard c1) {
+	public void addCardtoHand(TreasureCard c1) {
         theGameModel.addCardfromDeck(c1);
 	}
 
