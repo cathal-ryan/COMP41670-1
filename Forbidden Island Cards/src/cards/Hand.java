@@ -2,6 +2,7 @@ package cards;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import enums.TreasureCardEnums;
@@ -12,7 +13,7 @@ public class Hand {
 	List<TreasureCard> handOfCards;
 	
 	public Hand() {
-	    this.handOfCards = new ArrayList<TreasureCard>();
+	    this.handOfCards = new ArrayList<>();
 	}
 
 	public void addCard(TreasureCard card){
@@ -33,7 +34,7 @@ public class Hand {
 
 	public String getHandasString(){
 		String hand = "";
-		if(handOfCards.size()==0){
+		if(handOfCards.isEmpty()){
 			hand = ("Nada..."+" ¯\\_(ツ)_/¯");
 		}
 		for (int k = 0; k < handOfCards.size(); k++) {
@@ -48,28 +49,25 @@ public class Hand {
 		return hand;
 	}
 	
-	public void removeCard(int i){
-		TreasureDiscardPile.getInstance().addToPile(handOfCards.get(i));
-		handOfCards.remove(i);
-	}
-	
 	public void discardforTreasure(TypeEnums typename){
 		TreasureCardEnums name = convertTypetoTreasure(typename);
 		int k=0;
-		List<Integer> forRemoval = new ArrayList();
-		for (int j=0;j<handOfCards.size();j++){
-			Card c1 = handOfCards.get(j);
-				if (c1.getName()==name){
-					forRemoval.add(j);
-					k++;
-					if(k>=4){
-						break;
-					}
+		Iterator<TreasureCard> it = handOfCards.iterator();
+		while(it.hasNext()){
+			TreasureCard TreaCard = it.next();
+			if (TreaCard.getName()==name){
+				it.remove();
+				k++;
+				if(k>3){
+					break;
 				}
+			}
 		}
-		for(k=0;k<forRemoval.size();k++){
-			removeCard(forRemoval.get(k));
-		}
+	}
+
+	public void removeCard(int i){
+		TreasureDiscardPile.getInstance().addToPile(handOfCards.get(i));
+		handOfCards.remove(i);
 	}
 
 	public boolean canTrade(){

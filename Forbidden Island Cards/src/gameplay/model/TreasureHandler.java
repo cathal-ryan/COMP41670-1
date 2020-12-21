@@ -1,13 +1,9 @@
 package gameplay.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import enums.TreasureCardEnums;
 import enums.TypeEnums;
-import player.Player;
 /**
  * Singleton Treasure Handling class, allows for keeping track of treasures captured
  * and allows for new treasures to be captured
@@ -87,7 +83,7 @@ public class TreasureHandler {
 	 * @return List of all captured treasures
 	 */
     public List<TypeEnums> captured(){
-        List<TypeEnums> h1 = new ArrayList<TypeEnums>();
+        List<TypeEnums> h1 = new ArrayList<>();
         if(earth){
             h1.add(TypeEnums.EARTH);
         }

@@ -9,7 +9,6 @@ import cards.TreasureCard;
 import cards.TreasureDiscardPile;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
-import player.Player;
 import player.Team;
 
 public class CardSetup {
@@ -44,7 +43,6 @@ public class CardSetup {
 		int i=0;    // Iteration counter for cycling through Players        
         int numPlayers = setupTeam.getNumPlayers();
         while (i<numPlayers) {  
-				Player playa1 =  setupTeam.getPlayer(i);
 				boolean cardsDealt=false;
         		for(int j=0;j<2;j++) {
 					cardsDealt=false;

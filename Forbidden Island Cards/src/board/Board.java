@@ -109,7 +109,7 @@ public class Board {
 
 	// returns a list of viable points, ie not sunk or sea
 	public List<Point> getValidTiles() {
-        List<Point> valid = new ArrayList();
+        List<Point> valid = new ArrayList<>();
         for(Point p: getBoardTiles().keySet()){
             if (getTileType(p) != TypeEnums.SEA){
                 valid.add(p);
@@ -119,7 +119,7 @@ public class Board {
 	}
 
 	public List<Point> getSandbagsTiles() {
-        List<Point> valid = new ArrayList();
+        List<Point> valid = new ArrayList<>();
         for(Point p: getBoardTiles().keySet()){
             if (getTileType(p) != TypeEnums.SEA && isTileFlooded(p)){
                 valid.add(p);

@@ -44,10 +44,6 @@ public class SetupInputs {
         }
         return waterlevel;
     }
-
-	public int getNumberOfPlayers() {
-		return 0;
-    }
     
     public String playerName(){
         return input.nextLine();

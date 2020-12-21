@@ -167,7 +167,7 @@ public class GameInputs {
      * @param eligible Which players are eligible to be chosen here
      * @return integer number representing player number chosen
      */
-    public int playerChoice(int size, List eligible){
+    public int playerChoice(int size, List<Integer> eligible){
         int userIn=0;
         boolean validIn = false;
 		while (!validIn) {

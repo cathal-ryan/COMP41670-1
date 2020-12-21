@@ -1,7 +1,6 @@
 package setup;
 
 import gameplay.model.GameModel;
-import gameplay.view.GameOutputs;
 
 
 public class Setup {

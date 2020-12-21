@@ -15,7 +15,7 @@ public class Team {
     }
 
     private Team() { 
-    	this.team = new ArrayList<Player>();
+    	this.team = new ArrayList<>();
     }
 
     public int getNumPlayers() {
