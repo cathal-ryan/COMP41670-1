@@ -80,6 +80,12 @@ public class GameModel implements Subject {
         return currentPlayer;
     }
 
+    public boolean isEngineer() {
+        if(currentPlayer.getPawn() instanceof Engineer)
+            return true;
+        return false;
+    }
+
     public int getNumPlayers() {
         return theTeam.getNumPlayers();
     }
@@ -126,6 +132,10 @@ public class GameModel implements Subject {
         actionsLeft = 3;
     }
 
+    public void increaseActions() {
+        actionsLeft++;
+    }
+
     public int getActionsLeft() {
         return actionsLeft;
     }
@@ -157,11 +167,13 @@ public class GameModel implements Subject {
         }
     }
 
-    public void shoreUp() {
-        if (!currentPlayer.canShoreUp()) {
-            return;
+    public boolean shoreUp(Point p) {
+        if (!currentPlayer.getPawn().canShoreUp(p)) {
+            return false;
         } else {
-            currentPlayer.getPawn().shoreUp();
+            theBoard.shoreUpTile(p);
+            decreaseActions();
+            return true;
         }
     }
 

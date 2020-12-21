@@ -11,7 +11,10 @@ import enums.TypeEnums;
 abstract public class Pawn {
 
     protected Point position;
+    protected Board theBoard;
     protected List<Point> viableSwim = new ArrayList<Point>();
+    protected int movePosX;
+    protected int movePosY;
 
     protected Pawn() {
     }
@@ -28,21 +31,31 @@ abstract public class Pawn {
         return position;
     }
 
-    public void shoreUp() {
-        System.out.println("\nSome day I'll get around to shoring up");
-        System.out.println(getPos());
+    public boolean canShoreUp(Point p) {
+        theBoard = Board.getInstance();
+        movePosX = (int) position.getX();
+        movePosY = (int) position.getY();
+        for(int y=movePosY-1;y<movePosY+2;y++) {
+            Point check = new Point(movePosX,y);
+            if(check.equals(p) && theBoard.isTileFlooded(p) && !theBoard.isTileSunk(p))
+                return true;
+        }
+        for(int x=movePosX-1;x<movePosX+2;x++) {
+            Point check = new Point(x,movePosY);
+            if(check.equals(p) && theBoard.isTileFlooded(p) && !theBoard.isTileSunk(p))
+                return true;
+        }
+        return false;
     }
 
     public boolean move(char dir) {
-        Board theBoard = Board.getInstance();
+        theBoard = Board.getInstance();
         Point p;
-        int movePosX = (int) position.getX();
-        int movePosY = (int) position.getY();
+        movePosX = (int) position.getX();
+        movePosY = (int) position.getY();
         switch(dir) {
             case 'w':
                 movePosY++;
-                if(movePosY > 5)
-                    return false;
                 p = new Point(movePosX,movePosY);
                 if(movePosY < 6 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
@@ -61,8 +74,6 @@ abstract public class Pawn {
                     return false;
             case 's':
                 movePosY--;
-                if(movePosY < 0)
-                    return false;
                 p = new Point(movePosX,movePosY);
                 if(movePosY >= 0 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
@@ -72,8 +83,6 @@ abstract public class Pawn {
                     return false;
             case 'd':
                 movePosX++;
-                if(movePosX > 5)
-                    return false;
                 p = new Point(movePosX,movePosY);
                 if(movePosX < 6 && theBoard.getTileType(p) != TypeEnums.SEA) {
                     position.move(movePosX,movePosY);
@@ -94,9 +103,9 @@ abstract public class Pawn {
     public boolean canSwim() {
         boolean isSwimmable = false;
         viableSwim.clear();
-        Board theBoard = Board.getInstance();
-        int movePosX = (int) position.getX();
-        int movePosY = (int) position.getY();
+        theBoard = Board.getInstance();
+        movePosX = (int) position.getX();
+        movePosY = (int) position.getY();
         int x=0;int y=0;
         for(y=movePosY-1;y<movePosY+2;y=y+2){
 			x = movePosX;

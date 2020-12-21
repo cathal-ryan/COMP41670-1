@@ -2,6 +2,7 @@ package board;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.Point;
 import enums.TypeEnums;
 import player.*;
 
@@ -37,7 +38,13 @@ public class DrawTile {
 					lst.add("                     ");
 				else {
 					lst.add(" ");
-					lst.add("                  ");
+					if(i == row-2) {
+						Point p = t.getPos();
+						lst.add("("+(int) p.getX()+","+(int) p.getY()+")");
+						lst.add("             ");
+					}
+					else
+						lst.add("                  ");
 					lst.add("  ");
 				}
 			}
@@ -46,7 +53,13 @@ public class DrawTile {
 					lst.add("xxxxxxxxxxxxxxxxxxxx ");
 				else {
 					lst.add("x");
-					lst.add("                  ");
+					if(i == row-2) {
+						Point p = t.getPos();
+						lst.add("("+(int) p.getX()+","+(int) p.getY()+")");
+						lst.add("             ");
+					}
+					else
+						lst.add("                  ");
 					lst.add("x ");
 				}
 			}
@@ -84,16 +97,16 @@ public class DrawTile {
 		}
 		int size = charSymb.length();
 		if(size == 0)
-			charSymb = "                  ";
+			charSymb = "             ";
 		else if(size == 1)
-			charSymb = "        "+charSymb+"         ";
+			charSymb = "   "+charSymb+"         ";
 		else if(size == 2)
-			charSymb = "        "+charSymb+"        ";
+			charSymb = "   "+charSymb+"        ";
 		else if(size == 3)
-			charSymb = "        "+charSymb+"       ";
+			charSymb = "   "+charSymb+"       ";
 		else if(size == 4)
-			charSymb = "       "+charSymb+"       ";
-		lst2d.get(4).set(1,charSymb);
+			charSymb = "  "+charSymb+"       ";
+		lst2d.get(4).set(2,charSymb);
 	}
 
 	public List<List<String>> get2dList() {
