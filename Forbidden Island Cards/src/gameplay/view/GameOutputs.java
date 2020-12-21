@@ -293,14 +293,21 @@ public class GameOutputs {
     
 	/**
      * Tells player they can't capture treasure
-     * @param reason String reason for not being able to capture
+     * @param captureMode mode for why cannot capture treasure
      * @param tile If that reason is a treasure, then tile will display the kind of treasure already captured
      */
-	public void cantCapture(String reason, TypeEnums tile) {
-        System.out.print("You can't capture a treasure right now. "+reason);
-        if(tile!=null){
-            System.out.print(tile);
+	public void cantCapture(TypeEnums tile, int captureMode) {
+        String reason="";
+        if (captureMode == 1){
+            reason = ("You've already captured the "+tile);
         }
+        else if (captureMode == 2){
+            reason = ("You're not on the right tile to capture a treasure..");
+        }
+        else if (captureMode == 3){
+            reason = ("You don't have enough cards..");
+        }
+        System.out.print("You can't capture a treasure right now. "+reason);
         System.out.print("\n");
     }
     
@@ -339,10 +346,11 @@ public class GameOutputs {
     /**
      * Tells player they need to swim
      * @param name Player's name
+     * @param character Player's character
      * @param type String player type eg Diver, the swimming conditions will be specified based on this and given to player
      */
-	public void needToSwim(String name, String type) {
-	    System.out.println("\n"+name + " must swim to safety. Where will you swim to?");
+	public void needToSwim(String name, String character, String type) {
+	    System.out.println("\n"+name+" (" +character +") "+" must swim to safety. Where will you swim to?");
 	    switch (name) {
 	        case "Diver":
 	            System.out.println("You are a Diver, and so can swim to the nearest tile.");

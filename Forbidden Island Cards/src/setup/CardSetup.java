@@ -7,8 +7,8 @@ import cards.FloodDiscardPile;
 import cards.TreasureDeck;
 import cards.TreasureCard;
 import cards.TreasureDiscardPile;
-import cards.WaterRiseCard;
 import enums.TilesEnums;
+import enums.TreasureCardEnums;
 import player.Player;
 import player.Team;
 
@@ -50,7 +50,7 @@ public class CardSetup {
 					cardsDealt=false;
 					while(!cardsDealt){
 						TreasureCard c1 = (TreasureCard) setupTreasureDeck.dealCard();
-						if(c1 instanceof WaterRiseCard) {
+						if((TreasureCardEnums) c1.getName() == TreasureCardEnums.WATERS_RISE) {
 							setupTreasureDeck.addCard(c1);
 							setupTreasureDeck.shuffle();
 						}

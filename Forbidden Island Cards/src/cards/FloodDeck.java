@@ -1,4 +1,4 @@
-	package cards;
+package cards;
 import java.util.Stack;
 
 import enums.TileStack;

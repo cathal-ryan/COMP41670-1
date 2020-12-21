@@ -1,6 +1,6 @@
 package gameplay.control;
 /**
- * Observer interface for implementing game win and loss conditions.
+ * Observer interface using Observer pattern for implementing game win and loss conditions.
  * 
  * @author Cathal Ryan and Conor Kneafsey
  *

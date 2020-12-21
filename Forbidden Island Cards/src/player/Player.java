@@ -2,9 +2,7 @@ package player;
 
 import java.util.List;
 import java.awt.Point;
-import java.lang.System.Logger;
 
-import pawns.Pawn;
 import pawns.*;
 import cards.Hand;
 import cards.TreasureCard;
