@@ -18,7 +18,7 @@ public class Tile {
 	private boolean flooded;
 	private boolean sunk;
 
-	protected Tile(int x, int y) {
+	public Tile(int x, int y) {
 		this.tileName = TilesEnums.SEA;
 		this.tileType = TypeEnums.SEA;
 

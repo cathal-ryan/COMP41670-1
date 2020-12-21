@@ -15,7 +15,6 @@ public class Board {
 	private int cols;
 	private Point p;
 	private HashMap<Point, Tile> boardTiles;
-    private DrawTile drawnTiles;
 
 	public static Board getInstance(){
         if(playBoard == null){
@@ -29,8 +28,6 @@ public class Board {
     	this.rows = 6;
     	this.cols = 6;
     	this.boardTiles = new HashMap<Point, Tile>();
-        this.drawnTiles = new DrawTile();
-    	// this.coords = new Point();
 
     	for(int x = 0; x < cols; x++) {
     		for(int y = 0; y < rows; y++) {
@@ -110,16 +107,6 @@ public class Board {
         getTile(p).shoreUp();
     }
 
-    public void drawBoard() {
-        for(int y=getCols()-1; y>=0; y--) {
-            for(int x=getRows()-1; x>=0; x--) { 
-                Point p = new Point(x,y);
-                drawnTiles.createTile(getTile(p));
-            }
-            drawnTiles.dispAllRows();
-        }
-	}
-
 	// returns a list of viable points, ie not sunk or sea
 	public List<Point> getValidTiles() {
         List<Point> valid = new ArrayList();
@@ -172,8 +159,6 @@ public class Board {
 
 		thisBoard.shoreUpTile(TilesEnums.IRON_GATE);
 		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
-
-        thisBoard.drawBoard();
     }
 
 }

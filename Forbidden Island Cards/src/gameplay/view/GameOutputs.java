@@ -1,4 +1,6 @@
 package gameplay.view;
+
+import java.awt.Point;
 import enums.TypeEnums;
 import java.util.List;
 import board.Board;
@@ -406,6 +408,13 @@ public class GameOutputs {
      */
     public void printBoard() {
         Board theBoard = Board.getInstance();
-        theBoard.drawBoard();
+        DrawTile drawnTiles = new DrawTile();
+        for(int y=theBoard.getCols()-1; y>=0; y--) {
+            for(int x=theBoard.getRows()-1; x>=0; x--) { 
+                Point p = new Point(x,y);
+                drawnTiles.createTile(theBoard.getTile(p));
+            }
+            drawnTiles.dispAllRows();
+        }
     }
 }
