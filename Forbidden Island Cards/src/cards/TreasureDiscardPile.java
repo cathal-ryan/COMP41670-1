@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 public class TreasureDiscardPile extends DiscardPile{
-	protected static TreasureDiscardPile theTreasureDiscardPile;
+	private static TreasureDiscardPile theTreasureDiscardPile;
 
 	
 	public static TreasureDiscardPile getInstance(){

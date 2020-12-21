@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 public class FloodDiscardPile extends DiscardPile{
-	protected static FloodDiscardPile theFloodDiscardPile;
+	private static FloodDiscardPile theFloodDiscardPile;
 
 	public static FloodDiscardPile getInstance(){
         if(theFloodDiscardPile == null){

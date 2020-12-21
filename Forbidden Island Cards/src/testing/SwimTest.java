@@ -1,16 +1,12 @@
 package testing;
 
 import static org.junit.Assert.*;
-import org.junit.*;
-
 import java.awt.Point;
 import java.util.List;
 
 import org.junit.Test;
 
 import board.Board;
-import board.Tile;
-import enums.TilesEnums;
 import gameplay.view.GameOutputs;
 import pawns.Pawn;
 import player.Player;
@@ -35,7 +31,7 @@ public class SwimTest {
 			theBoard.floodTile(theBoard.getTileName(p));
 		}		
 
-		assertFalse("Sunk conidtions",testPawn.canSwim());
+		assertFalse("Incorrect swim",testPawn.canSwim());
 	}
 
 	@Test

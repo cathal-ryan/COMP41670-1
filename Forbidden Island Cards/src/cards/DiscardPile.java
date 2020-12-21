@@ -4,7 +4,7 @@ import java.util.Collections;
 import java.util.Stack;
 
 abstract public class DiscardPile {
-	protected  Stack<Card>  Discarded;
+	public  Stack<Card>  Discarded;
 	private String discardsAsString;
 	
 	abstract public void putbackall();
