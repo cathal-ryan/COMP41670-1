@@ -39,31 +39,31 @@ public class Player {
 		switch (adventurerNum) {
 			case 0:
 				playerPawn = new Diver();
-				playerChar = "\uD83E\uDD3F";
+				playerChar = "D";
 				break;
 			case 1:
 				playerPawn = new Engineer();
-				playerChar = "\u2699";
+				playerChar = "G";
 				break;
 			case 2:
 				playerPawn = new Explorer();
-				playerChar = "\uD83D\uDD0D";
+				playerChar = "E";
 				break;
 			case 3:
 				playerPawn = new Navigator();
-				playerChar = "\uD83E\uDDED";
+				playerChar = "N";
 				break;
 			case 4:
 				playerPawn = new Pilot();
-				playerChar = "\uD83D\uDE81";
+				playerChar = "P";
 				break;
 			case 5:
 				playerPawn = new Messenger();
-				playerChar = "\u2709";
+				playerChar = "M";
 				break;
 			default:
 				playerPawn = new Navigator();
-				playerChar = "\uD83E\uDDED";
+				playerChar = "N";
 				break;
 	}
 	}
