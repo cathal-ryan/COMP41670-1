@@ -97,7 +97,6 @@ abstract public class Pawn {
 
     public void helicopterMove(Point p) {
         setPos(p);
-        System.out.println(getPos());
     }
 
     // could also use this to check if you can move.

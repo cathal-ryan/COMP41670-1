@@ -611,6 +611,7 @@ public class Controller{
                     if(swimmables.contains(swim)){
                         theGameModel.heliMovePlayer(player, swim); // get them to safety
                         canSwimHere=true;
+                        theOutputs.printBoard();
                     }
                     if(!canSwimHere){ // they cant swim here
                         theOutputs.noMove();
