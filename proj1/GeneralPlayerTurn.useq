@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.4" icons="true" generate-combined-fragments="true">  
+  <object id="1" language="java" name="gameplay.control.PlayerActions" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/control/PlayerActions.java" binary="false" label="playerActions" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="2">      
+      <position height="1364" width="0" x="0" y="120"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="1310" width="0" x="0" y="156"/>    
+    </execution>  
+  </object>  
+  <object id="41" language="java" name="gameplay.control.Controller" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/control/Controller.java" binary="false" label="theController" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="54" width="0" x="0" y="183"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="90" width="0" x="0" y="255"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="18" width="0" x="0" y="544"/>    
+    </execution>    
+    <execution id="20">      
+      <position height="54" width="0" x="0" y="653"/>    
+    </execution>    
+    <execution id="22">      
+      <position height="18" width="0" x="0" y="761"/>    
+    </execution>    
+    <execution id="24">      
+      <position height="18" width="0" x="0" y="833"/>    
+    </execution>    
+    <execution id="26">      
+      <position height="18" width="0" x="0" y="905"/>    
+    </execution>    
+    <execution id="28">      
+      <position height="18" width="0" x="0" y="977"/>    
+    </execution>    
+    <execution id="30">      
+      <position height="18" width="0" x="0" y="1049"/>    
+    </execution>    
+    <execution id="32">      
+      <position height="18" width="0" x="0" y="1121"/>    
+    </execution>    
+    <execution id="34">      
+      <position height="18" width="0" x="0" y="1193"/>    
+    </execution>    
+    <execution id="36">      
+      <position height="18" width="0" x="0" y="1265"/>    
+    </execution>  
+  </object>  
+  <object id="50" language="java" name="gameplay.model.GameModel" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/model/GameModel.java" binary="false" label="theGameModel" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="45">      
+      <position height="18" width="0" x="0" y="273"/>    
+    </execution>    
+    <execution id="43">      
+      <position height="18" width="0" x="0" y="201"/>    
+    </execution>    
+    <execution id="49">      
+      <position height="18" width="0" x="0" y="671"/>    
+    </execution>  
+  </object>  
+  <object id="51" language="java" name="player.Player" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/player/Player.java" binary="false" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="47">      
+      <position height="18" width="0" x="0" y="309"/>    
+    </execution>  
+  </object>  
+  <object id="52" language="java" name="gameplay.view.GameOutputs" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/view/GameOutputs.java" binary="false" label="theOutputs" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="10">      
+      <position height="54" width="0" x="0" y="363"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="18" width="0" x="0" y="508"/>    
+    </execution>    
+    <execution id="38">      
+      <position height="18" width="0" x="0" y="1337"/>    
+    </execution>    
+    <execution id="40">      
+      <position height="18" width="0" x="0" y="1430"/>    
+    </execution>  
+  </object>  
+  <object id="55" language="java" name="java.io.PrintStream" project="Forbidden Island Cards" 
+    file="/usr/lib/jvm/java-11-openjdk-amd64/lib/jrt-fs.jar" binary="true" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="54">      
+      <position height="18" width="0" x="0" y="381"/>    
+    </execution>  
+  </object>  
+  <object id="56" language="java" name="gameplay.view.GameInputs" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/view/GameInputs.java" binary="false" label="theInputs" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="18" width="0" x="0" y="435"/>    
+    </execution>    
+    <execution id="18">      
+      <position height="18" width="0" x="0" y="580"/>    
+    </execution>  
+  </object>  
+  <combined-fragment id="57" interaction-operator="LOOP">    
+    <interaction-operand id="58" constraint="while: !theController.getTurnOver() &amp;&amp; !theController.isGameOver()">      
+      <fragment refId="15"/>      
+      <fragment refId="17"/>      
+      <fragment refId="59"/>      
+      <fragment refId="13"/>    
+    </interaction-operand>    
+    <combined-fragment id="59" interaction-operator="ALT">      
+      <interaction-operand id="60" constraint="case 0:">        
+        <fragment refId="48"/>        
+        <fragment refId="19"/>      
+      </interaction-operand>      
+      <interaction-operand id="61" constraint="case 1:">        
+        <fragment refId="21"/>      
+      </interaction-operand>      
+      <interaction-operand id="62" constraint="case 2:">        
+        <fragment refId="23"/>      
+      </interaction-operand>      
+      <interaction-operand id="63" constraint="case 3:">        
+        <fragment refId="25"/>      
+      </interaction-operand>      
+      <interaction-operand id="64" constraint="case 4:"/>      
+      <interaction-operand id="65" constraint="case 5:"/>      
+      <interaction-operand id="66" constraint="case 6:">        
+        <fragment refId="27"/>      
+      </interaction-operand>      
+      <interaction-operand id="67" constraint="case 7:">        
+        <fragment refId="29"/>      
+      </interaction-operand>      
+      <interaction-operand id="68" constraint="case 8:">        
+        <fragment refId="31"/>      
+      </interaction-operand>      
+      <interaction-operand id="69" constraint="case 9:">        
+        <fragment refId="33"/>      
+      </interaction-operand>      
+      <interaction-operand id="70" constraint="case 10:">        
+        <fragment refId="35"/>      
+      </interaction-operand>      
+      <interaction-operand id="71" constraint="default:">        
+        <fragment refId="37"/>      
+      </interaction-operand>    
+    </combined-fragment>  
+  </combined-fragment>  
+  <combined-fragment id="72" interaction-operator="OPT">    
+    <interaction-operand id="73" constraint="!theController.isGameOver()">      
+      <fragment refId="39"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <message id="3" operation="doActions():void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="returnPlayerName(int):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="returnPawnChar(int):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="printTurnStart(java.lang.String,java.lang.String):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" operation="confirm():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="13" operation="giveOptions(java.lang.String,java.lang.String,int):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="getActionsLeft():int" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="turnChoice():int" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="setTurnOver():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="21" operation="movement():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>  
+  <message id="23" operation="shoreUp():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="24"/>  
+  </message>  
+  <message id="25" operation="captureATreasure():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="26"/>  
+  </message>  
+  <message id="27" operation="useSandbags(player.Player,boolean):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="28"/>  
+  </message>  
+  <message id="29" operation="useHelicopterLift(player.Player):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="30"/>  
+  </message>  
+  <message id="31" operation="lookDiscarded():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="32"/>  
+  </message>  
+  <message id="33" operation="lookAtHands():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="34"/>  
+  </message>  
+  <message id="35" operation="lookAtBoard():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="36"/>  
+  </message>  
+  <message id="37" operation="generalError():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="38"/>  
+  </message>  
+  <message id="39" operation="printTurnOver():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="40"/>  
+  </message>  
+  <message id="42" operation="getPlayerNameFromIndex(int):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="43"/>  
+  </message>  
+  <message id="44" operation="getPlayer(int):player.Player" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="45"/>  
+  </message>  
+  <message id="46" operation="getChar():java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="47"/>  
+  </message>  
+  <message id="48" operation="setTurnOver(boolean):void" asynchronous="false">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="49"/>  
+  </message>  
+  <message id="53" operation="println(java.lang.String):void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="54"/>  
+  </message>
+</sequence-diagram>

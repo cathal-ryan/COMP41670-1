@@ -18,8 +18,8 @@
   <packagedElement xmi:type="uml:UseCase" xmi:id="_ecHLkEMVEeuIE5EBPzS4sQ" name="Capture a Treasure"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_fpK0kEMVEeuIE5EBPzS4sQ" name="End your turn"/>
   <packagedElement xmi:type="uml:UseCase" xmi:id="_kMSacEMVEeuIE5EBPzS4sQ" name="Give a card to a teammate"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_qp9BcEMVEeuIE5EBPzS4sQ" name="Draw Flood Cards"/>
-  <packagedElement xmi:type="uml:UseCase" xmi:id="_r2BL8EMVEeuIE5EBPzS4sQ" name="Draw Treasure Cards"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_qp9BcEMVEeuIE5EBPzS4sQ" name="Draw Treasure Card"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_r2BL8EMVEeuIE5EBPzS4sQ" name="Draw Flood Cards"/>
   <packagedElement xmi:type="uml:Association" xmi:id="_FdPy4EMYEeuIE5EBPzS4sQ" memberEnd="_FdQZ8UMYEeuIE5EBPzS4sQ _FdQZ8kMYEeuIE5EBPzS4sQ">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FdPy4UMYEeuIE5EBPzS4sQ" source="org.eclipse.papyrus">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_FdQZ8EMYEeuIE5EBPzS4sQ" key="nature" value="UML_Nature"/>
@@ -114,5 +114,14 @@
     </eAnnotations>
     <ownedEnd xmi:type="uml:Property" xmi:id="_GQn7IkMZEeuIE5EBPzS4sQ" name="view the game's state (board, discard piles, hands)" type="_dAVxIEMVEeuIE5EBPzS4sQ" association="_GQmtAEMZEeuIE5EBPzS4sQ"/>
     <ownedEnd xmi:type="uml:Property" xmi:id="_GQn7I0MZEeuIE5EBPzS4sQ" name="player" type="_i5CfUEMUEeuIE5EBPzS4sQ" association="_GQmtAEMZEeuIE5EBPzS4sQ"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_05mvEEOTEeufUfL8Jm4FLA" name="Swim to safety"/>
+  <packagedElement xmi:type="uml:Dependency" xmi:id="_DGpckEOUEeufUfL8Jm4FLA" client="_r2BL8EMVEeuIE5EBPzS4sQ" supplier="_05mvEEOTEeufUfL8Jm4FLA"/>
+  <packagedElement xmi:type="uml:Association" xmi:id="_FGB6YEOUEeufUfL8Jm4FLA" memberEnd="_FGDvkEOUEeufUfL8Jm4FLA _FGEWoEOUEeufUfL8Jm4FLA">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_FGDIgEOUEeufUfL8Jm4FLA" source="org.eclipse.papyrus">
+      <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_FGDIgUOUEeufUfL8Jm4FLA" key="nature" value="UML_Nature"/>
+    </eAnnotations>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_FGDvkEOUEeufUfL8Jm4FLA" name="swim to safety" type="_05mvEEOTEeufUfL8Jm4FLA" association="_FGB6YEOUEeufUfL8Jm4FLA"/>
+    <ownedEnd xmi:type="uml:Property" xmi:id="_FGEWoEOUEeufUfL8Jm4FLA" name="team" type="_nxD-MEMUEeuIE5EBPzS4sQ" association="_FGB6YEOUEeufUfL8Jm4FLA"/>
   </packagedElement>
 </uml:Model>

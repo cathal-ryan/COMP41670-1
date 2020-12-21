@@ -3,7 +3,9 @@ package gameplay.view;
 import java.awt.Point;
 import enums.TypeEnums;
 import java.util.List;
-import board.Board;
+import board.*;
+
+import java.awt.Point;
 
 /**
  * Provides all communications out to the player, with system.out as the means of communication
@@ -421,4 +423,17 @@ public class GameOutputs {
             drawnTiles.dispAllRows();
         }
     }
+
+	public void whereSwim(List<Point> swimmables) {
+        System.out.println("You can swim to the following tiles: ");
+        int i=0;
+        for (Point tile:swimmables){
+            i++;
+            Tile tileForPrint = Board.getInstance().getTile(tile);
+            System.out.print(tileForPrint.getName()+"("+(int)tile.getX()+", "+(int)tile.getY()+"), ");
+            if(i%4==0)
+                System.out.print("\n");
+        }
+        System.out.println();
+	}
 }
