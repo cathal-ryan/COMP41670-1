@@ -244,7 +244,18 @@ public class Controller{
             theOutputs.noActionsLeft();
         }
         else{
-            // theGameModel.movePlayer();
+            theOutputs.whereShoreUp();
+            boolean validSelection = false;
+            while(!validSelection){ // find a valid point for the user to shore up by prompting them
+                Point p = theInputs.selectTile();
+                validSelection = theGameModel.shoreUp(p);
+                if(!validSelection) {
+                    theOutputs.cantShoreUp();
+                    theOutputs.shoreAgain();
+                    validSelection = theInputs.boolYN("Yes", "No");
+                }
+                theOutputs.printBoard();
+            }
         }
 	}
 

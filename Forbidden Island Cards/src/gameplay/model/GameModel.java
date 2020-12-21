@@ -157,11 +157,13 @@ public class GameModel implements Subject {
         }
     }
 
-    public void shoreUp() {
-        if (!currentPlayer.canShoreUp()) {
-            return;
+    public boolean shoreUp(Point p) {
+        if (!currentPlayer.getPawn().canShoreUp(p)) {
+            return false;
         } else {
-            currentPlayer.getPawn().shoreUp();
+            theBoard.shoreUpTile(p);
+            decreaseActions();
+            return true;
         }
     }
 

@@ -106,6 +106,10 @@ public class Board {
     	getTile(name).shoreUp();
     }
 
+    public void shoreUpTile(Point p) {
+        getTile(p).shoreUp();
+    }
+
     public void drawBoard() {
         for(int y=getCols()-1; y>=0; y--) {
             for(int x=getRows()-1; x>=0; x--) { 
