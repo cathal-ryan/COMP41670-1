@@ -232,8 +232,12 @@ public class Controller{
         else{
             theOutputs.whereMove(); // Look for where to move to
             char dir = theInputs.moveDir(); 
-            theGameModel.movePlayer(dir); // tell the model to move player in specified direction
-            theOutputs.printBoard();
+            if(!theGameModel.movePlayer(dir)) {// tell the model to move player in specified direction
+                theOutputs.printBoard();
+                theOutputs.cantMove();
+            }
+            else
+                theOutputs.printBoard();
         }
     }
 

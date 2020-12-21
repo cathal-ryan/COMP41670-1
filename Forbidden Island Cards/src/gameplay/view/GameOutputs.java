@@ -62,6 +62,10 @@ public class GameOutputs {
         System.out.println("[d]     Move Right");
     }
 
+    public void cantMove() {
+        System.out.println("Cannot move in that direction");
+    }
+
     public void whereShoreUp() {
         System.out.println("What tile would you like to shore up?");
     }

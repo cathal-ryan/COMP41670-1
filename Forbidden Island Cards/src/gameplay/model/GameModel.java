@@ -157,14 +157,12 @@ public class GameModel implements Subject {
         }
     }
 
-    public void movePlayer(char dir) {
-        if (!currentPlayer.canMove()) {
-            return;
-        } 
-        else {
-            if(currentPlayer.getPawn().move(dir))
-                decreaseActions();
+    public boolean movePlayer(char dir) {
+        if(currentPlayer.getPawn().move(dir)) {
+            decreaseActions();
+            return true;
         }
+        return false;
     }
 
     public boolean shoreUp(Point p) {
