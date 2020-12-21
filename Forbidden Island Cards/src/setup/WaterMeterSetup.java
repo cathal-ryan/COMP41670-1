@@ -11,7 +11,9 @@ public class WaterMeterSetup {
 		this.setupWaterMeter = WaterMeter.getInstance();
 	}
 
-	protected void createWaterLevel(SetupInputs inputs, SetupOutputs outputs) {
+	protected void createWaterLevel() {
+		SetupInputs inputs = new SetupInputs();
+		SetupOutputs outputs = new SetupOutputs();
 		int level=0;
 		outputs.waterOptions();
 		int water = inputs.setBetween(true);

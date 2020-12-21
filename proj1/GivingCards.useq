@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.2.4" icons="true" generate-combined-fragments="true">  
+  <object id="1" language="java" name="gameplay.control.PlayerActions" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/control/PlayerActions.java" binary="false" label="playerActions" 
+    type="class" autoSize="true">    
+    <position height="-1" width="-1" x="125" y="0"/>    
+    <execution id="2">      
+      <position height="2838" width="0" x="0" y="77"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="2784" width="0" x="0" y="113"/>    
+    </execution>  
+  </object>  
+  <object id="13" language="java" name="gameplay.control.Controller" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/control/Controller.java" binary="false" label="theController" 
+    type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="6">      
+      <position height="18" width="0" x="0" y="140"/>    
+    </execution>    
+    <execution id="8">      
+      <position height="18" width="0" x="0" y="176"/>    
+    </execution>    
+    <execution id="10">      
+      <position height="2491" width="0" x="0" y="214"/>    
+    </execution>    
+    <execution id="23">      
+      <position height="18" width="0" x="0" y="674"/>    
+    </execution>    
+    <execution id="27">      
+      <position height="217" width="0" x="0" y="755"/>    
+    </execution>    
+    <execution id="31">      
+      <position height="18" width="0" x="0" y="1118"/>    
+    </execution>    
+    <execution id="33">      
+      <position height="1419" width="0" x="0" y="1195"/>    
+    </execution>    
+    <execution id="49">      
+      <position height="18" width="0" x="0" y="1433"/>    
+    </execution>    
+    <execution id="47">      
+      <position height="1229" width="0" x="0" y="1322"/>    
+    </execution>    
+    <execution id="51">      
+      <position height="18" width="0" x="0" y="2578"/>    
+    </execution>    
+    <execution id="53">      
+      <position height="18" width="0" x="0" y="1585"/>    
+    </execution>    
+    <execution id="57">      
+      <position height="446" width="0" x="0" y="1694"/>    
+    </execution>    
+    <execution id="61">      
+      <position height="18" width="0" x="0" y="2330"/>    
+    </execution>    
+    <execution id="63">      
+      <position height="18" width="0" x="0" y="2440"/>    
+    </execution>  
+  </object>  
+  <object id="78" language="java" name="java.util.List" project="Forbidden Island Cards" 
+    file="/usr/lib/jvm/java-11-openjdk-amd64/lib/jrt-fs.jar" binary="true" label="hands" type="interface" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="71">      
+      <position height="18" width="0" x="0" y="1867"/>    
+    </execution>    
+    <execution id="77">      
+      <position height="18" width="0" x="0" y="2104"/>    
+    </execution>  
+  </object>  
+  <object id="79" language="java" name="java.util.List" project="Forbidden Island Cards" 
+    file="/usr/lib/jvm/java-11-openjdk-amd64/lib/jrt-fs.jar" binary="true" label="hand" type="interface" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="59">      
+      <position height="18" width="0" x="0" y="2149"/>    
+    </execution>  
+  </object>  
+  <object id="80" language="java" name="gameplay.model.GameModel" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/model/GameModel.java" binary="false" label="theGameModel" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="19">      
+      <position height="90" width="0" x="0" y="450"/>    
+    </execution>    
+    <execution id="35">      
+      <position height="18" width="0" x="0" y="2669"/>    
+    </execution>    
+    <execution id="65">      
+      <position height="18" width="0" x="0" y="2515"/>    
+    </execution>    
+    <execution id="67">      
+      <position height="18" width="0" x="0" y="1748"/>    
+    </execution>    
+    <execution id="69">      
+      <position height="18" width="0" x="0" y="1794"/>    
+    </execution>    
+    <execution id="39">      
+      <position height="18" width="0" x="0" y="824"/>    
+    </execution>    
+    <execution id="43">      
+      <position height="18" width="0" x="0" y="900"/>    
+    </execution>    
+    <execution id="45">      
+      <position height="18" width="0" x="0" y="936"/>    
+    </execution>  
+  </object>  
+  <object id="85" language="java" name="player.Team" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/player/Team.java" binary="false" label="theTeam" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="82">      
+      <position height="18" width="0" x="0" y="468"/>    
+    </execution>  
+  </object>  
+  <object id="86" language="java" name="player.Player" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/player/Player.java" binary="false" label="currentPlayer" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="84">      
+      <position height="18" width="0" x="0" y="504"/>    
+    </execution>  
+  </object>  
+  <object id="87" language="java" name="gameplay.view.GameOutputs" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/view/GameOutputs.java" binary="false" label="theOutputs" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="12">      
+      <position height="18" width="0" x="0" y="2861"/>    
+    </execution>    
+    <execution id="15">      
+      <position height="18" width="0" x="0" y="305"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="18" width="0" x="0" y="404"/>    
+    </execution>    
+    <execution id="21">      
+      <position height="18" width="0" x="0" y="588"/>    
+    </execution>    
+    <execution id="25">      
+      <position height="18" width="0" x="0" y="701"/>    
+    </execution>    
+    <execution id="29">      
+      <position height="18" width="0" x="0" y="998"/>    
+    </execution>    
+    <execution id="55">      
+      <position height="18" width="0" x="0" y="1640"/>    
+    </execution>    
+    <execution id="73">      
+      <position height="18" width="0" x="0" y="1976"/>    
+    </execution>    
+    <execution id="37">      
+      <position height="18" width="0" x="0" y="782"/>    
+    </execution>  
+  </object>  
+  <object id="88" language="java" name="gameplay.view.GameInputs" project="Forbidden Island Cards" 
+    file="/Forbidden Island Cards/src/gameplay/view/GameInputs.java" binary="false" label="theInputs" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="75">      
+      <position height="18" width="0" x="0" y="2068"/>    
+    </execution>    
+    <execution id="41">      
+      <position height="18" width="0" x="0" y="864"/>    
+    </execution>  
+  </object>  
+  <combined-fragment id="89" interaction-operator="OPT">    
+    <interaction-operand id="90" constraint="!theController.isGameOver()">      
+      <fragment refId="11"/>    
+    </interaction-operand>  
+  </combined-fragment>  
+  <combined-fragment id="91" interaction-operator="LOOP">    
+    <interaction-operand id="92" constraint="while: !validSelection">      
+      <fragment refId="93"/>      
+      <fragment refId="30"/>      
+      <fragment refId="32"/>    
+    </interaction-operand>    
+    <combined-fragment id="93" interaction-operator="LOOP">      
+      <interaction-operand id="94" constraint="while: handSizeB &gt; 5 &amp;&amp; !isGameOver()">        
+        <fragment refId="95"/>        
+        <fragment refId="74"/>        
+        <fragment refId="50"/>        
+        <fragment refId="58"/>        
+        <fragment refId="64"/>        
+        <fragment refId="96"/>        
+        <fragment refId="54"/>        
+        <fragment refId="97"/>        
+        <fragment refId="76"/>        
+        <fragment refId="48"/>        
+        <fragment refId="56"/>        
+        <fragment refId="98"/>        
+        <fragment refId="46"/>        
+        <fragment refId="68"/>      
+      </interaction-operand>      
+      <combined-fragment id="97" interaction-operator="OPT">        
+        <interaction-operand id="99" constraint="theInputs.boolYN(&quot;No&quot;,&quot;Yes&quot;)">          
+          <fragment refId="52"/>        
+        </interaction-operand>      
+      </combined-fragment>      
+      <combined-fragment id="98" interaction-operator="OPT">        
+        <interaction-operand id="100" 
+          constraint="(cardname==TreasureCardEnums.SANDBAGS || cardname == TreasureCardEnums.HELICOPTER_LIFT)">          
+          <fragment refId="101"/>        
+        </interaction-operand>        
+        <combined-fragment id="101" interaction-operator="OPT">          
+          <interaction-operand id="102" constraint="chooseOrShowState(2,&quot;No&quot;, &quot;Yes&quot;)">            
+            <fragment refId="103"/>            
+            <fragment refId="104"/>          
+          </interaction-operand>          
+          <combined-fragment id="103" interaction-operator="OPT">            
+            <interaction-operand id="105" constraint="cardname==TreasureCardEnums.SANDBAGS">              
+              <fragment refId="60"/>            
+            </interaction-operand>          
+          </combined-fragment>          
+          <combined-fragment id="104" interaction-operator="OPT">            
+            <interaction-operand id="106" constraint="cardname == TreasureCardEnums.HELICOPTER_LIFT">              
+              <fragment refId="62"/>            
+            </interaction-operand>          
+          </combined-fragment>        
+        </combined-fragment>      
+      </combined-fragment>      
+      <combined-fragment id="96" interaction-operator="OPT">        
+        <interaction-operand id="107" constraint="playerA==null">          
+          <fragment refId="66"/>        
+        </interaction-operand>      
+      </combined-fragment>      
+      <combined-fragment id="95" interaction-operator="LOOP">        
+        <interaction-operand id="108" constraint="for:i &lt; hands.size()">          
+          <fragment refId="70"/>          
+          <fragment refId="109"/>        
+        </interaction-operand>        
+        <combined-fragment id="109" interaction-operator="OPT">          
+          <interaction-operand id="110" 
+            constraint="!(ineligible &amp;&amp; (name==TreasureCardEnums.SANDBAGS || name==TreasureCardEnums.HELICOPTER_LIFT))">            
+            <fragment refId="72"/>          
+          </interaction-operand>        
+        </combined-fragment>      
+      </combined-fragment>    
+    </combined-fragment>  
+  </combined-fragment>  
+  <combined-fragment id="111" interaction-operator="ALT">    
+    <interaction-operand id="112" constraint="theGameModel.getActionsLeft()&lt;1">      
+      <fragment refId="14"/>    
+    </interaction-operand>    
+    <interaction-operand id="113" constraint="else">      
+      <fragment refId="114"/>      
+      <fragment refId="83"/>      
+      <fragment refId="18"/>      
+      <fragment refId="115"/>      
+      <fragment refId="81"/>    
+    </interaction-operand>    
+    <combined-fragment id="114" interaction-operator="OPT">      
+      <interaction-operand id="116" constraint="!theGameModel.hasCardsforTrade()">        
+        <fragment refId="16"/>      
+      </interaction-operand>    
+    </combined-fragment>    
+    <combined-fragment id="115" interaction-operator="OPT">      
+      <interaction-operand id="117" constraint="traders.isEmpty()">        
+        <fragment refId="20"/>      
+      </interaction-operand>    
+    </combined-fragment>  
+  </combined-fragment>  
+  <combined-fragment id="118" interaction-operator="LOOP">    
+    <interaction-operand id="119" constraint="for:i&lt;size"/>  
+  </combined-fragment>  
+  <message id="3" operation="doActions():void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="returnPlayerName(int):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="returnPawnChar(int):java.lang.String" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="giveCard():void" asynchronous="false" x="69" y="194">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" operation="printTurnOver():void" asynchronous="false" x="64" y="2837">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="14" operation="noActionsLeft():void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="16" operation="cantTrade():void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="18" operation="getTradePartners():java.util.List&lt;Integer&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="19"/>  
+  </message>  
+  <message id="20" operation="cantTrade():void" asynchronous="false" x="166" y="570">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>  
+  <message id="22" operation="lookAtHands():void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="23"/>  
+  </message>  
+  <message id="24" operation="whoToTrade():void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="25"/>  
+  </message>  
+  <message id="26" operation="choosePlayer(java.util.List&lt;java.lang.Integer&gt;):player.Player" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="27"/>  
+  </message>  
+  <message id="28" operation="cardChoice(boolean):void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="29"/>  
+  </message>  
+  <message id="30" operation="chooseFromHand(player.Player,boolean):int" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="31"/>  
+  </message>  
+  <message id="32" operation="transferTreasure(player.Player,int):boolean" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="33"/>  
+  </message>  
+  <message id="34" operation="decreaseActions():void" asynchronous="false">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="35"/>  
+  </message>  
+  <message id="36" operation="choosePl():void" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="37"/>  
+  </message>  
+  <message id="38" operation="getNumPlayers():int" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="39"/>  
+  </message>  
+  <message id="40" operation="playerChoice(int,java.util.List):int" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="41"/>  
+  </message>  
+  <message id="42" operation="getNumPlayers():int" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="43"/>  
+  </message>  
+  <message id="44" operation="getPlayer(int):player.Player" asynchronous="false">    
+    <end type="SOURCE" refId="27"/>    
+    <end type="TARGET" refId="45"/>  
+  </message>  
+  <message id="46" operation="discardTreasure(player.Player):void" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="47"/>  
+  </message>  
+  <message id="48" operation="getHandSize(player.Player):int" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="49"/>  
+  </message>  
+  <message id="50" operation="getHandSize(player.Player):int" asynchronous="false">    
+    <end type="SOURCE" refId="33"/>    
+    <end type="TARGET" refId="51"/>  
+  </message>  
+  <message id="52" operation="showGameState():void" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="53"/>  
+  </message>  
+  <message id="54" operation="nowSelectCard():void" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="55"/>  
+  </message>  
+  <message id="56" operation="chooseFromHand(player.Player,boolean):int" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="57"/>  
+  </message>  
+  <message id="58" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="59"/>  
+  </message>  
+  <message id="60" operation="useSandbags(player.Player,boolean):void" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="61"/>  
+  </message>  
+  <message id="62" operation="useHelicopterLift(player.Player):void" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="63"/>  
+  </message>  
+  <message id="64" operation="removeCardByIndex(player.Player,int):void" asynchronous="false">    
+    <end type="SOURCE" refId="47"/>    
+    <end type="TARGET" refId="65"/>  
+  </message>  
+  <message id="66" operation="getCurrentPlayer():player.Player" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="67"/>  
+  </message>  
+  <message id="68" operation="getPlayerHand(player.Player):java.util.List&lt;TreasureCard&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="69"/>  
+  </message>  
+  <message id="70" operation="get(int):E" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="71"/>  
+  </message>  
+  <message id="72" operation="showOption(int,java.lang.String,java.lang.String):void" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="73"/>  
+  </message>  
+  <message id="74" operation="handChoice(int):int" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="75"/>  
+  </message>  
+  <message id="76" operation="size():int" asynchronous="false">    
+    <end type="SOURCE" refId="57"/>    
+    <end type="TARGET" refId="77"/>  
+  </message>  
+  <message id="81" operation="getAllPlayerNums(int):java.util.List&lt;Integer&gt;" asynchronous="false">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="82"/>  
+  </message>  
+  <message id="83" operation="getNum():int" asynchronous="false">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="84"/>  
+  </message>
+</sequence-diagram>
