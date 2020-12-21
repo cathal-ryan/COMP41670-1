@@ -244,9 +244,49 @@ public class Controller{
             theOutputs.noActionsLeft();
         }
         else{
-            // theGameModel.movePlayer();
+            theOutputs.whereShoreUp();
+            boolean validSelection = false;
+            if(theGameModel.isEngineer()){
+                engShoreUp();
+            }
+            else {
+                while(!validSelection){ // find a valid point for the user to shore up by prompting them
+                    Point p = theInputs.selectTile();
+                    validSelection = theGameModel.shoreUp(p);
+                    if(!validSelection) {
+                        theOutputs.cantShoreUp();
+                        theOutputs.shoreAgain();
+                        validSelection = theInputs.boolYN("Yes", "No");
+                    }
+                    theOutputs.printBoard();
+                }
+            }
         }
 	}
+
+    public void engShoreUp() {
+        int shored = 2;
+        boolean validSelection = false;
+        while(!validSelection && shored>0) {
+            Point p = theInputs.selectTile();
+            validSelection = theGameModel.shoreUp(p);
+            shored--;
+            if(!validSelection) {
+                shored++;
+                theOutputs.cantShoreUp();
+                theOutputs.shoreAgain();
+                validSelection = theInputs.boolYN("Yes", "No");
+            }
+            else if(shored>0){
+                theOutputs.shoreAgain();
+                validSelection = theInputs.boolYN("Yes", "No");
+            }
+            theOutputs.printBoard();
+        }
+        if(shored == 0) {
+            theGameModel.increaseActions();
+        }
+    }
 
     /**Allows players to give cards to players adjacent to them
     */

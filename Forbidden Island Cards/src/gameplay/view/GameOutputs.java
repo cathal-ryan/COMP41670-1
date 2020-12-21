@@ -59,7 +59,18 @@ public class GameOutputs {
         System.out.println("[s]     Move Down");
         System.out.println("[d]     Move Right");
     }
+
+    public void whereShoreUp() {
+        System.out.println("What tile would you like to shore up?");
+    }
     
+    public void cantShoreUp() {
+        System.out.println("You have chosen a tile that cannot be shored up from your location");
+    }
+
+    public void shoreAgain() {
+        System.out.println("Would you like to choose another tile to shore up?");
+    }
 
     public void printTurnOver(){
         System.out.println("Your turn is over.\n");
