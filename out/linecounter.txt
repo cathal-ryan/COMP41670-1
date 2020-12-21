@@ -33,7 +33,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/TilesEnums.class, it is a binary file.
@@ -81,7 +81,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 58, comment is 1, blank is 10.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/TilesEnums.java, code is 35, comment is 9, blank is 5.
@@ -152,7 +152,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -204,7 +204,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 41, comment is 21, blank is 10.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
@@ -279,7 +279,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -331,7 +331,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 58, comment is 1, blank is 10.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
@@ -406,7 +406,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -458,7 +458,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 53, comment is 1, blank is 9.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
@@ -534,7 +534,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -587,7 +587,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 53, comment is 1, blank is 9.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
@@ -663,7 +663,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -716,7 +716,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 53, comment is 1, blank is 9.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
@@ -792,7 +792,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -845,7 +845,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 53, comment is 1, blank is 9.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.
@@ -921,7 +921,7 @@ Forbidden Island Cards/bin/cards/HelicopterLift.class, it is a binary file.
 Forbidden Island Cards/bin/cards/SandbagsCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDeck.class, it is a binary file.
-Forbidden Island Cards/bin/cards/TreasureDeckCard.class, it is a binary file.
+Forbidden Island Cards/bin/cards/TreasureCard.class, it is a binary file.
 Forbidden Island Cards/bin/cards/TreasureDiscardPile.class, it is a binary file.
 Forbidden Island Cards/bin/cards/WaterRiseCard.class, it is a binary file.
 Forbidden Island Cards/bin/enums/EndGameEnums.class, it is a binary file.
@@ -974,7 +974,7 @@ Forbidden Island Cards/src/cards/HelicopterLift.java, code is 7, comment is 1, b
 Forbidden Island Cards/src/cards/SandbagsCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDeck.java, code is 53, comment is 1, blank is 9.
-Forbidden Island Cards/src/cards/TreasureDeckCard.java, code is 7, comment is 1, blank is 4.
+Forbidden Island Cards/src/cards/TreasureCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/cards/TreasureDiscardPile.java, code is 21, comment is 0, blank is 6.
 Forbidden Island Cards/src/cards/WaterRiseCard.java, code is 7, comment is 1, blank is 4.
 Forbidden Island Cards/src/enums/EndGameEnums.java, code is 18, comment is 9, blank is 3.

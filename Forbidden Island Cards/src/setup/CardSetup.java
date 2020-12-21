@@ -5,10 +5,10 @@ import cards.Card;
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
 import cards.TreasureDeck;
-import cards.TreasureDeckCard;
+import cards.TreasureCard;
 import cards.TreasureDiscardPile;
-import cards.WaterRiseCard;
 import enums.TilesEnums;
+import enums.TreasureCardEnums;
 import player.Player;
 import player.Team;
 
@@ -49,8 +49,8 @@ public class CardSetup {
         		for(int j=0;j<2;j++) {
 					cardsDealt=false;
 					while(!cardsDealt){
-						TreasureDeckCard c1 = (TreasureDeckCard) setupTreasureDeck.dealCard();
-						if(c1 instanceof WaterRiseCard) {
+						TreasureCard c1 = (TreasureCard) setupTreasureDeck.dealCard();
+						if((TreasureCardEnums) c1.getName() == TreasureCardEnums.WATERS_RISE) {
 							setupTreasureDeck.addCard(c1);
 							setupTreasureDeck.shuffle();
 						}

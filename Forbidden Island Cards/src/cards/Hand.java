@@ -9,23 +9,23 @@ import enums.TypeEnums;
 
 public class Hand {
 
-	List<TreasureDeckCard> handOfCards;
+	List<TreasureCard> handOfCards;
 	
 	public Hand() {
-	    this.handOfCards = new ArrayList<TreasureDeckCard>();
+	    this.handOfCards = new ArrayList<TreasureCard>();
 	}
 
-	public void addCard(TreasureDeckCard card){
+	public void addCard(TreasureCard card){
 		handOfCards.add(card);
 	}
 
-	public List<TreasureDeckCard> getCards(){
+	public List<TreasureCard> getCards(){
 		return handOfCards;
 	}
 	
 	public List<TreasureCardEnums> getNamesList(){
 		List<TreasureCardEnums> s1 =new ArrayList<>();
-		for(TreasureDeckCard c1:handOfCards){
+		for(TreasureCard c1:handOfCards){
 			s1.add( (TreasureCardEnums) c1.getName());
 		}
 		return s1;
@@ -76,8 +76,8 @@ public class Hand {
 		if(handOfCards.isEmpty()){
 			return false;
 		}
-		for (TreasureDeckCard c1:handOfCards){
-			if (!(c1 instanceof SandbagsCard || c1 instanceof HelicopterLift)){
+		for (TreasureCard c1:handOfCards){
+			if (!(c1.getName() == TreasureCardEnums.SANDBAGS || c1.getName() == TreasureCardEnums.HELICOPTER_LIFT)){
 				return true;
 			}
 		}

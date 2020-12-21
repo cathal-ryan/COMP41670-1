@@ -39,16 +39,16 @@ public class TreasureDeck extends Deck{
 		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.OCEANS_CHALICE));
 		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.OCEANS_CHALICE));
 		    
-		    cardsInDeck.push(new WaterRiseCard(TreasureCardEnums.WATERS_RISE));
-		    cardsInDeck.push(new WaterRiseCard(TreasureCardEnums.WATERS_RISE));
-		    cardsInDeck.push(new WaterRiseCard(TreasureCardEnums.WATERS_RISE));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.WATERS_RISE));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.WATERS_RISE));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.WATERS_RISE));
 
-		    cardsInDeck.push(new SandbagsCard(TreasureCardEnums.SANDBAGS));
-		    cardsInDeck.push(new SandbagsCard(TreasureCardEnums.SANDBAGS));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.SANDBAGS));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.SANDBAGS));
 
-		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
-		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));
-		    cardsInDeck.push(new HelicopterLift(TreasureCardEnums.HELICOPTER_LIFT));		    
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
+		    cardsInDeck.push(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));		    
 		    shuffle();
 		}
 		public Card dealCard() {

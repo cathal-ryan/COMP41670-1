@@ -1,44 +1,45 @@
 package gameplay.model;
 
 import java.awt.Point;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import javax.swing.text.Position;
-
+import java.util.*;
 import board.Board;
-import board.Tile;
 import cards.*;
-import enums.TilesEnums;
-import enums.TreasureCardEnums;
-import enums.TypeEnums;
+import enums.*;
 import player.*;
+import pawns.*;
 import gameplay.control.LoseObserver;
 import gameplay.control.Observer;
 import gameplay.control.WinObserver;
-import pawns.Messenger;
-import pawns.*;
-import board.Board;
 
+
+/**
+ * Singleton class representing the Game Model using MVC Pattern
+ * Keeps the entire state of the game in one class which can be accessed by the controller
+ * Has access to change multiple elements of the current state of the game
+ * And can return important details to the Controller, who can prompt the model
+ * to perform other actions to edit the game state.
+ * Implements subject interface, will notify observers when changes in game state
+ * create loss or win conditions
+ * 
+ * @author Cathal Ryan and Conor Kneafsey
+ *
+ */
 public class GameModel implements Subject {
-    // private Controller theController = Controller.getInstance();
-    private Team theTeam;
-    private Player currentPlayer;
-    private int actionsLeft;
-    private boolean turnOver;
-    private WaterMeter theWaterMeter;
-    private TreasureDiscardPile theTreasureDiscardPile;
-    private FloodDiscardPile theFloodDiscardPile;
-    private FloodDeck theFloodDeck;
-    private Board theBoard;
-    private TreasureDeck theTreasureDeck;
-    private TreasureHandler theTreasureHandler;
-    private Observer loser;
-    private Observer winner;
-    private static GameModel theGameModel = null;
+
+    private Team 				theTeam;                // The team. Functionally a list of players
+    private Player 				currentPlayer;          // The player currently in control/has turn
+    private int 				actionsLeft;            // How many turns the current player has
+    private boolean 			turnOver;               // Has their turn ended
+    private WaterMeter 			theWaterMeter;          // The Water Meter, must not go above 5
+    private TreasureDiscardPile theTreasureDiscardPile; // Discard pile for Treasure cards
+    private FloodDiscardPile 	theFloodDiscardPile;    // Discard pile for Flood cards
+    private FloodDeck 			theFloodDeck;           // Deck for Flood Cards
+    private TreasureDeck 		theTreasureDeck;        // Deck for Treasure Cards
+    private Board 				theBoard;               // The Game Board
+    private TreasureHandler 	theTreasureHandler;     // Treasure Handler allows capturing treasures
+    private Observer 			loser;                  // Loss observer
+    private Observer 			winner;                 // Win observer
+    private static GameModel 	theGameModel = null;    // Singleton declaration
 
     private GameModel() {
         theTeam = Team.getInstance();
@@ -61,6 +62,11 @@ public class GameModel implements Subject {
         return theGameModel;
     }
 
+    @Override
+    public void notifyUpdate(Observer o, int m) {
+        o.update(m);
+    }
+
     public void setNextPlayer() {
         int index = theTeam.getPlayerIndex(currentPlayer);
         try {
@@ -77,6 +83,10 @@ public class GameModel implements Subject {
     public int getNumPlayers() {
         return theTeam.getNumPlayers();
     }
+    
+    public List<TreasureCard> getPlayerHand(Player p1) {
+        return p1.showHand();
+    }
 
     public String getPlayerNameFromIndex(int index) {
         if (index < 0) {
@@ -87,6 +97,29 @@ public class GameModel implements Subject {
 
     public String getPlayerName(Player player) {
         return player.getName();
+    }
+    
+    public int getHandSize(Player play1) {
+        return play1.handSize();
+    }
+    
+    public boolean hasCardsforTrade() {
+        Hand hand = currentPlayer.getHand();
+        if(!hand.canTrade()) 
+            return false;
+        else
+            return true;
+    }
+    
+    public List<Integer> getAllPlayerNums(int i) {
+        return theTeam.getAllPlayerNums(i);
+    }
+
+	public Player getPlayer(int userIn) {
+        if(userIn<0){
+            return currentPlayer;
+        }
+        return theTeam.getPlayer(userIn);
     }
 
     public void setActionsLeft() {
@@ -105,15 +138,6 @@ public class GameModel implements Subject {
         return turnOver;
     }
 
-    public Deck returnDeck(boolean treasure) {
-        if (treasure) {
-            return theTreasureDeck;
-        } 
-        else {
-            return theFloodDeck;
-        }
-    }
-
     public String showDiscard(boolean Treasure) {
         if (Treasure) {
             return theTreasureDiscardPile.returnPrintedPile();
@@ -124,7 +148,6 @@ public class GameModel implements Subject {
     }
 
     public void movePlayer(char dir) {
-        // always false rn
         if (!currentPlayer.canMove()) {
             return;
         } 
@@ -134,16 +157,16 @@ public class GameModel implements Subject {
         }
     }
 
-    public void decreaseActions() {
-        actionsLeft--;
-    }
-
     public void shoreUp() {
         if (!currentPlayer.canShoreUp()) {
             return;
         } else {
             currentPlayer.getPawn().shoreUp();
         }
+    }
+
+    public void decreaseActions() {
+        actionsLeft--;
     }
 
     public String getHandasString(int i) {
@@ -163,24 +186,9 @@ public class GameModel implements Subject {
         return false;
     }
 
-    public List<Integer> getAllPlayerNums(int i) {
-        return theTeam.getAllPlayerNums(i);
-    }
-
-    public Player getPlayer(int userIn) {
-        if(userIn<0){
-            return currentPlayer;
-        }
-        return theTeam.getPlayer(userIn);
-    }
-
     public void removeCard(Player p1, TreasureCardEnums card) {
         int pos = p1.getHand().getIndexOfCard(card);
         p1.getHand().removeCard(pos);
-    }
-
-    public void heliMovePlayer(Player playerForHeliMove, Point p) {
-        playerForHeliMove.helicopterMove(p);
     }
 
     public List<Integer> getTradePartners() {
@@ -197,32 +205,18 @@ public class GameModel implements Subject {
         return allPlayers;
     }
 
-    public boolean hasCardsforTrade() {
-        Hand hand = currentPlayer.getHand();
-        if(!hand.canTrade()) 
-            return false;
-        else
-            return true;
-    }
-
-    public List getPlayerHand(Player p1) {
-        return p1.showHand();
-    }
-
     public boolean addCardfromPlayerA(Player PlayerB, int canum) {
         Hand playerHand = currentPlayer.getHand();
-        TreasureDeckCard c1 = playerHand.getCards().get(canum);
-        if (!(c1 instanceof TreasureCard)) {
+        TreasureCard c1 = playerHand.getCards().get(canum);
+        TreasureCardEnums name = (TreasureCardEnums)c1.getName();
+        if ((name == TreasureCardEnums.HELICOPTER_LIFT || name == TreasureCardEnums.SANDBAGS)) {
             return false;
-        } else {
+        } 
+        else {
             PlayerB.addCardtoHand(c1);
             currentPlayer.getHand().getCards().remove(canum);
             return true;
         }
-    }
-
-    public int getHandSize(Player play1) {
-        return play1.handSize();
     }
 
     public void removeCardByIndex(Player player, int userIn) {
@@ -242,14 +236,18 @@ public class GameModel implements Subject {
         return eligible;
     }
 
+    public void heliMovePlayer(Player playerForHeliMove, Point p) {
+        playerForHeliMove.helicopterMove(p);
+    }
+
     public void useSandbags(Point p) {
         TilesEnums name = theBoard.getTileName(p);
         theBoard.shoreUpTile(name);
     }
 
-    public TreasureDeckCard dealTreasure() {
-        TreasureDeckCard c1 = (TreasureDeckCard) theTreasureDeck.dealCard();
-        if (c1 instanceof WaterRiseCard) {
+    public TreasureCard dealTreasure() {
+        TreasureCard c1 = (TreasureCard) theTreasureDeck.dealCard();
+        if ((TreasureCardEnums)c1.getName() == TreasureCardEnums.WATERS_RISE) {
             WaterMeter.cardDrawn();
             int waterLevel = WaterMeter.getWaterlevel();
             if (waterLevel >= 5) {
@@ -259,11 +257,11 @@ public class GameModel implements Subject {
         return c1;
     }
 
-    public void addToPile(TreasureDeckCard c1) {
+    public void addToPile(TreasureCard c1) {
         theTreasureDiscardPile.addToPile(c1);
     }
 
-    public void addCardfromDeck(TreasureDeckCard c1) {
+    public void addCardfromDeck(TreasureCard c1) {
         currentPlayer.getHand().addCard(c1);
     }
 
@@ -308,11 +306,6 @@ public class GameModel implements Subject {
         return theBoard.isTileSunk(name);
     }
 
-    @Override
-    public void notifyUpdate(Observer o, int m) {
-        o.update(m);
-    }
-
     public List<TypeEnums> listCaptured(){
         return theTreasureHandler.captured();
     }
@@ -354,7 +347,6 @@ public class GameModel implements Subject {
         if(currentPlayer.getHand().numofInstances(tile)<4){
             return 3;
         }
-
         currentPlayer.getHand().discardforTreasure(tile);
         theTreasureHandler.setTreasureCapture(tile);
         decreaseActions();

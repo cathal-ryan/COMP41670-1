@@ -2,10 +2,6 @@ package board;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
-import java.awt.Point;
-
-import board.Tile;
 import enums.TypeEnums;
 import player.*;
 
