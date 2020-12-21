@@ -1,17 +1,17 @@
-package testing;
+// package testing;
 
-import static org.junit.Assert.*;
+// import static org.junit.Assert.*;
 
-import org.junit.Test;
+// import org.junit.Test;
 
-import cards.Hand;
+// import cards.Hand;
 
-public class HandTest {
+// public class HandTest {
 
-	@Test
-	public void testConstruct() {
-		Hand hand = new Hand();
-		assertEquals("Hand Does Not Construct", 0, hand.getCards().size());
-	}
+// 	@Test
+// 	public void testConstruct() {
+// 		Hand hand = new Hand();
+// 		assertEquals("Hand Does Not Construct", 0, hand.getCards().size());
+// 	}
 
-}
+// }

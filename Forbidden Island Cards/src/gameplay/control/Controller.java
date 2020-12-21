@@ -606,6 +606,7 @@ public class Controller{
                 lookAtBoard();
                 boolean canSwimHere = false;
                 List<Point> swimmables = player.getPawn().getViableSwims(); // find all places player can swim to
+                theOutputs.whereSwim(swimmables);
                 while(!canSwimHere){ // 
                     Point swim = theInputs.selectTile(); //get a tile selected
                     if(swimmables.contains(swim)){

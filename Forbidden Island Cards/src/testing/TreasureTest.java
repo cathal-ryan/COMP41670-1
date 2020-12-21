@@ -1,14 +1,14 @@
-package testing;
+// package testing;
 
-import static org.junit.Assert.*;
+// import static org.junit.Assert.*;
 
-import org.junit.Test;
+// import org.junit.Test;
 
-public class TreasureTest {
+// public class TreasureTest {
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+// 	@Test
+// 	public void test() {
+// 		fail("Not yet implemented");
+// 	}
 
-}
+// }
