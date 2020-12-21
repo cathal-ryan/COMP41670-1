@@ -80,6 +80,12 @@ public class GameModel implements Subject {
         return currentPlayer;
     }
 
+    public boolean isEngineer() {
+        if(currentPlayer.getPawn() instanceof Engineer)
+            return true;
+        return false;
+    }
+
     public int getNumPlayers() {
         return theTeam.getNumPlayers();
     }
@@ -124,6 +130,10 @@ public class GameModel implements Subject {
 
     public void setActionsLeft() {
         actionsLeft = 3;
+    }
+
+    public void increaseActions() {
+        actionsLeft++;
     }
 
     public int getActionsLeft() {
