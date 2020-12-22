@@ -10,7 +10,6 @@ import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
 import gameplay.control.Controller;
-import gameplay.control.TreasureDraw;
 import player.Player;
 
 public class HandTest {

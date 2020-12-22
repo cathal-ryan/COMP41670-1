@@ -16,7 +16,8 @@ public class SwimTest {
 	public void normalSwimTest() { // No special swim abilities player test
 		Player tester = new Player(0, "Test Player", 1);
 		Pawn testPawn = tester.getPawn();
-		int startX = 3; int startY = 3;
+		int startX = 3; 
+		int startY = 3;
 		Point p = new Point(startX,startY);
 		testPawn.setPos(p);
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();

@@ -3,12 +3,10 @@ package testing;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Point;
-import java.lang.ProcessBuilder.Redirect.Type;
 
 import org.junit.Test;
 
 import board.Board;
-import cards.Hand;
 import cards.TreasureCard;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;

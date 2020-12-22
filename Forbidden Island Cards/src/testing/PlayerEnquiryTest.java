@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 
 import cards.TreasureCard;
 import enums.TreasureCardEnums;
-import gameplay.control.Controller;
 import gameplay.model.GameModel;
 import player.Player;
 import player.Team;

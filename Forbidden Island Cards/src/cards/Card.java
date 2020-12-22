@@ -1,6 +1,7 @@
 package cards;
 
 abstract public class Card {
+	
 	@SuppressWarnings("rawtypes")
     private Enum name;   // Name of card
 

@@ -1,12 +1,11 @@
 package testing;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import gameplay.control.LoseObserver;
 import gameplay.model.*;
-import setup.BoardSetup;
 public class WaterMeterTest {
     
     @Test // Test for water meter from full deck drawn
+    @SuppressWarnings("static-access")
     public void waterMeterLevelTest() {
         WaterMeter theWaterMeter = WaterMeter.getInstance();
         theWaterMeter.setWatermeter(0);

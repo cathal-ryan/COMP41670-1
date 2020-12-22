@@ -26,6 +26,9 @@ import java.awt.Point;
  */
 public class Controller{
 
+    // ===========================================================
+    // Setup Variables
+    // ===========================================================
     private GameModel           theGameModel; //State of the Game
     private GameOutputs         theOutputs;   // The view. Outputs and Inputs
     private GameInputs          theInputs;
@@ -260,7 +263,7 @@ public class Controller{
                     if(!validSelection) {
                         theOutputs.cantShoreUp();
                         theOutputs.shoreAgain();
-                        validSelection = !theInputs.boolYN("No", "Yes");
+                        validSelection = !(theInputs.boolYN("No", "Yes"));
                     }
                     theOutputs.printBoard();
                 }
@@ -423,6 +426,7 @@ public class Controller{
      * @param Player Player who has heli lift card
      * @return Player who is chosen from list
      */ 
+    @SuppressWarnings("deprecation")
     public void useHelicopterLift(Player p1) {
         if(p1==null){ //if null, assume current
             p1 = theGameModel.getCurrentPlayer();
@@ -451,11 +455,10 @@ public class Controller{
         }
         theOutputs.whoWillFly();
         List <Integer> availforMove = theGameModel.getAllPlayerNums(-1); // all players can fly
-        boolean keepMoving = true;
         do{
             Player playerForHeliMove = choosePlayer(availforMove);
             theGameModel.heliMovePlayer(playerForHeliMove, p);
-            availforMove.remove(new Integer(playerForHeliMove.getNum())); 
+        	availforMove.remove(new Integer(playerForHeliMove.getNum())); 
         }
         while(!availforMove.isEmpty() && chooseOrShowState(3, "No","Yes"));  
         // Keep asking player if they want to fly anyone else there, if theres's still players who can fly

@@ -43,8 +43,10 @@ public class FloodandSinkTest {
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();
 		Board theBoard=Board.getInstance();
         GameModel theM = GameModel.getInstance();
+    	@SuppressWarnings("unused")
         FloodDiscardPile theTDP = FloodDiscardPile.getInstance();
         for(int i=0;i< 48;i++){
+        	@SuppressWarnings("unused")
             FloodCard card1 = (FloodCard) theM.dealFlood();
         }
         boolean TilesSunk=true;

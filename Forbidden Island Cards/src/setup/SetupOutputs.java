@@ -7,9 +7,7 @@ package setup;
 public class SetupOutputs {
 
 
-    public SetupOutputs() {
-
-    }
+    public SetupOutputs() {}
 
     public void numError(int i,int k){
         System.out.println("Please enter in a valid number between "+i+" and "+k);

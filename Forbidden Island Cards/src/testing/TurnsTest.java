@@ -3,7 +3,6 @@ package testing;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import gameplay.control.Controller;
 import gameplay.model.GameModel;
 import player.Player;
 import player.Team;
@@ -18,7 +17,6 @@ public class TurnsTest {
         theTeam.addPlayer(p0);
         theTeam.addPlayer(p1);
         GameModel theModel = GameModel.getInstance();
-        Controller theController = Controller.getInstance();
         theModel.setTurnOver(false); 
         theModel.setActionsLeft(); // Reset actions
         theModel.setNextPlayer(); //  Set new player

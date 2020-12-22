@@ -5,8 +5,6 @@ import enums.TypeEnums;
 import java.util.List;
 import board.*;
 
-import java.awt.Point;
-
 /**
  * Provides all communications out to the player, with system.out as the means of communication
  * Allows for easy refactoring to a GUI.
@@ -97,8 +95,8 @@ public class GameOutputs {
      * @param Treasure if its treasure deck, give true, if flood give false
      * @param pile The discard pile to be shown
      */
-    public void printPile(boolean Treasure, String pile){
-        if(Treasure){
+    public void printPile(boolean treasure, String pile){
+        if(treasure){
             System.out.println("The Treasure Discard Pile: "+ pile);
         }
         else{

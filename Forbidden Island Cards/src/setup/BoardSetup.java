@@ -5,12 +5,10 @@ import java.awt.Point;
 import board.Board;
 import enums.TileStack;
 import enums.TilesEnums;
-import gameplay.view.GameOutputs;
 
 public class BoardSetup {
 	private Board theBoard;
 	private Point p;
-	private SetupOutputs setupOuts;
 
 	public BoardSetup() {
 		this.theBoard = Board.getInstance();

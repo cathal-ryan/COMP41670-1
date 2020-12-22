@@ -7,9 +7,6 @@ import enums.TypeEnums;
 import player.*;
 import board.Tile;
 
-// To be removed
-import enums.TilesEnums;
-
 public class DrawTile {
 
 	// number of rows in Tile Drawing

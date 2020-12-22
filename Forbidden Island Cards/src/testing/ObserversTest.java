@@ -26,11 +26,10 @@ public class ObserversTest {
         theTeam.addPlayer(new Player(0, "Test Player1", 0));
         theTeam.addPlayer(new Player(1, "Test Player2", 1));
         GameModel theModel = GameModel.getInstance();
-        TreasureHandler theTH = TreasureHandler.getInstance();
-        theTH.setTreasureCapture(TypeEnums.EARTH);
-        theTH.setTreasureCapture(TypeEnums.FIRE);
-        theTH.setTreasureCapture(TypeEnums.WATER);
-        theTH.setTreasureCapture(TypeEnums.WIND);
+        TreasureHandler.setTreasureCapture(TypeEnums.EARTH);
+        TreasureHandler.setTreasureCapture(TypeEnums.FIRE);
+        TreasureHandler.setTreasureCapture(TypeEnums.WATER);
+        TreasureHandler.setTreasureCapture(TypeEnums.WIND);
         Point p = theBoard.getTilePos(TilesEnums.FOOLS_LANDING);
         theModel.getPlayer(0).getPawn().setPos(p);
         theModel.getPlayer(1).getPawn().setPos(p);
@@ -61,9 +60,9 @@ public class ObserversTest {
 		assertTrue("Sinking of the 2 cave cards should lose game", loser.isGameLost());
     }
     
+    @SuppressWarnings("static-access")
     @Test // Test to see if players can lose by water meter rising too high
     public void waterMeterTooHighTest() {
-        BoardSetup bset = new BoardSetup();
         WaterMeter theWaterMeter = WaterMeter.getInstance();
         theWaterMeter.setWatermeter(2);
         LoseObserver loser = new LoseObserver();
@@ -95,7 +94,8 @@ public class ObserversTest {
     public void playerCantSwimTest() {
 		Player tester = new Player(0, "Test Player", 1);
 		Pawn testPawn = tester.getPawn();
-		int startX = 3; int startY = 3;
+        int startX = 3; 
+        int startY = 3;
 		Point p = new Point(startX,startY);
 		testPawn.setPos(p);
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();

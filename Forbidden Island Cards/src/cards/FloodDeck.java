@@ -3,9 +3,17 @@ import java.util.Stack;
 
 import enums.TileStack;
 
+/**
+ * Flood Deck class for decks of flood cards, inherits from Deck
+ * Implemented as singleton as there should be only a single deck
+ * 
+ * @author Cathal Ryan and Conor Kneafsey
+ *
+ */
 public class FloodDeck extends Deck{
 	protected static FloodDeck theFloodDeck;
 
+	
 	public static FloodDeck getInstance(){
         if(theFloodDeck == null){
             theFloodDeck = new FloodDeck();
