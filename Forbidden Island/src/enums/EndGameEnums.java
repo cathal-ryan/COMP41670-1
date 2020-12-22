@@ -18,7 +18,7 @@ public enum EndGameEnums {
 
 	private final String type;
 	/**
-	 * Constructor for EndGameEnums enum
+	 * Constructor for EndGameEnums
 	 * @param s String which will be set to the end game description
 	 */
 	private EndGameEnums(final String s){

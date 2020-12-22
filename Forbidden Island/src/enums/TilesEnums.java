@@ -35,7 +35,7 @@ public enum TilesEnums {
 
 	private final String name;
 	/**
-	 * Constructor for TilesEnums enum
+	 * Constructor for TilesEnums
 	 * @param s String which contains name of tile
 	 */
 	private TilesEnums(final String s){
