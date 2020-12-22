@@ -7,9 +7,7 @@ import java.util.Stack;
  * Abstract class for discard piles in game of Forbidden Island
  * Pile implemented as stack, can be shuffled and returned as a string, and can add cards to stack.
  * @author Cathal Ryan and Conor Kneafsey
- *
  */
-
 abstract public class DiscardPile {
 
 

@@ -11,9 +11,6 @@ import gameplay.view.GameOutputs;
  */
 public class FloodDraw {
 
-    // ===========================================================
-    // Setup Variables
-    // ===========================================================
     private GameOutputs     theOutputs; //I/O Access
     private GameInputs      theInputs;   
     private Controller      theController; // Access to game logic

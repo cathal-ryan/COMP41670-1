@@ -9,9 +9,6 @@ import gameplay.view.*;
  */
 public class PlayerActions {
 
-	// ===========================================================
-	// Setup Variables
-	// ===========================================================
 	private Controller		theController; 	// Access to main game logic
 	private GameOutputs 	theOutputs;		// I/O to player
 	private GameInputs 		theInputs;

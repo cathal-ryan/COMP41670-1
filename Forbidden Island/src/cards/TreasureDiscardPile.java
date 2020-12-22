@@ -7,7 +7,6 @@ import java.util.Stack;
  * Class extending discardPile to create the Treasure Discard Pile
  * Implemented as Singleton, should only be 1 Treasure discard pile in game
  * @author Cathal Ryan and Conor Kneafsey
- *
  */
 public class TreasureDiscardPile extends DiscardPile{
 	private static TreasureDiscardPile theTreasureDiscardPile; //Singleton

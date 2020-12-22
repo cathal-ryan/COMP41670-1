@@ -1,9 +1,7 @@
 package cards;
 /**
  * Abstract class for cards in game
- * 
  * @author Cathal Ryan and Conor Kneafsey
- *
  */
 abstract public class Card {
 	

@@ -17,11 +17,12 @@ import enums.TilesEnums;
  */
 public class Player {
 
-	private String playerName;
-	private Hand playerHand;
-	private Pawn playerPawn;
-	private int playerNum;
-	private String playerChar;
+	private String 		playerName;
+	private Hand 		playerHand;
+	private Pawn 		playerPawn;
+	private int 		playerNum;
+	private String 		playerChar;
+
 	/**
 	 * Constructor for a Player object
 	 * 
@@ -64,32 +65,21 @@ public class Player {
 				playerPawn = new Navigator();
 				playerChar = "N";
 				break;
-	}
+		}
 	}
 	
 	public String getName() {
 		return playerName;
 	}
+
 	public int getNum() {
 		return playerNum;
 	}
 
-	public List<TreasureCard> showHand() {
-		return playerHand.getCards();
-	}
-	
 	public Hand getHand() {
 		return playerHand;
 	}
-	
-	public int handSize() {
-		return playerHand.getCards().size();
-	}
 
-	public void drawTreasureCard(TreasureCard card1) {
-		playerHand.addCard(card1);
-	}
-	
 	public Pawn getPawn(){
 		return playerPawn;
 	}
@@ -98,20 +88,32 @@ public class Player {
 		return playerChar;
 	}
 
-	public void setPawnPos(Point p){
-		playerPawn.setPos(p);
+	public String getPlayerType(){
+		return playerPawn.getPlayerType();
 	}
 
 	public Point getPawnPos(){
 		return playerPawn.getPos();
 	}
 
-	public TilesEnums pawnStartLoc(){
-		return playerPawn.startLoc();
+	public List<TreasureCard> showHand() {
+		return playerHand.getCards();
 	}
 
-	public String getPlayerType(){
-		return playerPawn.getPlayerType();
+	public int handSize() {
+		return playerHand.getCards().size();
+	}
+
+	public void drawTreasureCard(TreasureCard card1) {
+		playerHand.addCard(card1);
+	}
+
+	public void setPawnPos(Point p){
+		playerPawn.setPos(p);
+	}
+
+	public TilesEnums pawnStartLoc(){
+		return playerPawn.startLoc();
 	}
 
 	public void addCardtoHand(TreasureCard c1){

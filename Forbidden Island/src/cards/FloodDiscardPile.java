@@ -6,9 +6,7 @@ import java.util.Stack;
 /**
  * Class extending discardPile to create Flood Discard Pile
  * Implemented as Singleton, should only be 1 flood discard pile
- * 
  * @author Cathal Ryan and Conor Kneafsey
- *
  */
 public class FloodDiscardPile extends DiscardPile{
 

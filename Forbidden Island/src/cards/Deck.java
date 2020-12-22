@@ -7,9 +7,7 @@ import java.util.Stack;
  * Abstract deck class for decks of cards in Forbidden Island
  * Can deal a card, add a card, and shuffle itself.
  * Deck implemented as stack.
- * 
  * @author Cathal Ryan and Conor Kneafsey
- *
  */
 abstract public class Deck {
 
