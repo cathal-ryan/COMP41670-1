@@ -1,27 +1,19 @@
 package testing;
-
 import org.junit.Test;
-
-import board.Board;
-
 import static org.junit.Assert.*;
-
 import java.awt.Point;
-
 import cards.TreasureCard;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
 import gameplay.control.Controller;
 import gameplay.control.LoseObserver;
-import gameplay.control.Observer;
 import gameplay.control.WinObserver;
-import gameplay.model.GameModel;
-import gameplay.model.TreasureHandler;
-import gameplay.model.WaterMeter;
-import player.Player;
-import player.Team;
+import gameplay.model.*;
+import pawns.Pawn;
+import player.*;
 import setup.BoardSetup;
+import board.Board;
 
 public class ObserversTest {
     
@@ -72,18 +64,56 @@ public class ObserversTest {
     @Test // Test to see if players can lose by water meter rising too high
     public void waterMeterTooHighTest() {
         BoardSetup bset = new BoardSetup();
-        WaterMeter theWM = WaterMeter.getInstance();
+        WaterMeter theWaterMeter = WaterMeter.getInstance();
+        theWaterMeter.setWatermeter(2);
+        LoseObserver loser = new LoseObserver();
+        assertFalse("Game not lost before dealing lots of treasure cards", loser.isGameLost());
+        GameModel theModel = GameModel.getInstance();
+        for(int i=0;i<28;i++) // This will deal 3 waters rise cards, whole deck
+            theModel.dealTreasure();   
+        System.out.println(WaterMeter.getWaterlevel());
+		assertTrue("Game lost after dealing lots of treasure cards", loser.isGameLost());
+    }
+
+    @Test // Test to see if players can lose by water meter rising too high
+    public void foolsLandingSinkTest() {
+        BoardSetup bset = new BoardSetup();
         bset.setTiles();
         Board theBoard = Board.getInstance();
         LoseObserver loser = new LoseObserver();
-		assertFalse("Game not lost before tiles sunk", loser.isGameLost());
+		assertFalse("Game not lost before FOOLS LANDING sunk", loser.isGameLost());
 
         for(int i=0;i<2;i++){
-            theBoard.floodTile(TilesEnums.CAVE_OF_EMBERS);
-            theBoard.floodTile(TilesEnums.CAVE_OF_SHADOWS);
+            theBoard.floodTile(TilesEnums.FOOLS_LANDING);
         }
         GameModel theModel = GameModel.getInstance();
         theModel.dealFlood();        
-		assertTrue("Sinking of the 2 cave cards should lose game", loser.isGameLost());
+		assertTrue("Game lost after FOOLS LANDING sunk", loser.isGameLost());
+    }
+
+    @Test // Test to see if players can lose by water meter rising too high
+    public void playerCantSwimTest() {
+		Player tester = new Player(0, "Test Player", 1);
+		Pawn testPawn = tester.getPawn();
+		int startX = 3; int startY = 3;
+		Point p = new Point(startX,startY);
+		testPawn.setPos(p);
+	    BoardSetup bset= new BoardSetup(); bset.setTiles();
+        Board theBoard=Board.getInstance();
+        LoseObserver loser = new LoseObserver();
+		assertFalse("Game not lost before flooding tiles around player", loser.isGameLost());
+
+		for(int i=0;i<2;i++) {
+            theBoard.floodTile(theBoard.getTileName(new Point (startX-1,startY)));
+			theBoard.floodTile(theBoard.getTileName(new Point (startX+1,startY)));
+			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY+1)));
+			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY-1)));
+			theBoard.floodTile(theBoard.getTileName(p));
+		}		
+
+        GameModel theModel = GameModel.getInstance();
+        theModel.canPlayerSwim(tester);
+		
+		assertTrue("Game is lost after flooding tiles around player", loser.isGameLost());
     }
 }
