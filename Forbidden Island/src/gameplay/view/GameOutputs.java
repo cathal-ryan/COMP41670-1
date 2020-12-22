@@ -430,15 +430,19 @@ public class GameOutputs {
         }
     }
 
+    /**
+     * Prints out where the player is allowed move to
+     * @param swimmables, a list of points which are valid for the player to swim to
+     */
 	public void whereSwim(List<Point> swimmables) {
         System.out.println("You can swim to the following tiles: ");
         int i=0;
-        for (Point tile:swimmables){
+        for (Point tile:swimmables){ // iterate through all and print
             i++;
             Tile tileForPrint = Board.getInstance().getTile(tile);
             System.out.print(tileForPrint.getName()+"("+(int)tile.getX()+", "+(int)tile.getY()+"), ");
             if(i%4==0)
-                System.out.print("\n");
+                System.out.print("\n"); // skip every 3 for clarity
         }
         System.out.println();
 	}

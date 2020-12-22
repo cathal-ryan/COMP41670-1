@@ -7,17 +7,15 @@ import gameplay.view.*;
 /**
  * Treasure Draw class manages drawing treasure cards.
  * Each player should draw 2 cards after completing actions
- * 
+ * this card can be given to other players in same way
+ * giving cards during regular turn operates
  * @author Cathal Ryan and Conor Kneafsey
  *
  */
 public class TreasureDraw {
 
-    // ===========================================================
-    // Setup Variables
-    // ===========================================================
     private Controller      theController;
-    private GameOutputs     theOutputs;
+    private GameOutputs     theOutputs; // I/O
     private GameInputs      theInputs;    
 
     /**

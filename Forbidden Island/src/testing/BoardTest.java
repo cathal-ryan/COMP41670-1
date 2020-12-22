@@ -14,7 +14,7 @@ public class BoardTest {
 	private Board theBoard;
 
 	@Test
-	public void test_OutOfBounds() {
+	public void OutOfBounds() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -24,7 +24,7 @@ public class BoardTest {
 	}
 	
 	@Test
-	public void test_checkTileAdded() {
+	public void checkTileAdded() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -37,7 +37,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_checkTileChanged() {
+	public void checkTileChanged() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -50,7 +50,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_checkTileFlooded() {
+	public void checkTileFlooded() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -60,7 +60,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_shoreUpTile() {
+	public void shoreUpTile() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -76,7 +76,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_checkSank() {
+	public void checkSank() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -87,7 +87,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_cantShoreSank() {
+	public void cantShoreSank() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -99,7 +99,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_sunkTileIsSea() {
+	public void sunkTileIsSea() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -112,7 +112,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_allTilesSet() {
+	public void allTilesSet() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		Point p = new Point(5,3);
@@ -124,7 +124,7 @@ public class BoardTest {
 	}
 
 	@Test
-	public void test_tilesRandomised() {
+	public void tilesRandomised() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();

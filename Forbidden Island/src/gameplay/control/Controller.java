@@ -263,8 +263,10 @@ public class Controller{
                 }
             }
         }
-	}
-
+    }
+    
+    /** Provides for an alternative shoring up function if the pawn is an engineer
+    */
     public void engShoreUp() {
         int shored = 2;
         boolean validSelection = false;

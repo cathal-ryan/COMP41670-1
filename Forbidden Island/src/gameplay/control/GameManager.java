@@ -1,7 +1,7 @@
 package gameplay.control;
 
 /**
- * Singleton game manager class. Manages the over-arching flow of the game,
+ * Singleton Facade game manager class. Manages the over-arching flow of the game,
  * once it has been set up.
  * Initiates the player turns and their drawing of flood and treasure
  * cards, checking for whether the game is over at each interval.
@@ -12,9 +12,6 @@ package gameplay.control;
  */
 public class GameManager {
 
-    // ===========================================================
-    // Setup Variables
-    // ===========================================================
     private static GameManager 	theGM; //Self Singleton
     private Controller 			theController; //Access to main game logic
     
