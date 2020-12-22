@@ -30,6 +30,8 @@ public class GameInputs {
         while (!validInput) {
             String userString = input.nextLine();
             try {
+                if(userString.isEmpty())
+                    userString = " ";
                 userInput = userString.charAt(0);
             } catch (NumberFormatException e) {
                 theOutputs.generalError();
