@@ -1,7 +1,7 @@
 package cards;
 import java.util.Stack;
 
-import enums.TileStack;
+import board.TileStack;
 
 /**
  * Flood Deck class for decks of flood cards, inherits from Deck

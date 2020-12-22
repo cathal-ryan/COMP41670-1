@@ -1,4 +1,4 @@
-package enums;
+package board;
 
 import java.util.Collections;
 import java.util.Stack;

@@ -4,7 +4,7 @@ import java.awt.Point;
 
 import board.Board;
 import enums.TileStack;
-import enums.TilesEnums;
+import board.TilesEnums;
 
 public class BoardSetup {
 	private Board theBoard;
