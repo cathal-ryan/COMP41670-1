@@ -3,12 +3,10 @@ package testing;
 import static org.junit.Assert.assertEquals;
 
 import java.awt.Point;
-import java.lang.ProcessBuilder.Redirect.Type;
 
 import org.junit.Test;
 
 import board.Board;
-import cards.Hand;
 import cards.TreasureCard;
 import enums.TilesEnums;
 import enums.TreasureCardEnums;
@@ -19,7 +17,7 @@ import setup.BoardSetup;
 
 public class GivingTreasureCardsTest {
     
-	@Test // Check if correct players to give cards to is given
+	@Test // Check if correct players to give cards to is given based on tiles
 	public void gettingTradingPartners() {
         Team theTeam = Team.getInstance();
         BoardSetup bset = new BoardSetup();
@@ -52,7 +50,7 @@ public class GivingTreasureCardsTest {
         theTeam.addPlayer(new Player(0, "Test Player0", 1));
         Player p1 = new Player(1, "Test Player1", 2);
         GameModel theModel = GameModel.getInstance();
-        theModel.addCardfromDeck(new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+        theModel.addCardfromDeck( new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
         theModel.addCardfromPlayerA(p1,0);
         assertEquals("", 3, theModel.getTradePartners().size());
 

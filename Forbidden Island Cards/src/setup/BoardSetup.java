@@ -5,12 +5,10 @@ import java.awt.Point;
 import board.Board;
 import enums.TileStack;
 import enums.TilesEnums;
-import gameplay.view.GameOutputs;
 
 public class BoardSetup {
 	private Board theBoard;
 	private Point p;
-	private SetupOutputs setupOuts;
 
 	public BoardSetup() {
 		this.theBoard = Board.getInstance();
@@ -61,18 +59,5 @@ public class BoardSetup {
 					theBoard.setTile(p, names.pop());
 			}
 		}
-	}
-
-	public static void main(String[] args) {
-		BoardSetup bSet = new BoardSetup();
-		GameOutputs gameOutputs = new GameOutputs();
-		Board theBoard = Board.getInstance();
-		bSet.setTiles();
-		gameOutputs.printBoard();
-		theBoard.floodTile(TilesEnums.SILVER_GATE);
-		theBoard.floodTile(TilesEnums.SILVER_GATE);
-		theBoard.floodTile(TilesEnums.CORAL_PALACE);
-		theBoard.floodTile(TilesEnums.CORAL_PALACE);
-		gameOutputs.printBoard();
 	}
 }

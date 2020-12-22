@@ -10,7 +10,6 @@ import enums.EndGameEnums;
  */
 public class WinObserver implements Observer {
 
-    private static boolean      gameOver=false;
     private static boolean      gameWon=false;
     private static String       winCondition; // How game won
     
@@ -21,7 +20,7 @@ public class WinObserver implements Observer {
 	 */
     @Override
     public void update(int method) {
-    	// Set game as won
+    	// Set game as wo
         gameWon=true;
         // In our case, game can only be won in one method. Allows for potential refactoring for alternative
         // routes to victory.

@@ -15,7 +15,6 @@ public class PlayerSetup {
 	private Team theTeam;
 	private SetupOutputs setupOuts;
 	private SetupInputs setupIns;
-	private Boolean validNumPlayers = false;
 	private Board theBoard;
 	private Point startLoc;
 	
@@ -27,11 +26,10 @@ public class PlayerSetup {
 	}
 
 	protected void createAllPlayers() {
-		boolean playersSelected = false;
 		setupOuts.howManyPlaying();
 		int numOfPlayers = setupIns.setBetween(false);
 		List<Integer> thelist = new ArrayList<>();
-		List<String> usedNames = new ArrayList();
+		List<String> usedNames = new ArrayList<>();
 		thelist.add(0);
 		thelist.add(1);
 		thelist.add(2);

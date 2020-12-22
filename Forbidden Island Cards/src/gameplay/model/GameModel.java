@@ -185,14 +185,11 @@ public class GameModel implements Subject {
         return theTeam.getPlayer(i).getHand().getHandasString();
     }
 
-    public boolean checkHasCard(Player p1, boolean cardName) {
-        if (cardName == false) {
+    public boolean checkHasCard(Player p1, boolean Helicopter) {
+        if (!Helicopter) 
             return p1.checkHasCard(TreasureCardEnums.SANDBAGS);
-        } else if (cardName) {
-            System.out.println("");
+        else
             return p1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT);
-        }
-        return false;
     }
 
     public void removeCard(Player p1, TreasureCardEnums card) {
@@ -272,8 +269,10 @@ public class GameModel implements Subject {
 
     public void addCardfromDeck(TreasureCard c1) {
         currentPlayer.getHand().addCard(c1);
+        
     }
 
+    @SuppressWarnings("static-access")
     public int getWaterLevel() {
         return theWaterMeter.getWaterlevel();
     }
@@ -338,6 +337,7 @@ public class GameModel implements Subject {
         return winnable;
 	}
 
+    @SuppressWarnings("static-access")
 	public int capture() {
         // Check players position for if its on a treasure tile, and get name of tile
         // tile = pawn.currentTile();

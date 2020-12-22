@@ -26,6 +26,9 @@ import java.awt.Point;
  */
 public class Controller{
 
+    // ===========================================================
+    // Setup Variables
+    // ===========================================================
     private GameModel           theGameModel; //State of the Game
     private GameOutputs         theOutputs;   // The view. Outputs and Inputs
     private GameInputs          theInputs;
@@ -160,12 +163,6 @@ public class Controller{
         theGameModel.addToPile(c1);
     }
     
-    /**Add this card to current player's hand
-     * @param c1 card to be added to hand
-     */
-	public void addCardtoHand(TreasureCard c1) {
-        theGameModel.addCardfromDeck(c1);
-	}
     
     //  ///////////////////////////////////
     //      SHOWING DATA FROM THE MODEL.
@@ -260,7 +257,7 @@ public class Controller{
                     if(!validSelection) {
                         theOutputs.cantShoreUp();
                         theOutputs.shoreAgain();
-                        validSelection = !theInputs.boolYN("No", "Yes");
+                        validSelection = !(theInputs.boolYN("No", "Yes"));
                     }
                     theOutputs.printBoard();
                 }
@@ -291,6 +288,27 @@ public class Controller{
             theGameModel.increaseActions();
         }
     }
+
+    /** Add this card to a player's hand
+     *  @param c1 card to be added to hand
+     */
+	public void addCardtoHand(TreasureCard c1) {
+        List<Integer> traders = theGameModel.getTradePartners();
+        TreasureCardEnums name = (TreasureCardEnums) c1.getName();
+        theGameModel.addCardfromDeck(c1);
+        if(traders.isEmpty() || name==TreasureCardEnums.SANDBAGS || name==TreasureCardEnums.HELICOPTER_LIFT){
+            return;
+        }
+        else{
+            theOutputs.giveDrawn();
+            boolean give = theInputs.boolYN("No, I want to keep this card", "Yes, give to a teammate.");
+            if(give){
+                Player plToGive = choosePlayer(traders);
+                int handSize = theGameModel.getHandSize(theGameModel.getCurrentPlayer());
+                transferTreasure(plToGive,handSize-1);
+            }
+        }
+	}
 
     /**Allows players to give cards to players adjacent to them
     */
@@ -423,6 +441,7 @@ public class Controller{
      * @param Player Player who has heli lift card
      * @return Player who is chosen from list
      */ 
+    @SuppressWarnings("deprecation")
     public void useHelicopterLift(Player p1) {
         if(p1==null){ //if null, assume current
             p1 = theGameModel.getCurrentPlayer();
@@ -451,11 +470,10 @@ public class Controller{
         }
         theOutputs.whoWillFly();
         List <Integer> availforMove = theGameModel.getAllPlayerNums(-1); // all players can fly
-        boolean keepMoving = true;
         do{
             Player playerForHeliMove = choosePlayer(availforMove);
             theGameModel.heliMovePlayer(playerForHeliMove, p);
-            availforMove.remove(new Integer(playerForHeliMove.getNum())); 
+        	availforMove.remove(new Integer(playerForHeliMove.getNum())); 
         }
         while(!availforMove.isEmpty() && chooseOrShowState(3, "No","Yes"));  
         // Keep asking player if they want to fly anyone else there, if theres's still players who can fly

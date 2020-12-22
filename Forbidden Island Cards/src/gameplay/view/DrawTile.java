@@ -7,9 +7,6 @@ import enums.TypeEnums;
 import player.*;
 import board.Tile;
 
-// To be removed
-import enums.TilesEnums;
-
 public class DrawTile {
 
 	// number of rows in Tile Drawing
@@ -126,37 +123,5 @@ public class DrawTile {
 				dispRow(tileNum, line);
 			System.out.println();
 		}
-	}
-
-	public static void main(String[] args) {
-		Tile newTile = new Tile(0,0);
-		newTile.setName(TilesEnums.SEA);
-		newTile.setType(TilesEnums.SEA);
-		DrawTile dTile = new DrawTile();
-		dTile.createTile(newTile);
-		List<List<String>> testList = dTile.get2dList();
-		for(List<String> list : testList) {
-			for(String s : list) {
-				System.out.print(s);
-			}
-			System.out.println();
-		}
-
-		Tile tile2 = new Tile(1,0);
-		tile2.setName(TilesEnums.CAVE_OF_SHADOWS);
-		tile2.setType(TilesEnums.CAVE_OF_SHADOWS);
-		dTile.createTile(tile2);
-		List<List<String>> testList2 = dTile.get2dList();
-		System.out.println("\nPrinting tile2");
-		for(List<String> list : testList2) {
-			for(String s : list) {
-				System.out.print(s);
-			}
-			System.out.println();
-		}
-
-		System.out.println("New disp test");
-		dTile.dispAllRows();
-		System.out.println(testList2.get(1).get(1));
 	}
 }

@@ -4,6 +4,7 @@ import gameplay.model.WaterMeter;
 
 public class WaterMeterSetup {
 
+	@SuppressWarnings("unused")
     private WaterMeter setupWaterMeter;
     boolean validWaterLevel = false;
 

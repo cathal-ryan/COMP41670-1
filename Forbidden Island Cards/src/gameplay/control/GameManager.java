@@ -12,6 +12,9 @@ package gameplay.control;
  */
 public class GameManager {
 
+    // ===========================================================
+    // Setup Variables
+    // ===========================================================
     private static GameManager 	theGM; //Self Singleton
     private Controller 			theController; //Access to main game logic
     

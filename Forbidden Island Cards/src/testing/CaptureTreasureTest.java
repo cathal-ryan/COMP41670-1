@@ -19,15 +19,12 @@ public class CaptureTreasureTest {
 	public void discardforTreasureTest() {
 		Player tester = new Player(0, "Test Player", 1);
         Hand testHand = tester.getHand();
-
         tester.addCardtoHand(new TreasureCard(TreasureCardEnums.EARTH_STONE) );
         tester.addCardtoHand(new TreasureCard(TreasureCardEnums.EARTH_STONE) );
         tester.addCardtoHand(new TreasureCard(TreasureCardEnums.OCEANS_CHALICE) );
         tester.addCardtoHand(new TreasureCard(TreasureCardEnums.EARTH_STONE) );
         tester.addCardtoHand(new TreasureCard(TreasureCardEnums.EARTH_STONE) );
-
         testHand.discardforTreasure(TypeEnums.EARTH);
-        
         assertEquals("Cards left after discarding 4 for treasure from hand of 5", 1, testHand.getCards().size());
 	}
 

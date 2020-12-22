@@ -1,7 +1,5 @@
 package setup;
 
-import gameplay.model.GameModel;
-
 
 public class Setup {
     

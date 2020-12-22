@@ -74,7 +74,7 @@ public class GameInputs {
      * @param other Option 2, usually some other prompt like game state
      * @return integer representing option chosen, 0,1 or 2
      */
-    public static int get3Choice(String n, String y, String other) {
+    public int get3Choice(String n, String y, String other) {
         int userIn = 0;
         theOutputs.showOption(0,n,"");
         theOutputs.showOption(1,y,"");
@@ -105,7 +105,7 @@ public class GameInputs {
      * @param y Option 1, usually yes
      * @return boolean false if option 0 chosen, true if option 1 chosen
      */
-    public static boolean boolYN(String n, String y) {
+    public boolean boolYN(String n, String y) {
         int userIn = 0;
         theOutputs.showOption(0,n,"");
         theOutputs.showOption(1,y,"");

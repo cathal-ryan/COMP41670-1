@@ -16,7 +16,8 @@ public class SwimTest {
 	public void normalSwimTest() { // No special swim abilities player test
 		Player tester = new Player(0, "Test Player", 1);
 		Pawn testPawn = tester.getPawn();
-		int startX = 3; int startY = 3;
+		int startX = 3; 
+		int startY = 3;
 		Point p = new Point(startX,startY);
 		testPawn.setPos(p);
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();
@@ -38,7 +39,7 @@ public class SwimTest {
 	}
 
 	@Test
-	public void diverPilotSwimTest() { //Swim ability with the diver and pilot
+	public void diverPilotSwimTest() { // Swim ability with the diver and pilot
 		Player tester = new Player(0, "Test Diver", 0);
 		Player tester2 = new Player(0, "Test Pilot", 4 );
 		Pawn testPawn = tester.getPawn();
@@ -50,6 +51,7 @@ public class SwimTest {
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();
 		Board theBoard=Board.getInstance();
 		for(int i=0;i<2;i++) {
+			//Sink a bunch of tiles
 			theBoard.floodTile(theBoard.getTileName(new Point (startX-2,startY)));
 			theBoard.floodTile(theBoard.getTileName(new Point (startX+1,startY)));
 			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY+1)));
@@ -69,7 +71,7 @@ public class SwimTest {
 	}
 
 	@Test
-	public void explorerSwimTest() { // No special swim abilities player test
+	public void explorerSwimTest() { // Explorer swim abilities player test
 		Player tester = new Player(0, "Test Player", 2);
 		Pawn testPawn = tester.getPawn();
 		int startX = 3; int startY = 3;
@@ -78,6 +80,7 @@ public class SwimTest {
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();
 		Board theBoard=Board.getInstance();
 		for(int i=0;i<2;i++) {
+			//Sink tiles which a normal player wouldn't swim from
 			theBoard.floodTile(theBoard.getTileName(new Point (startX-1,startY)));
 			theBoard.floodTile(theBoard.getTileName(new Point (startX+1,startY)));
 			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY+1)));

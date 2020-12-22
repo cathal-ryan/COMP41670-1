@@ -42,11 +42,4 @@ public class TileStack {
 	public int size() {
 		return enumStack.size();
 	}
-
-	public static void main(String[] args) {
-		TileStack test = new TileStack();
-		while (test.size() >= 1) {
-			System.out.println("This Tile is: " + test.pop());
-		}
-	}
 }

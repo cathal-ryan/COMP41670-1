@@ -5,8 +5,6 @@ import enums.TypeEnums;
 import java.util.List;
 import board.*;
 
-import java.awt.Point;
-
 /**
  * Provides all communications out to the player, with system.out as the means of communication
  * Allows for easy refactoring to a GUI.
@@ -97,8 +95,8 @@ public class GameOutputs {
      * @param Treasure if its treasure deck, give true, if flood give false
      * @param pile The discard pile to be shown
      */
-    public void printPile(boolean Treasure, String pile){
-        if(Treasure){
+    public void printPile(boolean treasure, String pile){
+        if(treasure){
             System.out.println("The Treasure Discard Pile: "+ pile);
         }
         else{
@@ -166,10 +164,18 @@ public class GameOutputs {
      * Prompts selection of cards, in two modes
      * @param trading If true, the player is trading, if false the player is discarding
      */
+	public void giveDrawn() {
+        System.out.println("Would you like to give this card to a teammate?");
+	}
+
+    /**
+     * Prompts selection of cards, in two modes
+     * @param trading If true, the player is trading, if false the player is discarding
+     */
 	public void cardChoice(boolean trading) {
         System.out.print("\nWhich of the cards would you like to");
         if(trading){
-            System.out.print(" give? You can't give Helicopter Lift or Sandbags\n");
+            System.out.print(" give? You can't give Special Action Cards (Helicopter Lift or Sandbags)\n");
         }
         else{
             System.out.print(" discard");

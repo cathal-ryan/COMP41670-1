@@ -19,6 +19,7 @@ public class CardSetup {
 	private TreasureDeck setupTreasureDeck;
 	private FloodDeck setupFloodDeck;
 	private FloodDiscardPile setupFloodDiscard;
+    @SuppressWarnings("unused")
 	private TreasureDiscardPile setupTreasureDiscard;
 	private Team setupTeam;
 	private SetupOutputs setupOuts;

@@ -5,7 +5,6 @@ import static org.junit.Assert.*;
 
 import cards.TreasureCard;
 import enums.TreasureCardEnums;
-import gameplay.control.Controller;
 import gameplay.model.GameModel;
 import player.Player;
 import player.Team;
@@ -25,16 +24,6 @@ public class PlayerEnquiryTest {
             theModel.getPlayer(1).addCardtoHand(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
         }
 		assertEquals("Players with special cards detected", 2, theModel.getPlayerswithSpecials().size());
-    }
-
-    @Test
-    public void checkPlayerChoiceforSpecial(){
-        Controller theController = Controller.getInstance();
-        System.out.println("Expected Output: Is there anyone who wants to play their special card?");
-        System.out.println("Expected Input: 1");
-        boolean choice = theController.chooseOrShowState(0,"no","Yes, play special card!");
-        assertTrue("Player choice being identified", choice);
-
     }
     
 }
