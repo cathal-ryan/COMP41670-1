@@ -2,7 +2,8 @@ package gameplay.model;
 import gameplay.control.Observer;
 /**
  * Subject interface for implementing an observable for observer pattern.
- * 
+ * Earlier releases had several subjects, until this was encapsulated into GameModel.
+ * Currently only instance implementing this interface, unless refactored at a later date.
  * @author Cathal Ryan and Conor Kneafsey
  *
  */
