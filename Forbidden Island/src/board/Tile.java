@@ -17,56 +17,56 @@ public class Tile {
 	private boolean flooded;
 	private boolean sunk;
 
+	/** Constructor for Tile. Sets up a tile as a sea
+	  * tile and assigns it coordinates
+      */
 	public Tile(int x, int y) {
 		this.tileName = TilesEnums.SEA;
 		this.tileType = TypeEnums.SEA;
 
 		this.pos = new Point(x,y);
-		this.up = new Point(x, y+1);
-		this.down = new Point(x, y-1);
-		this.left = new Point(x-1, y);
-		this.right = new Point(x+1, y);
 
 		this.flooded = false;
 		this.sunk = false;
 	}
 
+	/** return the name of the tile
+	  * @return tileName - name of tile
+	  */
 	public TilesEnums getName() {
 		return tileName;
 	}
 
+	/** return the type of the tile
+	  * @return tileType - type of tile
+	  */
 	public TypeEnums getType() {
 		return tileType;
 	}
 	
+	/** return the position of the tile
+	  * @return pos - Point with tile coordinates
+	  */
 	public Point getPos() {
 		return pos;
 	}
 
-	public Point getUp() {
-		return up;
-	}
-
-	public Point getDown() {
-		return down;
-	}
-
-	public Point getLeft() {
-		return left;
-	}
-
-	public Point getRight() {
-		return right;
-	}
-
+	/** check if the tile is flooded
+	  * @return boolean - true if tile is flooded
+	  */
 	public boolean isFlooded() {
 		return flooded;
 	}
 
+	/** check if the tile has sunk
+	  * @return boolean - true if tile has sunk
+	  */
 	public boolean isSunk() {
 		return sunk;
 	}
 
+	/** Flood a tile. If already flooded, sink the tile
+	  */
 	public void flood() {
 		if(isFlooded())
 			sink();
@@ -74,20 +74,29 @@ public class Tile {
 			flooded = true;
 	}
 
+	/** Shore up a tile if it has not sunk
+	  */
 	public void shoreUp() {
 		if(!isSunk())
 			flooded = false;
 	}
 
+	/** Sink a tile and set its type to Sea
+	  */
 	private void sink() {
 		sunk = true;
 		setType(TilesEnums.SEA);
 	}
 
+	/** set the name of a tile from the given name
+	  */
 	public void setName(TilesEnums name) {
 		tileName = name;
 	}
 
+	/** Set the tile type given its name. Special types for treasure tiles,
+	  * fools landing and sea tiles
+	  */
 	public void setType(TilesEnums name) {
 		switch(name) {
 			case FOOLS_LANDING:
@@ -125,6 +134,8 @@ public class Tile {
 		}
 	}
 
+	/** resets tile so it is no longer flooded or sank
+	  */
 	public void clean() {
 		flooded = false;
 		sunk = false;
