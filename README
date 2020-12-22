@@ -1,0 +1,163 @@
+  █████▒▒█████   ██▀███   ▄▄▄▄    ██▓▓█████▄ ▓█████▄ ▓█████  ███▄    █     ██▓  ██████  ██▓    ▄▄▄       ███▄    █ ▓█████▄ 
+▓██   ▒▒██▒  ██▒▓██ ▒ ██▒▓█████▄ ▓██▒▒██▀ ██▌▒██▀ ██▌▓█   ▀  ██ ▀█   █    ▓██▒▒██    ▒ ▓██▒   ▒████▄     ██ ▀█   █ ▒██▀ ██▌
+▒████ ░▒██░  ██▒▓██ ░▄█ ▒▒██▒ ▄██▒██▒░██   █▌░██   █▌▒███   ▓██  ▀█ ██▒   ▒██▒░ ▓██▄   ▒██░   ▒██  ▀█▄  ▓██  ▀█ ██▒░██   █▌
+░▓█▒  ░▒██   ██░▒██▀▀█▄  ▒██░█▀  ░██░░▓█▄   ▌░▓█▄   ▌▒▓█  ▄ ▓██▒  ▐▌██▒   ░██░  ▒   ██▒▒██░   ░██▄▄▄▄██ ▓██▒  ▐▌██▒░▓█▄   ▌
+░▒█░   ░ ████▓▒░░██▓ ▒██▒░▓█  ▀█▓░██░░▒████▓ ░▒████▓ ░▒████▒▒██░   ▓██░   ░██░▒██████▒▒░██████▒▓█   ▓██▒▒██░   ▓██░░▒████▓ 
+ ▒ ░   ░ ▒░▒░▒░ ░ ▒▓ ░▒▓░░▒▓███▀▒░▓   ▒▒▓  ▒  ▒▒▓  ▒ ░░ ▒░ ░░ ▒░   ▒ ▒    ░▓  ▒ ▒▓▒ ▒ ░░ ▒░▓  ░▒▒   ▓▒█░░ ▒░   ▒ ▒  ▒▒▓  ▒ 
+ ░       ░ ▒ ▒░   ░▒ ░ ▒░▒░▒   ░  ▒ ░ ░ ▒  ▒  ░ ▒  ▒  ░ ░  ░░ ░░   ░ ▒░    ▒ ░░ ░▒  ░ ░░ ░ ▒  ░ ▒   ▒▒ ░░ ░░   ░ ▒░ ░ ▒  ▒ 
+ ░ ░   ░ ░ ░ ▒    ░░   ░  ░    ░  ▒ ░ ░ ░  ░  ░ ░  ░    ░      ░   ░ ░     ▒ ░░  ░  ░    ░ ░    ░   ▒      ░   ░ ░  ░ ░  ░ 
+           ░ ░     ░      ░       ░     ░       ░       ░  ░         ░     ░        ░      ░  ░     ░  ░         ░    ░    
+                               ░      ░       ░                                                                     ░      
+                               
+                               
+Software Engineering COMP41670 2020/21
+
+*** Team ***
+Conor Kneafsey
+Cathal Ryan
+Team 16 - Java McJavaface
+
+*** Description ***
+
+This is the software development project for COMP41670 in which we are tasked with developing the Forbidden Island game.
+This readme will describe some of the rules of the game/how to play, and additional information about the development of our project.
+
+*** Source Code ***
+
+All source code is located in /src, and is organised into the appropriate folders. For example, card and deck are in /src/cards
+
+*** Diagrams ***
+
+Diagrams are shown in a folder called /Diagrams/
+Use Case Diagram was created in Papyrus, Class Diagrams were created in ObjectAid. Sequence diagrams also created in ObjectAid. These should give a good sense of some of the sequencing of our code.
+
+*** Execution Instructions ***
+
+To play, make sure you have ForbiddenIsland.jar in the /src folder. In a terminal you can type <java -jar ForbiddenIsland.jar> to execute the jar file.
+Alternatively you could run the game from "ForbiddenIslandMain.java" in your choice of IDE like eclipse etc.
+
+*** Beginning the game ***
+
+Once the game has begun, you'll be prompted for what difficulty level you wish to play at, i.e. setting the flood level. Enter in an integer value between 1 and 4.
+
+You'll then be asked how many people will be playing, this time enter in an integer value between 2 and 4. The game will tell you if your inputs are wrong.
+
+You'll be asked to enter names for each individual player, each must have a unique name.
+
+From here, 2 cards are given to each player, 6 tiles are flooded, and each player's pawn (represented by a letter) is placed on the board. 
+
+The game is now ready to be played!
+
+*** Playing the game ***
+
+The objective of the game is for the pawns to capture 4 treasures and play Helicopter Lift card while on Fool's Landing Tile to fly off the island.
+The flow of the game is quite straightforward. You will be prompted for inputs for decisions on where to move your pawn, shore up, swim, and for drawing cards etc.
+The game will tell you which inputs are valid and correspond to particular decisions when decisions need to be made. If your input is invalid, the game will let you
+know and continue prompting until a valid input is given, or another input is chosen.
+
+Each player pawn apart from Navigator has a special ability which will be told to you at the start of the game.
+
+Each turn involves a player taking up to 3 actions, which can be moving, shoring up, capturing treasure or giving a treasure card to a teammate. They can
+also view the state of the game or let other players play their special cards.
+The rules regarding these turns and how they are enacted are as given in the brief for the project.
+
+When a player's actions are completed, they must enter their drawing card phase where 2 treasure cards are given and flood cards equal to the flood meter
+are dealt and the corresponding tiles are sunk/flooded. If either deck runs out, the discard pile is shuffled and added to the deck. When you're dealt a treasure card,
+it can be given to another player in the same way if you gave a card on your turn (must be on same tile apart from Messenger, cannot be Special card).
+
+** Special Cards **
+The "Special Cards" are Helicopter Lift and Sandbags cards, which can be played by any player at any time. If one of these cards exists in the game, you will be
+prompted on whether anyone wants to use them during important events, like before a flood or treasure draw, or when the current player opens the floor to
+everyone to use their special cards. Helicopter Lift can move any number of players to a single tile, or it can win you the game when conditions are met.
+Sandbags can shore up any tile. These special cards cannot be given to other players.
+
+** Tiles Sinking **
+When tiles sink, pawns must swim to safety. The selection of a particular tile is given as a series of x and y coordinates in this game, displayed on each tile.
+If a player cannot swim, the whole team loses. If they can swim, the tiles they can swim to will be displayed with x and y coordinates. These tiles depend
+on that adventurer's ability.
+
+
+*** Testing ***
+
+We performed quite extensive unit tests, covering all the non-trivial testable methods of our project. We did not test methods such as getters and setters, we performed
+tests on the main logical operations of the classes of the projects, and these can be found in /src/testing.
+
+*** Design Philosophy ***
+
+We developed the code with the intention of utilising various design patterns as described in the lectures, to better make use of object-oriented programming. We made use of
+the facade method for starting and setting up the game. We made use of singleton classes for various objects in which it logically made sense to have a single version of,
+such as the controller, and decks and discard piles. We made use of a the Observer pattern for win/lose conditions, creating Object and Subject interfaces, implemented by
+relevant classes.
+
+Most of all, we made use of the Model-View-Controller paradigm to seperate development into three broad categories. The view was to represent the interaction with the 
+player, the controller to represent the sequencing of game events, and the model to represent the core of the game, containing all important data for the game. The controller
+provides for the interfacing between the Game's current state, and the interaction with the user, through the view. Seperating the project in this manner allowed for easy 
+refactoring if changes were to be made in operation of the game. For instance, we began development always with the idea of simply using the terminal for display and
+interaction, but with the abstraction of the view, this could be easily changed to a GUI or something else if we were to continue development on this project. The model,
+the game's core state, remains agnostic of how the game will be displayed.
+
+We made sure that classes, packages, variables and methods had descriptive names, with different game components being defined as different classes. We made sure to use 
+logical structures for components, and to adopt inheritance. We wished to avoid code repetition.
+
+*** Team ***
+
+After establishing our team, we began the project in the early weeks of the semester with a weekly Zoom meeting, we simply talked about general ideas for the project as 
+we polished our java skills through the labs and personal time. 
+Beginning in the sixth week of semester, we established a Github repository for the project, and we began coding. We adjusted the meeting to a twice-weekly Zoom meeting in 
+which we discussed issues we were facing in the project and our progress towards goals we set for ourselves. Both of us logged the features we hoped to implement by the next meeting. We attempted pair programming sessions but this proved difficult to complete using Zoom so we primarily programmed individually, with consistent communication.
+
+We both encouraged each other to push changes regularly, and we discussed any outstanding issues outside of the meeting time through Whatsapp. Commit messages were to have
+a descriptive message, and branches were established for potential features in progress. Large merges were discussed before being made.
+
+While we both worked together on many different aspects of the project, both of us took the lead on certain primary parts. Below is a general summary of how the work was split
+
+** Cathal **
+
+Decks - Flood Decks, Treasure Decks
+
+Discard Piles - Flood Discard, Treasure Discard
+
+Enforcing MVC Structure - Model, View and Controller framework, refactoring all code to this paradigm where necessary
+
+Game Sequencing - Game Manager -> PlayerActions -> TreasureDraw -> FloodDraw
+
+Using the Special Cards - not implemenation of their logic but deciding when they are used
+
+Cards - Hands, Discarding, Drawing new cards, Giving cards to teammmates
+
+Special Pawns - Messenger
+
+Treasures - Capturing Treasures
+
+Players Swimming - Their recoveries
+
+** Conor **
+
+Board - Drawing board, randomising tiles, setting coordinates
+
+Tiles - Name, Type, Position
+
+Player - Team and their Pawns
+
+Special Pawns - Explorer/Diver/Pilot abilities
+
+Flooding Tiles - Logic for flooding tiles when given card
+
+Movement - Main logic for player movement around board
+
+Logic behind using Helicopter Lift and Sandbags cards
+
+Shoring Up - Pawns shoring up, Engineer ability
+
+All Enumerated Types
+
+**Together**
+Game Setup and intialisation
+
+Game Outputs and Inputs
+
+Observers and Win/Loss Conditions
+
+All unit tests - we deemed it important to unit test each others code to cross validate.
+
+All diagrams
