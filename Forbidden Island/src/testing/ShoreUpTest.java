@@ -23,13 +23,13 @@ public class ShoreUpTest {
 	}
 
 	@Test
-	public void test_shoreUpNormalTile() {
+	public void shoreUpNormalTile() {
 		start();
 		assertFalse("Attemt to shore up unflooded tile", tester.pawnShoreUp(p));
 	}
 
 	@Test
-	public void test_shoreUpFloodedTile() {
+	public void shoreUpFloodedTile() {
 		start();
 		p = new Point(startX+1, startY);
 		Board theBoard = Board.getInstance();
@@ -39,7 +39,7 @@ public class ShoreUpTest {
 	}
 
 	@Test
-	public void test_shoreUpSunkTile() {
+	public void shoreUpSunkTile() {
 		start();
 		p = new Point(startX+1, startY);
 		Board theBoard = Board.getInstance();
@@ -50,7 +50,7 @@ public class ShoreUpTest {
 	}
 
 	@Test
-	public void test_shoreUpSeaTile() {
+	public void shoreUpSeaTile() {
 		start();
 		p = new Point(0,2);
 		Point p2 = new Point(0,1);
@@ -59,13 +59,13 @@ public class ShoreUpTest {
 	}
 
 	@Test
-	public void test_shoreUpFarTile() {
+	public void shoreUpFarTile() {
 		start();
 		assertFalse("Attempt to shore up tile far away", tester.pawnShoreUp(new Point(5,3)));
 	}
 
 	@Test
-	public void test_TileIsShoredUp() {
+	public void TileIsShoredUp() {
 		start();
 		Team theTeam = Team.getInstance();
 		theTeam.addPlayer(tester);

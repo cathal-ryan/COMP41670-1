@@ -12,7 +12,7 @@ import enums.TilesEnums;
 public class MoveTest {
 
 	@Test
-	public void test_moveUp() {
+	public void moveUp() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -25,7 +25,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveDown() {
+	public void moveDown() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -38,7 +38,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveLeft() {
+	public void moveLeft() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -51,7 +51,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveRight() {
+	public void moveRight() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -64,7 +64,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveBadInput() {
+	public void moveBadInput() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -77,7 +77,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveToFlooded() {
+	public void moveToFlooded() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -94,7 +94,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveToSunk() {
+	public void moveToSunk() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
 		Point p = new Point(startX, startY);
@@ -112,7 +112,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveToSea() {
+	public void moveToSea() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 1; int startY = 1;
 		Point p = new Point(startX, startY);
@@ -125,7 +125,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveOffBoardLeft() {
+	public void moveOffBoardLeft() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 0; int startY = 2;
 		Point p = new Point(startX, startY);
@@ -138,7 +138,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveOffBoardRight() {
+	public void moveOffBoardRight() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 5; int startY = 2;
 		Point p = new Point(startX, startY);
@@ -151,7 +151,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveOffBoardUp() {
+	public void moveOffBoardUp() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 5;
 		Point p = new Point(startX, startY);
@@ -164,7 +164,7 @@ public class MoveTest {
 	}
 
 	@Test
-	public void test_moveOffBoardDown() {
+	public void moveOffBoardDown() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 0;
 		Point p = new Point(startX, startY);
