@@ -92,23 +92,23 @@
   </object>  
   <combined-fragment id="49" interaction-operator="LOOP">    
     <interaction-operand id="50" constraint="while: true">      
-      <fragment refId="37"/>      
-      <fragment refId="5"/>      
-      <fragment refId="42"/>      
-      <fragment refId="23"/>      
-      <fragment refId="35"/>      
-      <fragment refId="51"/>      
-      <fragment refId="39"/>      
-      <fragment refId="52"/>      
-      <fragment refId="53"/>      
-      <fragment refId="54"/>      
-      <fragment refId="11"/>      
-      <fragment refId="27"/>      
-      <fragment refId="55"/>      
       <fragment refId="13"/>      
-      <fragment refId="9"/>    
+      <fragment refId="39"/>      
+      <fragment refId="51"/>      
+      <fragment refId="42"/>      
+      <fragment refId="35"/>      
+      <fragment refId="11"/>      
+      <fragment refId="52"/>      
+      <fragment refId="5"/>      
+      <fragment refId="27"/>      
+      <fragment refId="53"/>      
+      <fragment refId="37"/>      
+      <fragment refId="9"/>      
+      <fragment refId="54"/>      
+      <fragment refId="23"/>      
+      <fragment refId="55"/>    
     </interaction-operand>    
-    <combined-fragment id="52" interaction-operator="OPT">      
+    <combined-fragment id="54" interaction-operator="OPT">      
       <interaction-operand id="56" constraint="eligible.isEmpty()">        
         <fragment refId="57"/>      
       </interaction-operand>      
@@ -118,7 +118,7 @@
         </interaction-operand>      
       </combined-fragment>    
     </combined-fragment>    
-    <combined-fragment id="55" interaction-operator="ALT">      
+    <combined-fragment id="52" interaction-operator="ALT">      
       <interaction-operand id="59" 
         constraint="theGameModel.checkHasCard(player1, true) &amp;&amp; theGameModel.checkHasCard(player1, false)">        
         <fragment refId="60"/>      
@@ -149,7 +149,7 @@
         </combined-fragment>      
       </combined-fragment>    
     </combined-fragment>    
-    <combined-fragment id="54" interaction-operator="LOOP">      
+    <combined-fragment id="51" interaction-operator="LOOP">      
       <interaction-operand id="69" constraint="for: theTeam.getAllPlayers()">        
         <fragment refId="70"/>      
       </interaction-operand>      
@@ -160,20 +160,20 @@
         </interaction-operand>      
       </combined-fragment>    
     </combined-fragment>    
-    <combined-fragment id="51" interaction-operator="OPT">      
+    <combined-fragment id="53" interaction-operator="OPT">      
       <interaction-operand id="72" constraint="eligible==null">        
         <fragment refId="25"/>      
       </interaction-operand>    
     </combined-fragment>    
-    <combined-fragment id="53" interaction-operator="LOOP">      
+    <combined-fragment id="55" interaction-operator="LOOP">      
       <interaction-operand id="73" constraint="for:i&lt;size">        
         <fragment refId="74"/>      
       </interaction-operand>      
       <combined-fragment id="74" interaction-operator="OPT">        
         <interaction-operand id="75" constraint="eligible.contains(i)">          
           <fragment refId="33"/>          
-          <fragment refId="29"/>          
-          <fragment refId="31"/>        
+          <fragment refId="31"/>          
+          <fragment refId="29"/>        
         </interaction-operand>      
       </combined-fragment>    
     </combined-fragment>  
@@ -242,7 +242,7 @@
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="34"/>  
   </message>  
-  <message id="35" operation="playerChoice(int,java.util.List):int" asynchronous="false">    
+  <message id="35" asynchronous="false">    
     <end type="SOURCE" refId="14"/>    
     <end type="TARGET" refId="36"/>  
   </message>  

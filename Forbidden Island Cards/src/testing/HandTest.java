@@ -9,7 +9,9 @@ import cards.TreasureCard;
 import cards.TreasureDiscardPile;
 import enums.TreasureCardEnums;
 import enums.TypeEnums;
+import gameplay.control.Controller;
 import gameplay.control.TreasureDraw;
+import player.Player;
 
 public class HandTest {
 
@@ -38,5 +40,18 @@ public class HandTest {
 
 		assertTrue("Is Hand now empty after discard", hand.getCards().isEmpty());
 		assertFalse("Does the Treasure Discard pile now have cards", theTreasureDiscardPile.Discarded.isEmpty());
+	}
+	@Test // Test if player can make hand choice correctly
+	public void checkPlayerHandChoice(){
+		Player play1 = new Player(0,"test",0);
+		play1.addCardtoHand(new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+		play1.addCardtoHand(new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+		play1.addCardtoHand(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
+		Controller theController = Controller.getInstance();
+		System.out.println("Expected Output:\n [0] Crystal of Fire \n"
+										  + "[1] Crystal of Fire  ");
+		System.out.println("Expected Input: 0");
+		int k = theController.chooseFromHand(play1, true);
+		assertEquals("Is Hand now empty after discard", 0, k);
 	}
 }

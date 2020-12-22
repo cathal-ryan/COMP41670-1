@@ -10,10 +10,11 @@ import enums.EndGameEnums;
  */
 public class WinObserver implements Observer {
 
-    private static boolean      gameOver;
-    private static boolean      gameWon;
+    private static boolean      gameOver=false;
+    private static boolean      gameWon=false;
     private static String       winCondition; // How game won
     
+
 	/**
 	 * Function allowing those to be observed to update observer of a change in state, in this case, a win
      * @param int method allows for selection of a particular method of winning, so game knows how win occurs
