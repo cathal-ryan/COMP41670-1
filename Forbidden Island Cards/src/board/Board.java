@@ -128,38 +128,4 @@ public class Board {
         }
 		return valid;
 	}
-
-    public static void main(String[] args) {
-    	Board thisBoard = Board.getInstance();
-		Point boardPos = new Point(3,1);
-
-    	System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
-		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
-
-		thisBoard.setTile(boardPos, TilesEnums.IRON_GATE);
-		System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
-		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
-		System.out.println("Tile position is: " + thisBoard.getTilePos(TilesEnums.IRON_GATE));
-		System.out.println("Is it flooded?: " + thisBoard.isTileFlooded(boardPos));
-		System.out.println("Is it sunk?: " + thisBoard.isTileSunk(boardPos));
-        thisBoard.getTile(boardPos);
-
-		thisBoard.floodTile(TilesEnums.IRON_GATE);
-		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
-
-		thisBoard.shoreUpTile(TilesEnums.IRON_GATE);
-		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
-
-		thisBoard.floodTile(TilesEnums.IRON_GATE);
-		System.out.println("\nHas it sank?: " + thisBoard.isTileSunk(boardPos));
-		thisBoard.floodTile(TilesEnums.IRON_GATE);
-		System.out.println("Has it sank?: " + thisBoard.isTileSunk(boardPos));
-		
-		System.out.println("\nTile name is: " + thisBoard.getTileName(boardPos));
-		System.out.println("Tile type is: " + thisBoard.getTileType(boardPos));
-
-		thisBoard.shoreUpTile(TilesEnums.IRON_GATE);
-		System.out.println("\nIs it flooded?: " + thisBoard.isTileFlooded(boardPos));
-    }
-
 }

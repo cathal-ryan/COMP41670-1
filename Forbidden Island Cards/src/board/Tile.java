@@ -129,38 +129,4 @@ public class Tile {
 		flooded = false;
 		sunk = false;
 	}
-
-	public static void main(String[] args) {
-
-		Tile newTile = new Tile(0,0);
-		System.out.println("\nTile name is: " + newTile.getName());
-		System.out.println("Tile type is: " + newTile.getType());
-
-		newTile.setName(TilesEnums.HOWLING_GARDEN);
-		newTile.setType(TilesEnums.HOWLING_GARDEN);
-		System.out.println("\nTile name is: " + newTile.getName());
-		System.out.println("Tile type is: " + newTile.getType());
-		System.out.println("Tile pos is: " + newTile.getPos());
-		System.out.println("Is " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-		
-		newTile.flood();
-		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-		
-		newTile.shoreUp();
-		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-		
-		newTile.flood();
-		newTile.flood();
-		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
-		
-		newTile.shoreUp();
-		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
-		
-		newTile.shoreUp();
-		newTile.shoreUp();
-		System.out.println("\nIs " + newTile.getName() + " flooded?: " + newTile.isFlooded());
-		System.out.println("Is " + newTile.getName() + " sunk?: " + newTile.isSunk());
-	}
 }

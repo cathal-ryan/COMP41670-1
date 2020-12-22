@@ -15,14 +15,14 @@ import player.Player;
 
 public class HandTest {
 
-	@Test
+	@Test // Can the hand check if player has a tradeable hand
 	public void testIfPlayerAllowedTrade() {
 		Hand hand = new Hand();
 		hand.addCard(new TreasureCard(TreasureCardEnums.HELICOPTER_LIFT));
 		assertFalse("Can player trade with no tradable cards in hand", hand.canTrade());
 	}
 
-	@Test
+	@Test // Can hand get number of instances of a card in hand
 	public void checkNumInstances() {
 		Hand hand = new Hand();
 		hand.addCard(new TreasureCard(TreasureCardEnums.EARTH_STONE));
@@ -31,7 +31,7 @@ public class HandTest {
 		assertEquals("Number of cards in hand after adding 3", 3, hand.numofInstances(TypeEnums.EARTH));
 	}
 
-	@Test
+	@Test // Check can the game discard a card from hand
 	public void checkDiscarding() {
 		Hand hand = new Hand();
 		hand.addCard(new TreasureCard(TreasureCardEnums.EARTH_STONE));

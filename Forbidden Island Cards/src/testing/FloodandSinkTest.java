@@ -8,13 +8,9 @@ import org.junit.Test;
 import board.Board;
 import cards.FloodCard;
 import cards.FloodDiscardPile;
-import cards.TreasureCard;
-import cards.TreasureDiscardPile;
 import enums.TypeEnums;
 import gameplay.control.Controller;
 import gameplay.model.GameModel;
-import pawns.Pawn;
-import player.Player;
 import setup.BoardSetup;
 
 public class FloodandSinkTest {
@@ -43,7 +39,7 @@ public class FloodandSinkTest {
     }
     
 	@Test
-	public void sinkingTilesTest() { // Testing all tiles get flooded after drawing deck
+	public void sinkingTilesTest() { // Testing all tiles get sunk after drawing deck twice
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();
 		Board theBoard=Board.getInstance();
         GameModel theM = GameModel.getInstance();
@@ -63,26 +59,5 @@ public class FloodandSinkTest {
             }
         }
 		assertTrue("All tiles sunk after drawing entire deck twice",TilesSunk);
-	}
-
-	@Test
-	public void explorerSwimTest() { // No special swim abilities player test
-		Player tester = new Player(0, "Test Player", 2);
-		Pawn testPawn = tester.getPawn();
-		int startX = 3; int startY = 3;
-		Point p = new Point(startX,startY);
-		testPawn.setPos(p);
-	    BoardSetup bset= new BoardSetup(); bset.setTiles();
-		Board theBoard=Board.getInstance();
-		for(int i=0;i<2;i++) {
-			theBoard.floodTile(theBoard.getTileName(new Point (startX-1,startY)));
-			theBoard.floodTile(theBoard.getTileName(new Point (startX+1,startY)));
-			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY+1)));
-			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY-1)));
-			theBoard.floodTile(theBoard.getTileName(p));
-		}		
-
-		assertTrue("Explorer can swim diagonally with adjacent tiles gone",testPawn.canSwim());
-
 	}
 }

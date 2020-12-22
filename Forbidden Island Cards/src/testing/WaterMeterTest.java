@@ -6,7 +6,7 @@ import gameplay.model.*;
 import setup.BoardSetup;
 public class WaterMeterTest {
     
-    @Test // Test to see if players can lose by water meter rising too high
+    @Test // Test for water meter from full deck drawn
     public void waterMeterLevelTest() {
         WaterMeter theWaterMeter = WaterMeter.getInstance();
         theWaterMeter.setWatermeter(0);

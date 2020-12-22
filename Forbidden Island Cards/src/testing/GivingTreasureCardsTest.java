@@ -19,7 +19,7 @@ import setup.BoardSetup;
 
 public class GivingTreasureCardsTest {
     
-	@Test // Check if correct players to give cards to is given
+	@Test // Check if correct players to give cards to is given based on tiles
 	public void gettingTradingPartners() {
         Team theTeam = Team.getInstance();
         BoardSetup bset = new BoardSetup();

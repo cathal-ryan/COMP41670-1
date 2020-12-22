@@ -42,9 +42,7 @@ public class SetupTests {
         assertEquals("Team has been set up",2,theTeam.getNumPlayers());
         assertNotSame("Players have different characters",theTeam.getPlayer(0).getChar(),theTeam.getPlayer(1).getChar());
         assertEquals("Player name 1 correct","test1",theTeam.getPlayer(0).getName());
-        System.out.println("**"+theTeam.getPlayer(0).getName()+"**");
         assertEquals("Player name 2 correct","test2",theTeam.getPlayer(1).getName());
-        System.out.println("**"+theTeam.getPlayer(1).getName()+"**");
 
         FloodDiscardPile floodPile = FloodDiscardPile.getInstance();
         
