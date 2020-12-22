@@ -40,9 +40,9 @@ public class GivingTreasureCardsTest {
         theModel.getPlayer(3).getPawn().setPos(p1);
 
         theModel.getTradePartners();
-        assertEquals("Players sharing tile at p1", 2, theModel.getTradePartners().size());
+        assertEquals("Number of Players sharing tile at p1", 2, theModel.getTradePartners().size());
         theModel.setNextPlayer();
-        assertEquals("Players other than Messenger in the game", 3, theModel.getTradePartners().size());
+        assertEquals("Number of Players other than Messenger in the game", 3, theModel.getTradePartners().size());
 
     }
 

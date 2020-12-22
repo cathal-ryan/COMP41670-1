@@ -60,13 +60,13 @@ public class SetupOutputs {
 	            System.out.println("You are an Explorer, and so can swim diagonally when sunk!");
 	            break;
 	        case "Pilot P":
-	            System.out.println("You are a Pilot, and so can fly anywhere on the board when forced to swim");
+	            System.out.println("You are a Pilot, and so can fly anywhere on the board when forced to swim!");
                 break;
             case "Navigator N":
-                System.out.println("You are a Navigator, and so you have no special abilities. You're the \"Hufflepuff\" of Forbidden Island");
+                System.out.println("You are a Navigator, and so you have no special abilities. You're the \"Hufflepuff\" of Forbidden Island!");
                 break;
             case "Engineer G":
-                System.out.println("You are an Engineer, and so can shore up 2 tiles for 1 action.");
+                System.out.println("You are an Engineer, and so can shore up 2 tiles for 1 action!");
                 break;    
             case "Messenger M":
                 System.out.println("You are a Messenger, and so can give cards to players not on the same tile as you!");

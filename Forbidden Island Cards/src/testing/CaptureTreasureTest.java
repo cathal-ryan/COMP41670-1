@@ -5,19 +5,16 @@ import org.junit.Test;
 import board.Board;
 import cards.Hand;
 import cards.TreasureCard;
-import enums.TilesEnums;
-import enums.TreasureCardEnums;
-import enums.TypeEnums;
+import enums.*;
 import gameplay.model.GameModel;
 import gameplay.model.TreasureHandler;
-import player.Player;
-import player.Team;
+import player.*;
 import setup.BoardSetup;
 
 public class CaptureTreasureTest {
     
 	@Test // Check if discarding cards for treasures is functioning
-	public void discardTreasureTest() {
+	public void discardforTreasureTest() {
 		Player tester = new Player(0, "Test Player", 1);
         Hand testHand = tester.getHand();
 
@@ -29,7 +26,7 @@ public class CaptureTreasureTest {
 
         testHand.discardforTreasure(TypeEnums.EARTH);
         
-        assertEquals("Hand Does Not Discard Cards for Treasure Correctly", 1, testHand.getCards().size());
+        assertEquals("Cards left after discarding 4 for treasure from hand of 5", 1, testHand.getCards().size());
 	}
 
     @Test // Check if model is returning the right mode for our treasure query based on our state
@@ -43,23 +40,23 @@ public class CaptureTreasureTest {
         GameModel theModel = GameModel.getInstance();
         theModel.getCurrentPlayer().getPawn().setPos(p1);
         
-        assertEquals("Model is not recognising player does not have enough cards in hand", 3, theModel.capture());
+        assertEquals("Player does not have enough cards in hand", 3, theModel.capture());
 
         for(int i=0;i<5;i++)
             theModel.getCurrentPlayer().addCardtoHand(new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE) );
 
-        assertEquals("Model is not allowing for treasure capture", 0, theModel.capture());
+        assertEquals("Player can capture treasure", 0, theModel.capture());
 
         Point p2 = theBoard.getTilePos(TilesEnums.BRONZE_GATE);
         theModel.getCurrentPlayer().getPawn().setPos(p2);
 
-        assertEquals("Model is not recognising player is not on treasure tile", 2, theModel.capture());
+        assertEquals("Player is not on a treasure tile", 2, theModel.capture());
         
         theModel.getCurrentPlayer().getPawn().setPos(p1);
         for(int i=0;i<5;i++)
             theModel.getCurrentPlayer().addCardtoHand(new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE) );
         TreasureHandler.setTreasureCapture(TypeEnums.FIRE);
-        assertEquals("Model is not recognising treasure has already been captured", 1, theModel.capture());
+        assertEquals("Treasure has already been captured", 1, theModel.capture());
     }
 
 

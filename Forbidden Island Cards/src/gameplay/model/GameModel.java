@@ -49,7 +49,7 @@ public class GameModel implements Subject {
         theFloodDiscardPile = FloodDiscardPile.getInstance();
         theTreasureDeck = TreasureDeck.getInstance();
         theTreasureHandler = TreasureHandler.getInstance();
-        currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers() - 1);
+        //currentPlayer = theTeam.getPlayer(theTeam.getNumPlayers() - 1);
         theWaterMeter = WaterMeter.getInstance();
         loser = new LoseObserver();
         winner = new WinObserver();

@@ -21,21 +21,6 @@ public class Explorer extends Pawn{
 		return TilesEnums.COPPER_GATE;
 	}
 
-	@Override
-	public boolean canShoreUp(Point p) {
-        theBoard = Board.getInstance();
-        movePosX = (int) position.getX();
-        movePosY = (int) position.getY();
-        for(int y=movePosY-1;y<movePosY+2;y++) {
-        	for(int x=movePosX-1;x<movePosY+2;x++) {
-	            Point check = new Point(x,y);
-	            if(check.equals(p) && theBoard.isTileFlooded(p) && !theBoard.isTileSunk(p))
-	                return true;
-	        }
-        }
-        return false;
-    }
-
 	// checks grid around the explorer to see if theyre viable swim options.
 	@Override
     public boolean canSwim() {
