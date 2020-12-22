@@ -133,7 +133,7 @@ public class Player {
 		playerPawn.helicopterMove(p);
 	}
 
-	public boolean canShoreUp() {
-		return true;
+	public boolean pawnShoreUp(Point p) {
+		return playerPawn.canShoreUp(p);
 	}
 }
