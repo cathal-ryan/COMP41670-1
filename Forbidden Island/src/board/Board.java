@@ -11,6 +11,9 @@ import enums.TypeEnums;
 /**
   * Board class for the game board. Implemented as a singleton
   * as there should only be one instance of the board
+  * Creates a hashmap of tiles with coordinates as the key,
+  * can get and set the tile name and type, and can flood or
+  * shore up a tile
   * 
   * @author Cathal Ryan and Conor Kneafsey
   */

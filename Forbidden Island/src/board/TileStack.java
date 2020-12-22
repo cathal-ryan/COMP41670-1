@@ -5,6 +5,16 @@ import java.util.Stack;
 
 import enums.TilesEnums;
 
+/**
+  * TileStack class to put all the tiles in a stack
+  * The stack should shuffle the tiles to randomise their
+  * order as they are placed on teh board and appear in
+  * the flood deck. Can pop the tiles from the stack and
+  * check its size
+  * 
+  * @author Cathal Ryan and Conor Kneafsey
+  */
+
 public class TileStack {
 	
 	/** Set a stack for all the tile names

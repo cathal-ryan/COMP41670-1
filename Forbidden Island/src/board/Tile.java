@@ -5,15 +5,20 @@ import java.awt.Point;
 import enums.TilesEnums;
 import enums.TypeEnums;
 
+/**
+  * Tile class for the tiles on the Board
+  * Tiles should have a name, and type associated with
+  * this name. A tile should be able to be flooded, shored
+  * up and sink if flooded twice. 
+  * 
+  * @author Cathal Ryan and Conor Kneafsey
+  */
+
 public class Tile {
 
 	private TilesEnums tileName;
 	private TypeEnums tileType;
 	private Point pos;
-	private Point up;
-	private Point down;
-	private Point left;
-	private Point right;
 	private boolean flooded;
 	private boolean sunk;
 
