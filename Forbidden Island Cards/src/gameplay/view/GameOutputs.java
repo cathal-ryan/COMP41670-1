@@ -164,10 +164,18 @@ public class GameOutputs {
      * Prompts selection of cards, in two modes
      * @param trading If true, the player is trading, if false the player is discarding
      */
+	public void giveDrawn() {
+        System.out.println("Would you like to give this card to a teammate?");
+	}
+
+    /**
+     * Prompts selection of cards, in two modes
+     * @param trading If true, the player is trading, if false the player is discarding
+     */
 	public void cardChoice(boolean trading) {
         System.out.print("\nWhich of the cards would you like to");
         if(trading){
-            System.out.print(" give? You can't give Helicopter Lift or Sandbags\n");
+            System.out.print(" give? You can't give Special Action Cards (Helicopter Lift or Sandbags)\n");
         }
         else{
             System.out.print(" discard");

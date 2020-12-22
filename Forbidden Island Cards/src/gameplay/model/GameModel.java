@@ -269,6 +269,7 @@ public class GameModel implements Subject {
 
     public void addCardfromDeck(TreasureCard c1) {
         currentPlayer.getHand().addCard(c1);
+        
     }
 
     @SuppressWarnings("static-access")

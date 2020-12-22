@@ -60,8 +60,8 @@ public class TreasureDraw {
             }
             // Otherwise give the treasure card
             else{
-                theController.addCardtoHand(c1);
                 theOutputs.drawnCard(c1.getName().toString());
+                theController.addCardtoHand(c1);
             }
             i++;
         }

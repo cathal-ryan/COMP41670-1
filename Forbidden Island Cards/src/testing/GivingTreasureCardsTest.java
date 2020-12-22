@@ -50,7 +50,7 @@ public class GivingTreasureCardsTest {
         theTeam.addPlayer(new Player(0, "Test Player0", 1));
         Player p1 = new Player(1, "Test Player1", 2);
         GameModel theModel = GameModel.getInstance();
-        theModel.addCardfromDeck(new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+        theModel.addCardfromDeck( new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
         theModel.addCardfromPlayerA(p1,0);
         assertEquals("", 3, theModel.getTradePartners().size());
 

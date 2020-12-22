@@ -163,12 +163,6 @@ public class Controller{
         theGameModel.addToPile(c1);
     }
     
-    /**Add this card to current player's hand
-     * @param c1 card to be added to hand
-     */
-	public void addCardtoHand(TreasureCard c1) {
-        theGameModel.addCardfromDeck(c1);
-	}
     
     //  ///////////////////////////////////
     //      SHOWING DATA FROM THE MODEL.
@@ -294,6 +288,27 @@ public class Controller{
             theGameModel.increaseActions();
         }
     }
+
+    /** Add this card to a player's hand
+     *  @param c1 card to be added to hand
+     */
+	public void addCardtoHand(TreasureCard c1) {
+        List<Integer> traders = theGameModel.getTradePartners();
+        TreasureCardEnums name = (TreasureCardEnums) c1.getName();
+        theGameModel.addCardfromDeck(c1);
+        if(traders.isEmpty() || name==TreasureCardEnums.SANDBAGS || name==TreasureCardEnums.HELICOPTER_LIFT){
+            return;
+        }
+        else{
+            theOutputs.giveDrawn();
+            boolean give = theInputs.boolYN("No, I want to keep this card", "Yes, give to a teammate.");
+            if(give){
+                Player plToGive = choosePlayer(traders);
+                int handSize = theGameModel.getHandSize(theGameModel.getCurrentPlayer());
+                transferTreasure(plToGive,handSize-1);
+            }
+        }
+	}
 
     /**Allows players to give cards to players adjacent to them
     */
