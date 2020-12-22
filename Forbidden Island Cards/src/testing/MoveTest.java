@@ -9,7 +9,7 @@ import player.Player;
 import board.Board;
 import enums.TilesEnums;
 
-public class moveTest {
+public class MoveTest {
 
 	@Test
 	public void test_moveUp() {

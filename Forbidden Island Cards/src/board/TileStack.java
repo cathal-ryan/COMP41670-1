@@ -3,6 +3,8 @@ package board;
 import java.util.Collections;
 import java.util.Stack;
 
+import enums.TilesEnums;
+
 public class TileStack {
 	
 	private Stack<TilesEnums> enumStack = new Stack<TilesEnums>();
