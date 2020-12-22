@@ -1,5 +1,11 @@
 package enums;
 
+/**
+ * Class holding the enumerated conditions to end the Forbidden Island game.
+ * @author Cathal Ryan and Conor Kneafsey
+ * @version 1.0
+ *
+ */
 public enum EndGameEnums {
 	TEMPLES 			("Both Temple tiles have sunk!"),
 	CAVES 	            ("Both Cave tiles have sunk!"),
@@ -12,15 +18,15 @@ public enum EndGameEnums {
 
 	private final String type;
 	/**
-	 * Constructor for room enum
-	 * @param s String which will be set to the name of the room.
+	 * Constructor for EndGameEnums enum
+	 * @param s String which will be set to the end game description
 	 */
 	private EndGameEnums(final String s){
-		type = s;  // String for name of Room
+		type = s;  // String for end game description
 	}
 	/**
-	 * returns the string name of the EoomEnum
-	 * @return name of room which is a string.
+	 * returns the string describing how the game ended
+	 * @return type - how game ended
 	 */
 	public String toString(){
 		return type;
