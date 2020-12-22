@@ -3,7 +3,7 @@ package setup;
 import java.awt.Point;
 
 import board.Board;
-import enums.TileStack;
+import board.TileStack;
 import enums.TilesEnums;
 
 public class BoardSetup {
