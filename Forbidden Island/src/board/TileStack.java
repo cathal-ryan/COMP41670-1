@@ -7,8 +7,12 @@ import enums.TilesEnums;
 
 public class TileStack {
 	
+	/** Set a stack for all the tile names
+	  */
 	private Stack<TilesEnums> enumStack = new Stack<TilesEnums>();
 
+	/** Constructor for TileStack. Push all tile names into stack
+	 */
 	public TileStack() {
 		    enumStack.push(TilesEnums.FOOLS_LANDING);
 		    enumStack.push(TilesEnums.TEMPLE_OF_THE_SUN);
@@ -37,10 +41,16 @@ public class TileStack {
 		    Collections.shuffle(enumStack);
 	}
 
+	/** return the tile names within stack
+	  * @return TilesEnums - an enum containing tile name
+	  */
 	public TilesEnums pop() {
 		return enumStack.pop();
 	}
 
+	/** return the size of the stack stack
+	  * @return int - size of stack
+	  */
 	public int size() {
 		return enumStack.size();
 	}
