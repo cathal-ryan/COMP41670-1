@@ -12,8 +12,6 @@ public class Setup {
     private CardSetup        cardHandler;
     private WaterMeterSetup  waterHandler;
     private SetupOutputs setupOutputs;
-    private SetupInputs setupInputs;
-    private GameModel theGameModel;
     private BoardSetup       boardHandler;
     
     public static Setup getInstance(){
@@ -25,7 +23,6 @@ public class Setup {
 
     private Setup() {
         // Create instances of Player set up and card set up
-        setupInputs = new SetupInputs();
         setupOutputs = new SetupOutputs();
         this.waterHandler   = new WaterMeterSetup();
         this.boardHandler   = new BoardSetup();
@@ -40,7 +37,6 @@ public class Setup {
         waterHandler.createWaterLevel();
         playerHandler.createAllPlayers(); // does here fine
         cardHandler.dealCards(); // does here ok i think
-        theGameModel = GameModel.getInstance();
         setupOutputs.setupOver();
     }
 }

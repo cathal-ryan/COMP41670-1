@@ -22,7 +22,6 @@ public class Player {
 	private Pawn playerPawn;
 	private int playerNum;
 	private String playerChar;
-
 	/**
 	 * Constructor for a Player object
 	 * 

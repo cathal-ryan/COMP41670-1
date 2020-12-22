@@ -30,7 +30,7 @@ public class PlayerEnquiryTest {
     @Test
     public void checkPlayerChoiceforSpecial(){
         Controller theController = Controller.getInstance();
-        System.out.println("Expected Output: Is there anyone who wants to play their special card?")
+        System.out.println("Expected Output: Is there anyone who wants to play their special card?");
         System.out.println("Expected Input: 1");
         boolean choice = theController.chooseOrShowState(0,"no","Yes, play special card!");
         assertTrue("Player choice being identified", choice);
