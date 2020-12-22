@@ -2,6 +2,7 @@ package testing;
 
 import static org.junit.Assert.*;
 import java.awt.Point;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -38,6 +39,25 @@ public class SwimTest {
 
 	}
 
+
+	@Test
+	public void normalSwimTest2() { // No special swim abilities player test when at boundary of board
+		Player tester = new Player(0, "Test Player", 1);
+		Pawn testPawn = tester.getPawn();
+		int startX = 3; 
+		int startY = 0;
+		Point p = new Point(startX,startY);
+		testPawn.setPos(p);
+	    BoardSetup bset= new BoardSetup(); bset.setTiles();
+		Board theBoard=Board.getInstance();
+		for(int i=0;i<2;i++) {
+			theBoard.floodTile(theBoard.getTileName(new Point (3,0)));
+		}		
+		testPawn.canSwim();
+		List<Point> swims = testPawn.getViableSwims();
+		assertEquals("Player's swim ability at bottom",2,swims.size());
+	}
+
 	@Test
 	public void diverPilotSwimTest() { // Swim ability with the diver and pilot
 		Player tester = new Player(0, "Test Diver", 0);
@@ -50,6 +70,8 @@ public class SwimTest {
 		testPawn2.setPos(p);
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();
 		Board theBoard=Board.getInstance();
+		//Should form a grid with tiles sunk so diver has 8 options.
+		// And pilot has 12 options.
 		for(int i=0;i<2;i++) {
 			//Sink a bunch of tiles
 			theBoard.floodTile(theBoard.getTileName(new Point (startX-2,startY)));
@@ -57,6 +79,7 @@ public class SwimTest {
 			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY+1)));
 			theBoard.floodTile(theBoard.getTileName(new Point (startX,startY-1)));
 			theBoard.floodTile(theBoard.getTileName(new Point (1,3)));
+			theBoard.floodTile(theBoard.getTileName(new Point (2,3)));
 			theBoard.floodTile(theBoard.getTileName(new Point (2,2)));
 			theBoard.floodTile(theBoard.getTileName(new Point (2,4)));
 			theBoard.floodTile(theBoard.getTileName(new Point (3,1)));
@@ -67,7 +90,9 @@ public class SwimTest {
 			theBoard.floodTile(theBoard.getTileName(p));
 		}		
 		assertTrue("Diver can swim with lots of tiles around him sunk",testPawn.canSwim());
+		assertEquals("Diver finds tiles nearest",8,testPawn.getViableSwims().size());
 		assertTrue("Pilot can swim with lots of tiles around him sunk",testPawn2.canSwim());
+		assertEquals("Pilot can swim anywhere left",12,testPawn2.getViableSwims().size());
 	}
 
 	@Test

@@ -110,7 +110,7 @@ abstract public class Pawn {
         for(y=movePosY-1;y<movePosY+2;y=y+2){
 			x = movePosX;
             Point p = new Point(x,y);
-			boolean can2 = (x > 0) && (x < 6) && (y < 6) && (y > 0);
+			boolean can2 = (x >= 0) && (x < 6) && (y < 6) && (y >= 0);
 			if(can2){
                 if((theBoard.getTileType(p) != TypeEnums.SEA)){
                     isSwimmable =true;
@@ -121,7 +121,7 @@ abstract public class Pawn {
 		for(x=movePosX-1;x<movePosX+2;x=x+2){
 			y = movePosY;
 			Point p = new Point(x,y);
-			boolean can2 = (x > 0) && (x < 6) && (y < 6) && (y > 0);
+			boolean can2 = (x >= 0) && (x < 6) && (y < 6) && (y >= 0);
 			if(can2){
                 if (theBoard.getTileType(p) != TypeEnums.SEA){
                     isSwimmable=true;
