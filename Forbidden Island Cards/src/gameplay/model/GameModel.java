@@ -157,7 +157,7 @@ public class GameModel implements Subject {
     }
 
     public boolean movePlayer(char dir) {
-        if(currentPlayer.getPawn().move(dir)) {
+        if(currentPlayer.movePawn(dir)) {
             decreaseActions();
             return true;
         }

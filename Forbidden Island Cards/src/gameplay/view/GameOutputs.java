@@ -63,7 +63,7 @@ public class GameOutputs {
     }
 
     public void cantMove() {
-        System.out.println("Cannot move in that direction");
+        System.out.println("\nCannot move in that direction");
     }
 
     public void whereShoreUp() {
