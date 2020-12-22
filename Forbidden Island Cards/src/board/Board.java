@@ -93,6 +93,7 @@ public class Board {
     public void setTile(Point coords, TilesEnums name) {
     	getTile(coords).setName(name);
     	getTile(coords).setType(name);
+        getTile(coords).clean();
     }
 
     public void floodTile(TilesEnums name) {

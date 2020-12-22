@@ -125,6 +125,11 @@ public class Tile {
 		}
 	}
 
+	public void clean() {
+		flooded = false;
+		sunk = false;
+	}
+
 	public static void main(String[] args) {
 
 		Tile newTile = new Tile(0,0);
