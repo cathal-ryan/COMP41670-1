@@ -125,6 +125,10 @@ public class Player {
 		return true;		
 	}
 
+	public boolean movePawn(char dir) {
+		return playerPawn.move(dir);
+	}
+
 	public void helicopterMove(Point p){
 		playerPawn.helicopterMove(p);
 	}
