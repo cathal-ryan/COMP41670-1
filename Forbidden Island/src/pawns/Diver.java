@@ -12,6 +12,7 @@ public class Diver extends Pawn{
 		super();
 
 	}
+	
 	@Override
 	public String getPlayerType() {
 		return "Diver";
