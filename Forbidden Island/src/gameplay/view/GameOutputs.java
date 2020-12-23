@@ -160,12 +160,8 @@ public class GameOutputs {
         System.out.println("Who do you want to give a card to?");
 	}
 
-    /**
-     * Prompts selection of cards, in two modes
-     * @param trading If true, the player is trading, if false the player is discarding
-     */
 	public void giveDrawn() {
-        System.out.println("Would you like to give this card to a teammate?");
+        System.out.println("\nWould you like to give this card to a teammate?");
 	}
 
     /**
