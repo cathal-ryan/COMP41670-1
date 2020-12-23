@@ -302,8 +302,7 @@ public class Controller{
             return;
         }
         else{
-            theOutputs.giveDrawn();
-            boolean give = theInputs.boolYN("No, I want to keep this card", "Yes, give to a teammate.");
+            boolean give = chooseOrShowState(4,"No, I want to keep this card", "Yes, give to a teammate.");
             if(give){
                 Player plToGive = choosePlayer(traders);
                 int handSize = theGameModel.getHandSize(theGameModel.getCurrentPlayer());
@@ -542,6 +541,9 @@ public class Controller{
                     break;
                 case 3:
                     theOutputs.heliAnyoneElse();
+                    break;
+                case 4:
+                    theOutputs.giveDrawn();
                     break;
                 default:
                     theOutputs.generalError();
