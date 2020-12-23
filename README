@@ -33,7 +33,7 @@ Use Case Diagram was created in Papyrus, Class Diagrams were created in ObjectAi
 
 *** Execution Instructions ***
 
-To play, make sure you have ForbiddenIsland.jar in the /src folder. In a terminal you can type <java -jar ForbiddenIsland.jar> to execute the jar file.
+To play, make sure you have ForbiddenIsland.jar in the /Forbidden Island/src/ folder. In a terminal you can type <java -jar ForbiddenIsland.jar> to execute the jar file.
 Alternatively you could run the game from "ForbiddenIslandMain.java" in your choice of IDE like eclipse etc.
 
 *** Beginning the game ***
