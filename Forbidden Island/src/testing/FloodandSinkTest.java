@@ -10,7 +10,6 @@ import cards.FloodCard;
 import cards.FloodDeck;
 import cards.FloodDiscardPile;
 import enums.TypeEnums;
-import gameplay.control.Controller;
 import gameplay.model.GameModel;
 import setup.BoardSetup;
 
@@ -45,7 +44,7 @@ public class FloodandSinkTest {
         theTDP.destroyMe();
         theM.destroyMe();
 	}
-	
+    @SuppressWarnings("unused")
 	@Test
 	public void floodingTilesTest() { // Testing all tiles get flooded after drawing deck
 	    BoardSetup bset= new BoardSetup(); bset.setTiles();

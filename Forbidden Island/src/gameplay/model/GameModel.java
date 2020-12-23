@@ -328,7 +328,7 @@ public class GameModel implements Subject {
       * removes the card in a given postion within the given players hand
       */
     public void removeCardByIndex(Player player, int index) {
-        player.getHand().getCards().remove(index);
+        player.getHand().removeCard(index);
     }
 
     /**

@@ -7,7 +7,6 @@ import enums.TypeEnums;
 import player.*;
 import board.Tile;
 
-import enums.TilesEnums;
 
 /**
   * DrawTile class to draw the board
