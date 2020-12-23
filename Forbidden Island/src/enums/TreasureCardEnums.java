@@ -1,5 +1,11 @@
 package enums;
 
+/**
+ * Class holding the enumerated treasure cards Forbidden Island game.
+ * @author Cathal Ryan and Conor Kneafsey
+ * @version 1.0
+ *
+ */
 public enum TreasureCardEnums {
 	EARTH_STONE     ("Earth Stone"     ),
 	STATUE_OF_THE_WIND ("Statue of the Wind"),
@@ -12,17 +18,17 @@ public enum TreasureCardEnums {
 
 	private final String name;
 	/**
-	 * Constructor for room enum
-	 * @param s String which will be set to the name of the room.
+	 * Constructor for TreasureCardEnums
+	 * @param s String containing the treasure card description
 	 */
 	private TreasureCardEnums(final String s){
-		this.name = s;  // String for name of Room
+		this.name = s;  // String of treasure card description
 	}
 	
 
 /**
- * returns the string name of the EoomEnum
- * @return name of room which is a string.
+ * returns the description of the treasure card
+ * @return name - description of treasure card
  */
 	public String toString(){
 		return name ;

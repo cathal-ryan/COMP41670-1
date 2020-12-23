@@ -1,5 +1,11 @@
 package enums;
 
+/**
+ * Class holding the enumerated names of the tiles in Forbidden Island.
+ * @author Cathal Ryan and Conor Kneafsey
+ * @version 1.0
+ *
+ */
 public enum TilesEnums {
 	FOOLS_LANDING		("  Fool's Landing  "),
 	TEMPLE_OF_THE_SUN 	("Temple of the Sun "),
@@ -29,17 +35,17 @@ public enum TilesEnums {
 
 	private final String name;
 	/**
-	 * Constructor for room enum
-	 * @param s String which will be set to the name of the room.
+	 * Constructor for TilesEnums
+	 * @param s String which contains name of tile
 	 */
 	private TilesEnums(final String s){
-		name = s;  // String for name of Room
+		name = s;  // String for name of Tile
 	}
 	
 
 	/**
-	 * returns the string name of the EoomEnum
-	 * @return name of room which is a string.
+	 * returns the name of the Tile
+	 * @return name - String with name of Tile
 	 */
 	public String toString(){
 		return name;
