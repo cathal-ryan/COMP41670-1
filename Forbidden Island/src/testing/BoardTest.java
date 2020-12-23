@@ -13,8 +13,8 @@ public class BoardTest {
 
 	private Board theBoard;
 
-	@Test
-	public void OutOfBounds() {
+	@Test //Check if we can get an out of bounds tile
+	public void outOfBounds() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
 		theSetup.setTiles();
@@ -23,7 +23,7 @@ public class BoardTest {
 		assertNull("Check if (6,6) is out of bounds", theBoard.getTile(new Point(6,6)));
 	}
 	
-	@Test
+	@Test //check if a tile has been added to the board
 	public void checkTileAdded() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -36,7 +36,7 @@ public class BoardTest {
 		assertTrue("Check if position is the same", test);
 	}
 
-	@Test
+	@Test //check a tile has changed from sea
 	public void checkTileChanged() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -49,7 +49,7 @@ public class BoardTest {
 		assertSame("Check if types are the same", t.getType(), actual.getType());
 	}
 
-	@Test
+	@Test //check if flooding a tile works
 	public void checkTileFlooded() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -59,7 +59,7 @@ public class BoardTest {
 		assertTrue("Check tile is now flooded", theBoard.isTileFlooded(TilesEnums.CAVE_OF_SHADOWS));
 	}
 
-	@Test
+	@Test //check if shoring up a tile works
 	public void shoreUpTile() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -75,7 +75,7 @@ public class BoardTest {
 		assertFalse("Check tile is shored up using name", theBoard.isTileFlooded(TilesEnums.BRONZE_GATE));
 	}
 
-	@Test
+	@Test //check a tile sinks
 	public void checkSank() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -86,7 +86,7 @@ public class BoardTest {
 		assertTrue("Check if tile is sunk after 2 floods", theBoard.isTileSunk(TilesEnums.IRON_GATE));
 	}
 
-	@Test
+	@Test //check you can't shore up a sunken tile
 	public void cantShoreSank() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -98,7 +98,7 @@ public class BoardTest {
 		assertTrue("Check tile is still sunk", theBoard.isTileSunk(TilesEnums.WATCHTOWER));
 	}
 
-	@Test
+	@Test //check a tiles type changes to sea after sinking
 	public void sunkTileIsSea() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -111,7 +111,7 @@ public class BoardTest {
 		assertSame("Check tile is now sea", TypeEnums.SEA, theBoard.getTileType(p));
 	}
 
-	@Test
+	@Test //check if the tiles start as sea and after setup are assigned game tiles
 	public void allTilesSet() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();
@@ -123,7 +123,7 @@ public class BoardTest {
 		assertNotSame("Check tile has been changed from sea", TypeEnums.SEA, theBoard.getTileType(p));
 	}
 
-	@Test
+	@Test //check the board is randomised every set up
 	public void tilesRandomised() {
 		theBoard = Board.getInstance();
 		BoardSetup theSetup = new BoardSetup();

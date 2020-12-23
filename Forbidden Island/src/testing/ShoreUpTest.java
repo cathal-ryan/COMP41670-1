@@ -22,13 +22,13 @@ public class ShoreUpTest {
 		bset.setTiles();
 	}
 
-	@Test
+	@Test //test if pawn can shore up unflooded tile
 	public void shoreUpNormalTile() {
 		start();
 		assertFalse("Attemt to shore up unflooded tile", tester.pawnShoreUp(p));
 	}
 
-	@Test
+	@Test //test if player can shore up a flooded tile
 	public void shoreUpFloodedTile() {
 		start();
 		p = new Point(startX+1, startY);
@@ -38,7 +38,7 @@ public class ShoreUpTest {
 		assertTrue("Shore up flooded tile", tester.pawnShoreUp(p));
 	}
 
-	@Test
+	@Test //test if a player can shore up a sunken tile
 	public void shoreUpSunkTile() {
 		start();
 		p = new Point(startX+1, startY);
@@ -49,7 +49,7 @@ public class ShoreUpTest {
 		assertFalse("Attempt shore up sunken tile", tester.pawnShoreUp(p));
 	}
 
-	@Test
+	@Test //check if a player is unable to shore up a sea tile
 	public void shoreUpSeaTile() {
 		start();
 		p = new Point(0,2);
@@ -58,13 +58,13 @@ public class ShoreUpTest {
 		assertFalse("Attempt to shore up sea tile", tester.pawnShoreUp(p2));
 	}
 
-	@Test
+	@Test //check to see player cannot shore up a tile not adjacent
 	public void shoreUpFarTile() {
 		start();
 		assertFalse("Attempt to shore up tile far away", tester.pawnShoreUp(new Point(5,3)));
 	}
 
-	@Test
+	@Test //check to see if the tile is actually shored up using the game model
 	public void TileIsShoredUp() {
 		start();
 		Team theTeam = Team.getInstance();
