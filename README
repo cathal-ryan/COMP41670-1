@@ -33,7 +33,7 @@ Use Case Diagram was created in Papyrus, Class Diagrams were created in ObjectAi
 
 *** Execution Instructions ***
 
-To play, make sure you have ForbiddenIsland.jar in the /Forbidden Island/src/ folder. In a terminal you can type <java -jar ForbiddenIsland.jar> to execute the jar file.
+To play, make sure you have ForbiddenIslandGame.jar in the /Forbidden Island/src/ folder. In a terminal you can type <java -jar ForbiddenIslandGame.jar> to execute the jar file.
 Alternatively you could run the game from "ForbiddenIslandMain.java" in your choice of IDE like eclipse etc.
 
 *** Beginning the game ***
@@ -104,7 +104,8 @@ logical structures for components, and to adopt inheritance. We wished to avoid 
 After establishing our team, we began the project in the early weeks of the semester with a weekly Zoom meeting, we simply talked about general ideas for the project as 
 we polished our java skills through the labs and personal time. 
 Beginning in the sixth week of semester, we established a Github repository for the project, and we began coding. We adjusted the meeting to a twice-weekly Zoom meeting in 
-which we discussed issues we were facing in the project and our progress towards goals we set for ourselves. Both of us logged the features we hoped to implement by the next meeting. We attempted pair programming sessions but this proved difficult to complete using Zoom so we primarily programmed individually, with consistent communication.
+which we discussed issues we were facing in the project and our progress towards goals we set for ourselves. Both of us logged the features we hoped to implement by the 
+next meeting. We attempted pair programming sessions but this proved difficult to complete using Zoom so we primarily programmed individually, with consistent communication.
 
 We both encouraged each other to push changes regularly, and we discussed any outstanding issues outside of the meeting time through Whatsapp. Commit messages were to have
 a descriptive message, and branches were established for potential features in progress. Large merges were discussed before being made.
