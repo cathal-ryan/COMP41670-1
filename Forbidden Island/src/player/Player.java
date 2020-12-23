@@ -10,7 +10,7 @@ import enums.TreasureCardEnums;
 import enums.TilesEnums;
 
 /**
- * Class for each Player Players have a unique name, character and number to
+ * Class for each Player. Players have a unique name, character and number to
  * identify them, along with a hand and a pawn
  * 
  * @author Cathal Ryan and Conor Kneafsey
@@ -68,6 +68,10 @@ public class Player {
 		}
 	}
 	
+	
+	//////////////////
+	// Getters and Setters
+	//////////////////
 	public String getName() {
 		return playerName;
 	}
@@ -95,7 +99,24 @@ public class Player {
 	public Point getPawnPos(){
 		return playerPawn.getPos();
 	}
+	
+	public void setPawnPos(Point p){
+		playerPawn.setPos(p);
+	}
+	
+	/** The player pawn's starting location
+	 */
+	public TilesEnums pawnStartLoc(){
+		return playerPawn.startLoc();
+	}
 
+	///////
+	// Important Methods 
+	///////
+	
+	/** Returns hand as a list to be used externally
+	 * @return list of cards
+	 */
 	public List<TreasureCard> showHand() {
 		return playerHand.getCards();
 	}
@@ -104,37 +125,41 @@ public class Player {
 		return playerHand.getCards().size();
 	}
 
-	public void drawTreasureCard(TreasureCard card1) {
-		playerHand.addCard(card1);
-	}
-
-	public void setPawnPos(Point p){
-		playerPawn.setPos(p);
-	}
-
-	public TilesEnums pawnStartLoc(){
-		return playerPawn.startLoc();
-	}
-
+	/** Allows addition of a card to the player hand
+	 * @param c1 the card to be added to the hand
+	 */
 	public void addCardtoHand(TreasureCard c1){
 		playerHand.addCard(c1);
 	}
 
+	/** Checks whether the player has this card in their hand or not 
+	 * 	@param name - the name of the treasure card to be checked
+	 */
 	public boolean checkHasCard(TreasureCardEnums name){
 		if(!getHand().checkContains(name)){
 			return false;
 		}
 		return true;		
 	}
-
+	
+	/** Checks whether the player has this card in their hand or not 
+	 * 	@param name - the name of the treasure card to be checked
+	 */
 	public boolean movePawn(char dir) {
 		return playerPawn.move(dir);
 	}
 
+	/** Flys a player to a point
+	 * 	@param p - the point to move the player to
+	 */
 	public void helicopterMove(Point p){
 		playerPawn.helicopterMove(p);
 	}
-
+	
+	/** Shores up a player based on a point input
+	 * 	@param p - the point to shore up
+	 *  @return boolean value indicating was shoring up succesful
+	 */
 	public boolean pawnShoreUp(Point p) {
 		return playerPawn.canShoreUp(p);
 	}

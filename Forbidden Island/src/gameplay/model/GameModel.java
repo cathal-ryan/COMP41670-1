@@ -388,4 +388,10 @@ public class GameModel implements Subject {
 	public List<Point> getSandbagsTiles() {
 		return theBoard.getSandbagsTiles();
 	}
+	
+	/** Singleton destroyer for unit testing
+     */
+	public void destroyMe() {
+		theGameModel=null;
+	}
 }

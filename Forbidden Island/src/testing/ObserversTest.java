@@ -41,6 +41,7 @@ public class ObserversTest {
         Controller.getInstance().useHelicopterLift(theModel.getPlayer(0));
         
 		assertTrue("Game won after heli lift played", winner.isGameWon());
+		TreasureHandler.resetTreasure();
     }
 
     @Test // Test to see if players can lose by two tiles of a treasure being sunk
@@ -55,9 +56,13 @@ public class ObserversTest {
             theBoard.floodTile(TilesEnums.CAVE_OF_EMBERS);
             theBoard.floodTile(TilesEnums.CAVE_OF_SHADOWS);
         }
+        
         GameModel theModel = GameModel.getInstance();
-        theModel.dealFlood();        
+        theModel.dealFlood(); 
+        
 		assertTrue("Sinking of the 2 cave cards should lose game", loser.isGameLost());
+		
+		loser.setNotLost(); //reset
     }
     
     @SuppressWarnings("static-access")
@@ -72,10 +77,13 @@ public class ObserversTest {
             theModel.dealTreasure();   
         System.out.println(WaterMeter.getWaterlevel());
 		assertTrue("Game lost after dealing lots of treasure cards", loser.isGameLost());
+		loser.setNotLost();
     }
 
     @Test // Test to see if players can lose by water meter rising too high
     public void foolsLandingSinkTest() {
+        GameModel.getInstance().destroyMe();;
+
         BoardSetup bset = new BoardSetup();
         bset.setTiles();
         Board theBoard = Board.getInstance();
@@ -88,6 +96,7 @@ public class ObserversTest {
         GameModel theModel = GameModel.getInstance();
         theModel.dealFlood();        
 		assertTrue("Game lost after FOOLS LANDING sunk", loser.isGameLost());
+		loser.setNotLost(); // reset
     }
 
     @Test // Test to see if players can lose by water meter rising too high
@@ -115,5 +124,6 @@ public class ObserversTest {
         theModel.canPlayerSwim(tester);
 		
 		assertTrue("Game is lost after flooding tiles around player", loser.isGameLost());
+		loser.setNotLost(); //reset
     }
 }

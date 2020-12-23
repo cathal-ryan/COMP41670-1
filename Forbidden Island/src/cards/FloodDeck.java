@@ -27,7 +27,6 @@ public class FloodDeck extends Deck{
      */
 	private FloodDeck() {
 		TileStack names = new TileStack(); // Tile stack will handle getting names of all cards, same as tiles 
-
 		// Prepare empty array of Cards
 	    this.cardsInDeck = new Stack<Card>();
 		while(names.size() >= 1) { // add all tiles to the stack of cards
@@ -46,5 +45,11 @@ public class FloodDeck extends Deck{
 		else {
 			return cardsInDeck.pop();
 		}
+	}
+	
+	/** Singleton destroyer for unit testing
+     */
+	public void destroyMe() {
+		theFloodDeck=null;
 	}
 }

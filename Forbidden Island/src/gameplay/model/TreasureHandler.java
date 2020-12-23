@@ -119,4 +119,14 @@ public class TreasureHandler {
         }
 		return false;
 	}
+	
+	
+	/** Resets each treasure as uncaptured for UNIT TESTING ONLY	 
+	 * */
+	public static void resetTreasure() {
+		earth=false;
+		fire=false;
+		wind=false;
+		water=false;
+	}
 }

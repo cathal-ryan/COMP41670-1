@@ -63,7 +63,7 @@ public class CardSetup {
 							setupTreasureDeck.shuffle();
 						}
 						else {
-							setupTeam.getPlayer(i).drawTreasureCard(c1);
+							setupTeam.getPlayer(i).addCardtoHand(c1);
 							cardsDealt=true;
 						}
 					}

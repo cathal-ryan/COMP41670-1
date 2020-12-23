@@ -80,4 +80,10 @@ public class LoseObserver implements Observer{
     public String getLossCondition(){
         return lossCondition;
     }
+    
+	/**Resets whether game was lost or not for unit testing ONLY
+	 */
+    public void setNotLost() {
+    	gameLost=false;
+    }
 }

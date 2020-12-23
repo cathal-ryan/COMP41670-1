@@ -495,7 +495,7 @@ public class Controller{
             theOutputs.noSandbags();
             return;
         }
-        List<Point> sandOptions = theGameModel.getSandbagsTiles(); // find where can be sandbags
+        List<Point> sandOptions = theGameModel.getSandbagsTiles(); // find where can be sandbags'd
         if(sandOptions.isEmpty()){ //if there's nowhere, tell the player and call model to get rid of card if they were discarding it
             theOutputs.nowhereToShore();
             if(discarding){
@@ -663,4 +663,5 @@ public class Controller{
             theOutputs.cantCapture(tile,captureMode);
         }
 	}
+	
 }
