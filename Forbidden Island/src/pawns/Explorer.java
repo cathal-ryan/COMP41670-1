@@ -6,23 +6,49 @@ import board.Board;
 import enums.TilesEnums;
 import enums.TypeEnums;
 
+/**
+ * Class for the Explorer which is a subclass of Pawn
+ * Sets the pawns starting location and can return the
+ * pawn type. Also facilitates swiming diagonally
+ * 
+ * @author Cathal Ryan and Conor Kneafsey
+ */
 public class Explorer extends Pawn{
 
+	/**
+	  * Constructor for Explorer. Implements the constructor
+	  * from the parent class Pawn.
+	  */
 	public Explorer() {
 		super();
 
 	}
-	@Override
+
+
+	/**
+	  * Return a string with the type of pawn it is
+	  * @return that it is an Explorer
+	  */
 	public String getPlayerType() {
 		return "Explorer";
 	}
 
+	/**
+	  * Return the name of the pawn's starting location
+	  * @return Copper Gate - where Explorer starts
+	  */
 	public TilesEnums startLoc() {
 		return TilesEnums.COPPER_GATE;
 	}
 
-	// checks grid around the explorer to see if theyre viable swim options.
-	@Override
+	/**
+	  * Override the canSwim() method found in the parent class Pawn
+	  * Implements the explorer's special swimming ability that allows it
+	  * to swim to diagonal tiles
+	  * Adds the nearest tiles the explorer can swim to into the arraylist
+	  * viableSwim
+	  * @return isSwimmable to see if it can swim to a tile
+	  */
     public boolean canSwim() {
 		viableSwim.clear();
 		boolean isSwimmable = false;

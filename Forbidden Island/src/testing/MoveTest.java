@@ -11,7 +11,7 @@ import enums.TilesEnums;
 
 public class MoveTest {
 
-	@Test
+	@Test //check player can move up
 	public void moveUp() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -24,7 +24,7 @@ public class MoveTest {
 		assertEquals("pawn has moved position", startY+1, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check player can move down
 	public void moveDown() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -37,7 +37,7 @@ public class MoveTest {
 		assertEquals("pawn has moved position", startY-1, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check a player go move left
 	public void moveLeft() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -50,7 +50,7 @@ public class MoveTest {
 		assertEquals("pawn has moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check a player can move right
 	public void moveRight() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -63,7 +63,7 @@ public class MoveTest {
 		assertEquals("pawn has moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check nothing happes if a bad input is used
 	public void moveBadInput() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -76,7 +76,7 @@ public class MoveTest {
 		assertEquals("pawn has not moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check if player can move to flooded
 	public void moveToFlooded() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -93,7 +93,7 @@ public class MoveTest {
 		assertEquals("pawn has moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check if player is unable to move to sunk tile
 	public void moveToSunk() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 3;
@@ -111,7 +111,7 @@ public class MoveTest {
 		assertEquals("pawn has not moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check if player cannot move to sea tile
 	public void moveToSea() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 1; int startY = 1;
@@ -124,7 +124,7 @@ public class MoveTest {
 		assertEquals("pawn has not moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check player cannot move left off the board
 	public void moveOffBoardLeft() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 0; int startY = 2;
@@ -137,7 +137,7 @@ public class MoveTest {
 		assertEquals("pawn has not moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check player cannot move right off the board
 	public void moveOffBoardRight() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 5; int startY = 2;
@@ -150,7 +150,7 @@ public class MoveTest {
 		assertEquals("pawn has not moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check a player cannot move up off the board
 	public void moveOffBoardUp() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 5;
@@ -163,7 +163,7 @@ public class MoveTest {
 		assertEquals("pawn has not moved position", startY, (int) tester.getPawnPos().getY());
 	}
 
-	@Test
+	@Test //check a player cannot move down off the board
 	public void moveOffBoardDown() {
 		Player tester = new Player(0, "Test Player", 1);
 		int startX = 3; int startY = 0;
