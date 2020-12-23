@@ -278,11 +278,11 @@ public class Controller{
                 shored++;
                 theOutputs.cantShoreUp();
                 theOutputs.shoreAgain();
-                validSelection = theInputs.boolYN("Yes", "No");
+                validSelection = !(theInputs.boolYN("Yes", "No"));
             }
             else if(shored>0){
                 theOutputs.shoreAgain();
-                validSelection = theInputs.boolYN("Yes", "No");
+                validSelection = !(theInputs.boolYN("Yes", "No"));
             }
             theOutputs.printBoard();
         }
