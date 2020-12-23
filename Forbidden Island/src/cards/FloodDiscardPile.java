@@ -44,5 +44,9 @@ public class FloodDiscardPile extends DiscardPile{
 		}
 	}
 
-
+	/** Singleton destroyer for unit testing
+     */
+	public void destroyMe() {
+		theFloodDiscardPile=null;
+	}
 }

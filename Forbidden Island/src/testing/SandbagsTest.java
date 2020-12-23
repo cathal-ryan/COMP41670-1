@@ -56,5 +56,19 @@ public class SandbagsTest {
         assertFalse("Flooded Status of tile after performing sandbags upon it", theBoard.isTileFlooded(p1));
 
 	}
+    
+    @Test // Test using sandbags when nowhere flooded
+    public void usingSandbagsNowhereFlood() {
+        BoardSetup bset = new BoardSetup();
+        bset.setTiles();
+        Board theBoard = Board.getInstance();
+        GameModel theGameMod = GameModel.getInstance();
+        Point p1 = theBoard.getTilePos(TilesEnums.TEMPLE_OF_THE_MOON);
+
+        theGameMod.useSandbags(p1);
+
+        assertFalse("Flooded Status of tile after performing sandbags upon it", theBoard.isTileFlooded(p1));
+
+	}
 
 }

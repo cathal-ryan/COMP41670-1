@@ -23,7 +23,7 @@ public class Diver extends Pawn{
 		super();
 
 	}
-
+	
 	/**
 	  * Return a string with the type of pawn it is
 	  * @return that it is a Diver

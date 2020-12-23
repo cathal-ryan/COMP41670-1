@@ -115,10 +115,20 @@ public class GameModel implements Subject {
     }
     
     /**
-      * return a given players hand
+      * return a list of all the player numbers
       */
-    public List<TreasureCard> getPlayerHand(Player p1) {
-        return p1.showHand();
+      public List<Integer> getAllPlayerNums(int i) {
+        return theTeam.getAllPlayerNums(i);
+    }
+
+    /**
+      * get a Player object from their user index
+      */
+	public Player getPlayer(int userIn) {
+        if(userIn<0){
+            return currentPlayer;
+        }
+        return theTeam.getPlayer(userIn);
     }
 
     /**
@@ -137,14 +147,32 @@ public class GameModel implements Subject {
     public String getPlayerName(Player player) {
         return player.getName();
     }
+
+    /**
+      * return a given players hand
+    */
+      public List<TreasureCard> getPlayerHand(Player p1) {
+        return p1.showHand();
+    }
     
     /**
-      * return the hand size of a player given a Plsyer object
+      * return the hand size of a player given a Player object
       */
     public int getHandSize(Player play1) {
         return play1.handSize();
     }
     
+    /**
+      * return a String containing the cards in a players hand
+      * uses their player number to determine which hand to show
+      */
+    public String getHandasString(int i) {
+        if (i == -1) {
+            return currentPlayer.getHand().getHandasString();
+        }
+        return theTeam.getPlayer(i).getHand().getHandasString();
+    }
+
     /**
       * check if the current player can trade
       * cannot trade if the hand is empty or have no treasures
@@ -156,22 +184,13 @@ public class GameModel implements Subject {
         else
             return true;
     }
-    
-    /**
-      * return a list of all the player numbers
-      */
-    public List<Integer> getAllPlayerNums(int i) {
-        return theTeam.getAllPlayerNums(i);
-    }
 
     /**
-      * get a Player object from their user index
+      * remove a given card from the given Player objects's hand
       */
-	public Player getPlayer(int userIn) {
-        if(userIn<0){
-            return currentPlayer;
-        }
-        return theTeam.getPlayer(userIn);
+      public void removeCard(Player p1, TreasureCardEnums card) {
+        int pos = p1.getHand().getIndexOfCard(card);
+        p1.getHand().removeCard(pos);
     }
 
     /**
@@ -182,17 +201,17 @@ public class GameModel implements Subject {
     }
 
     /**
+      * return the amount of action a player has left
+      */
+      public int getActionsLeft() {
+        return actionsLeft;
+    }
+
+    /**
       * Increase the amount of actions by 1
       */
     public void increaseActions() {
         actionsLeft++;
-    }
-
-    /**
-      * return the amount of action a player has left
-      */
-    public int getActionsLeft() {
-        return actionsLeft;
     }
 
     /**
@@ -255,16 +274,6 @@ public class GameModel implements Subject {
         }
     }
 
-    /**
-      * return a String containing the cards in a players hand
-      * uses their player number to determine which hand to show
-      */
-    public String getHandasString(int i) {
-        if (i == -1) {
-            return currentPlayer.getHand().getHandasString();
-        }
-        return theTeam.getPlayer(i).getHand().getHandasString();
-    }
 
     /**
       * check if a given Player object contains a sandbags or 
@@ -275,14 +284,6 @@ public class GameModel implements Subject {
             return p1.checkHasCard(TreasureCardEnums.SANDBAGS);
         else
             return p1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT);
-    }
-
-    /**
-      * remove a given card from the given Player objects's hand
-      */
-    public void removeCard(Player p1, TreasureCardEnums card) {
-        int pos = p1.getHand().getIndexOfCard(card);
-        p1.getHand().removeCard(pos);
     }
 
     /**
@@ -564,5 +565,11 @@ public class GameModel implements Subject {
       */
 	public List<Point> getSandbagsTiles() {
 		return theBoard.getSandbagsTiles();
+	}
+	
+	/** Singleton destroyer for unit testing
+     */
+	public void destroyMe() {
+		theGameModel=null;
 	}
 }
