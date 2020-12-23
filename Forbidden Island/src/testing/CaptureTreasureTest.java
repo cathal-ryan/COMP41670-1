@@ -37,6 +37,7 @@ public class CaptureTreasureTest {
         Point p1 = theBoard.getTilePos(TilesEnums.CAVE_OF_EMBERS);
         theTeam.addPlayer(new Player(0, "Test Player", 1));
         GameModel theModel = GameModel.getInstance();
+        theModel.setNextPlayer();
         theModel.getCurrentPlayer().getPawn().setPos(p1);
         
         assertEquals("Player does not have enough cards in hand", 3, theModel.capture());

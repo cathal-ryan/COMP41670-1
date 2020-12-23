@@ -50,9 +50,16 @@ public class GivingTreasureCardsTest {
         theTeam.addPlayer(new Player(0, "Test Player0", 1));
         Player p1 = new Player(1, "Test Player1", 2);
         GameModel theModel = GameModel.getInstance();
+        theModel.setNextPlayer();
         theModel.addCardfromDeck( new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+        theModel.addCardfromDeck( new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+        theModel.addCardfromDeck( new TreasureCard(TreasureCardEnums.CRYSTAL_OF_FIRE));
+
         theModel.addCardfromPlayerA(p1,0);
-        assertEquals("", 3, theModel.getTradePartners().size());
+
+        assertEquals("Player gained 1 card so should have 1 card", 1, p1.showHand().size());
+
+        assertEquals("Player had 3 and gave 1 so should have 2", 2, theModel.getCurrentPlayer().showHand().size());
 
     }
 

@@ -40,7 +40,7 @@ abstract public class DiscardPile {
 		if (Discarded.isEmpty()) 
 			return; 
 		 
-		Card x = Discarded.peek(); 
+		Card card = Discarded.peek(); 
 	 
 		// Pop the top element of the stack 
 		Discarded.pop(); 
@@ -50,11 +50,11 @@ abstract public class DiscardPile {
 	 
 		// Print the stack element starting 
 		// from the bottom 
-		discardsAsString = discardsAsString + (x.getName() + ", "); 
+		discardsAsString = discardsAsString + (card.getName() + ", "); 
 	 
 		// Push the same element onto the stack 
 		// to preserve the order 
-		Discarded.push(x); 
+		Discarded.push(card); 
 	} 
 
 	/**

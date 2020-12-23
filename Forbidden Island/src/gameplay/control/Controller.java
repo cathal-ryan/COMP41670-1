@@ -623,7 +623,8 @@ public class Controller{
             Player player = theGameModel.getPlayer(i);
             // If tile sinking affects them, proceed
             if (theGameModel.getTilePos(tile).equals(player.getPawnPos())){
-                if(!theGameModel.canPlayerSwim(player)){ // check if they can swim, if not, return because game over
+            	boolean canTheySwim = theGameModel.canPlayerSwim(player);
+                if(!canTheySwim){ // check if they can swim, if not, return because game over
                     return;
                 }
                 theOutputs.needToSwim(player.getName(),player.getChar(),player.getPlayerType());
