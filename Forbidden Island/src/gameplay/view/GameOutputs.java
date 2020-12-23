@@ -426,7 +426,7 @@ public class GameOutputs {
                 Point p = new Point(x,y);
                 drawnTiles.createTile(theBoard.getTile(p));
             }
-            drawnTiles.dispAllRows();
+            drawnTiles.dispFullRow();
         }
     }
 

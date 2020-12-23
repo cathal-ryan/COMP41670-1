@@ -41,6 +41,9 @@ public class GameModel implements Subject {
     private Observer 			winner;                 // Win observer
     private static GameModel 	theGameModel = null;    // Singleton declaration
 
+    /**
+     * The private GameModel constructor
+     */
     private GameModel() {
         theTeam = Team.getInstance();
         theBoard = Board.getInstance();
@@ -54,6 +57,11 @@ public class GameModel implements Subject {
         winner = new WinObserver();
     }
 
+    /**
+     * getInstance singleton method gets single instance
+     * of the GameModel.
+     * @return Singleton GameModel object
+     */
     public static GameModel getInstance() {
         if (theGameModel == null) {
             theGameModel = new GameModel();
@@ -61,11 +69,19 @@ public class GameModel implements Subject {
         return theGameModel;
     }
 
+    /**
+      * Update an observer with an int to tell how the
+      * game was won or lost
+      */
     @Override
     public void notifyUpdate(Observer o, int m) {
         o.update(m);
     }
 
+    /**
+      * cycle down to the next player. If its the last player
+      * then the next player is the first player
+      */
     public void setNextPlayer() {
         int index = theTeam.getPlayerIndex(currentPlayer);
         try {
@@ -75,24 +91,39 @@ public class GameModel implements Subject {
         }
     }
 
+    /**
+      * get the player whose turn it is
+      */
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
 
+    /**
+      * check if the current player is an Engineer
+      */
     public boolean isEngineer() {
         if(currentPlayer.getPawn() instanceof Engineer)
             return true;
         return false;
     }
 
+    /**
+      * get the number of players who are playing
+      */
     public int getNumPlayers() {
         return theTeam.getNumPlayers();
     }
     
+    /**
+      * return a given players hand
+      */
     public List<TreasureCard> getPlayerHand(Player p1) {
         return p1.showHand();
     }
 
+    /**
+      * get the name of the player from their player number
+      */
     public String getPlayerNameFromIndex(int index) {
         if (index < 0) {
             return currentPlayer.getName();
@@ -100,14 +131,24 @@ public class GameModel implements Subject {
         return theTeam.getPlayer(index).getName();
     }
 
+    /**
+      * get the player name from a Player Object
+      */
     public String getPlayerName(Player player) {
         return player.getName();
     }
     
+    /**
+      * return the hand size of a player given a Plsyer object
+      */
     public int getHandSize(Player play1) {
         return play1.handSize();
     }
     
+    /**
+      * check if the current player can trade
+      * cannot trade if the hand is empty or have no treasures
+      */
     public boolean hasCardsforTrade() {
         Hand hand = currentPlayer.getHand();
         if(!hand.canTrade()) 
@@ -116,10 +157,16 @@ public class GameModel implements Subject {
             return true;
     }
     
+    /**
+      * return a list of all the player numbers
+      */
     public List<Integer> getAllPlayerNums(int i) {
         return theTeam.getAllPlayerNums(i);
     }
 
+    /**
+      * get a Player object from their user index
+      */
 	public Player getPlayer(int userIn) {
         if(userIn<0){
             return currentPlayer;
@@ -127,26 +174,52 @@ public class GameModel implements Subject {
         return theTeam.getPlayer(userIn);
     }
 
+    /**
+      * Set the amount of actions left to 3
+      */
     public void setActionsLeft() {
         actionsLeft = 3;
     }
 
+    /**
+      * Increase the amount of actions by 1
+      */
     public void increaseActions() {
         actionsLeft++;
     }
 
+    /**
+      * return the amount of action a player has left
+      */
     public int getActionsLeft() {
         return actionsLeft;
     }
 
+    /**
+      *
+      */
+    public void decreaseActions() {
+        actionsLeft--;
+    }
+
+    /**
+      * set if a turn is over or not
+      */
     public void setTurnOver(boolean d) {
         turnOver = d;
     }
 
+    /**
+      * check if a players turn is over or not
+      */
     public boolean getTurnOver() {
         return turnOver;
     }
 
+    /**
+      * show the card discarded whether it is a treasure card from hand
+      * or a flood card
+      */
     public String showDiscard(boolean Treasure) {
         if (Treasure) {
             return theTreasureDiscardPile.returnPrintedPile();
@@ -156,6 +229,10 @@ public class GameModel implements Subject {
         }
     }
 
+    /**
+      * try to move a player and if it is successfull, decrease their
+      * actions and return true
+      */
     public boolean movePlayer(char dir) {
         if(currentPlayer.movePawn(dir)) {
             decreaseActions();
@@ -164,6 +241,10 @@ public class GameModel implements Subject {
         return false;
     }
 
+    /**
+      * try to shore up a tile and if it is successful, decrease their
+      * actions and return true
+      */
     public boolean shoreUp(Point p) {
         if (!currentPlayer.pawnShoreUp(p)) {
             return false;
@@ -174,10 +255,10 @@ public class GameModel implements Subject {
         }
     }
 
-    public void decreaseActions() {
-        actionsLeft--;
-    }
-
+    /**
+      * return a String containing the cards in a players hand
+      * uses their player number to determine which hand to show
+      */
     public String getHandasString(int i) {
         if (i == -1) {
             return currentPlayer.getHand().getHandasString();
@@ -185,6 +266,10 @@ public class GameModel implements Subject {
         return theTeam.getPlayer(i).getHand().getHandasString();
     }
 
+    /**
+      * check if a given Player object contains a sandbags or 
+      * helicopter card
+      */
     public boolean checkHasCard(Player p1, boolean Helicopter) {
         if (!Helicopter) 
             return p1.checkHasCard(TreasureCardEnums.SANDBAGS);
@@ -192,11 +277,19 @@ public class GameModel implements Subject {
             return p1.checkHasCard(TreasureCardEnums.HELICOPTER_LIFT);
     }
 
+    /**
+      * remove a given card from the given Player objects's hand
+      */
     public void removeCard(Player p1, TreasureCardEnums card) {
         int pos = p1.getHand().getIndexOfCard(card);
         p1.getHand().removeCard(pos);
     }
 
+    /**
+      * return a list of all the players the current player can trade with
+      * to trade with another player, they must be on the same tile
+      * the messenger can trade with anyone
+      */
     public List<Integer> getTradePartners() {
         List<Integer> allPlayers = theTeam.getAllPlayerNums(currentPlayer.getNum());
         if(!(currentPlayer.getPawn() instanceof Messenger)){
@@ -211,6 +304,11 @@ public class GameModel implements Subject {
         return allPlayers;
     }
 
+    /**
+      * faciliates trading between 2 players. It removes a given card from the
+      * current player, as long as is not a helicopter lift or sandbag card, and
+      * gives it to the specified player
+      */
     public boolean addCardfromPlayerA(Player PlayerB, int canum) {
         Hand playerHand = currentPlayer.getHand();
         TreasureCard c1 = playerHand.getCards().get(canum);
@@ -225,10 +323,18 @@ public class GameModel implements Subject {
         }
     }
 
-    public void removeCardByIndex(Player player, int userIn) {
-        player.getHand().getCards().remove(userIn);
+    /**
+      * removes the card in a given postion within the given players hand
+      */
+    public void removeCardByIndex(Player player, int index) {
+        player.getHand().getCards().remove(index);
     }
 
+    /**
+      * find the players with either a helicopter lift or sandbags card in
+      * their hand.
+      * returns a list with the player numbers who have the cards
+      */
     public List<Integer> getPlayerswithSpecials() {
         List<Integer> eligible = new ArrayList<>();
         int i = 0;
@@ -242,15 +348,27 @@ public class GameModel implements Subject {
         return eligible;
     }
 
+    /**
+      * move the specified player with the helicopterMove() method to 
+      * the given point
+      */
     public void heliMovePlayer(Player playerForHeliMove, Point p) {
         playerForHeliMove.helicopterMove(p);
     }
 
+    /**
+      * use a sandbags card to shore up a tile in a given position
+      */
     public void useSandbags(Point p) {
-        TilesEnums name = theBoard.getTileName(p);
-        theBoard.shoreUpTile(name);
+        theBoard.shoreUpTile(p);
     }
 
+    /**
+      * deal a card from the treasure deck. If it is a water rise card,
+      * then put all the discarded flood cards back into the flood deck
+      * if the water level has risen to 5, update the observer with the
+      * lose condition
+      */
     public TreasureCard dealTreasure() {
         TreasureCard c1 = (TreasureCard) theTreasureDeck.dealCard();
         if ((TreasureCardEnums)c1.getName() == TreasureCardEnums.WATERS_RISE) {
@@ -263,20 +381,39 @@ public class GameModel implements Subject {
         return c1;
     }
 
+    /**
+      * adds a card from the treasure deck to the discard pile
+      */
     public void addToPile(TreasureCard c1) {
         theTreasureDiscardPile.addToPile(c1);
     }
 
+    /**
+      * adds a specified card from the treasure deck to the current
+      * players hand
+      */
     public void addCardfromDeck(TreasureCard c1) {
         currentPlayer.getHand().addCard(c1);
         
     }
 
+    /**
+      * return the water level
+      */
     @SuppressWarnings("static-access")
     public int getWaterLevel() {
         return theWaterMeter.getWaterlevel();
     }
 
+    /**
+      * deal a card from the flood deck and flood the specified tile
+      * if this does not sink the tile, add the card to the discard pile,
+      * otherwise it is removed from game
+      * Contains checks to various lose condition like if fools landing
+      * sinks, or any of the treasure capture tiles sink before that 
+      * treasure is captured.
+      * If a lose condition is met, update the observer
+      */
     public Card dealFlood() {
         Card card1 = theFloodDeck.dealCard();
         TilesEnums t1 = (TilesEnums) card1.getName();
@@ -310,14 +447,26 @@ public class GameModel implements Subject {
         return card1;
     }
 
+    /**
+      * check if the specified tile is sunk or not
+      */
     public Boolean isSunk(TilesEnums name) {
         return theBoard.isTileSunk(name);
     }
 
+    /**
+      * return a list containing the treasures that have been captured
+      */
     public List<TypeEnums> listCaptured(){
         return theTreasureHandler.captured();
     }
 
+    /**
+      * check if the game has been won. Returns false if not all the
+      * treasures have been captured or if not all the players are on
+      * fools landing. 
+      * If the game is winnable then update the observer
+      */
 	public boolean canWin() {
         boolean winnable = true;
         if (!theTreasureHandler.allCaptured()) {
@@ -337,6 +486,13 @@ public class GameModel implements Subject {
         return winnable;
 	}
 
+    /**
+      * attempt to capture a treasure. Checks if the player is on a tile 
+      * where treasure can be captured, if the treasure has already been
+      * captured, and if they have enough treasure cards in hand
+      * If all these conditions are met, it captures the treasure and 
+      * decreases their actions by 1
+      */
     @SuppressWarnings("static-access")
 	public int capture() {
         // Check players position for if its on a treasure tile, and get name of tile
@@ -362,15 +518,28 @@ public class GameModel implements Subject {
 		return 0;
     }
 
+    /**
+      * returns the tile type the current player is on
+      */
 	public TypeEnums getCurrentTileType() {
         Point location = currentPlayer.getPawnPos();
         return theBoard.getTileType(location);
     }
 
+    /**
+      * returns the point that a tile with the given
+      * name is located
+      */
 	public Point getTilePos(TilesEnums t1) {
 		return theBoard.getTilePos(t1);
 	}
 
+    /**
+      * checks if a given player can swim if the tile
+      * sinks
+      * If there if nowhere they can swim to, update 
+      * the observer with the lose condition
+      */
 	public boolean canPlayerSwim(Player player) {
         if (!player.getPawn().canSwim()){
             notifyUpdate(loser,5);
@@ -381,10 +550,18 @@ public class GameModel implements Subject {
         }
 	}
 
+    /**
+      * return a list of valid tiles that are not
+      * sea or sunked tiles
+      */
 	public List<Point> getValidTiles() {
         return theBoard.getValidTiles();
     }
 
+    /**
+      * return a list of all tiles that can be
+      * shored up using a sandbag card
+      */
 	public List<Point> getSandbagsTiles() {
 		return theBoard.getSandbagsTiles();
 	}
